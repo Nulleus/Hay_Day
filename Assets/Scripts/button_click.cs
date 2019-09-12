@@ -17,6 +17,13 @@ public class button_click : MonoBehaviour
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        GameObject.Find("silo_panel").GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+
+    }
+    void OnMouseUp()
+    {
+        if (gameObject.name == "silo_button_close")
+        {
+            GameObject.Find("silo_panel").SetActive(false);
+        }
     }
 }

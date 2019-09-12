@@ -78,13 +78,14 @@
     <Compile Include="Assets\Scripts\game.cs" />
     <Compile Include="Assets\Scripts\globals.cs" />
     <Compile Include="Assets\Scripts\o_sklad.cs" />
+    <Compile Include="Assets\Scripts\Obj_Click.cs" />
     <Compile Include="Assets\Scripts\predmet_farm.cs" />
     <Compile Include="Assets\Scripts\production_building_farm.cs" />
+    <Compile Include="Assets\Scripts\quantity_update.cs" />
     <Compile Include="Assets\Scripts\refresh_backery_0.cs" />
     <Compile Include="Assets\Scripts\refresh_dairy.cs" />
     <Compile Include="Assets\Scripts\refresh_field_0.cs" />
     <Compile Include="Assets\Scripts\silo.cs" />
-    <Compile Include="Assets\Scripts\silo_panel_control.cs" />
     <Compile Include="Assets\Scripts\slot_predmet.cs" />
     <Compile Include="Assets\Scripts\slots_controller.cs" />
     <Compile Include="Assets\Scripts\soybean_quantity_script.cs" />

@@ -17,17 +17,14 @@ public class globals : MonoBehaviour
 
     public static string predmetname { get; set; }//Выбранный предмет для посадки
     public static int amount_wheat { get; set; }
-    //====================================поле_1=============================================//
-
-    void Start()
-    {
-   
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
- 
-
+    //====================================Количество культур=============================================//
+    public static int quantuty_wheat { get; set; }//Количетво пшеницы в силосной башни
+    public static int quantuty_corn { get; set; }
+    public static int quantuty_soybean { get; set; }
+    public static int quantuty_sugarcane { get; set; }
+    public static int quantuty_carrot { get; set; }
+    public static int quantuty_pumpkin { get; set; }
+    //====================================Вместимость=============================================//
+    public static int silo_intcapacity { get; set; }//Вместимость силосной башни
+    public static int barn_intcapacity { get; set; }//Вместимость амбара
 }
