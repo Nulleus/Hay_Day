@@ -122,20 +122,6 @@ public class field_farm_0_script : MonoBehaviour
         time_stage_5 = DateTime.Now;
         time_stage_5_begin = DateTime.Now;
         time_stage_5_end = DateTime.Now;
-        wheat_quantity = 10;
-        corn_quantity = 11;
-        soybean_quantity = 12;
-        sugarcane_quantity = 13;
-        carrot_quantity = 14;
-        pumpkin_quantity = 15;
-        bread_quantity = 16;
-        chicken_feed_quantity = 17;
-        egg_quantity = 18;
-        cow_feed_quantity = 19;
-        milk_quantity = 20;
-        cream_quantity = 21;
-        popcorn_quantity = 22;
-        butter_quantity = 23;
     }
     // Update is called once per frame
     void Update()
@@ -241,12 +227,12 @@ public class field_farm_0_script : MonoBehaviour
             if (stage == 4) //Если состояние этапа==4(Готово для сбора) тогда собираем
             {
 
-                if (crop == "wheat"){quantity_wheat(2); }
-                if (crop == "corn"){quantity_corn(2);}
-                if (crop == "soybean"){quantity_soybean(2);}
-                if (crop == "sugarcane"){quantity_sugarcane(2);}
-                if (crop == "carrot"){quantity_carrot(2);}
-                if (crop == "pumpkin"){quantity_pumpkin(2);}
+                if (crop == "wheat"){globals.quantuty_wheat = globals.quantuty_wheat + 2; }
+                if (crop == "corn"){ globals.quantuty_corn = globals.quantuty_corn + 2; }
+                if (crop == "soybean"){ globals.quantuty_soybean = globals.quantuty_soybean + 2; }
+                if (crop == "sugarcane"){ globals.quantuty_sugarcane = globals.quantuty_sugarcane + 2; }
+                if (crop == "carrot"){globals.quantuty_carrot= globals.quantuty_carrot + 2;}
+                if (crop == "pumpkin"){globals.quantuty_pumpkin= globals.quantuty_pumpkin + 2;}
                 var nowtime = DateTime.Now;
                 time_stage_5_begin = nowtime;
                 time_stage_5_end = nowtime.AddSeconds(2);//Добавляем к текущему времени 5секунд
@@ -260,12 +246,12 @@ public class field_farm_0_script : MonoBehaviour
                 //Открывается панель с культурами и выбираем что будем сеять
                 crop = other.gameObject.name;//Запоминаем посаженную культуру           
                 Debug.Log("crop:" + crop);
-                if (crop == "wheat"){quantity_wheat(-1);}
-                if (crop == "corn"){quantity_corn(-1);}
-                if (crop == "soybean"){quantity_soybean(-1);}
-                if (crop == "sugarcane") { quantity_sugarcane(-1); }
-                if (crop == "carrot") { quantity_carrot(-1); }
-                if (crop == "pumpkin") { quantity_pumpkin(-1); }
+                if (crop == "wheat"){ globals.quantuty_wheat = globals.quantuty_wheat - 1; ; }
+                if (crop == "corn") { globals.quantuty_corn = globals.quantuty_corn - 1; }
+                if (crop == "soybean") { globals.quantuty_soybean = globals.quantuty_soybean - 1; }
+                if (crop == "sugarcane") { globals.quantuty_sugarcane = globals.quantuty_sugarcane - 1; }
+                if (crop == "carrot") { globals.quantuty_carrot = globals.quantuty_carrot - 1; }
+                if (crop == "pumpkin") { globals.quantuty_pumpkin = globals.quantuty_pumpkin - 1; }
                 stage = 1;//Запускаем первую стадию
 
                 //Тут необходимо сделать запрос в БД для вычисления количества культуры
@@ -285,70 +271,5 @@ public class field_farm_0_script : MonoBehaviour
 
 
     }
-    public void quantity_update()
-    {
-        wheat_field_panel_quantity_text.text = wheat_quantity.ToString();
-        wheat_silo_quantity_text.text = wheat_quantity.ToString();
-        corn_field_panel_quantity_text.text = corn_quantity.ToString();
-        corn_silo_quantity_text.text = corn_quantity.ToString();
-        soybean_field_panel_quantity_text.text = soybean_quantity.ToString();
-        soybean_silo_quantity_text.text = soybean_quantity.ToString();
-        sugarcane_field_panel_quantity_text.text = sugarcane_quantity.ToString();
-        sugarcane_silo_quantity_text.text = sugarcane_quantity.ToString();
-        carrot_field_panel_quantity_text.text = carrot_quantity.ToString();
-        carrot_silo_quantity_text.text = carrot_quantity.ToString();
-        pumpkin_field_panel_quantity_text.text = pumpkin_quantity.ToString();
-        pumpkin_silo_quantity_text.text = pumpkin_quantity.ToString();
-/*
-        bread_barn_quantity_text.text = bread_quantity.ToString();
-        chicken_feed_barn_quantity_text.text = chicken_feed_quantity.ToString();
-        egg_barn_quantity_text.text = egg_quantity.ToString();
-        cow_feed_barn_quantity_text.text = cow_feed_quantity.ToString();
-        milk_barn_quantity_text.text = milk_quantity.ToString();
-        cream_barn_quantity_text.text = cream_quantity.ToString();
-        popcorn_barn_quantity_text.text = popcorn_quantity.ToString();
-        butter_barn_quantity_text.text = butter_quantity.ToString();*/
-
-    }
-    public void quantity_wheat(int chislo)
-    {
-        wheat_quantity = wheat_quantity + chislo;
-        quantity_update();
-    }
-    //====================corn==========================//
-    public void quantity_corn(int chislo)
-    {
-        corn_quantity = corn_quantity + chislo;
-        quantity_update();
-    }
-    //====================soybean======================//
-    public void quantity_soybean(int chislo)
-    {
-        soybean_quantity = soybean_quantity + chislo;
-        quantity_update();
-    }
-
-    //====================sugarcane======================//
-    public void quantity_sugarcane(int chislo)
-    {
-        sugarcane_quantity = sugarcane_quantity + chislo;
-        quantity_update();
-    }
-    //======================carrot=======================//
-    public void quantity_carrot(int chislo)
-    {
-        carrot_quantity = carrot_quantity + chislo;
-        quantity_update();
-    }
-
-    //======================pumpkin=======================//
-    public void quantity_pumpkin(int chislo)
-    {
-        pumpkin_quantity = pumpkin_quantity + chislo;
-        quantity_update();
-    }
-
-    //======================bread=========================//
-
 
 }

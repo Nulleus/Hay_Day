@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\slots_controller.cs" />
     <Compile Include="Assets\Scripts\soybean_quantity_script.cs" />
     <Compile Include="Assets\Scripts\sql_client.cs" />
+    <Compile Include="Assets\silo_button_close.cs" />
+    <Compile Include="Assets\silo_panel.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Farm_2019/Hay_Day/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

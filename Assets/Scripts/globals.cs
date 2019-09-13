@@ -27,4 +27,11 @@ public class globals : MonoBehaviour
     //====================================Вместимость=============================================//
     public static int silo_intcapacity { get; set; }//Вместимость силосной башни
     public static int barn_intcapacity { get; set; }//Вместимость амбара
+    //=========================Амбар=============================================//
+    public static int bread { get; set; }//Количество хлеба в амбаре
+    public static int corn_bread { get; set; }//Количество кукурузного хлеба в амбаре
+    public static int cookie { get; set; }//Количество пеенья в амбаре
+    public static int cream { get; set; }//Количество крема в амбаре
+    public static int butter { get; set; }//Количество масла в амбаре
+    public static int cheese { get; set; }//Количество сыра в амбаре
 }

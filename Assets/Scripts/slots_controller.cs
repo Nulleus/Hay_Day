@@ -101,20 +101,42 @@ public class slots_controller : MonoBehaviour //Контроллер загру�
     {
         for (int i = 0; i < 9; i++)
         {
+            //Пекарня
             if ((gameObject.name == "slot_" + i + "_ready_bakery") && (GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] == "bread"))
             {
-                GameObject.Find("bakery").GetComponent<bakery>().barn_bread++;//Прибавляем количество хлеба на склад
+                globals.bread++;//Прибавляем количество хлеба на склад
                 GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
-                Debug.Log("barn_bread = "+GameObject.Find("bakery").GetComponent<bakery>().barn_bread);
+                Debug.Log("bread = "+globals.bread);
 
             }
             if ((gameObject.name == "slot_" + i + "_ready_bakery") && (GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] == "corn_bread"))
             {
-                GameObject.Find("bakery").GetComponent<bakery>().barn_corn_bread++;
+                globals.corn_bread++;
+                GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] = "";
             }
             if ((gameObject.name == "slot_" + i + "_ready_bakery") && (GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] == "cookie"))
             {
-                GameObject.Find("bakery").GetComponent<bakery>().barn_cookie++;
+                globals.cookie++;
+                GameObject.Find("bakery").GetComponent<bakery>().array_slots_otgruzki[i, 0] = "";
+            }
+            //Молокозавод
+            if ((gameObject.name == "slot_" + i + "_ready_dairy") && (GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] == "cream"))
+            {
+                globals.cream++;//Прибавляем количество крема на склад
+                GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
+                Debug.Log("cream = " + globals.cream);
+
+            }
+            if ((gameObject.name == "slot_" + i + "_ready_dairy") && (GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] == "corn_bread"))
+            {
+
+                globals.butter++;
+                GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
+            }
+            if ((gameObject.name == "slot_" + i + "_ready_dairy") && (GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] == "cookie"))
+            {
+                globals.cheese++;
+                GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
             }
         }
     }
