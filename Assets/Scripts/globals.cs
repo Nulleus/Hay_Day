@@ -34,4 +34,8 @@ public class globals : MonoBehaviour
     public static int cream { get; set; }//Количество крема в амбаре
     public static int butter { get; set; }//Количество масла в амбаре
     public static int cheese { get; set; }//Количество сыра в амбаре
+    public static int nail { get; set; }//Количество гвоздей в амбаре
+    public static int screew { get; set; }//Количество шурупов в амбаре
+    public static int wood_panel { get; set; }//Количество панелей в амбаре
+
 }

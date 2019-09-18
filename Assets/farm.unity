@@ -1514,22 +1514,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 83096909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
+  m_Script: {fileID: 11500000, guid: 0759aff734b29294e8ae4c42362f9ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
+  GO_silo_screew_quantity_text: {fileID: 0}
 --- !u!114 &83096912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2658,6 +2646,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &159346653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 159346654}
+  - component: {fileID: 159346657}
+  - component: {fileID: 159346656}
+  - component: {fileID: 159346655}
+  m_Layer: 0
+  m_Name: coin_plus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &159346654
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159346653}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 356616658}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 317, y: 102}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &159346655
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159346653}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &159346656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159346653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: c21d98f1f47f20349a3c53c05f606162, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &159346657
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159346653}
+  m_CullTransparentMesh: 0
 --- !u!1 &166788162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,7 +3541,6 @@ GameObject:
   - component: {fileID: 189326936}
   - component: {fileID: 189326939}
   - component: {fileID: 189326938}
-  - component: {fileID: 189326937}
   m_Layer: 5
   m_Name: silo_button_plus_wood_panel
   m_TagString: panel_silo
@@ -3485,58 +3568,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10.2, y: -8.4}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &189326937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189326935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &189326938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4950,6 +4981,75 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &270212397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 270212398}
+  - component: {fileID: 270212400}
+  - component: {fileID: 270212399}
+  m_Layer: 0
+  m_Name: diamond_ui
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &270212398
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270212397}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 548.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 757949946}
+  - {fileID: 1859416720}
+  - {fileID: 593353290}
+  m_Father: {fileID: 882889951}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 927, y: 357}
+  m_SizeDelta: {x: 400, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &270212399
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270212397}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!222 &270212400
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270212397}
+  m_CullTransparentMesh: 0
 --- !u!1 &272200538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5631,6 +5731,75 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &356616657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 356616658}
+  - component: {fileID: 356616660}
+  - component: {fileID: 356616659}
+  m_Layer: 0
+  m_Name: coin_ui
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &356616658
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356616657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 548.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 159346654}
+  - {fileID: 1789498254}
+  - {fileID: 1292530465}
+  m_Father: {fileID: 882889951}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 927, y: 456}
+  m_SizeDelta: {x: 400, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &356616659
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356616657}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!222 &356616660
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356616657}
+  m_CullTransparentMesh: 0
 --- !u!1 &359395359
 GameObject:
   m_ObjectHideFlags: 0
@@ -7974,7 +8143,6 @@ GameObject:
   - component: {fileID: 572750455}
   - component: {fileID: 572750458}
   - component: {fileID: 572750457}
-  - component: {fileID: 572750456}
   m_Layer: 5
   m_Name: silo_screew
   m_TagString: panel_silo
@@ -8002,58 +8170,6 @@ RectTransform:
   m_AnchoredPosition: {x: -24.300007, y: 18.699997}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &572750456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572750454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &572750457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8263,6 +8379,107 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &593353289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593353290}
+  - component: {fileID: 593353293}
+  - component: {fileID: 593353292}
+  - component: {fileID: 593353291}
+  m_Layer: 0
+  m_Name: diamond_quantity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &593353290
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593353289}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 270212398}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -491, y: 2}
+  m_SizeDelta: {x: 500, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &593353291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593353289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 75
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 75
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 10000000
+--- !u!223 &593353292
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593353289}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!222 &593353293
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593353289}
+  m_CullTransparentMesh: 0
 --- !u!1 &595568247
 GameObject:
   m_ObjectHideFlags: 0
@@ -9333,7 +9550,6 @@ GameObject:
   - component: {fileID: 656077646}
   - component: {fileID: 656077649}
   - component: {fileID: 656077648}
-  - component: {fileID: 656077647}
   m_Layer: 5
   m_Name: silo_button_plus_screew
   m_TagString: panel_silo
@@ -9361,58 +9577,6 @@ RectTransform:
   m_AnchoredPosition: {x: -23.9, y: -8.4}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &656077647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656077645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &656077648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9699,22 +9863,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 676917322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
+  m_Script: {fileID: 11500000, guid: 8467725944034c544b8a16da1661d03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
+  GO_silo_wood_panel_quantity_text: {fileID: 0}
 --- !u!114 &676917325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10817,6 +10969,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &757949945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757949946}
+  - component: {fileID: 757949949}
+  - component: {fileID: 757949948}
+  - component: {fileID: 757949947}
+  m_Layer: 0
+  m_Name: diamond_plus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &757949946
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757949945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 270212398}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 317, y: 102}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &757949947
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757949945}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &757949948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757949945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: c21d98f1f47f20349a3c53c05f606162, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &757949949
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757949945}
+  m_CullTransparentMesh: 0
 --- !u!1 &769340732
 GameObject:
   m_ObjectHideFlags: 0
@@ -13530,6 +13778,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -548.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 356616658}
+  - {fileID: 270212398}
   - {fileID: 1953859124}
   - {fileID: 946873346}
   m_Father: {fileID: 0}
@@ -14409,7 +14659,7 @@ RectTransform:
   m_Children:
   - {fileID: 189864954}
   m_Father: {fileID: 882889951}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14908,7 +15158,7 @@ GameObject:
   - component: {fileID: 1055756722}
   - component: {fileID: 1055756721}
   - component: {fileID: 1055756720}
-  - component: {fileID: 1055756725}
+  - component: {fileID: 1055756724}
   m_Layer: 0
   m_Name: silo_button_increase_capacity
   m_TagString: Untagged
@@ -15020,7 +15270,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055756718}
   m_CullTransparentMesh: 0
---- !u!114 &1055756725
+--- !u!114 &1055756724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15029,12 +15279,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055756718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14dfca5b21acc7e45b8892b6efa9f034, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b9df54d3bbcab34ca2c3b7ebfb3d028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   silo_global: {fileID: 0}
   silo_upgrade: {fileID: 0}
-  silo_panel: {fileID: 0}
   silo_button_increase_capacity_text: {fileID: 0}
 --- !u!1 &1058474131
 GameObject:
@@ -15162,22 +15411,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1063075792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
+  m_Script: {fileID: 11500000, guid: da54cd7d324bc20478ebb350065ef9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
+  GO_silo_upgrade_info_text: {fileID: 0}
 --- !u!114 &1063075795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17364,6 +17601,107 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1292530464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292530465}
+  - component: {fileID: 1292530468}
+  - component: {fileID: 1292530467}
+  - component: {fileID: 1292530466}
+  m_Layer: 0
+  m_Name: coin_quantity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1292530465
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292530464}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 356616658}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -491, y: 2}
+  m_SizeDelta: {x: 500, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1292530466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292530464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 75
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 75
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 10000000
+--- !u!223 &1292530467
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292530464}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!222 &1292530468
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292530464}
+  m_CullTransparentMesh: 0
 --- !u!1 &1294829065
 GameObject:
   m_ObjectHideFlags: 0
@@ -18380,9 +18718,9 @@ GameObject:
   - component: {fileID: 1338639721}
   - component: {fileID: 1338639723}
   - component: {fileID: 1338639722}
-  - component: {fileID: 1338639724}
   - component: {fileID: 1338639726}
   - component: {fileID: 1338639725}
+  - component: {fileID: 1338639724}
   m_Layer: 5
   m_Name: silo_upgrade_button_ok
   m_TagString: Untagged
@@ -18455,13 +18793,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1338639720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14dfca5b21acc7e45b8892b6efa9f034, type: 3}
+  m_Script: {fileID: 11500000, guid: fbaef51476048cf41a8a09444aea596e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silo_global: {fileID: 0}
-  silo_upgrade: {fileID: 0}
-  silo_panel: {fileID: 0}
-  silo_button_increase_capacity_text: {fileID: 0}
 --- !u!61 &1338639725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19648,7 +19982,6 @@ GameObject:
   - component: {fileID: 1479433898}
   - component: {fileID: 1479433901}
   - component: {fileID: 1479433900}
-  - component: {fileID: 1479433899}
   m_Layer: 5
   m_Name: silo_wood_panel
   m_TagString: panel_silo
@@ -19676,58 +20009,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10.400005, y: 18.699997}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1479433899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479433897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &1479433900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19776,7 +20057,6 @@ GameObject:
   - component: {fileID: 1483445096}
   - component: {fileID: 1483445099}
   - component: {fileID: 1483445098}
-  - component: {fileID: 1483445097}
   m_Layer: 5
   m_Name: silo_button_plus_nail
   m_TagString: panel_silo
@@ -19804,58 +20084,6 @@ RectTransform:
   m_AnchoredPosition: {x: -37.9, y: -8.4}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1483445097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483445095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &1483445098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21565,7 +21793,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593843638}
-  - component: {fileID: 1593843639}
   - component: {fileID: 1593843641}
   - component: {fileID: 1593843640}
   - component: {fileID: 1593843643}
@@ -21597,22 +21824,6 @@ RectTransform:
   m_AnchoredPosition: {x: 581, y: 337}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1593843639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593843637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14dfca5b21acc7e45b8892b6efa9f034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  silo_global: {fileID: 0}
-  silo_upgrade: {fileID: 0}
-  silo_panel: {fileID: 0}
-  silo_button_increase_capacity_text: {fileID: 0}
 --- !u!114 &1593843640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21709,6 +21920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdc1dcceddd49b45b09c58cef3f45a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  silo_panel: {fileID: 0}
 --- !u!1 &1600369482
 GameObject:
   m_ObjectHideFlags: 0
@@ -22983,22 +23195,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718525922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
+  m_Script: {fileID: 11500000, guid: 99fff9f4e5b6ef44385982d18239f724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
+  GO_silo_nail_quantity_text: {fileID: 0}
 --- !u!114 &1718525925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23615,6 +23815,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1789498253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1789498254}
+  - component: {fileID: 1789498257}
+  - component: {fileID: 1789498256}
+  - component: {fileID: 1789498255}
+  m_Layer: 0
+  m_Name: coin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1789498254
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789498253}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 356616658}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 214, y: 102}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1789498255
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789498253}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &1789498256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789498253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d552a1b0705620349b24105dcff75e35, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1789498257
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789498253}
+  m_CullTransparentMesh: 0
 --- !u!1 &1791963843
 GameObject:
   m_ObjectHideFlags: 0
@@ -24243,6 +24539,102 @@ MonoBehaviour:
   visible_sickle: {fileID: 0}
   scrollview: {fileID: 0}
   scrollrect: {fileID: 0}
+--- !u!1 &1859416719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1859416720}
+  - component: {fileID: 1859416723}
+  - component: {fileID: 1859416722}
+  - component: {fileID: 1859416721}
+  m_Layer: 0
+  m_Name: diamond
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1859416720
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859416719}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 270212398}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 214, y: 102}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1859416721
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859416719}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &1859416722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859416719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 13e8d586b94b7794ca64b1eef9917e9a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1859416723
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859416719}
+  m_CullTransparentMesh: 0
 --- !u!1 &1860027648
 GameObject:
   m_ObjectHideFlags: 0
@@ -25601,7 +25993,7 @@ RectTransform:
   - {fileID: 1055756719}
   - {fileID: 52463124}
   m_Father: {fileID: 882889951}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -30,8 +30,8 @@ public class quantity_update : MonoBehaviour
         globals.quantuty_sugarcane = 11;
         globals.quantuty_carrot = 11;
         globals.quantuty_pumpkin = 11;
-        globals.silo_intcapacity = 101;
-        globals.barn_intcapacity = 102;
+        globals.silo_intcapacity = 50;
+        globals.barn_intcapacity = 50;
                 //wheat
         quantity_field_panel_wheat_text = GameObject.Find("quantity_field_panel_wheat_text");
         silo_wheat_quantity_text = GameObject.Find("silo_wheat_quantity_text");
