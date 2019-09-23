@@ -12,7 +12,6 @@ public class cow_feed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        globals.cow_feed = 100;//Количество коровьего корма в амбаре
         building_time = 10;//Время сборки молочного бидона
     }
 

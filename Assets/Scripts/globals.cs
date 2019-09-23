@@ -6,7 +6,7 @@ using UnityEngine;
 public class globals : MonoBehaviour
 {
     public static int coin { get; set; }//Количество монет игрока
-    public static int diamond { get; set; }//Количество монет
+    public static int diamond { get; set; }//Количество алмазов
     //public static string [] checksilo { get; set; }
     public static bool zoom { get; set; }
     public static bool drag { get; set; }
@@ -27,12 +27,12 @@ public class globals : MonoBehaviour
     //====================================Вместимость=============================================//
     public static int silo_intcapacity { get; set; }//Вместимость силосной башни
     public static int barn_intcapacity { get; set; }//Вместимость амбара
-                                                    //=========================Амбар=============================================//
+    //=========================Амбар=============================================//
     public static int cow_feed { get; set; }//Количество коровьего корма в амбаре
     public static int milk_bucket { get; set; }//Количество бидонов коровьего молока в амбаре
     public static int bread { get; set; }//Количество хлеба в амбаре
     public static int corn_bread { get; set; }//Количество кукурузного хлеба в амбаре
-    public static int cookie { get; set; }//Количество пеенья в амбаре
+    public static int cookie { get; set; }//Количество печенья в амбаре
     public static int cream { get; set; }//Количество крема в амбаре
     public static int butter { get; set; }//Количество масла в амбаре
     public static int cheese { get; set; }//Количество сыра в амбаре
@@ -43,5 +43,16 @@ public class globals : MonoBehaviour
     public static int cow_0_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
     public static DateTime cow_0_begin_stage_1 { get; set; }//Время начала первой стадии коровы
     public static DateTime cow_0_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //==========================kiosk_barn====================================================================//
+    public static string kiosk_barn_selected_predmet { get; set; }//Выбраный предмет в киоске силосной башни
+    //==========================kiosk_silo====================================================================//
+    public static string kiosk_silo_selected_crop { get; set; }//Выбраный предмет в киоске силосной башни
+    //===========================wheat==================================================================//
+    public static int max_price_wheat { get; set; }
+    //===========================corn==================================================================//
+    public static int max_price_corn { get; set; }
+    //============================kiosk_silo==================================//
+    public static int kiosk_silo_sale_quantity { get; set; }
+    public static int kiosk_silo_coin_quantity { get; set; }
 
 }

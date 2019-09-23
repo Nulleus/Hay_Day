@@ -61,6 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\kiosk_silo_button_minus_coin.cs" />
+    <Compile Include="Assets\kiosk_silo_button_minus_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_button_plus_coin.cs" />
+    <Compile Include="Assets\kiosk_silo_button_plus_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_coin_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_sale_quantity.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\bread.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />
@@ -69,6 +75,7 @@
     <Compile Include="Assets\Scripts\coin_quantity.cs" />
     <Compile Include="Assets\Scripts\cookie.cs" />
     <Compile Include="Assets\Scripts\corn_bread.cs" />
+    <Compile Include="Assets\Scripts\corn_quantity.cs" />
     <Compile Include="Assets\Scripts\corn_quantity_script.cs" />
     <Compile Include="Assets\Scripts\cow_0.cs" />
     <Compile Include="Assets\Scripts\cow_feed.cs" />
@@ -81,6 +88,14 @@
     <Compile Include="Assets\Scripts\field_farm_0_script.cs" />
     <Compile Include="Assets\Scripts\game.cs" />
     <Compile Include="Assets\Scripts\globals.cs" />
+    <Compile Include="Assets\Scripts\kiosk_selected_crop.cs" />
+    <Compile Include="Assets\Scripts\kiosk_selected_predmet.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_box_0.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_box_0_box_quantity.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_corn.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_text_info.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_wheat.cs" />
+    <Compile Include="Assets\Scripts\load_data.cs" />
     <Compile Include="Assets\Scripts\milk_bucket.cs" />
     <Compile Include="Assets\Scripts\o_sklad.cs" />
     <Compile Include="Assets\Scripts\Obj_Click.cs" />
@@ -103,6 +118,7 @@
     <Compile Include="Assets\Scripts\slots_controller.cs" />
     <Compile Include="Assets\Scripts\soybean_quantity_script.cs" />
     <Compile Include="Assets\Scripts\sql_client.cs" />
+    <Compile Include="Assets\Scripts\wheat_quantity.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Farm_2019/Hay_Day/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

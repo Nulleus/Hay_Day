@@ -11,9 +11,6 @@ public class cow_0 : MonoBehaviour
     void Start()
     {
         cow_anim = GetComponent<Animator>();
-        globals.cow_0_begin_stage_1 = DateTime.Now;
-        globals.cow_0_end_stage_1 = DateTime.Now;
-        globals.cow_0_stage = 0; 
     }
 
     // Update is called once per frame

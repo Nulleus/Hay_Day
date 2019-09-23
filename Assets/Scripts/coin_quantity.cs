@@ -9,7 +9,6 @@ public class coin_quantity : MonoBehaviour
         // Start is called before the first frame update
     void Start()
     {
-        globals.coin = 999999;
         GO_coin_quantity = GameObject.Find("coin_quantity");
     }
 
