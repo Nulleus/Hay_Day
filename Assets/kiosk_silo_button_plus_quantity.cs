@@ -17,6 +17,6 @@ public class kiosk_silo_button_plus_quantity : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        globals.kiosk_silo_sale_quantity++;
+        globals.kiosk_silo_crop_quantity++;
     }
 }

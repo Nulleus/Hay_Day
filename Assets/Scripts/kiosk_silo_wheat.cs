@@ -20,6 +20,6 @@ public class kiosk_silo_wheat : MonoBehaviour
     private void OnMouseUp()//Когда отпускает клавишу мыши
     {
         globals.kiosk_silo_selected_crop = "wheat";
-
+        globals.kiosk_silo_coin_max = 3;
     }
 }

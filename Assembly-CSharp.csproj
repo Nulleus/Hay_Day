@@ -61,12 +61,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\carrot_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_button_left.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_coin.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_quantity.cs" />
     <Compile Include="Assets\kiosk_silo_button_plus_coin.cs" />
     <Compile Include="Assets\kiosk_silo_button_plus_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_button_right.cs" />
+    <Compile Include="Assets\kiosk_silo_carrot.cs" />
     <Compile Include="Assets\kiosk_silo_coin_quantity.cs" />
-    <Compile Include="Assets\kiosk_silo_sale_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_crop_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_soybean.cs" />
+    <Compile Include="Assets\kiosk_silo_sugarcane.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\bread.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />
@@ -119,6 +125,8 @@
     <Compile Include="Assets\Scripts\soybean_quantity_script.cs" />
     <Compile Include="Assets\Scripts\sql_client.cs" />
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
+    <Compile Include="Assets\soybean_quantity.cs" />
+    <Compile Include="Assets\sugarcane_quantity.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Farm_2019/Hay_Day/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -36,8 +36,10 @@ public class load_data : MonoBehaviour
         //====================================corn======================================//
         globals.max_price_corn = 7;
 
-        globals.kiosk_silo_sale_quantity = 10;
+        globals.kiosk_silo_crop_quantity = 10;
         globals.kiosk_silo_coin_quantity = 0;
+        globals.kiosk_silo_coin_max = 3;
+
     }
 
     // Update is called once per frame
