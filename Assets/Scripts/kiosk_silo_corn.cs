@@ -20,5 +20,7 @@ public class kiosk_silo_corn : MonoBehaviour
     private void OnMouseUp()//Когда отпускает клавишу мыши
     {
         globals.kiosk_silo_selected_crop = "corn";
+        globals.kiosk_silo_coin_max = 7;
+        globals.kiosk_silo_coin_quantity = globals.kiosk_silo_coin_max / 3 * globals.kiosk_silo_crop_quantity;
     }
 }

@@ -21,5 +21,6 @@ public class kiosk_silo_wheat : MonoBehaviour
     {
         globals.kiosk_silo_selected_crop = "wheat";
         globals.kiosk_silo_coin_max = 3;
+        globals.kiosk_silo_coin_quantity = globals.kiosk_silo_coin_max / 3*globals.kiosk_silo_crop_quantity;
     }
 }

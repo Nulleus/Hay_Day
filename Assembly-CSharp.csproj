@@ -61,18 +61,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Animation\kiosk_silo_crop_quantity.cs" />
     <Compile Include="Assets\carrot_quantity.cs" />
+    <Compile Include="Assets\kiosk_box_0_predmet.cs" />
+    <Compile Include="Assets\kiosk_box_0_quantity_obj.cs" />
     <Compile Include="Assets\kiosk_silo_button_left.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_coin.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_quantity.cs" />
     <Compile Include="Assets\kiosk_silo_button_plus_coin.cs" />
     <Compile Include="Assets\kiosk_silo_button_plus_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_button_PutUp.cs" />
     <Compile Include="Assets\kiosk_silo_button_right.cs" />
     <Compile Include="Assets\kiosk_silo_carrot.cs" />
     <Compile Include="Assets\kiosk_silo_coin_quantity.cs" />
-    <Compile Include="Assets\kiosk_silo_crop_quantity.cs" />
+    <Compile Include="Assets\kiosk_silo_pumpkin.cs" />
     <Compile Include="Assets\kiosk_silo_soybean.cs" />
     <Compile Include="Assets\kiosk_silo_sugarcane.cs" />
+    <Compile Include="Assets\pumpkin_quantity.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\bread.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />

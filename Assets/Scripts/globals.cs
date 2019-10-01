@@ -52,8 +52,13 @@ public class globals : MonoBehaviour
     //===========================corn==================================================================//
     public static int max_price_corn { get; set; }//Максимальная стоимость кукурузы
     //============================kiosk_silo==================================//
+
     public static int kiosk_silo_crop_quantity { get; set; }//Количество выбранной пшеницы в киоске с культурами
     public static int kiosk_silo_coin_quantity { get; set; }//Количество выбранной стоимости в киоске с культурами
     public static int kiosk_silo_coin_max { get; set; }//Количество максимальной стоимости в киоске с культурами с выбранными параметрами
+    public static string kiosk_box_0_object_name { get; set; }//Объект загруженный в слот киоска
+    public static int kiosk_box_0_quantity { get; set; }//Количество, загруженное в слот киоска
+    public static int kiosk_box_0_price { get; set; }//Количество, загруженное в слот киоска
+    public static int kiosk_box_selected { get; set; }//Выбранный слот киоска
 
 }

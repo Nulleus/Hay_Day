@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class silo_button_close : MonoBehaviour
 {
-    public GameObject silo_panel;
+    public GameObject GO_kiosk_silo;
     // Start is called before the first frame update
     void Start()
     {
-        silo_panel = GameObject.Find("silo_panel");
+        GO_kiosk_silo = GameObject.Find("kiosk_silo");
     }
 
     // Update is called once per frame
@@ -18,6 +18,6 @@ public class silo_button_close : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        silo_panel.SetActive(false);
+        GO_kiosk_silo.SetActive(false);
     }
 }
