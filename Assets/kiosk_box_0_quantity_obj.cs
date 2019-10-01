@@ -14,6 +14,6 @@ public class kiosk_box_0_quantity_obj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<Text>().text = globals.kiosk_box_0_quantity.ToString();
+        this.GetComponent<Text>().text = globals.kiosk_box_0_quantity.ToString()+"x";
     }
 }

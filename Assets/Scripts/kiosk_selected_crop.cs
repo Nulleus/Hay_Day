@@ -9,7 +9,7 @@ public class kiosk_selected_crop : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        anim.CrossFade("enemy", 1);
+        anim.CrossFade("empty", 1);
     }
 
     // Update is called once per frame

@@ -39,6 +39,10 @@ public class load_data : MonoBehaviour
         globals.kiosk_silo_crop_quantity = 10;
         globals.kiosk_silo_coin_quantity = 0;
         globals.kiosk_silo_coin_max = 3;
+        globals.kiosk_box_0_object_name = "empty";
+        globals.kiosk_box_0_quantity = 0;
+        globals.kiosk_box_0_price = 0;
+        globals.kiosk_box_selected = 0;
 
     }
 

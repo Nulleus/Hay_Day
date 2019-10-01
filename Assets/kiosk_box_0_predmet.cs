@@ -8,7 +8,7 @@ public class kiosk_box_0_predmet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         anim.CrossFade("empty", 1);
     }
 
@@ -17,9 +17,28 @@ public class kiosk_box_0_predmet : MonoBehaviour
     {
         switch (globals.kiosk_box_0_object_name)
         {
+            case "empty":
+                anim.CrossFade("empty", 1);
+                break;
+
             case "wheat":
                 anim.CrossFade("wheat", 1);
-                break; 
+                break;
+            case "corn":
+                anim.CrossFade("corn", 1);
+                break;
+            case "soybean":
+                anim.CrossFade("soybean", 1);
+                break;
+            case "sugarcane":
+                anim.CrossFade("sugarcane", 1);
+                break;
+            case "carrot":
+                anim.CrossFade("carrot", 1);
+                break;
+            case "pumpkin":
+                anim.CrossFade("pumpkin", 1);
+                break;
         }
     }
 }

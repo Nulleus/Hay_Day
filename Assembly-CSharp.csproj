@@ -63,8 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Animation\kiosk_silo_crop_quantity.cs" />
     <Compile Include="Assets\carrot_quantity.cs" />
+    <Compile Include="Assets\kiosk.cs" />
     <Compile Include="Assets\kiosk_box_0_predmet.cs" />
+    <Compile Include="Assets\kiosk_box_0_quantity_coin.cs" />
     <Compile Include="Assets\kiosk_box_0_quantity_obj.cs" />
+    <Compile Include="Assets\kiosk_panel_button_close.cs" />
+    <Compile Include="Assets\kiosk_silo_button_close.cs" />
     <Compile Include="Assets\kiosk_silo_button_left.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_coin.cs" />
     <Compile Include="Assets\kiosk_silo_button_minus_quantity.cs" />
