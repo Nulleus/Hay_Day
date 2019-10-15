@@ -5,6 +5,7 @@ using System;
 
 public class load_data : MonoBehaviour
 {
+    public GameObject GO_kiosk_silo;
     // Start is called before the first frame update
     void Start()
     {

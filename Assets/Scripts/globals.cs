@@ -14,7 +14,9 @@ public class globals : MonoBehaviour
     public static string login_users { get; set; }//Логин пользователя
     public static string password_users { get; set; }//Пароль пользователя
     public static int id_user { get; set; }//Уникальный идентификатор пользователя
-    public static int skil_users { get; set; }//Уровень пользователя(всего очков)
+
+    public static int skil_user { get; set; }//Очков у пользователя
+    public static int level_user { get; set; }//Уровень пользователя
 
     public static string predmetname { get; set; }//Выбранный предмет для посадки
     //====================================Количество культур=============================================//
@@ -60,5 +62,30 @@ public class globals : MonoBehaviour
     public static int kiosk_box_0_quantity { get; set; }//Количество, загруженное в слот киоска
     public static int kiosk_box_0_price { get; set; }//Количество, загруженное в слот киоска
     public static int kiosk_box_selected { get; set; }//Выбранный слот киоска
+    //============================order_board==================================//
+    public static int order_board_slot_selected { get; set; }//Выбранный слот доски объявлений
+    public static int order_board_slot_0_coin_quantity { get; set; } //Монет за доставку предметов в стоте 0
+    public static int order_board_slot_0_experience_point_quantity { get; set; } //Очков опыта за доставку предметов в слоте 0
+    public static string order_board_slot_0_vaucher_color{ get; set; } //Цвет ваучера за доставку предметов в слоте 0
+    public static bool order_board_slot_0_help { get; set; } //Установлена ли помощь в слоте 0
+
+    public static string order_board_slot_0_predmet_0_name { get; set; } //1ый необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_0_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
+    public static string order_board_slot_0_predmet_1_name { get; set; } //2ой необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_1_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
+    public static string order_board_slot_0_predmet_2_name { get; set; } //3ий необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_2_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
+    public static string order_board_slot_0_predmet_3_name { get; set; } //4ый необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_3_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
+    public static string order_board_slot_0_predmet_4_name { get; set; } //5ый необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_4_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
+    public static string order_board_slot_0_predmet_5_name { get; set; } //6ой необходимый предмет в слоте 0
+    public static int order_board_slot_0_predmet_5_quantity { get; set; } //Количество необходимого предмета в слоте 0
+
 
 }

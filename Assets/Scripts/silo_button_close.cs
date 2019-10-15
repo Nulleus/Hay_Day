@@ -8,7 +8,7 @@ public class silo_button_close : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GO_kiosk_silo = GameObject.Find("kiosk_silo");
+        GO_kiosk_silo = GameObject.Find("silo_panel");
     }
 
     // Update is called once per frame
