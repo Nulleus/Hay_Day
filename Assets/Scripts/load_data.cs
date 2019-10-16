@@ -24,7 +24,20 @@ public class load_data : MonoBehaviour
         globals.silo_intcapacity = 50;//
         globals.barn_intcapacity = 50;
         //=============================barn===============================//
+        globals.bolt = 100;
+        globals.duct_tape = 100;
+        globals.plank = 100;
         globals.cow_feed = 100;//Количество коровьего корма в амбаре
+        globals.milk = 12;
+        globals.bread = 13;
+        globals.corn_bread = 14;
+        globals.cookie = 15;
+        globals.cream = 12;
+        globals.butter = 13;
+        globals.cheese = 14;
+        globals.nail = 10;
+        globals.screew = 11;
+        globals.wood_panel = 10;
         //=======================UI===========================================//
         globals.coin = 999999;
         globals.diamond = 8888888;

@@ -30,14 +30,20 @@ public class globals : MonoBehaviour
     public static int silo_intcapacity { get; set; }//Вместимость силосной башни
     public static int barn_intcapacity { get; set; }//Вместимость амбара
     //=========================Амбар=============================================//
+    //Upgrade//
+    public static int bolt { get; set; }//Количество болтов в амбаре
+    public static int duct_tape{ get; set; }//Количество скотча в амбаре
+    public static int plank { get; set; }//Количество досок в амбаре
+
     public static int cow_feed { get; set; }//Количество коровьего корма в амбаре
-    public static int milk_bucket { get; set; }//Количество бидонов коровьего молока в амбаре
+    public static int milk { get; set; }//Количество коровьего молока в амбаре
     public static int bread { get; set; }//Количество хлеба в амбаре
     public static int corn_bread { get; set; }//Количество кукурузного хлеба в амбаре
     public static int cookie { get; set; }//Количество печенья в амбаре
     public static int cream { get; set; }//Количество крема в амбаре
     public static int butter { get; set; }//Количество масла в амбаре
     public static int cheese { get; set; }//Количество сыра в амбаре
+
     public static int nail { get; set; }//Количество гвоздей в амбаре
     public static int screew { get; set; }//Количество шурупов в амбаре
     public static int wood_panel { get; set; }//Количество панелей в амбаре

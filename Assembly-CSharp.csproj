@@ -62,6 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Animation\kiosk_silo_crop_quantity.cs" />
+    <Compile Include="Assets\barn_bolt_quantity_text.cs" />
+    <Compile Include="Assets\barn_button_close.cs" />
+    <Compile Include="Assets\barn_button_increase_capacity.cs" />
+    <Compile Include="Assets\barn_duct_tape_quantity_text.cs" />
+    <Compile Include="Assets\barn_plank_quantity_text.cs" />
+    <Compile Include="Assets\barn_upgrade_button_ok.cs" />
+    <Compile Include="Assets\barn_upgrade_info_text.cs" />
     <Compile Include="Assets\carrot_quantity.cs" />
     <Compile Include="Assets\kiosk.cs" />
     <Compile Include="Assets\kiosk_box_0_predmet.cs" />

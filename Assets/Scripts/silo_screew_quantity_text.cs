@@ -16,6 +16,6 @@ public class silo_screew_quantity_text : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GO_silo_screew_quantity_text.GetComponent<Text>().text = globals.screew.ToString()+"/"+(globals.silo_intcapacity/25-1).ToString();//В амбаре/Необходимо для обновления
+        GO_silo_screew_quantity_text.GetComponent<Text>().text = globals.screew.ToString()+"/"+(globals.silo_intcapacity/25-1).ToString();//В силосной башни/Необходимо для обновления
     }
 }

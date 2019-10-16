@@ -81,19 +81,6 @@ public class field_farm_0_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wheat_silo_quantity_text = GameObject.Find("quantity_field_panel_wheat_text").GetComponent<Text>();
-        wheat_field_panel_quantity_text = GameObject.Find("wheat_quantity_text").GetComponent<Text>();
-        corn_silo_quantity_text = GameObject.Find("quantity_field_panel_corn_text").GetComponent<Text>();
-        corn_field_panel_quantity_text = GameObject.Find("corn_quantity_text").GetComponent<Text>();
-        soybean_silo_quantity_text = GameObject.Find("quantity_field_panel_soybean_text").GetComponent<Text>();
-        soybean_field_panel_quantity_text = GameObject.Find("soybean_quantity_text").GetComponent<Text>();
-        sugarcane_silo_quantity_text = GameObject.Find("quantity_field_panel_sugarcane_text").GetComponent<Text>();
-        sugarcane_field_panel_quantity_text = GameObject.Find("sugarcane_quantity_text").GetComponent<Text>();
-        carrot_silo_quantity_text = GameObject.Find("quantity_field_panel_carrot_text").GetComponent<Text>();
-        carrot_field_panel_quantity_text = GameObject.Find("carrot_quantity_text").GetComponent<Text>();
-        pumpkin_silo_quantity_text = GameObject.Find("quantity_field_panel_pumpkin_text").GetComponent<Text>();
-        pumpkin_field_panel_quantity_text = GameObject.Find("pumpkin_quantity_text").GetComponent<Text>();
-
         visible_slot = GameObject.Find("slots_predmets_field_farm_0");
         visible_sickle = GameObject.Find("slot_sickle_field_farm");
         
