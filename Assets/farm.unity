@@ -207,6 +207,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -630,6 +631,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -1255,7 +1257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -749, y: -1745}
+  m_AnchoredPosition: {x: -187, y: -1616}
   m_SizeDelta: {x: 1448, y: 880}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &54237186
@@ -2442,6 +2444,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108840538}
   m_CullTransparentMesh: 0
+--- !u!1 &109046511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 109046512}
+  - component: {fileID: 109046514}
+  - component: {fileID: 109046513}
+  m_Layer: 0
+  m_Name: order_board_essential_items_obj_panel_info_text_name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &109046512
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109046511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482779771}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: 49}
+  m_SizeDelta: {x: 387.2, y: 44}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &109046513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109046511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u041C\u0430\u043B\u0438\u043D\u0430"
+--- !u!222 &109046514
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109046511}
+  m_CullTransparentMesh: 0
 --- !u!1 &120483755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2587,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -2561,6 +2643,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120483755}
+  m_CullTransparentMesh: 0
+--- !u!1 &125551516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 125551517}
+  - component: {fileID: 125551519}
+  - component: {fileID: 125551518}
+  m_Layer: 0
+  m_Name: order_board_essential_items_obj_panel_info_text_building_time
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &125551517
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125551516}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482779771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: -47}
+  m_SizeDelta: {x: 387.2, y: 44}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &125551518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125551516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 15
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "30 \u0441."
+--- !u!222 &125551519
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125551516}
   m_CullTransparentMesh: 0
 --- !u!1 &127303876
 GameObject:
@@ -3975,7 +4136,7 @@ GameObject:
   - component: {fileID: 170579971}
   - component: {fileID: 170579970}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_5_quantity_text
+  m_Name: order_board_essential_items_slot_5_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5700,8 +5861,11 @@ GameObject:
   - component: {fileID: 264913233}
   - component: {fileID: 264913235}
   - component: {fileID: 264913234}
+  - component: {fileID: 264913237}
+  - component: {fileID: 264913236}
+  - component: {fileID: 264913238}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_0
+  m_Name: order_board_essential_items_slot_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5764,6 +5928,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264913232}
   m_CullTransparentMesh: 0
+--- !u!50 &264913236
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264913232}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &264913237
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264913232}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 113.12, y: 100}
+  m_EdgeRadius: 0
+--- !u!95 &264913238
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264913232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 600544ad8b8f43548bcb93c5f3126c13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &266804969
 GameObject:
   m_ObjectHideFlags: 0
@@ -6913,7 +7143,7 @@ GameObject:
   - component: {fileID: 315578069}
   - component: {fileID: 315578068}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_2_quantity_text
+  m_Name: order_board_essential_items_slot_2_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7291,6 +7521,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -8374,6 +8605,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -8630,6 +8862,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -9106,6 +9339,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425302965}
   m_CullTransparentMesh: 0
+--- !u!1 &432884317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432884318}
+  - component: {fileID: 432884321}
+  - component: {fileID: 432884320}
+  - component: {fileID: 432884319}
+  m_Layer: 5
+  m_Name: barn_panel_egg
+  m_TagString: panel_silo
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &432884318
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432884317}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -101.81866}
+  m_LocalScale: {x: 0.13946328, y: 0.31896594, z: 1.6154025}
+  m_Children:
+  - {fileID: 1948382129}
+  m_Father: {fileID: 436326195}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -11.7, y: -18.1}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!50 &432884319
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432884317}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &432884320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432884317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 4383d3bc1d7b4444eaa9a68e4faf679f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &432884321
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432884317}
+  m_CullTransparentMesh: 0
 --- !u!1 &436326194
 GameObject:
   m_ObjectHideFlags: 0
@@ -9148,6 +9478,7 @@ RectTransform:
   - {fileID: 328385644}
   - {fileID: 764306421}
   - {fileID: 761325386}
+  - {fileID: 432884318}
   m_Father: {fileID: 873366663}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9646,6 +9977,83 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &482779770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482779771}
+  - component: {fileID: 482779773}
+  - component: {fileID: 482779772}
+  m_Layer: 0
+  m_Name: order_board_essential_items_obj_panel_info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &482779771
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482779770}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 109046512}
+  - {fileID: 846202527}
+  - {fileID: 125551517}
+  m_Father: {fileID: 650161978}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -510, y: 303}
+  m_SizeDelta: {x: 391.7, y: 235.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &482779772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482779770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.745283, g: 0.6784888, b: 0.6784888, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &482779773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482779770}
+  m_CullTransparentMesh: 0
 --- !u!1 &483245707
 GameObject:
   m_ObjectHideFlags: 0
@@ -10912,6 +11320,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -11300,6 +11709,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -11382,6 +11792,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -12441,7 +12852,7 @@ GameObject:
   - component: {fileID: 619199369}
   - component: {fileID: 619199368}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_4_quantity_text
+  m_Name: order_board_essential_items_slot_4_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12572,6 +12983,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -13221,7 +13633,7 @@ GameObject:
   - component: {fileID: 650161980}
   - component: {fileID: 650161979}
   m_Layer: 0
-  m_Name: order-board_ essential_items_panel
+  m_Name: order_board_essential_items_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13238,6 +13650,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 482779771}
   - {fileID: 1408598235}
   m_Father: {fileID: 54237185}
   m_RootOrder: 6
@@ -15089,7 +15502,7 @@ GameObject:
   - component: {fileID: 745622072}
   - component: {fileID: 745622071}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_3_quantity_text
+  m_Name: order_board_essential_items_slot_3_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17494,6 +17907,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839609444}
   m_CullTransparentMesh: 0
+--- !u!1 &846202526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846202527}
+  - component: {fileID: 846202529}
+  - component: {fileID: 846202528}
+  m_Layer: 0
+  m_Name: order_board_essential_items_obj_panel_info_text_building_info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &846202527
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846202526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482779771}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: 1}
+  m_SizeDelta: {x: 387.2, y: 44}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &846202528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846202526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 15
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u0421\u043E\u0431\u0438\u0440\u0430\u0435\u0442\u0441\u044F \u0441 \u043A\u0443\u0441\u0442\u0430
+    \u043C\u0430\u043B\u0438\u043D\u044B"
+--- !u!222 &846202529
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846202526}
+  m_CullTransparentMesh: 0
 --- !u!1 &851737412
 GameObject:
   m_ObjectHideFlags: 0
@@ -19828,7 +20321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.6, y: -18.4}
+  m_AnchoredPosition: {x: -24.2, y: -18.4}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &932551346
@@ -20179,7 +20672,7 @@ GameObject:
   - component: {fileID: 982966822}
   - component: {fileID: 982966821}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_0_quantity_text
+  m_Name: order_board_essential_items_slot_0_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20863,7 +21356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -720, y: 399}
+  m_AnchoredPosition: {x: 2126, y: 399}
   m_SizeDelta: {x: 1018.6, y: 514.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036730331
@@ -21176,6 +21669,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -21694,7 +22188,7 @@ GameObject:
   - component: {fileID: 1094985298}
   - component: {fileID: 1094985297}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_4
+  m_Name: order_board_essential_items_slot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22181,7 +22675,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1402110974}
   m_Father: {fileID: 54237185}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22367,7 +22862,7 @@ GameObject:
   - component: {fileID: 1138163551}
   - component: {fileID: 1138163550}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_2
+  m_Name: order_board_essential_items_slot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24384,6 +24879,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -25058,6 +25554,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -25253,6 +25750,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -26820,6 +27318,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -27199,7 +27698,7 @@ GameObject:
   - component: {fileID: 1398988981}
   - component: {fileID: 1398988980}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_1_quantity_text
+  m_Name: order_board_essential_items_slot_1_quantity_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27266,6 +27765,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398988978}
   m_CullTransparentMesh: 0
+--- !u!1 &1402110973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402110974}
+  - component: {fileID: 1402110976}
+  - component: {fileID: 1402110975}
+  m_Layer: 0
+  m_Name: order_board_button_help_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1402110974
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402110973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1118082260}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 314.1, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1402110975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402110973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u041F\u043E\u043F\u0440\u043E\u0441\u0438\u0442\u044C \u043E \u043F\u043E\u043C\u043E\u0449\u0438
+    (0/3)"
+--- !u!222 &1402110976
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402110973}
+  m_CullTransparentMesh: 0
 --- !u!1 &1408598234
 GameObject:
   m_ObjectHideFlags: 0
@@ -27276,7 +27855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408598235}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slots
+  m_Name: order_board_essential_items_slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27300,7 +27879,7 @@ RectTransform:
   - {fileID: 1094985296}
   - {fileID: 1686921258}
   m_Father: {fileID: 650161978}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29103,7 +29682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.9, y: 4.3}
+  m_AnchoredPosition: {x: -23.9, y: 4.3}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1528020540
@@ -29776,7 +30355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66, y: 55}
+  m_AnchoredPosition: {x: -3031, y: -1788}
   m_SizeDelta: {x: 1448.04, y: 880.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545514453
@@ -30343,6 +30922,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -30602,6 +31182,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -31607,7 +32188,7 @@ GameObject:
   - component: {fileID: 1596050566}
   - component: {fileID: 1596050565}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_1
+  m_Name: order_board_ essential_items_slot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32943,7 +33524,7 @@ GameObject:
   - component: {fileID: 1686921260}
   - component: {fileID: 1686921259}
   m_Layer: 0
-  m_Name: order-board_ essential_items_slot_5
+  m_Name: order_board_essential_items_slot_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36582,6 +37163,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -36768,6 +37350,127 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1948382128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948382129}
+  - component: {fileID: 1948382132}
+  - component: {fileID: 1948382131}
+  - component: {fileID: 1948382130}
+  m_Layer: 5
+  m_Name: barn_panel_egg_quantity_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1948382129
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948382128}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 432884318}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 36, y: -15.2}
+  m_SizeDelta: {x: 30, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1948382130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948382128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barn_panel_bolt_quantity_text: {fileID: 0}
+  barn_panel_duct_tape_quantity_text: {fileID: 0}
+  barn_panel_plank_quantity_text: {fileID: 0}
+  barn_panel_cow_feed_quantity_text: {fileID: 0}
+  barn_panel_milk_quantity_text: {fileID: 0}
+  barn_panel_bread_quantity_text: {fileID: 0}
+  barn_panel_corn_bread_quantity_text: {fileID: 0}
+  barn_panel_cookie_quantity_text: {fileID: 0}
+  barn_panel_cream_quantity_text: {fileID: 0}
+  barn_panel_butter_quantity_text: {fileID: 0}
+  barn_panel_cheese_quantity_text: {fileID: 0}
+  barn_panel_nail_quantity_text: {fileID: 0}
+  barn_panel_screew_quantity_text: {fileID: 0}
+  barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
+  barn_text_info: {fileID: 0}
+  quantity_field_panel_wheat_text: {fileID: 0}
+  silo_wheat_quantity_text: {fileID: 0}
+  quantity_field_panel_corn_text: {fileID: 0}
+  silo_corn_quantity_text: {fileID: 0}
+  quantity_field_panel_soybean_text: {fileID: 0}
+  silo_soybean_quantity_text: {fileID: 0}
+  quantity_field_panel_sugarcane_text: {fileID: 0}
+  silo_sugarcane_quantity_text: {fileID: 0}
+  quantity_field_panel_carrot_text: {fileID: 0}
+  silo_carrot_quantity_text: {fileID: 0}
+  quantity_field_panel_pumpkin_text: {fileID: 0}
+  silo_pumpkin_quantity_text: {fileID: 0}
+  silo_text_info: {fileID: 0}
+--- !u!114 &1948382131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948382128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 10
+--- !u!222 &1948382132
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948382128}
+  m_CullTransparentMesh: 0
 --- !u!1 &1951687891
 GameObject:
   m_ObjectHideFlags: 0
@@ -36832,6 +37535,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}
@@ -39541,6 +40245,7 @@ MonoBehaviour:
   barn_panel_nail_quantity_text: {fileID: 0}
   barn_panel_screew_quantity_text: {fileID: 0}
   barn_panel_wood_panel_quantity_text: {fileID: 0}
+  barn_panel_egg_quantity_text: {fileID: 0}
   barn_text_info: {fileID: 0}
   quantity_field_panel_wheat_text: {fileID: 0}
   silo_wheat_quantity_text: {fileID: 0}

@@ -35,6 +35,7 @@ public class load_data : MonoBehaviour
         globals.cream = 12;
         globals.butter = 13;
         globals.cheese = 14;
+        globals.egg = 15;
         globals.nail = 10;
         globals.screew = 11;
         globals.wood_panel = 10;

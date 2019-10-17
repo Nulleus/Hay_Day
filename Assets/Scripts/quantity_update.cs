@@ -23,6 +23,7 @@ public class quantity_update : MonoBehaviour
     public GameObject barn_panel_nail_quantity_text;
     public GameObject barn_panel_screew_quantity_text;
     public GameObject barn_panel_wood_panel_quantity_text;
+    public GameObject barn_panel_egg_quantity_text;
     public GameObject barn_text_info;
     //====================silo=============================//
     public GameObject quantity_field_panel_wheat_text;
@@ -45,7 +46,7 @@ public class quantity_update : MonoBehaviour
     {
         //Загружаем первоначальные значения
 
-
+       
         //===================barn=========================================//
         barn_panel_bolt_quantity_text = GameObject.Find("barn_panel_bolt_quantity_text");
         barn_panel_duct_tape_quantity_text = GameObject.Find("barn_panel_duct_tape_quantity_text");
@@ -59,6 +60,7 @@ public class quantity_update : MonoBehaviour
         barn_panel_cream_quantity_text = GameObject.Find("barn_panel_cream_quantity_text");
         barn_panel_butter_quantity_text = GameObject.Find("barn_panel_butter_quantity_text");
         barn_panel_cheese_quantity_text = GameObject.Find("barn_panel_cheese_quantity_text");
+        barn_panel_egg_quantity_text = GameObject.Find("barn_panel_egg_quantity_text");
 
         barn_panel_nail_quantity_text = GameObject.Find("barn_panel_nail_quantity_text");
         barn_panel_screew_quantity_text = GameObject.Find("barn_panel_screew_quantity_text");
@@ -104,6 +106,7 @@ public class quantity_update : MonoBehaviour
         barn_panel_cream_quantity_text.GetComponent<Text>().text = globals.cream.ToString();//Количество сливок
         barn_panel_butter_quantity_text.GetComponent<Text>().text = globals.butter.ToString();//Количество масла
         barn_panel_cheese_quantity_text.GetComponent<Text>().text = globals.cheese.ToString();//Количество сыра
+        barn_panel_egg_quantity_text.GetComponent<Text>().text = globals.egg.ToString();//Количество яиц
 
         barn_panel_nail_quantity_text.GetComponent<Text>().text = globals.nail.ToString();//Количество гвоздей
         barn_panel_screew_quantity_text.GetComponent<Text>().text = globals.screew.ToString();//Количество шурупов
