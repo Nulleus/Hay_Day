@@ -61,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Animation\kiosk_silo_crop_quantity.cs" />
     <Compile Include="Assets\barn_bolt_quantity_text.cs" />
     <Compile Include="Assets\barn_button_close.cs" />
     <Compile Include="Assets\barn_button_increase_capacity.cs" />
@@ -70,6 +69,12 @@
     <Compile Include="Assets\barn_upgrade_button_ok.cs" />
     <Compile Include="Assets\barn_upgrade_info_text.cs" />
     <Compile Include="Assets\carrot_quantity.cs" />
+    <Compile Include="Assets\cow_1.cs" />
+    <Compile Include="Assets\cow_2.cs" />
+    <Compile Include="Assets\cow_3.cs" />
+    <Compile Include="Assets\cow_4.cs" />
+    <Compile Include="Assets\cow_5.cs" />
+    <Compile Include="Assets\cow_feed_quantity_text.cs" />
     <Compile Include="Assets\kiosk.cs" />
     <Compile Include="Assets\kiosk_box_0_predmet.cs" />
     <Compile Include="Assets\kiosk_box_0_quantity_coin.cs" />
@@ -115,6 +120,7 @@
     <Compile Include="Assets\Scripts\kiosk_silo_box_0.cs" />
     <Compile Include="Assets\Scripts\kiosk_silo_box_0_box_quantity.cs" />
     <Compile Include="Assets\Scripts\kiosk_silo_corn.cs" />
+    <Compile Include="Assets\Scripts\kiosk_silo_crop_quantity.cs" />
     <Compile Include="Assets\Scripts\kiosk_silo_text_info.cs" />
     <Compile Include="Assets\Scripts\kiosk_silo_wheat.cs" />
     <Compile Include="Assets\Scripts\load_data.cs" />

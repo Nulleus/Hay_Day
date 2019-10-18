@@ -10,10 +10,14 @@ public class load_data : MonoBehaviour
     void Start()
     {
 
-        //==========================cow=================================//
+        //==========================cow_0=================================//
         globals.cow_0_begin_stage_1 = DateTime.Now;
         globals.cow_0_end_stage_1 = DateTime.Now;
         globals.cow_0_stage = 0;
+        //==========================cow_0=================================//
+        globals.cow_1_begin_stage_1 = DateTime.Now;
+        globals.cow_1_end_stage_1 = DateTime.Now;
+        globals.cow_1_stage = 0;
         //======================quantity==============================//
         globals.quantuty_wheat = 11;
         globals.quantuty_corn = 11;
@@ -27,7 +31,7 @@ public class load_data : MonoBehaviour
         globals.bolt = 100;
         globals.duct_tape = 100;
         globals.plank = 100;
-        globals.cow_feed = 100;//Количество коровьего корма в амбаре
+        globals.cow_feed = 13;//Количество коровьего корма в амбаре
         globals.milk = 12;
         globals.bread = 13;
         globals.corn_bread = 14;

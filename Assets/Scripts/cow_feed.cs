@@ -36,7 +36,61 @@ public class cow_feed : MonoBehaviour
             }
             //Тогда корове 0 запускаем анимацию и
         }
-
+        if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_1"))//Если корова столкнулась со своим кормом
+        {
+            if (globals.cow_1_stage == 0)//Если корова голодная, кормим её
+            {
+                globals.cow_1_begin_stage_1 = nowtime;//Время начала первой стадии
+                globals.cow_1_end_stage_1 = nowtime.AddSeconds(building_time);//Время конца первой стадии
+                globals.cow_feed = globals.cow_feed - 1;//Вычитаем один коровий корм из амбара
+                globals.cow_1_stage = 1;//Теперь корова сытая
+            }
+            //Тогда корове 0 запускаем анимацию и
+        }
+        if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_2"))//Если корова столкнулась со своим кормом
+        {
+            if (globals.cow_2_stage == 0)//Если корова голодная, кормим её
+            {
+                globals.cow_2_begin_stage_1 = nowtime;//Время начала первой стадии
+                globals.cow_2_end_stage_1 = nowtime.AddSeconds(building_time);//Время конца первой стадии
+                globals.cow_feed = globals.cow_feed - 1;//Вычитаем один коровий корм из амбара
+                globals.cow_2_stage = 1;//Теперь корова сытая
+            }
+            //Тогда корове 0 запускаем анимацию и
+        }
+        if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_3"))//Если корова столкнулась со своим кормом
+        {
+            if (globals.cow_3_stage == 0)//Если корова голодная, кормим её
+            {
+                globals.cow_3_begin_stage_1 = nowtime;//Время начала первой стадии
+                globals.cow_3_end_stage_1 = nowtime.AddSeconds(building_time);//Время конца первой стадии
+                globals.cow_feed = globals.cow_feed - 1;//Вычитаем один коровий корм из амбара
+                globals.cow_3_stage = 1;//Теперь корова сытая
+            }
+            //Тогда корове 0 запускаем анимацию и
+        }
+        if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_4"))//Если корова столкнулась со своим кормом
+        {
+            if (globals.cow_4_stage == 0)//Если корова голодная, кормим её
+            {
+                globals.cow_4_begin_stage_1 = nowtime;//Время начала первой стадии
+                globals.cow_4_end_stage_1 = nowtime.AddSeconds(building_time);//Время конца первой стадии
+                globals.cow_feed = globals.cow_feed - 1;//Вычитаем один коровий корм из амбара
+                globals.cow_4_stage = 1;//Теперь корова сытая
+            }
+            //Тогда корове 0 запускаем анимацию и
+        }
+        if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_5"))//Если корова столкнулась со своим кормом
+        {
+            if (globals.cow_5_stage == 0)//Если корова голодная, кормим её
+            {
+                globals.cow_5_begin_stage_1 = nowtime;//Время начала первой стадии
+                globals.cow_5_end_stage_1 = nowtime.AddSeconds(building_time);//Время конца первой стадии
+                globals.cow_feed = globals.cow_feed - 1;//Вычитаем один коровий корм из амбара
+                globals.cow_5_stage = 1;//Теперь корова сытая
+            }
+            //Тогда корове 0 запускаем анимацию и
+        }
     }
     private void OnMouseDown()
     {

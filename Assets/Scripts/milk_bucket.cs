@@ -24,9 +24,34 @@ public class milk_bucket : MonoBehaviour
         Debug.Log("gameObject:" + gameObject.name);// Кто столкнулся
         if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_0") &&(globals.cow_0_stage==2))//Если пустой бидон столкнулась с коровой готовой к дойке
         {
+            globals.milk = globals.milk + 1;
             globals.cow_0_stage = 0;
         }
-
+        if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_1") && (globals.cow_1_stage == 2))//Если пустой бидон столкнулась с коровой готовой к дойке
+        {
+            globals.milk = globals.milk + 1;
+            globals.cow_1_stage = 0;
+        }
+        if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_2") && (globals.cow_2_stage == 2))//Если пустой бидон столкнулась с коровой готовой к дойке
+        {
+            globals.milk = globals.milk + 1;
+            globals.cow_2_stage = 0;
+        }
+        if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_3") && (globals.cow_3_stage == 2))//Если пустой бидон столкнулась с коровой готовой к дойке
+        {
+            globals.milk = globals.milk + 1;
+            globals.cow_3_stage = 0;
+        }
+        if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_4") && (globals.cow_4_stage == 2))//Если пустой бидон столкнулась с коровой готовой к дойке
+        {
+            globals.milk = globals.milk + 1;
+            globals.cow_4_stage = 0;
+        }
+        if ((gameObject.name == "milk_bucket") && (other.gameObject.name == "cow_5") && (globals.cow_5_stage == 2))//Если пустой бидон столкнулась с коровой готовой к дойке
+        {
+            globals.milk = globals.milk + 1;
+            globals.cow_5_stage = 0;
+        }
     }
     private void OnMouseDown()
     {

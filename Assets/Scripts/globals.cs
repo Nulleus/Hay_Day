@@ -53,6 +53,26 @@ public class globals : MonoBehaviour
     public static int cow_0_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
     public static DateTime cow_0_begin_stage_1 { get; set; }//Время начала первой стадии коровы
     public static DateTime cow_0_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //============================cow_1=======================================//
+    public static int cow_1_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
+    public static DateTime cow_1_begin_stage_1 { get; set; }//Время начала первой стадии коровы
+    public static DateTime cow_1_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //============================cow_2=======================================//
+    public static int cow_2_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
+    public static DateTime cow_2_begin_stage_1 { get; set; }//Время начала первой стадии коровы
+    public static DateTime cow_2_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //============================cow_3=======================================//
+    public static int cow_3_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
+    public static DateTime cow_3_begin_stage_1 { get; set; }//Время начала первой стадии коровы
+    public static DateTime cow_3_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //============================cow_4=======================================//
+    public static int cow_4_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
+    public static DateTime cow_4_begin_stage_1 { get; set; }//Время начала первой стадии коровы
+    public static DateTime cow_4_end_stage_1 { get; set; }//Время конца первой стадии коровы
+    //============================cow_5=======================================//
+    public static int cow_5_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
+    public static DateTime cow_5_begin_stage_1 { get; set; }//Время начала первой стадии коровы
+    public static DateTime cow_5_end_stage_1 { get; set; }//Время конца первой стадии коровы
     //==========================kiosk_barn====================================================================//
     public static string kiosk_barn_selected_predmet { get; set; }//Выбраный предмет в киоске силосной башни
     //==========================kiosk_silo====================================================================//

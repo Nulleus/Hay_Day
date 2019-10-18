@@ -17,9 +17,9 @@ public class cow_0 : MonoBehaviour
     void Update()
     {
         var nowtime = DateTime.Now;//Получаем текущее время
-        if (globals.cow_0_stage == 0) { cow_anim.CrossFade("cow_stage_0", 0); }
-        if (globals.cow_0_stage == 1) { cow_anim.CrossFade("cow_stage_1", 0); }
-        if (globals.cow_0_stage == 2) { cow_anim.CrossFade("cow_stage_2", 0); }
+        if (globals.cow_0_stage == 0) { cow_anim.CrossFade("cow_0_stage_0", 0); }
+        if (globals.cow_0_stage == 1) { cow_anim.CrossFade("cow_0_stage_1", 0); }
+        if (globals.cow_0_stage == 2) { cow_anim.CrossFade("cow_0_stage_2", 0); }
         if ((nowtime > globals.cow_0_end_stage_1)&&(globals.cow_0_stage ==1)) { globals.cow_0_stage = 2; }//Тогда ожидает дойки
         //Если корова сытая
 
