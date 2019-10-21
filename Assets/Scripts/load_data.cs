@@ -62,9 +62,35 @@ public class load_data : MonoBehaviour
         globals.kiosk_box_0_quantity = 0;
         globals.kiosk_box_0_price = 0;
         globals.kiosk_box_selected = 0;
-
+        //=======================bakery==================================//
+        globals.bakery_visible = true;
+        globals.bakery_slots_zagruzki_open = 9;
+        globals.bakery_slots_predmets_visible = true;
+        globals.bakery_slots_zagruzki_visible = true;
+        globals.bakery_array_slots_zagruzki = new string[9, 3] {
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" }};//Предмет, дата загрузки, дата отгрузки
+        globals.bakery_array_slots_otgruzki = new string[9, 3] {
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" },
+            {"", "", "" }};//Предмет, дата загрузки, дата отгрузки
+        //========================popcorn_pot=======================//
+        globals.popcorn_pot_visible = true;
     }
-
+   
     // Update is called once per frame
     void Update()
     {

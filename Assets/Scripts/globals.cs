@@ -5,11 +5,21 @@ using UnityEngine;
 
 public class globals : MonoBehaviour
 {
-    //==========================bakery================================//
+    //==========================popcorn_pot================================//
+    public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
+                                                        //==========================bakery================================//
+    public static int bakery_open_lvl { get; set; } //Уровень открытия пекарни - 2
+    public static int bakery_buy_coin { get; set; } //Стоимость покупки пекарни - 20
+    public static int bakery_building { get; set; } //Время постройки пекарни - 10с
+    public static bool bakery_buy { get; set; } //Куплена ли пекарня
     public static string[,] bakery_array_slots_zagruzki { get; set; }
     public static string[,] bakery_array_slots_otgruzki { get; set; }
+    public static int bakery_slots_zagruzki_open { get; set; }//Количество открытых слотов загрузки
+    public static bool bakery_visible { get; set; }//Состояние видимости пекарни
+    public static bool bakery_slots_predmets_visible { get; set; }//Состояние видимости пекарни
+    public static bool bakery_slots_zagruzki_visible { get; set; }//Состояние видимости пекарни
 
-    public static bool order_board_panel_visible;//Видимость панели объекта доска объявления
+    public static bool order_board_panel_visible { get; set; }//Видимость панели объекта доска объявления
 
     public static int coin { get; set; }//Количество монет игрока
     public static int diamond { get; set; }//Количество алмазов
