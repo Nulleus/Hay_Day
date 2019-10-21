@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class globals : MonoBehaviour
 {
+    //==========================bakery================================//
+    public static string[,] bakery_array_slots_zagruzki { get; set; }
+    public static string[,] bakery_array_slots_otgruzki { get; set; }
+
+    public static bool order_board_panel_visible;//Видимость панели объекта доска объявления
 
     public static int coin { get; set; }//Количество монет игрока
     public static int diamond { get; set; }//Количество алмазов

@@ -1322,6 +1322,7 @@ GameObject:
   - component: {fileID: 54237188}
   - component: {fileID: 54237187}
   - component: {fileID: 54237186}
+  - component: {fileID: 54237189}
   m_Layer: 0
   m_Name: order_board_panel
   m_TagString: Untagged
@@ -1417,6 +1418,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54237184}
   m_CullTransparentMesh: 0
+--- !u!114 &54237189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54237184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac34f70df631b6479c8ee42ac419d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GO_order_board_panel: {fileID: 0}
 --- !u!1 &69258054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7690,7 +7704,6 @@ GameObject:
   - component: {fileID: 335540384}
   - component: {fileID: 335540383}
   - component: {fileID: 335540382}
-  - component: {fileID: 335540381}
   m_Layer: 5
   m_Name: kiosk_silo
   m_TagString: Untagged
@@ -7732,18 +7745,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3523, y: -689}
   m_SizeDelta: {x: 1448.04, y: 880.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &335540381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335540379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a26e528a4b15f7479fc77c8f411101b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &335540382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30749,7 +30750,6 @@ GameObject:
   - component: {fileID: 1545514456}
   - component: {fileID: 1545514455}
   - component: {fileID: 1545514454}
-  - component: {fileID: 1545514453}
   m_Layer: 5
   m_Name: barn_panel
   m_TagString: Untagged
@@ -30781,18 +30781,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3031, y: -1788}
   m_SizeDelta: {x: 1448.04, y: 880.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1545514453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545514451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a26e528a4b15f7479fc77c8f411101b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1545514454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38205,7 +38193,6 @@ GameObject:
   - component: {fileID: 1953859127}
   - component: {fileID: 1953859126}
   - component: {fileID: 1953859125}
-  - component: {fileID: 1953859129}
   m_Layer: 5
   m_Name: silo_panel
   m_TagString: Untagged
@@ -38317,18 +38304,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953859123}
   m_CullTransparentMesh: 0
---- !u!114 &1953859129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953859123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a26e528a4b15f7479fc77c8f411101b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1955101921
 GameObject:
   m_ObjectHideFlags: 0

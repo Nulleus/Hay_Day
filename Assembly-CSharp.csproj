@@ -93,6 +93,7 @@
     <Compile Include="Assets\kiosk_silo_pumpkin.cs" />
     <Compile Include="Assets\kiosk_silo_soybean.cs" />
     <Compile Include="Assets\kiosk_silo_sugarcane.cs" />
+    <Compile Include="Assets\order_board_panel.cs" />
     <Compile Include="Assets\pumpkin_quantity.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\bread.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Assets\Scripts\silo_button_close.cs" />
     <Compile Include="Assets\Scripts\silo_button_increase_capacity.cs" />
     <Compile Include="Assets\Scripts\silo_nail_quantity_text.cs" />
-    <Compile Include="Assets\Scripts\silo_panel.cs" />
     <Compile Include="Assets\Scripts\silo_screew_quantity_text.cs" />
     <Compile Include="Assets\Scripts\silo_upgrade_button_ok.cs" />
     <Compile Include="Assets\Scripts\silo_upgrade_info_text.cs" />

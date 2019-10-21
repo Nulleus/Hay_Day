@@ -11,8 +11,8 @@ public class bakery : MonoBehaviour
     public Vector3 screenPoint;
     public string[,] array_slots_zagruzki;//{ { "one", "two" }, { "three", "four" }, { "five", "six" } }
     public string[,] array_slots_otgruzki;
-    string[,] array_temp;
-    int[,] mas;
+    //string[,] array_temp;
+    //int[,] mas;
     string temp;
     int open_slots; //Количество открытых слотов
     public DateTime time_slot;
@@ -27,20 +27,6 @@ public class bakery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        mas = new int[9, 3]
-        {
-            { 2, 5, 6 },
-            { 7, 8, 4 },
-            { 3, 1, 3 },
-            { 6, 2, 4 },
-            { 7, 9, 6 },
-            { 4, 4, 5 },
-            { 4, 6, 1 },
-            { 2, 3, 5 },
-            { 1, 0, 5 },
-
-        };
         var nowtime = DateTime.Now;
         array_slots_zagruzki = new string[9, 3] {
             {"", "", "" },
@@ -95,6 +81,10 @@ public class bakery : MonoBehaviour
     }
     void offset_massive()//Смещение массива на одну позицию  
     {
+        globals.bakery_array_slots_zagruzki[0, 0] = globals.bakery_array_slots_zagruzki[1, 0];
+        globals.bakery_array_slots_zagruzki[0, 1] = globals.bakery_array_slots_zagruzki[1, 1];
+        globals.bakery_array_slots_zagruzki[0, 2] = globals.bakery_array_slots_zagruzki[1, 2];
+
         array_slots_zagruzki[0, 0] = array_slots_zagruzki[1, 0];
         array_slots_zagruzki[0, 1] = array_slots_zagruzki[1, 1];
         array_slots_zagruzki[0, 2] = array_slots_zagruzki[1, 2];

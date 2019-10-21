@@ -82,6 +82,10 @@ public class cow_feed : MonoBehaviour
         }
         if ((gameObject.name == "cow_feed") && (other.gameObject.name == "cow_5"))//Если корова столкнулась со своим кормом
         {
+            if (globals.cow_feed - 1 < 0)
+            {
+
+            }
             if (globals.cow_5_stage == 0)//Если корова голодная, кормим её
             {
                 globals.cow_5_begin_stage_1 = nowtime;//Время начала первой стадии
