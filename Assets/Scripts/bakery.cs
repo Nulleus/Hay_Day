@@ -10,10 +10,9 @@ public class bakery : MonoBehaviour
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
     string temp;
-    public DateTime time_slot;
+    
     public bool mousedrag_block_on = false;
 
-    public string event_0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,29 +23,9 @@ public class bakery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Event_System();
-        otgruzka_predmeta();
+        otgruzka_predmeta();//Контоль отгрузк предмета
         if (globals.bakery_visible) { gameObject.SetActive(true); }
         else { gameObject.SetActive(false); }
-    }
-    void Event_System()
-    {
-
-        if (event_0 == "add_bread")
-        {
-            add_in_slot_predmet("bread");
-            event_0 = "";
-        }
-        if (event_0 == "add_corn_bread")
-        {
-            add_in_slot_predmet("corn_bread");
-            event_0 = "";
-        }
-        if (event_0 == "add_cookie")
-        {
-            add_in_slot_predmet("cookie");
-            event_0 = "";
-        }
     }
     void offset_massive()//Смещение массива на одну позицию  
     {
@@ -97,7 +76,7 @@ public class bakery : MonoBehaviour
             if (GameObject.Find("slot_0_bakery_text"))//Если объект доступен
             {
                 GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = time.Seconds + " c";
-                if (time.Seconds == 0) { GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = ""; }//Если 0 секунд, убрать текст
+                if (time.Seconds <= 0) { GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = ""; }//Если 0 секунд, убрать текст
             }
             
             if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))
@@ -221,8 +200,9 @@ public class bakery : MonoBehaviour
 
         }
     }//Отгрузка предмета из слота загрузки в слот отгрузки
-    void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
+    public static void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
     {
+        DateTime time_slot;
         Debug.Log("add");
         int building_time = 10;//Время сборки предмета 10 секунд
         if (predmet == "bread") { building_time = 10; }//Если предмет хлеб, время сборки составляет 300 секунд
@@ -232,7 +212,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[0, 0] = predmet; //Загружаемый предмет
             globals.bakery_array_slots_zagruzki[0, 1] = Convert.ToString(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
             globals.bakery_array_slots_zagruzki[0, 2] = Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[1, 0] == "")
@@ -241,7 +221,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[1, 1] = globals.bakery_array_slots_zagruzki[0, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[1, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[2, 0] == "")
@@ -250,7 +230,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[2, 1] = globals.bakery_array_slots_zagruzki[1, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[1, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[2, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[3, 0] == "")
@@ -259,7 +239,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[3, 1] = globals.bakery_array_slots_zagruzki[2, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[2, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[3, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[4, 0] == "")
@@ -268,7 +248,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[4, 1] = globals.bakery_array_slots_zagruzki[3, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[3, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[4, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[5, 0] == "")
@@ -277,7 +257,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[5, 1] = globals.bakery_array_slots_zagruzki[4, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[4, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[5, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[6, 0] == "")
@@ -286,7 +266,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[6, 1] = globals.bakery_array_slots_zagruzki[5, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[5, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[6, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[7, 0] == "")
@@ -295,7 +275,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[6, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[6, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[7, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
         if (globals.bakery_array_slots_zagruzki[8, 0] == "")
@@ -304,7 +284,7 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[8, 1] = globals.bakery_array_slots_zagruzki[7, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[7, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[8, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            control_slots();
+            //control_slots();
             return;
         }
 

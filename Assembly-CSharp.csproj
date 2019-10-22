@@ -76,6 +76,8 @@
     <Compile Include="Assets\cow_4.cs" />
     <Compile Include="Assets\cow_5.cs" />
     <Compile Include="Assets\cow_feed_quantity_text.cs" />
+    <Compile Include="Assets\farm_map_box_collider_0.cs" />
+    <Compile Include="Assets\j1.cs" />
     <Compile Include="Assets\kiosk.cs" />
     <Compile Include="Assets\kiosk_box_0_predmet.cs" />
     <Compile Include="Assets\kiosk_box_0_quantity_coin.cs" />
@@ -99,13 +101,10 @@
     <Compile Include="Assets\popcorn_pot_slots_predmets.cs" />
     <Compile Include="Assets\pumpkin_quantity.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
-    <Compile Include="Assets\Scripts\bread.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
     <Compile Include="Assets\Scripts\camerascript.cs" />
     <Compile Include="Assets\Scripts\coin_quantity.cs" />
-    <Compile Include="Assets\Scripts\cookie.cs" />
-    <Compile Include="Assets\Scripts\corn_bread.cs" />
     <Compile Include="Assets\Scripts\corn_quantity.cs" />
     <Compile Include="Assets\Scripts\corn_quantity_script.cs" />
     <Compile Include="Assets\Scripts\cow_0.cs" />

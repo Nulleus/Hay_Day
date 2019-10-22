@@ -15,7 +15,6 @@ public class dairy : MonoBehaviour
     int[,] mas;
     string temp;
     int open_slots; //Количество открытых слотов
-    public DateTime time_slot;
     public GameObject bread_visible;
     public bool mousedrag_block_on = false;
 
@@ -88,8 +87,10 @@ public class dairy : MonoBehaviour
             event_0 = "";
         }
     }
+    
     void offset_massive()//Смещение массива на одну позицию  
     {
+        
         array_slots_zagruzki[0, 0] = array_slots_zagruzki[1, 0];
         array_slots_zagruzki[0, 1] = array_slots_zagruzki[1, 1];
         array_slots_zagruzki[0, 2] = array_slots_zagruzki[1, 2];
@@ -263,8 +264,9 @@ public class dairy : MonoBehaviour
 
         }
     }//Отгрузка предмета из слота загрузки в слот отгрузки
-    void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
+    public void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
     {
+        DateTime time_slot;
         Debug.Log("add");
         int building_time = 10;//Время сборки предмета 10 секунд
         if (predmet == "bread") { building_time = 10; }//Если предмет хлеб, время сборки составляет 300 секунд

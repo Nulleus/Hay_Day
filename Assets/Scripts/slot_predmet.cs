@@ -26,19 +26,23 @@ public class slot_predmet : MonoBehaviour
         if (gameObject.name == "slot_2_p_dairy") { predmet = "cheese"; }
         if (gameObject.name == "slot_3_p_dairy") { predmet = "cheese"; }
         if (gameObject.name == "slot_4_p_dairy") { predmet = "cheese"; }
-
+        //====Попкорница======================================================//
+        if (gameObject.name == "slot_0_p_popcorn_pot") { predmet = "popcorn"; }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //====bakery=================================================//
         if (predmet == "bread") { anim.CrossFade("bread", 0); }
         if (predmet == "corn_bread") { anim.CrossFade("corn_bread", 0); }
         if (predmet == "cookie") { anim.CrossFade("cookie", 0); }
-
+        //======================================Dairy==============================//
         if (predmet == "cream") { anim.CrossFade("cream", 0); }
         if (predmet == "butter") { anim.CrossFade("butter", 0); }
         if (predmet == "cheese") { anim.CrossFade("cheese", 0); }
+        //=======================popcorn_pot========================================//
+        if (predmet == "popcorn") { anim.CrossFade("popcorn", 0); }
     }
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {
@@ -48,26 +52,26 @@ public class slot_predmet : MonoBehaviour
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            GameObject.Find("bakery").GetComponent<bakery>().event_0 = "add_bread";
+            bakery.add_in_slot_predmet("bread");
         }
         if ((predmet == "corn_bread") && (other.gameObject.name == "slot_0_bakery_frame")) //Загрузка хлеба в slot_backery_0_0
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            GameObject.Find("bakery").GetComponent<bakery>().event_0 = "add_corn_bread";
+            bakery.add_in_slot_predmet("corn_bread");
         }
         if ((predmet == "cookie") && (other.gameObject.name == "slot_0_bakery_frame")) //Загрузка хлеба в slot_backery_0_0
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            GameObject.Find("bakery").GetComponent<bakery>().event_0 = "add_cookie";
+            bakery.add_in_slot_predmet("cookie");
         }
 
         if ((predmet == "cream") && (other.gameObject.name == "slot_0_dairy_frame")) //Загрузка хлеба в slot_backery_0_0
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            GameObject.Find("dairy").GetComponent<dairy>().event_0 = "add_cream";
+            //dairy.
         }
         if ((predmet == "butter") && (other.gameObject.name == "slot_0_dairy_frame")) //Загрузка хлеба в slot_backery_0_0
         {
@@ -79,8 +83,10 @@ public class slot_predmet : MonoBehaviour
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            GameObject.Find("dairy").GetComponent<dairy>().event_0 = "add_cheese";
+            //GameObject.Find("dairy").GetComponent<dairy>().add_in_slot_predmet("cheese");
+            //dairy.add_in_slot_predmet("cheese");
         }
+
     }
     void OnMouseUp()//Когда отпускаешь кнопку
     {
