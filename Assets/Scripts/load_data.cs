@@ -63,6 +63,7 @@ public class load_data : MonoBehaviour
         globals.kiosk_box_0_price = 0;
         globals.kiosk_box_selected = 0;
         //=======================bakery==================================//
+        globals.bakery_move_mode_on = false;//Включен ли режим редактирования
         globals.bakery_visible = true;
         globals.bakery_slots_zagruzki_open = 9;
         globals.bakery_slots_predmets_visible = true;

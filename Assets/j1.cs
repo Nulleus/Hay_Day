@@ -27,15 +27,24 @@ public class j1 : MonoBehaviour
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        var nowtime = DateTime.Now;//Получаем текущее время
-        //TimeSpan time = 
-        mousedrag_block_on = false;
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));//Рассчитываем смещение 
-        primary_position = gameObject.transform.position;//Запоминаем первоначальную позицию объекта
+        if (mouse_down_block_on == false)
+        {
+            var nowtime = DateTime.Now;//Получаем текущее время
+            //TimeSpan time = 
+            mousedrag_block_on = false;
+            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));//Рассчитываем смещение 
+            primary_position = gameObject.transform.position;//Запоминаем первоначальную позицию объекта
+            GameObject.Find("j1_collider").transform.position = gameObject.transform.position;
+        }
+
     }
     void OnMouseUp()//Когда отпускаешь кнопку
     {
-        gameObject.transform.position = primary_position;//Загружаем первоначальную позицию объекта
+        if (mouse_up_block_on == false)
+        {
+            gameObject.transform.position = GameObject.Find("j1").transform.position;//Загружаем первоначальную позицию объекта
+        }
+        
     }
 
     void OnMouseDrag()//Когда перемещение мыши
@@ -56,12 +65,13 @@ public class j1 : MonoBehaviour
     {
         //Debug.Log("other:" + other.gameObject.name);//Кто столкнулся
         //Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
-        if ((gameObject.name == "j1") && (other.gameObject.name == "farm_map_box_collider_0")) //Загрузка хлеба в slot_backery_0_0
+        if ((gameObject.name == "j1_collider") && (other.gameObject.name == "farm_map_box_collider_0")) //Загрузка хлеба в slot_backery_0_0
         {
             Debug.Log("Stolknulis'");
-            mousedrag_block_on = true;
-
-            gameObject.transform.position = other.gameObject.transform.position;
+            GameObject.Find("j1").transform.position = other.gameObject.transform.position;
+            //Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            //Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
+            //gameObject.transform.position = curPosition;
             //
             //gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
             //bakery.add_in_slot_predmet("bread");
