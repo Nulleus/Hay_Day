@@ -4,28 +4,50 @@ using UnityEngine;
 
 public class j1_bakery : MonoBehaviour
 {
-    public int count=0;
+    public int count = 0;
     public bool count_on = false;
+    public GameObject bakery_slots_panel;
     public GameObject bakery_arrow;
     public GameObject bakery_arrow_0;
     public GameObject bakery_arrow_1;
     public GameObject bakery_arrow_2;
     public GameObject bakery_arrow_3;
     public GameObject bakery_arrow_4;
+
+    public Vector3 offset; //Смещение
+    public Vector3 screenPoint;
     // Start is called before the first frame update
     void Start()
     {
+        bakery_slots_panel = GameObject.Find("bakery_slots_panel");
         bakery_arrow = GameObject.Find("bakery_arrow");
         bakery_arrow_0 = GameObject.Find("bakery_arrow_0");
         bakery_arrow_1 = GameObject.Find("bakery_arrow_1");
         bakery_arrow_2 = GameObject.Find("bakery_arrow_2");
         bakery_arrow_3 = GameObject.Find("bakery_arrow_3");
         bakery_arrow_4 = GameObject.Find("bakery_arrow_4");
+
+        bakery_arrow.SetActive(false);
+        bakery_slots_panel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (globals.bakery_move_mode_on)
+        {
+            bakery_slots_panel.SetActive(true);
+            if (gameObject.GetComponent<Renderer>().material.color != Color.red)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
+            }
+            
+
+        }
+        else
+        {
+            bakery_slots_panel.SetActive(false);
+        }
         if (count_on)
         {
             count++;
@@ -39,19 +61,30 @@ public class j1_bakery : MonoBehaviour
             {
                 globals.bakery_move_mode_on = true;//Активация режима перемещение
                 bakery_arrow.SetActive(false);//Скрытие стрелочки
-                gameObject.GetComponent<Collider2D>().enabled = false;//Отключаем колайдер пекарне
+                
+                //gameObject.GetComponent<Collider2D>().enabled = false;//Отключаем колайдер пекарне
                 //gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
         }
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        
+
         Debug.Log(globals.bakery_move_mode_on);
+
+        if (globals.bakery_move_mode_on)//Если режим перемещения активирован
+        {
+            if (gameObject.GetComponent<Renderer>().material.color == Color.white)
+            {
+                globals.bakery_primary_position = gameObject.transform.position;
+                //globals.bakery_new_position = gameObject.transform.position;
+            }
+        }
         if (globals.bakery_move_mode_on == false)//Если режим перемещения не активирован
         {
-            
+
             globals.bakery_primary_position = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
+            //globals.bakery_new_position = gameObject.transform.position;
             bakery_arrow.SetActive(true);//Активируем стрелку
             count = 0;//Обнуляем счетчик
             count_on = true;//Запускаем счетчик 
@@ -71,9 +104,34 @@ public class j1_bakery : MonoBehaviour
         bakery_arrow_4.GetComponent<Renderer>().material.color = Color.white;
         bakery_arrow.SetActive(false);
 
+        //gameObject.transform.position = GameObject.Find("j1_bakery").transform.position;//Возвращаем коллайдер к пекарне
+        if (globals.bakery_move_mode_on)
+        {
+
+            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
+            {
+                gameObject.transform.position = globals.bakery_primary_position;//Возвращаем пекарню на начальную точку
+                //globals.bakery_move_mode_on = false;//Отключаем режим редактирования
+                gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
+            }
+            if (gameObject.GetComponent<Renderer>().material.color == Color.white)
+            {
+                gameObject.transform.position = globals.bakery_primary_position;
+                GameObject.Find("j1_collider").transform.position = globals.bakery_primary_position;
+                //globals.bakery_move_mode_on = false;//Отключаем режим редактирования
+            }
+        }
+
     }
-    void OnMouseEnter()
+    void OnMouseDrag()//Когда перемещение мыши
     {
-        
+        if (globals.bakery_move_mode_on)
+        {
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            GameObject.Find("j1_collider").transform.position = curPosition;
+            globals.zoom = false;
+            globals.drag = false;
+        }
     }
 }

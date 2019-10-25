@@ -8,9 +8,10 @@ public class globals : MonoBehaviour
     //==========================popcorn_pot================================//
     public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
     //==========================bakery================================//
+    //public 
     public static bool bakery_move_mode_on { get; set; }//Режим редактирования
     public static Vector3 bakery_primary_position { get; set; }//Расположение пекарни до перемещения
-    public static Vector3 bakery_new_position { get; set; }//Новое расположение пекарни
+    //public static Vector3 bakery_new_position { get; set; }//Новое расположение пекарни
     //public static bool bakery_collider_current_color { get; set; }//На каком колайдере стоит пекарня красный/зеленый
     public static int bakery_open_lvl { get; set; } //Уровень открытия пекарни - 2
     public static int bakery_buy_coin { get; set; } //Стоимость покупки пекарни - 20
