@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class globals : MonoBehaviour
 {
+    //==========================farm_map_box_colliders==========================//
+    public static bool farm_map_box_colliders_enabled { get; set; }//Доступность коллайдеров
+    public static bool collision_move_mod_on { get; set; }//Столкновение с  другим объектом в ежиме редактирования
     //==========================popcorn_pot================================//
     public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
     //==========================bakery================================//

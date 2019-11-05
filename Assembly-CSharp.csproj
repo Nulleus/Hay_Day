@@ -78,6 +78,7 @@
     <Compile Include="Assets\cow_5.cs" />
     <Compile Include="Assets\cow_feed_quantity_text.cs" />
     <Compile Include="Assets\farm_map_box_collider_green.cs" />
+    <Compile Include="Assets\farm_map_box_colliders.cs" />
     <Compile Include="Assets\j1.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\j1_collider.cs" />

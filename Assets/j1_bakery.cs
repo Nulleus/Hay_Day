@@ -13,6 +13,7 @@ public class j1_bakery : MonoBehaviour
     public GameObject bakery_arrow_2;
     public GameObject bakery_arrow_3;
     public GameObject bakery_arrow_4;
+    public GameObject farm_box_colliders;
 
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
@@ -26,17 +27,27 @@ public class j1_bakery : MonoBehaviour
         bakery_arrow_2 = GameObject.Find("bakery_arrow_2");
         bakery_arrow_3 = GameObject.Find("bakery_arrow_3");
         bakery_arrow_4 = GameObject.Find("bakery_arrow_4");
+        farm_box_colliders = GameObject.Find("farm_map_box_colliders");
 
         bakery_arrow.SetActive(false);
         bakery_slots_panel.SetActive(false);
+        farm_box_colliders.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (globals.bakery_move_mode_on)
+
+        if (globals.bakery_move_mode_on)//Если режим перемещения включен
         {
-            bakery_slots_panel.SetActive(true);
+            if (globals.collision_move_mod_on)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.white;//Окрашиваем пекарню в белый цвет
+            }
             if (gameObject.GetComponent<Renderer>().material.color != Color.red)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
@@ -47,6 +58,8 @@ public class j1_bakery : MonoBehaviour
         else
         {
             bakery_slots_panel.SetActive(false);
+            farm_box_colliders.SetActive(false);
+
         }
         if (count_on)
         {
@@ -61,7 +74,9 @@ public class j1_bakery : MonoBehaviour
             {
                 globals.bakery_move_mode_on = true;//Активация режима перемещение
                 bakery_arrow.SetActive(false);//Скрытие стрелочки
-                
+                farm_box_colliders.SetActive(true);//Включаем коллайдеры
+                bakery_slots_panel.SetActive(true);//Включаем панель с кнопкой Flip
+                count_on = false;
                 //gameObject.GetComponent<Collider2D>().enabled = false;//Отключаем колайдер пекарне
                 //gameObject.GetComponent<Renderer>().material.color = Color.red;
             }

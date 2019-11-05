@@ -9,7 +9,9 @@ public class load_data : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //==========================farm_map_box_colliders==========================//
+        globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
+        globals.collision_move_mod_on = false;
         //==========================cow_0=================================//
         globals.cow_0_begin_stage_1 = DateTime.Now;
         globals.cow_0_end_stage_1 = DateTime.Now;
