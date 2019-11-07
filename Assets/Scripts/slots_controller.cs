@@ -99,7 +99,16 @@ public class slots_controller : MonoBehaviour //Контроллер загру�
         }
     void OnMouseUp()//Когда отпускаешь кнопку
     {
-        for (int i = 0; i < 9; i++)
+        /*for (int i = 0; i < globals.bakery_slots_zagruzki_open; i++)
+        {
+            if (globals.bakery_array_slots_otgruzki[i, 0] == "bread")
+            {
+                globals.bread++;//Прибавляем количество хлеба на склад
+                globals.bakery_array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
+                Debug.Log("bread = " + globals.bread);
+            }
+        }*/
+      /*  for (int i = 0; i < 9; i++)
         {
             //Пекарня
             if ((gameObject.name == "slot_" + i + "_ready_bakery") && (globals.bakery_array_slots_otgruzki[i, 0] == "bread"))
@@ -138,7 +147,7 @@ public class slots_controller : MonoBehaviour //Контроллер загру�
                 globals.cheese++;
                 GameObject.Find("dairy").GetComponent<dairy>().array_slots_otgruzki[i, 0] = ""; //Очищаем слот, из которого выгрузили
             }
-        }
+        }*/
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
