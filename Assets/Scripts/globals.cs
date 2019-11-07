@@ -12,6 +12,7 @@ public class globals : MonoBehaviour
     public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
     //==========================bakery================================//
     //public 
+    public static string bakery_type_obj { get; set; }//
     public static bool bakery_move_mode_on { get; set; }//Режим редактирования
     public static Vector3 bakery_primary_position { get; set; }//Расположение пекарни до перемещения
     //public static Vector3 bakery_new_position { get; set; }//Новое расположение пекарни

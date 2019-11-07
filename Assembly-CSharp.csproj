@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\bakery_button_flip.cs" />
+    <Compile Include="Assets\bakery_button_move_off.cs" />
     <Compile Include="Assets\bakery_slots_predmets.cs" />
     <Compile Include="Assets\barn_bolt_quantity_text.cs" />
     <Compile Include="Assets\barn_button_close.cs" />

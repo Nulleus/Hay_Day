@@ -11,6 +11,7 @@ public class load_data : MonoBehaviour
     {
         //==========================farm_map_box_colliders==========================//
         globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
+
         globals.collision_move_mod_on = false;
         //==========================cow_0=================================//
         globals.cow_0_begin_stage_1 = DateTime.Now;
@@ -65,6 +66,7 @@ public class load_data : MonoBehaviour
         globals.kiosk_box_0_price = 0;
         globals.kiosk_box_selected = 0;
         //=======================bakery==================================//
+        globals.bakery_type_obj = "production_building";
         globals.bakery_move_mode_on = false;//Включен ли режим редактирования
         globals.bakery_visible = true;
         globals.bakery_slots_zagruzki_open = 9;

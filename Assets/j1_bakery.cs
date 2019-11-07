@@ -59,6 +59,7 @@ public class j1_bakery : MonoBehaviour
         {
             bakery_slots_panel.SetActive(false);
             farm_box_colliders.SetActive(false);
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
 
         }
         if (count_on)
