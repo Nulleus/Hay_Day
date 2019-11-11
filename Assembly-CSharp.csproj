@@ -63,8 +63,26 @@
   <ItemGroup>
     <Compile Include="Assets\bakery_button_flip.cs" />
     <Compile Include="Assets\bakery_button_move_off.cs" />
+    <Compile Include="Assets\bakery_slot_0_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_0_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_1_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_1_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_2_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_2_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_3_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_3_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_4_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_4_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_5_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_5_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_6_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_6_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_7_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_7_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slot_8_otgruzki.cs" />
+    <Compile Include="Assets\bakery_slot_8_zagruzki.cs" />
+    <Compile Include="Assets\bakery_slots_otgruzki.cs" />
     <Compile Include="Assets\bakery_slots_predmets.cs" />
-    <Compile Include="Assets\bakery_slots_ready.cs" />
     <Compile Include="Assets\barn_bolt_quantity_text.cs" />
     <Compile Include="Assets\barn_button_close.cs" />
     <Compile Include="Assets\barn_button_increase_capacity.cs" />

@@ -15,41 +15,43 @@ public class slots_controller : MonoBehaviour //Контроллер загру�
     void Update()
     {
         //==================================Пекарня============================//
-        for (int i = 0; i < 9; i++)
+        //=============Анимация слота отгрузки===============================//
+        for (int i = 0; i <= 8; i++)
         {
-            
-            if ((gameObject.name == "slot_" + i + "_ready_bakery") && (globals.bakery_array_slots_otgruzki[i, 0] == ""))
+            if (globals.bakery_array_slots_otgruzki[i, 0] == "")
             {
                 anim.CrossFade("empty", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_ready_bakery") && (globals.bakery_array_slots_otgruzki[i, 0] == "bread"))
+
+            if (globals.bakery_array_slots_otgruzki[i, 0] == "bread")
             {
                 anim.CrossFade("bread", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_ready_bakery") && (globals.bakery_array_slots_otgruzki[i, 0] == "corn_bread"))
+            if (globals.bakery_array_slots_otgruzki[i, 0] == "corn_bread")
             {
                 anim.CrossFade("corn_bread", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_ready_bakery") && (globals.bakery_array_slots_otgruzki[i, 0] == "cookie"))
+            if (globals.bakery_array_slots_otgruzki[i, 0] == "cookie")
             {
                 anim.CrossFade("cookie", 0);
             }
         }
-        for (int i = 0; i < 9; i++)
+        //=============Анимация слота загрузки===============================//
+        for (int i = 0; i <= 8; i++)
         {
-            if ((gameObject.name == "slot_" + i + "_bakery") && (globals.bakery_array_slots_zagruzki[i, 0] == ""))
+            if (globals.bakery_array_slots_zagruzki[i, 0] == "")
             {
                 anim.CrossFade("empty", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_bakery") && (globals.bakery_array_slots_zagruzki[i, 0] == "bread"))
+            if (globals.bakery_array_slots_zagruzki[i, 0] == "bread")
             {
                 anim.CrossFade("bread", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_bakery") && (globals.bakery_array_slots_zagruzki[i, 0] == "corn_bread"))
+            if (globals.bakery_array_slots_zagruzki[i, 0] == "corn_bread")
             {
                 anim.CrossFade("corn_bread", 0);
             }
-            if ((gameObject.name == "slot_" + i + "_bakery") && (globals.bakery_array_slots_zagruzki[i, 0] == "cookie"))
+            if (globals.bakery_array_slots_zagruzki[i, 0] == "cookie")
             {
                 anim.CrossFade("cookie", 0);
             }

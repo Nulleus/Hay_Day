@@ -141,7 +141,7 @@ public class bakery : MonoBehaviour
         //Добавить цикл прохода, только по откытым слотам
         var nowtime = DateTime.Now;
         
-        if (globals.bakery_array_slots_zagruzki[0, 0] != "")//Если слот_0  не пустой 
+        if (globals.bakery_array_slots_zagruzki[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
         {
             TimeSpan time = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             //Разница дат
@@ -151,9 +151,9 @@ public class bakery : MonoBehaviour
                 if (time.Seconds <= 0) { GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = ""; }//Если 0 секунд, убрать текст
             }
             
-            if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))
+            if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата загрузи < даты отгрузки)
             {
-                if (globals.bakery_array_slots_zagruzki[0, 0] == "")
+                if (globals.bakery_array_slots_otgruzki[0, 0] == "")//Если слот отгрузки 0, пустой
                 {
                     globals.bakery_array_slots_otgruzki[0, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
                     globals.bakery_array_slots_zagruzki[0, 0] = "";
@@ -275,7 +275,7 @@ public class bakery : MonoBehaviour
     public static void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
     {
         DateTime time_slot;
-        Debug.Log("add");
+        Debug.Log("add: "+predmet);
         int building_time = 10;//Время сборки предмета 10 секунд
         if (predmet == "bread") { building_time = 10; }//Если предмет хлеб, время сборки составляет 300 секунд
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
