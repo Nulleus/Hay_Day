@@ -9,6 +9,7 @@ public class slots_controller : MonoBehaviour //Контроллер загру�
     void Start()
     {
         anim = GetComponent<Animator>();
+        Debug.Log(gameObject.name);
     }
 
     // Update is called once per frame

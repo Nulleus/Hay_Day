@@ -134,7 +134,50 @@ public class bakery : MonoBehaviour
         globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[8, 1];
         globals.bakery_array_slots_zagruzki[7, 2] = globals.bakery_array_slots_zagruzki[8, 2];
 
+        globals.bakery_array_slots_zagruzki[8, 0] = "";
+        globals.bakery_array_slots_zagruzki[8, 1] = "";
+        globals.bakery_array_slots_zagruzki[8, 2] = "";
 
+
+    }
+    void offset_massive_otgruzki()
+    {
+        //Добавить цикл, для прохода по открытым объектам
+        globals.bakery_array_slots_otgruzki[0, 0] = globals.bakery_array_slots_otgruzki[1, 0];
+        globals.bakery_array_slots_otgruzki[0, 1] = globals.bakery_array_slots_otgruzki[1, 1];
+        globals.bakery_array_slots_otgruzki[0, 2] = globals.bakery_array_slots_otgruzki[1, 2];
+
+        globals.bakery_array_slots_otgruzki[1, 0] = globals.bakery_array_slots_otgruzki[2, 0];
+        globals.bakery_array_slots_otgruzki[1, 1] = globals.bakery_array_slots_otgruzki[2, 1];
+        globals.bakery_array_slots_otgruzki[1, 2] = globals.bakery_array_slots_otgruzki[2, 2];
+
+        globals.bakery_array_slots_otgruzki[2, 0] = globals.bakery_array_slots_otgruzki[3, 0];
+        globals.bakery_array_slots_otgruzki[2, 1] = globals.bakery_array_slots_otgruzki[3, 1];
+        globals.bakery_array_slots_otgruzki[2, 2] = globals.bakery_array_slots_otgruzki[3, 2];
+
+        globals.bakery_array_slots_otgruzki[3, 0] = globals.bakery_array_slots_otgruzki[4, 0];
+        globals.bakery_array_slots_otgruzki[3, 1] = globals.bakery_array_slots_otgruzki[4, 1];
+        globals.bakery_array_slots_otgruzki[3, 2] = globals.bakery_array_slots_otgruzki[4, 2];
+
+        globals.bakery_array_slots_otgruzki[4, 0] = globals.bakery_array_slots_otgruzki[5, 0];
+        globals.bakery_array_slots_otgruzki[4, 1] = globals.bakery_array_slots_otgruzki[5, 1];
+        globals.bakery_array_slots_otgruzki[4, 2] = globals.bakery_array_slots_otgruzki[5, 2];
+
+        globals.bakery_array_slots_otgruzki[5, 0] = globals.bakery_array_slots_otgruzki[6, 0];
+        globals.bakery_array_slots_otgruzki[5, 1] = globals.bakery_array_slots_otgruzki[6, 1];
+        globals.bakery_array_slots_otgruzki[5, 2] = globals.bakery_array_slots_otgruzki[6, 2];
+
+        globals.bakery_array_slots_otgruzki[6, 0] = globals.bakery_array_slots_otgruzki[7, 0];
+        globals.bakery_array_slots_otgruzki[6, 1] = globals.bakery_array_slots_otgruzki[7, 1];
+        globals.bakery_array_slots_otgruzki[6, 2] = globals.bakery_array_slots_otgruzki[7, 2];
+
+        globals.bakery_array_slots_otgruzki[7, 0] = globals.bakery_array_slots_otgruzki[8, 0];
+        globals.bakery_array_slots_otgruzki[7, 1] = globals.bakery_array_slots_otgruzki[8, 1];
+        globals.bakery_array_slots_otgruzki[7, 2] = globals.bakery_array_slots_otgruzki[8, 2];
+
+        globals.bakery_array_slots_otgruzki[8, 0] = "";
+        globals.bakery_array_slots_otgruzki[8, 1] = "";
+        globals.bakery_array_slots_otgruzki[8, 2] = "";
     }
     void otgruzka_predmeta()
     {
@@ -151,16 +194,16 @@ public class bakery : MonoBehaviour
                 if (time.Seconds <= 0) { GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = ""; }//Если 0 секунд, убрать текст
             }
             
-            if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата загрузи < даты отгрузки)
+            if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата отгрузки < текущей даты)
             {
                 if (globals.bakery_array_slots_otgruzki[0, 0] == "")//Если слот отгрузки 0, пустой
                 {
                     globals.bakery_array_slots_otgruzki[0, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
+                    globals.bakery_array_slots_zagruzki[0, 0] = "";//Очищаем слот загрузки с именем предмета
                     globals.bakery_array_slots_otgruzki[0, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
+                    globals.bakery_array_slots_zagruzki[0, 1] = "";//Очищаем слот загрузки с датой загрузки предмета
                     globals.bakery_array_slots_otgruzki[0, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
+                    globals.bakery_array_slots_zagruzki[0, 2] = "";//Очищаем слот загрузки с датой отгрузки предмета
                     offset_massive();
                     Debug.Log("Отгрузился в слот отгрузки: 0 ");
 
@@ -262,6 +305,7 @@ public class bakery : MonoBehaviour
                     Debug.Log("Отгрузился в слот отгрузки: 8 ");
                     return;
                 }
+
             }
 
 
@@ -276,15 +320,17 @@ public class bakery : MonoBehaviour
     {
         DateTime time_slot;
         Debug.Log("add: "+predmet);
-        int building_time = 10;//Время сборки предмета 10 секунд
-        if (predmet == "bread") { building_time = 10; }//Если предмет хлеб, время сборки составляет 300 секунд
+        int building_time = 20;//Время сборки предмета 10 секунд
+        if (predmet == "bread") { building_time = 20; }//Если предмет хлеб, время сборки(building time) составляет 10 секунд
+        var nowtime = DateTime.Now;//Текущее время
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
-        {
-            var nowtime = DateTime.Now;
+        {           
             globals.bakery_array_slots_zagruzki[0, 0] = predmet; //Загружаемый предмет
             globals.bakery_array_slots_zagruzki[0, 1] = Convert.ToString(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
             globals.bakery_array_slots_zagruzki[0, 2] = Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[0, 0]" + globals.bakery_array_slots_zagruzki[0, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[0, 1]" + globals.bakery_array_slots_zagruzki[0, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[0, 2]" + globals.bakery_array_slots_zagruzki[0, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[1, 0] == "")
@@ -293,7 +339,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[1, 1] = globals.bakery_array_slots_zagruzki[0, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[1, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[1, 0]" + globals.bakery_array_slots_zagruzki[1, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[1, 1]" + globals.bakery_array_slots_zagruzki[1, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[1, 2]" + globals.bakery_array_slots_zagruzki[1, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[2, 0] == "")
@@ -302,7 +350,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[2, 1] = globals.bakery_array_slots_zagruzki[1, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[1, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[2, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[2, 0]" + globals.bakery_array_slots_zagruzki[2, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[2, 1]" + globals.bakery_array_slots_zagruzki[2, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[2, 2]" + globals.bakery_array_slots_zagruzki[2, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[3, 0] == "")
@@ -311,7 +361,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[3, 1] = globals.bakery_array_slots_zagruzki[2, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[2, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[3, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[3, 0]" + globals.bakery_array_slots_zagruzki[3, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[3, 1]" + globals.bakery_array_slots_zagruzki[3, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[3, 2]" + globals.bakery_array_slots_zagruzki[3, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[4, 0] == "")
@@ -320,7 +372,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[4, 1] = globals.bakery_array_slots_zagruzki[3, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[3, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[4, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[4, 0]" + globals.bakery_array_slots_zagruzki[4, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[4, 1]" + globals.bakery_array_slots_zagruzki[4, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[4, 2]" + globals.bakery_array_slots_zagruzki[4, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[5, 0] == "")
@@ -329,7 +383,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[5, 1] = globals.bakery_array_slots_zagruzki[4, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[4, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[5, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[5, 0]" + globals.bakery_array_slots_zagruzki[5, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[5, 1]" + globals.bakery_array_slots_zagruzki[5, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[5, 2]" + globals.bakery_array_slots_zagruzki[5, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[6, 0] == "")
@@ -338,7 +394,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[6, 1] = globals.bakery_array_slots_zagruzki[5, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[5, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[6, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[6, 0]" + globals.bakery_array_slots_zagruzki[6, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[6, 1]" + globals.bakery_array_slots_zagruzki[6, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[6, 2]" + globals.bakery_array_slots_zagruzki[6, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[7, 0] == "")
@@ -347,7 +405,9 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[6, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[6, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[7, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[7, 0]" + globals.bakery_array_slots_zagruzki[7, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[7, 1]" + globals.bakery_array_slots_zagruzki[7, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[7, 2]" + globals.bakery_array_slots_zagruzki[7, 2]);
             return;
         }
         if (globals.bakery_array_slots_zagruzki[8, 0] == "")
@@ -356,10 +416,12 @@ public class bakery : MonoBehaviour
             globals.bakery_array_slots_zagruzki[8, 1] = globals.bakery_array_slots_zagruzki[7, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[7, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[8, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //control_slots();
+            Debug.Log("globals.bakery_array_slots_zagruzki[8, 0]" + globals.bakery_array_slots_zagruzki[8, 0]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[8, 1]" + globals.bakery_array_slots_zagruzki[8, 1]);
+            Debug.Log("globals.bakery_array_slots_zagruzki[8, 2]" + globals.bakery_array_slots_zagruzki[8, 2]);
             return;
         }
-
+        //Максимальное количество слотов
 
     }
     void sort_slots()//Сортиовка слотов загрузки
@@ -400,6 +462,35 @@ public class bakery : MonoBehaviour
 
     void OnMouseUp()//Когда отпускаешь кнопку
     {
+        Debug.Log("globals.bakery_array_slots_zagruzki[0, 0]" + globals.bakery_array_slots_zagruzki[0, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[0, 1]" + globals.bakery_array_slots_zagruzki[0, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[0, 2]" + globals.bakery_array_slots_zagruzki[0, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[1, 0]" + globals.bakery_array_slots_zagruzki[1, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[1, 1]" + globals.bakery_array_slots_zagruzki[1, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[1, 2]" + globals.bakery_array_slots_zagruzki[1, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[2, 0]" + globals.bakery_array_slots_zagruzki[2, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[2, 1]" + globals.bakery_array_slots_zagruzki[2, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[2, 2]" + globals.bakery_array_slots_zagruzki[2, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[3, 0]" + globals.bakery_array_slots_zagruzki[3, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[3, 1]" + globals.bakery_array_slots_zagruzki[3, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[3, 2]" + globals.bakery_array_slots_zagruzki[3, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[4, 0]" + globals.bakery_array_slots_zagruzki[4, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[4, 0]" + globals.bakery_array_slots_zagruzki[4, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[4, 1]" + globals.bakery_array_slots_zagruzki[4, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[4, 2]" + globals.bakery_array_slots_zagruzki[4, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[5, 0]" + globals.bakery_array_slots_zagruzki[5, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[5, 1]" + globals.bakery_array_slots_zagruzki[5, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[5, 2]" + globals.bakery_array_slots_zagruzki[5, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[6, 0]" + globals.bakery_array_slots_zagruzki[6, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[6, 1]" + globals.bakery_array_slots_zagruzki[6, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[6, 2]" + globals.bakery_array_slots_zagruzki[6, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[7, 0]" + globals.bakery_array_slots_zagruzki[7, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[7, 1]" + globals.bakery_array_slots_zagruzki[7, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[7, 2]" + globals.bakery_array_slots_zagruzki[7, 2]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[8, 0]" + globals.bakery_array_slots_zagruzki[8, 0]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[8, 1]" + globals.bakery_array_slots_zagruzki[8, 1]);
+        Debug.Log("globals.bakery_array_slots_zagruzki[8, 2]" + globals.bakery_array_slots_zagruzki[8, 2]);
+        
         count = 0;
         count_on = false;
         bakery_arrow_0.GetComponent<Renderer>().material.color = Color.white;
@@ -422,12 +513,14 @@ public class bakery : MonoBehaviour
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)
             {
                 gameObject.transform.position = globals.bakery_primary_position;
-                GameObject.Find("j1_collider").transform.position = globals.bakery_primary_position;
+                GameObject.Find("bakery_collider").transform.position = globals.bakery_primary_position;
                 //globals.bakery_move_mode_on = false;//Отключаем режим редактирования
             }
+
         }
-        else
+        else//Если globals.bakery_move_mode_on==false
         {
+
             if (bakery_slots_predmets.activeSelf)
             {
                 bakery_slots_predmets.SetActive(false);
@@ -435,6 +528,42 @@ public class bakery : MonoBehaviour
             else
             {
                 bakery_slots_predmets.SetActive(true);
+            }
+        }
+        if (globals.bakery_array_slots_otgruzki[0, 0] != "")//Если слоты отгрузки не пустые, переместить этот код в другое место
+        {
+            if (globals.bakery_array_slots_otgruzki[0, 0] == "bread")
+            {
+                Debug.Log("bread mouseup");
+                globals.bread++;//Прибавляем количество хлеба на склад
+                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
+                Debug.Log("bread = " + globals.bread);
+                offset_massive_otgruzki();
+                return;
+            }
+            if (globals.bakery_array_slots_otgruzki[0, 0] == "corn_bread")
+            {
+                Debug.Log("corn_bread mouseup");
+                globals.corn_bread++;//Прибавляем количество хлеба на склад
+                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
+                Debug.Log("corn_bread = " + globals.corn_bread);
+                offset_massive_otgruzki();
+                return;
+            }
+            if (globals.bakery_array_slots_otgruzki[0, 0] == "cookie")
+            {
+                Debug.Log("cookie mouseup");
+                globals.cookie++;//Прибавляем количество хлеба на склад
+                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
+                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
+                Debug.Log("cookie = " + globals.cookie);
+                offset_massive_otgruzki();
+                return;
             }
         }
     }
@@ -467,7 +596,7 @@ public class bakery : MonoBehaviour
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-            GameObject.Find("j1_collider").transform.position = curPosition;
+            GameObject.Find("bakery_collider").transform.position = curPosition;
             globals.zoom = false;
             globals.drag = false;
         }

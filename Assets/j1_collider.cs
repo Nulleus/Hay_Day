@@ -35,30 +35,28 @@ public class j1_collider : MonoBehaviour
         
         if (globals.bakery_move_mode_on)//Если режим перемещения включен
         {
-
+            Debug.Log("globals.bakery_move_mode_on");
+            Debug.Log("globals.collision_move_mod_on"+globals.collision_move_mod_on);
                 if (other.gameObject.tag == "production_building")//Необходимо, если в режиме редактирования произошло столкновение
                 {
                     globals.collision_move_mod_on = true;
                 }
-                if ((gameObject.name == "j1_collider") && //Если это колайдер
-                ((other.gameObject.tag == "map_collider_green") ||//Если это зеленый колайдер
-                (other.gameObject.tag == "map_collider_red"))) //Если это красный колайдер
+                if ((gameObject.name == "bakery_collider") && //Если этот колайдер стлкнулся с
+                ((other.gameObject.tag == "map_collider_green") ||//зеленым колайдером
+                (other.gameObject.tag == "map_collider_red"))) //красным коллайдером
                 {
-                GameObject.Find("bakery").transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае
-                if ((other.gameObject.tag == "map_collider_green") && (globals.collision_move_mod_on == false))//Если столкнулись с зеленым коллайдером и (не) столкнулись с другим объектом
-                {
-                    GameObject.Find("bakery").GetComponent<Renderer>().material.color = Color.white;//Возвращаем пекарне исходный цвет
-                    globals.bakery_primary_position = other.transform.position;//Запоминаем место, где можно расположить пекарню
-                }
+                        GameObject.Find("bakery").transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае
+                        if (other.gameObject.tag == "map_collider_green") //Если столкнулись с зеленым коллайдером и (не) столкнулись с другим объектом
+                        {
+                            globals.collision_move_mod_on = false;
+                            globals.bakery_primary_position = other.transform.position;//Запоминаем место, где можно расположить пекарню
+                        }
                 
-                    if ((other.gameObject.tag == "map_collider_red"))//Если столкнулись с красным колайдером
-                    {
-                        GameObject.Find("bakery").GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет
-                        //globals.bakery_new_position = globals.bakery_primary_position;
-                    }
-
-
-            }
+                        if ((other.gameObject.tag == "map_collider_red"))//Если столкнулись с красным колайдером
+                        {
+                            globals.collision_move_mod_on = true;
+                        }
+                }
         }
 
     }
