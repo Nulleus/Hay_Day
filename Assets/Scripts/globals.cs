@@ -11,7 +11,6 @@ public class globals : MonoBehaviour
     //==========================popcorn_pot================================//
     public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
     //==========================bakery================================//
-    //public 
     public static string bakery_type_obj { get; set; }//
     public static bool bakery_move_mode_on { get; set; }//Режим редактирования
     public static Vector3 bakery_primary_position { get; set; }//Расположение пекарни до перемещения
@@ -25,8 +24,9 @@ public class globals : MonoBehaviour
     public static string[,] bakery_array_slots_otgruzki { get; set; }
     public static int bakery_slots_zagruzki_open { get; set; }//Количество открытых слотов загрузки
     public static bool bakery_visible { get; set; }//Состояние видимости пекарни
-    public static bool bakery_slots_predmets_visible { get; set; }//Состояние видимости пекарни
-    public static bool bakery_slots_zagruzki_visible { get; set; }//Состояние видимости пекарни
+    public static bool bakery_slots_predmets_visible { get; set; }//Состояние видимости слотов предметов пекарни
+    public static bool bakery_slots_zagruzki_visible { get; set; }//Состояние видимости слотов загрузки пекарни
+    public static bool bakery_slots_panel_visible { get; set; }//Состояние видимости слотов панели пекарни
 
     public static bool order_board_panel_visible { get; set; }//Видимость панели объекта доска объявления
 

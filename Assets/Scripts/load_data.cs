@@ -70,8 +70,9 @@ public class load_data : MonoBehaviour
         globals.bakery_move_mode_on = false;//Включен ли режим редактирования
         globals.bakery_visible = true;
         globals.bakery_slots_zagruzki_open = 9;
-        globals.bakery_slots_predmets_visible = true;
-        globals.bakery_slots_zagruzki_visible = true;
+        globals.bakery_slots_predmets_visible = false;
+        globals.bakery_slots_zagruzki_visible = false;
+        globals.bakery_slots_panel_visible = false;
         globals.bakery_array_slots_zagruzki = new string[9, 3] {
             {"", "", "" },
             {"", "", "" },
