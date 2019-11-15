@@ -16,7 +16,7 @@ public class wheat_quantity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = globals.quantuty_wheat.ToString();
+        GetComponent<Text>().text = globals.wheat.ToString();
     }
 
 }

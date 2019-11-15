@@ -214,12 +214,12 @@ public class field_farm_0_script : MonoBehaviour
             if (stage == 4) //Если состояние этапа==4(Готово для сбора) тогда собираем
             {
 
-                if (crop == "wheat"){globals.quantuty_wheat = globals.quantuty_wheat + 2; }
-                if (crop == "corn"){ globals.quantuty_corn = globals.quantuty_corn + 2; }
-                if (crop == "soybean"){ globals.quantuty_soybean = globals.quantuty_soybean + 2; }
-                if (crop == "sugarcane"){ globals.quantuty_sugarcane = globals.quantuty_sugarcane + 2; }
-                if (crop == "carrot"){globals.quantuty_carrot= globals.quantuty_carrot + 2;}
-                if (crop == "pumpkin"){globals.quantuty_pumpkin= globals.quantuty_pumpkin + 2;}
+                if (crop == "wheat"){globals.wheat = globals.wheat + 2; }
+                if (crop == "corn"){ globals.corn = globals.corn + 2; }
+                if (crop == "soybean"){ globals.soybean = globals.soybean + 2; }
+                if (crop == "sugarcane"){ globals.sugarcane = globals.sugarcane + 2; }
+                if (crop == "carrot"){globals.carrot= globals.carrot + 2;}
+                if (crop == "pumpkin"){globals.pumpkin= globals.pumpkin + 2;}
                 var nowtime = DateTime.Now;
                 time_stage_5_begin = nowtime;
                 time_stage_5_end = nowtime.AddSeconds(2);//Добавляем к текущему времени 5секунд
@@ -233,12 +233,12 @@ public class field_farm_0_script : MonoBehaviour
                 //Открывается панель с культурами и выбираем что будем сеять
                 crop = other.gameObject.name;//Запоминаем посаженную культуру           
                 Debug.Log("crop:" + crop);
-                if (crop == "wheat"){ globals.quantuty_wheat = globals.quantuty_wheat - 1; ; }
-                if (crop == "corn") { globals.quantuty_corn = globals.quantuty_corn - 1; }
-                if (crop == "soybean") { globals.quantuty_soybean = globals.quantuty_soybean - 1; }
-                if (crop == "sugarcane") { globals.quantuty_sugarcane = globals.quantuty_sugarcane - 1; }
-                if (crop == "carrot") { globals.quantuty_carrot = globals.quantuty_carrot - 1; }
-                if (crop == "pumpkin") { globals.quantuty_pumpkin = globals.quantuty_pumpkin - 1; }
+                if (crop == "wheat"){ globals.wheat = globals.wheat - 1; ; }
+                if (crop == "corn") { globals.corn = globals.corn - 1; }
+                if (crop == "soybean") { globals.soybean = globals.soybean - 1; }
+                if (crop == "sugarcane") { globals.sugarcane = globals.sugarcane - 1; }
+                if (crop == "carrot") { globals.carrot = globals.carrot - 1; }
+                if (crop == "pumpkin") { globals.pumpkin = globals.pumpkin - 1; }
                 stage = 1;//Запускаем первую стадию
 
                 //Тут необходимо сделать запрос в БД для вычисления количества культуры

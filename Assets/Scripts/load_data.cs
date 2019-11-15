@@ -22,12 +22,12 @@ public class load_data : MonoBehaviour
         globals.cow_1_end_stage_1 = DateTime.Now;
         globals.cow_1_stage = 0;
         //======================quantity==============================//
-        globals.quantuty_wheat = 11;
-        globals.quantuty_corn = 11;
-        globals.quantuty_soybean = 11;
-        globals.quantuty_sugarcane = 11;
-        globals.quantuty_carrot = 11;
-        globals.quantuty_pumpkin = 11;
+        globals.wheat = 11;
+        globals.corn = 11;
+        globals.soybean = 11;
+        globals.sugarcane = 11;
+        globals.carrot = 11;
+        globals.pumpkin = 11;
         globals.silo_intcapacity = 50;//
         globals.barn_intcapacity = 50;
         //=============================barn===============================//

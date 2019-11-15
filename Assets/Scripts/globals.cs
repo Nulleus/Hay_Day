@@ -45,12 +45,12 @@ public class globals : MonoBehaviour
 
     public static string predmetname { get; set; }//Выбранный предмет для посадки
     //====================================Количество культур=============================================//
-    public static int quantuty_wheat { get; set; }//Количетво пшеницы в силосной башни
-    public static int quantuty_corn { get; set; }//Количетво кукурузы в силосной башни
-    public static int quantuty_soybean { get; set; }//Количетво сои в силосной башни
-    public static int quantuty_sugarcane { get; set; }//Количетво тростника в силосной башни
-    public static int quantuty_carrot { get; set; }//Количетво моркови в силосной башни
-    public static int quantuty_pumpkin { get; set; }//Количетво тыквы в силосной башни
+    public static int wheat { get; set; }//Количетво пшеницы в силосной башни
+    public static int corn { get; set; }//Количетво кукурузы в силосной башни
+    public static int soybean { get; set; }//Количетво сои в силосной башни
+    public static int sugarcane { get; set; }//Количетво тростника в силосной башни
+    public static int carrot { get; set; }//Количетво моркови в силосной башни
+    public static int pumpkin { get; set; }//Количетво тыквы в силосной башни
     //====================================Вместимость=============================================//
     public static int silo_intcapacity { get; set; }//Вместимость силосной башни
     public static int barn_intcapacity { get; set; }//Вместимость амбара

@@ -29,7 +29,7 @@ public class bakery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var nowtime = DateTime.Now;//Текущее время 
+        //var nowtime = DateTime.Now;//Текущее время 
         bakery_slots_panel = GameObject.Find("bakery_slots_panel");
         bakery_slots_predmets = GameObject.Find("bakery_slots_predmets");
         bakery_slots_zagruzki = GameObject.Find("bakery_slots_zagruzki");
@@ -209,13 +209,7 @@ public class bakery : MonoBehaviour
         if (globals.bakery_array_slots_zagruzki[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
         {
             TimeSpan time = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //Разница дат
-            if (GameObject.Find("slot_0_bakery_text"))//Если объект доступен
-            {
-                GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = time.Seconds + " c";
-                if (time.Seconds <= 0) { GameObject.Find("slot_0_bakery_text").GetComponent<Text>().text = ""; }//Если 0 секунд, убрать текст
-            }
-            
+            //Разница дат            
             if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата отгрузки < текущей даты)
             {
                 if (globals.bakery_array_slots_otgruzki[0, 0] == "")//Если слот отгрузки 0, пустой
@@ -340,10 +334,23 @@ public class bakery : MonoBehaviour
     }//Отгрузка предмета из слота загрузки в слот отгрузки
     public static void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
     {
+        //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
         Debug.Log("add: "+predmet);
         int building_time = 20;//Время сборки предмета 10 секунд
-        if (predmet == "bread") { building_time = 20; }//Если предмет хлеб, время сборки(building time) составляет 10 секунд
+        if (predmet == "bread")
+        {
+            building_time = 20;//Время сборки
+            if (globals.wheat - 3 > 0)
+            {
+                globals.wheat = globals.wheat - 3;
+            }
+            else
+            {
+                Debug.Log("Нехватает ингредиентов!");
+                return;
+            }
+        }
         var nowtime = DateTime.Now;//Текущее время
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
         {           

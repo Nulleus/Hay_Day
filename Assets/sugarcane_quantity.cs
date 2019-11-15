@@ -14,6 +14,6 @@ public class sugarcane_quantity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = globals.quantuty_sugarcane.ToString();
+        GetComponent<Text>().text = globals.sugarcane.ToString();
     }
 }

@@ -115,32 +115,32 @@ public class quantity_update : MonoBehaviour
 
         //===============================silo=====================================//   
         //wheat
-    quantity_field_panel_wheat_text.GetComponent<Text>().text = globals.quantuty_wheat.ToString();//Количество пшеницы в графе объекта поле
-    silo_wheat_quantity_text.GetComponent<Text>().text = globals.quantuty_wheat.ToString();//Отображаемое количество в графе силосной башни
+    quantity_field_panel_wheat_text.GetComponent<Text>().text = globals.wheat.ToString();//Количество пшеницы в графе объекта поле
+    silo_wheat_quantity_text.GetComponent<Text>().text = globals.wheat.ToString();//Отображаемое количество в графе силосной башни
                                                                                            //corn
-    quantity_field_panel_corn_text.GetComponent<Text>().text = globals.quantuty_corn.ToString();
-    silo_corn_quantity_text.GetComponent<Text>().text = globals.quantuty_corn.ToString();
+    quantity_field_panel_corn_text.GetComponent<Text>().text = globals.corn.ToString();
+    silo_corn_quantity_text.GetComponent<Text>().text = globals.corn.ToString();
     //soybean
-    quantity_field_panel_soybean_text.GetComponent<Text>().text = globals.quantuty_soybean.ToString();
-    silo_soybean_quantity_text.GetComponent<Text>().text = globals.quantuty_soybean.ToString();
+    quantity_field_panel_soybean_text.GetComponent<Text>().text = globals.soybean.ToString();
+    silo_soybean_quantity_text.GetComponent<Text>().text = globals.soybean.ToString();
     //sugarcane
-    quantity_field_panel_sugarcane_text.GetComponent<Text>().text = globals.quantuty_sugarcane.ToString();
-    silo_sugarcane_quantity_text.GetComponent<Text>().text = globals.quantuty_sugarcane.ToString();
+    quantity_field_panel_sugarcane_text.GetComponent<Text>().text = globals.sugarcane.ToString();
+    silo_sugarcane_quantity_text.GetComponent<Text>().text = globals.sugarcane.ToString();
     //carrot
-    quantity_field_panel_carrot_text.GetComponent<Text>().text = globals.quantuty_carrot.ToString();
-    silo_carrot_quantity_text.GetComponent<Text>().text = globals.quantuty_carrot.ToString();
+    quantity_field_panel_carrot_text.GetComponent<Text>().text = globals.carrot.ToString();
+    silo_carrot_quantity_text.GetComponent<Text>().text = globals.carrot.ToString();
     //pumpkin
-    quantity_field_panel_pumpkin_text.GetComponent<Text>().text = globals.quantuty_pumpkin.ToString();
-    silo_pumpkin_quantity_text.GetComponent<Text>().text = globals.quantuty_pumpkin.ToString();
+    quantity_field_panel_pumpkin_text.GetComponent<Text>().text = globals.pumpkin.ToString();
+    silo_pumpkin_quantity_text.GetComponent<Text>().text = globals.pumpkin.ToString();
 
 
 
-    var busy_silo = globals.quantuty_wheat +
-               globals.quantuty_corn +
-               globals.quantuty_soybean +
-               globals.quantuty_sugarcane +
-               globals.quantuty_carrot +
-               globals.quantuty_pumpkin;
+    var busy_silo = globals.wheat +
+               globals.corn +
+               globals.soybean +
+               globals.sugarcane +
+               globals.carrot +
+               globals.pumpkin;
     silo_text_info.GetComponent<Text>().text = "Силосная башня: " + busy_silo.ToString() + "/" + globals.silo_intcapacity.ToString();
 
         var busy_barn =

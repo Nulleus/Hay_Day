@@ -14,6 +14,6 @@ public class carrot_quantity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = globals.quantuty_carrot.ToString();
+        GetComponent<Text>().text = globals.carrot.ToString();
     }
 }

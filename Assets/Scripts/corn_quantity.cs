@@ -14,6 +14,6 @@ public class corn_quantity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = globals.quantuty_corn.ToString();
+        GetComponent<Text>().text = globals.corn.ToString();
     }
 }

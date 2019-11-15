@@ -14,6 +14,6 @@ public class pumpkin_quantity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = globals.quantuty_soybean.ToString();
+        GetComponent<Text>().text = globals.soybean.ToString();
     }
 }
