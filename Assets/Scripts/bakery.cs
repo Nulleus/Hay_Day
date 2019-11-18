@@ -9,16 +9,6 @@ public class bakery : MonoBehaviour
     public int count = 0;
     public bool count_on = false;
     
-    public GameObject bakery_arrow;
-    public GameObject bakery_arrow_0;
-    public GameObject bakery_arrow_1;
-    public GameObject bakery_arrow_2;
-    public GameObject bakery_arrow_3;
-    public GameObject bakery_arrow_4;
-    public GameObject farm_box_colliders;
-    public GameObject bakery_slots_predmets;//Слоты предметов пекарни
-    public GameObject bakery_slots_panel;//Слоты с панелью(закрытие, flip);
-    public GameObject bakery_slots_zagruzki;//Слоты загрузки
     public Vector3 primary_position;//Сохранение начального положения объкта
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
@@ -29,22 +19,6 @@ public class bakery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //var nowtime = DateTime.Now;//Текущее время 
-        bakery_slots_panel = GameObject.Find("bakery_slots_panel");
-        bakery_slots_predmets = GameObject.Find("bakery_slots_predmets");
-        bakery_slots_zagruzki = GameObject.Find("bakery_slots_zagruzki");
-        bakery_arrow = GameObject.Find("bakery_arrow");
-        bakery_arrow_0 = GameObject.Find("bakery_arrow_0");
-        bakery_arrow_1 = GameObject.Find("bakery_arrow_1");
-        bakery_arrow_2 = GameObject.Find("bakery_arrow_2");
-        bakery_arrow_3 = GameObject.Find("bakery_arrow_3");
-        bakery_arrow_4 = GameObject.Find("bakery_arrow_4");
-        farm_box_colliders = GameObject.Find("farm_map_box_colliders");
-        bakery_slots_zagruzki.SetActive(false);
-        bakery_arrow.SetActive(false);
-        bakery_slots_predmets.SetActive(false);
-        bakery_slots_panel.SetActive(false);
-        farm_box_colliders.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,22 +26,22 @@ public class bakery : MonoBehaviour
     {
         if (globals.bakery_slots_panel_visible)
         {
-            bakery_slots_panel.SetActive(true);
+            globals.bakery_slots_panel_visible = true;
         }
         else
         {
-            bakery_slots_panel.SetActive(false);
+            GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
         }
         if (globals.bakery_slots_predmets_visible)
         {
-            bakery_slots_predmets.SetActive(true);
-            bakery_slots_zagruzki.SetActive(true);
+            globals.bakery_slots_predmets_visible = true;
+            globals.bakery_slots_zagruzki_visible = true;
             
         }
         else
         {
-            bakery_slots_predmets.SetActive(false);
-            bakery_slots_zagruzki.SetActive(false);
+            globals.bakery_slots_predmets_visible = false;
+            globals.bakery_slots_zagruzki_visible = false;
         }
         if (globals.bakery_move_mode_on)//Если режим перемещения включен
         {
@@ -94,7 +68,7 @@ public class bakery : MonoBehaviour
         else
         {
             globals.bakery_slots_panel_visible = false;
-            farm_box_colliders.SetActive(false);
+            globals.farm_map_box_colliders_enabled = false;
             gameObject.GetComponent<Renderer>().material.color = Color.white;
             gameObject.tag = globals.bakery_type_obj;//
 
@@ -103,17 +77,17 @@ public class bakery : MonoBehaviour
         {
             count++;
 
-            if (count == 6) { bakery_arrow_0.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (count == 12) { bakery_arrow_1.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (count == 18) { bakery_arrow_2.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (count == 24) { bakery_arrow_3.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (count == 30) { bakery_arrow_4.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (count == 6) { GameObject_Enable_Controller.bakery_arrow_0.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (count == 12) { GameObject_Enable_Controller.bakery_arrow_1.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (count == 18) { GameObject_Enable_Controller.bakery_arrow_2.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (count == 24) { GameObject_Enable_Controller.bakery_arrow_3.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (count == 30) { GameObject_Enable_Controller.bakery_arrow_4.GetComponent<Renderer>().material.color = Color.yellow; }
             if (count > 30)//Активация режима перемещение
             {
                 globals.bakery_move_mode_on = true;//Активация режима перемещение
-                bakery_arrow.SetActive(false);//Скрытие стрелочки
-                farm_box_colliders.SetActive(true);//Включаем коллайдеры
-                bakery_slots_panel.SetActive(true);//Включаем панель с кнопкой Flip
+                GameObject_Enable_Controller.bakery_arrow.SetActive(false);//Скрытие стрелочки
+                GameObject_Enable_Controller.farm_box_colliders.SetActive(false);
+                GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);//Включаем панель с кнопкой Flip
                 count_on = false;
             }
         }
@@ -348,6 +322,27 @@ public class bakery : MonoBehaviour
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
+                globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*-1;
+                globals.price_for_diamonds_panel_slot_0_predmet_name = "Пшеница";
+                globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
+                globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2м.";
+
+                globals.price_for_diamonds_panel_visible = true;
+
+                return;
+            }
+        }
+        if (predmet == "corn_bread")
+        {
+            building_time = 22;//Время сборки
+            if ((globals.corn - 2 > 0)&&(globals.egg - 2 > 0))
+            {
+                globals.corn = globals.corn - 2;
+                globals.egg = globals.egg - 2;
+            }
+            else
+            {
+                Debug.Log("Нехватает ингредиентов!");
                 return;
             }
         }
@@ -493,12 +488,12 @@ public class bakery : MonoBehaviour
     {        
         count = 0;
         count_on = false;
-        bakery_arrow_0.GetComponent<Renderer>().material.color = Color.white;
-        bakery_arrow_1.GetComponent<Renderer>().material.color = Color.white;
-        bakery_arrow_2.GetComponent<Renderer>().material.color = Color.white;
-        bakery_arrow_3.GetComponent<Renderer>().material.color = Color.white;
-        bakery_arrow_4.GetComponent<Renderer>().material.color = Color.white;
-        bakery_arrow.SetActive(false);
+        GameObject_Enable_Controller.bakery_arrow_0.GetComponent<Renderer>().material.color = Color.white;
+        GameObject_Enable_Controller.bakery_arrow_1.GetComponent<Renderer>().material.color = Color.white;
+        GameObject_Enable_Controller.bakery_arrow_2.GetComponent<Renderer>().material.color = Color.white;
+        GameObject_Enable_Controller.bakery_arrow_3.GetComponent<Renderer>().material.color = Color.white;
+        GameObject_Enable_Controller.bakery_arrow_4.GetComponent<Renderer>().material.color = Color.white;
+        GameObject_Enable_Controller.bakery_arrow.SetActive(false);
         gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер пекарни обратно
         if (globals.bakery_move_mode_on)
         {
@@ -579,7 +574,7 @@ public class bakery : MonoBehaviour
         {
 
             globals.bakery_primary_position = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
-            bakery_arrow.SetActive(true);//Активируем стрелку
+            GameObject_Enable_Controller.bakery_arrow.SetActive(true);//Активируем стрелку
             count = 0;//Обнуляем счетчик
             count_on = true;//Запускаем счетчик 
         }

@@ -99,6 +99,7 @@
     <Compile Include="Assets\cow_feed_quantity_text.cs" />
     <Compile Include="Assets\farm_map_box_collider_green.cs" />
     <Compile Include="Assets\farm_map_box_colliders.cs" />
+    <Compile Include="Assets\GameObject_Enable_Controller.cs" />
     <Compile Include="Assets\j1.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\j1_collider.cs" />
@@ -123,6 +124,12 @@
     <Compile Include="Assets\order_board_panel.cs" />
     <Compile Include="Assets\popcorn_pot.cs" />
     <Compile Include="Assets\popcorn_pot_slots_predmets.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_slot_0.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_slot_0_building_time_text.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_slot_0_info_predmet_info_text.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_slot_0_info_predmet_name_text.cs" />
+    <Compile Include="Assets\price_for_diamonds_panel_slot_0_quantity_text.cs" />
     <Compile Include="Assets\pumpkin_quantity.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />

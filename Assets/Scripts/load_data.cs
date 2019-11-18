@@ -23,11 +23,17 @@ public class load_data : MonoBehaviour
         globals.cow_1_stage = 0;
         //======================quantity==============================//
         globals.wheat = 11;
+        globals.wheat_price_for_diamonds = 1;
         globals.corn = 11;
+        globals.corn_price_for_diamonds = 1;
         globals.soybean = 11;
+        globals.soybean_price_for_diamonds = 2;
         globals.sugarcane = 11;
+        globals.sugarcane_price_for_diamonds = 3;
         globals.carrot = 11;
+        globals.carrot_price_for_diamonds = 2;
         globals.pumpkin = 11;
+        globals.pumpkin_price_for_diamonds = 6;
         globals.silo_intcapacity = 50;//
         globals.barn_intcapacity = 50;
         //=============================barn===============================//
@@ -95,6 +101,13 @@ public class load_data : MonoBehaviour
             {"", "", "" }};//Предмет, дата загрузки, дата отгрузки
         //========================popcorn_pot=======================//
         globals.popcorn_pot_visible = true;
+        //===============================price_for_diamonds_panel===============================//
+        globals.price_for_diamonds_panel_visible = false;
+        globals.price_for_diamonds_panel_slot_0_predmet_name = "empty";
+        globals.price_for_diamonds_panel_slot_0_predmet_info = "predmet_info, Слот0, Пусто";
+        globals.price_for_diamonds_panel_slot_0_predmet_building_time = "predmet_building_time, Слот0, Пусто";
+        globals.price_for_diamonds_panel_slot_0_quantity = 0;
+        globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 0;
     }
    
     // Update is called once per frame

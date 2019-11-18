@@ -27,6 +27,12 @@ public class globals : MonoBehaviour
     public static bool bakery_slots_predmets_visible { get; set; }//Состояние видимости слотов предметов пекарни
     public static bool bakery_slots_zagruzki_visible { get; set; }//Состояние видимости слотов загрузки пекарни
     public static bool bakery_slots_panel_visible { get; set; }//Состояние видимости слотов панели пекарни
+    public static bool bakery_arrow_visible { get; set; }//Состояние видимости стрелки у пекарни
+    public static bool bakery_arrow_0_visible { get; set; }//Состояние видимости части стрелки 0
+    public static bool bakery_arrow_1_visible { get; set; }//Состояние видимости части стрелки 1
+    public static bool bakery_arrow_2_visible { get; set; }//Состояние видимости части стрелки 2
+    public static bool bakery_arrow_3_visible { get; set; }//Состояние видимости части стрелки 3
+    public static bool bakery_arrow_4_visible { get; set; }//Состояние видимости части стрелки 4
 
     public static bool order_board_panel_visible { get; set; }//Видимость панели объекта доска объявления
 
@@ -46,11 +52,17 @@ public class globals : MonoBehaviour
     public static string predmetname { get; set; }//Выбранный предмет для посадки
     //====================================Количество культур=============================================//
     public static int wheat { get; set; }//Количетво пшеницы в силосной башни
+    public static int wheat_price_for_diamonds { get; set; }//Цена пшеницы за алмазы 1шт
     public static int corn { get; set; }//Количетво кукурузы в силосной башни
+    public static int corn_price_for_diamonds { get; set; }//Цена кукурузы за алмазы 1шт
     public static int soybean { get; set; }//Количетво сои в силосной башни
+    public static int soybean_price_for_diamonds { get; set; }//Цена сои за алмазы 1шт
     public static int sugarcane { get; set; }//Количетво тростника в силосной башни
+    public static int sugarcane_price_for_diamonds { get; set; }//Цена тростника за алмазы 1шт
     public static int carrot { get; set; }//Количетво моркови в силосной башни
+    public static int carrot_price_for_diamonds { get; set; }//Цена моркови за алмазы 1шт
     public static int pumpkin { get; set; }//Количетво тыквы в силосной башни
+    public static int pumpkin_price_for_diamonds { get; set; }//Цена тыквы за алмазы 1шт
     //====================================Вместимость=============================================//
     public static int silo_intcapacity { get; set; }//Вместимость силосной башни
     public static int barn_intcapacity { get; set; }//Вместимость амбара
@@ -138,6 +150,12 @@ public class globals : MonoBehaviour
 
     public static string order_board_slot_0_predmet_5_name { get; set; } //6ой необходимый предмет в слоте 0
     public static int order_board_slot_0_predmet_5_quantity { get; set; } //Количество необходимого предмета в слоте 0
-
+    //===================price_for_diamonds_panel=====================================================================//
+    public static bool price_for_diamonds_panel_visible { get; set; }//Видимость price_for_diamonds_panel(Не работает, так как после скрытия объекта, скрип перестает выполняться) Для исправления, необходимо написать контроллер, который бы постоянно за этим следил и выполнялся
+    public static string price_for_diamonds_panel_slot_0_predmet_name{ get; set; }//Наименование предмета, которого нехватает
+    public static string price_for_diamonds_panel_slot_0_predmet_info { get; set; }//Информация о предмете, которого нехватает
+    public static string price_for_diamonds_panel_slot_0_predmet_building_time{ get; set; }//Время сборки предмета, которого нехватает
+    public static int price_for_diamonds_panel_slot_0_quantity { get; set; }//Количество предмета, которого нехватает
+    public static int price_for_diamonds_panel_button_ok_diamonds_quantity { get; set; }//Количество алмазов, необходимое для продолжения
 
 }
