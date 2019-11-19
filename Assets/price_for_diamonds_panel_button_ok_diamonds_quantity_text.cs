@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class price_for_diamonds_panel_button_ok_diamonds_quantity_text : MonoBehaviour
 {
@@ -13,6 +14,6 @@ public class price_for_diamonds_panel_button_ok_diamonds_quantity_text : MonoBeh
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.GetComponent<Text>().text = globals.price_for_diamonds_panel_button_ok_diamonds_quantity.ToString();
     }
 }

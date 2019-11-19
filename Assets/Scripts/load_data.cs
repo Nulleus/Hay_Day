@@ -10,7 +10,7 @@ public class load_data : MonoBehaviour
     void Start()
     {
         //==========================farm_map_box_colliders==========================//
-        globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
+        //globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
 
         globals.collision_move_mod_on = false;
         //==========================cow_0=================================//
@@ -24,7 +24,7 @@ public class load_data : MonoBehaviour
         //======================quantity==============================//
         globals.wheat = 11;
         globals.wheat_price_for_diamonds = 1;
-        globals.corn = 11;
+        globals.corn = 10;
         globals.corn_price_for_diamonds = 1;
         globals.soybean = 11;
         globals.soybean_price_for_diamonds = 2;
@@ -38,17 +38,28 @@ public class load_data : MonoBehaviour
         globals.barn_intcapacity = 50;
         //=============================barn===============================//
         globals.bolt = 100;
+        globals.bolt_price_for_diamonds = 8;
         globals.duct_tape = 100;
+        globals.duct_tape_price_for_diamonds = 8;
         globals.plank = 100;
+        globals.plank_price_for_diamonds = 8;
         globals.cow_feed = 13;//Количество коровьего корма в амбаре
+        globals.cow_feed_price_for_diamonds = 2;
         globals.milk = 12;
+        globals.milk_price_for_diamonds = 4;
         globals.bread = 13;
+        globals.bread_price_for_diamonds = 1;
         globals.corn_bread = 14;
+        globals.corn_bread_price_for_diamonds = 3;
         globals.cookie = 15;
+        globals.cookie_price_for_diamonds = 4;
         globals.cream = 12;
+        globals.cream_price_for_diamonds = 2;
         globals.butter = 13;
+        globals.butter_price_for_diamonds = 3;
         globals.cheese = 14;
-        globals.egg = 15;
+
+        globals.egg = 10;
         globals.nail = 10;
         globals.screew = 11;
         globals.wood_panel = 10;
@@ -74,11 +85,8 @@ public class load_data : MonoBehaviour
         //=======================bakery==================================//
         globals.bakery_type_obj = "production_building";
         globals.bakery_move_mode_on = false;//Включен ли режим редактирования
-        globals.bakery_visible = true;
+
         globals.bakery_slots_zagruzki_open = 9;
-        globals.bakery_slots_predmets_visible = false;
-        globals.bakery_slots_zagruzki_visible = false;
-        globals.bakery_slots_panel_visible = false;
         globals.bakery_array_slots_zagruzki = new string[9, 3] {
             {"", "", "" },
             {"", "", "" },
@@ -100,14 +108,54 @@ public class load_data : MonoBehaviour
             {"", "", "" },
             {"", "", "" }};//Предмет, дата загрузки, дата отгрузки
         //========================popcorn_pot=======================//
-        globals.popcorn_pot_visible = true;
+        //globals.popcorn_pot_visible = true;
         //===============================price_for_diamonds_panel===============================//
-        globals.price_for_diamonds_panel_visible = false;
+        //globals.price_for_diamonds_panel_visible = false;
         globals.price_for_diamonds_panel_slot_0_predmet_name = "empty";
         globals.price_for_diamonds_panel_slot_0_predmet_info = "predmet_info, Слот0, Пусто";
         globals.price_for_diamonds_panel_slot_0_predmet_building_time = "predmet_building_time, Слот0, Пусто";
         globals.price_for_diamonds_panel_slot_0_quantity = 0;
         globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 0;
+        //=============================GameObjectEnabled===========================//
+        //=======================Find==============================//
+        GameObject_Enable_Controller.price_for_diamonds_panel = GameObject.Find("price_for_diamonds_panel");
+        GameObject_Enable_Controller.bakery = GameObject.Find("bakery");
+        GameObject_Enable_Controller.bakery_slots_panel = GameObject.Find("bakery_slots_panel");
+        GameObject_Enable_Controller.bakery_slots_predmets = GameObject.Find("bakery_slots_predmets");
+        GameObject_Enable_Controller.bakery_slots_zagruzki = GameObject.Find("bakery_slots_zagruzki");
+        GameObject_Enable_Controller.bakery_arrow = GameObject.Find("bakery_arrow");
+        GameObject_Enable_Controller.bakery_arrow_0 = GameObject.Find("bakery_arrow_0");
+        GameObject_Enable_Controller.bakery_arrow_1 = GameObject.Find("bakery_arrow_1");
+        GameObject_Enable_Controller.bakery_arrow_2 = GameObject.Find("bakery_arrow_2");
+        GameObject_Enable_Controller.bakery_arrow_3 = GameObject.Find("bakery_arrow_3");
+        GameObject_Enable_Controller.bakery_arrow_4 = GameObject.Find("bakery_arrow_4");
+        GameObject_Enable_Controller.farm_box_colliders = GameObject.Find("farm_map_box_colliders");
+
+        GameObject_Enable_Controller.order_board_panel = GameObject.Find("order_board_panel");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0 = GameObject.Find("price_for_diamonds_panel_slot_0");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_info = GameObject.Find("price_for_diamonds_panel_slot_0_info");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_1 = GameObject.Find("price_for_diamonds_panel_slot_1");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_1_info = GameObject.Find("price_for_diamonds_panel_slot_1_info");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_2 = GameObject.Find("price_for_diamonds_panel_slot_2");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_2_info = GameObject.Find("price_for_diamonds_panel_slot_2_info");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_3 = GameObject.Find("price_for_diamonds_panel_slot_3");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_3_info = GameObject.Find("price_for_diamonds_panel_slot_3_info");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
+        //========================Diactivation===========================================//
+        GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
+        GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
+        GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
+        GameObject_Enable_Controller.bakery_arrow.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_info.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_1_info.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_2_info.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
+        GameObject_Enable_Controller.price_for_diamonds_panel_slot_3_info.SetActive(false);
     }
    
     // Update is called once per frame

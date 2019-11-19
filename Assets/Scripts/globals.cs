@@ -6,10 +6,10 @@ using UnityEngine;
 public class globals : MonoBehaviour
 {
     //==========================farm_map_box_colliders==========================//
-    public static bool farm_map_box_colliders_enabled { get; set; }//Доступность коллайдеров
+    //public static bool farm_map_box_colliders_enabled { get; set; }//Доступность коллайдеров
     public static bool collision_move_mod_on { get; set; }//Столкновение с  другим объектом в режиме редактирования
     //==========================popcorn_pot================================//
-    public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
+    //public static bool popcorn_pot_visible { get; set; }//Состояние видимости попкорницы
     //==========================bakery================================//
     public static string bakery_type_obj { get; set; }//
     public static bool bakery_move_mode_on { get; set; }//Режим редактирования
@@ -23,18 +23,7 @@ public class globals : MonoBehaviour
     public static string[,] bakery_array_slots_zagruzki { get; set; }
     public static string[,] bakery_array_slots_otgruzki { get; set; }
     public static int bakery_slots_zagruzki_open { get; set; }//Количество открытых слотов загрузки
-    public static bool bakery_visible { get; set; }//Состояние видимости пекарни
-    public static bool bakery_slots_predmets_visible { get; set; }//Состояние видимости слотов предметов пекарни
-    public static bool bakery_slots_zagruzki_visible { get; set; }//Состояние видимости слотов загрузки пекарни
-    public static bool bakery_slots_panel_visible { get; set; }//Состояние видимости слотов панели пекарни
-    public static bool bakery_arrow_visible { get; set; }//Состояние видимости стрелки у пекарни
-    public static bool bakery_arrow_0_visible { get; set; }//Состояние видимости части стрелки 0
-    public static bool bakery_arrow_1_visible { get; set; }//Состояние видимости части стрелки 1
-    public static bool bakery_arrow_2_visible { get; set; }//Состояние видимости части стрелки 2
-    public static bool bakery_arrow_3_visible { get; set; }//Состояние видимости части стрелки 3
-    public static bool bakery_arrow_4_visible { get; set; }//Состояние видимости части стрелки 4
-
-    public static bool order_board_panel_visible { get; set; }//Видимость панели объекта доска объявления
+    //public static bool order_board_panel_visible { get; set; }//Видимость панели объекта доска объявления
 
     public static int coin { get; set; }//Количество монет игрока
     public static int diamond { get; set; }//Количество алмазов
@@ -69,22 +58,35 @@ public class globals : MonoBehaviour
     //=========================Амбар=============================================//
     //Upgrade//
     public static int bolt { get; set; }//Количество болтов в амбаре
+    public static int bolt_price_for_diamonds { get; set; }//Цена одного болта в алмазах
     public static int duct_tape{ get; set; }//Количество скотча в амбаре
+    public static int duct_tape_price_for_diamonds { get; set; }//Цена одного скотча в алмазах
     public static int plank { get; set; }//Количество досок в амбаре
-
+    public static int plank_price_for_diamonds { get; set; }//Цена одной доски за алмазы
     public static int cow_feed { get; set; }//Количество коровьего корма в амбаре
+    public static int cow_feed_price_for_diamonds { get; set; }//Цена одного коровьего корма 
     public static int milk { get; set; }//Количество коровьего молока в амбаре
+    public static int milk_price_for_diamonds { get; set; }//Цена одного коровьего молока в алмазах
     public static int bread { get; set; }//Количество хлеба в амбаре
+    public static int bread_price_for_diamonds { get; set; }//Цена одного хлеба в алмазах
     public static int corn_bread { get; set; }//Количество кукурузного хлеба в амбаре
+    public static int corn_bread_price_for_diamonds { get; set; }//Цена одного кукурузного хлеба в алмазах
     public static int cookie { get; set; }//Количество печенья в амбаре
+    public static int cookie_price_for_diamonds { get; set; }//Цена одного печенья в алмазах
     public static int cream { get; set; }//Количество крема в амбаре
+    public static int cream_price_for_diamonds { get; set; }//Цена одних сливок в алмазах
     public static int butter { get; set; }//Количество масла в амбаре
+    public static int butter_price_for_diamonds { get; set; }//Цена одного масла в алмазах
     public static int cheese { get; set; }//Количество сыра в амбаре
+    public static int cheese_price_for_diamonds { get; set; }//Цена одного сыра в алмазах
     public static int egg { get; set; }//Количество яиц в амбаре
-
+    public static int egg_price_for_diamonds { get; set; }//Цена одного яйца в алмазах
     public static int nail { get; set; }//Количество гвоздей в амбаре
+    public static int nail_price_for_diamonds { get; set; }//Цена одного гвоздя в алмазах
     public static int screew { get; set; }//Количество шурупов в амбаре
+    public static int screew_price_for_diamonds { get; set; }//Цена одного шурупа в алмазах
     public static int wood_panel { get; set; }//Количество панелей в амбаре
+    public static int wood_panel_price_for_diamonds { get; set; }//Цена одной деревянной панели
     //============================cow_0=======================================//
     public static int cow_0_stage { get; set; }//Состояние коровы 0-Голодная, 1-Сытая, 2 - Ожидает дойки
     public static DateTime cow_0_begin_stage_1 { get; set; }//Время начала первой стадии коровы
@@ -151,11 +153,28 @@ public class globals : MonoBehaviour
     public static string order_board_slot_0_predmet_5_name { get; set; } //6ой необходимый предмет в слоте 0
     public static int order_board_slot_0_predmet_5_quantity { get; set; } //Количество необходимого предмета в слоте 0
     //===================price_for_diamonds_panel=====================================================================//
-    public static bool price_for_diamonds_panel_visible { get; set; }//Видимость price_for_diamonds_panel(Не работает, так как после скрытия объекта, скрип перестает выполняться) Для исправления, необходимо написать контроллер, который бы постоянно за этим следил и выполнялся
+    //public static bool price_for_diamonds_panel_visible { get; set; }//Видимость price_for_diamonds_panel(Не работает, так как после скрытия объекта, скрип перестает выполняться) Для исправления, необходимо написать контроллер, который бы постоянно за этим следил и выполнялся
     public static string price_for_diamonds_panel_slot_0_predmet_name{ get; set; }//Наименование предмета, которого нехватает
     public static string price_for_diamonds_panel_slot_0_predmet_info { get; set; }//Информация о предмете, которого нехватает
     public static string price_for_diamonds_panel_slot_0_predmet_building_time{ get; set; }//Время сборки предмета, которого нехватает
     public static int price_for_diamonds_panel_slot_0_quantity { get; set; }//Количество предмета, которого нехватает
+
+    public static string price_for_diamonds_panel_slot_1_predmet_name { get; set; }//Наименование предмета, которого нехватает
+    public static string price_for_diamonds_panel_slot_1_predmet_info { get; set; }//Информация о предмете, которого нехватает
+    public static string price_for_diamonds_panel_slot_1_predmet_building_time { get; set; }//Время сборки предмета, которого нехватает
+    public static int price_for_diamonds_panel_slot_1_quantity { get; set; }//Количество предмета, которого нехватает
+
+    public static string price_for_diamonds_panel_slot_2_predmet_name { get; set; }//Наименование предмета, которого нехватает
+    public static string price_for_diamonds_panel_slot_2_predmet_info { get; set; }//Информация о предмете, которого нехватает
+    public static string price_for_diamonds_panel_slot_2_predmet_building_time { get; set; }//Время сборки предмета, которого нехватает
+    public static int price_for_diamonds_panel_slot_2_quantity { get; set; }//Количество предмета, которого нехватает
+
+    public static string price_for_diamonds_panel_slot_3_predmet_name { get; set; }//Наименование предмета, которого нехватает
+    public static string price_for_diamonds_panel_slot_3_predmet_info { get; set; }//Информация о предмете, которого нехватает
+    public static string price_for_diamonds_panel_slot_3_predmet_building_time { get; set; }//Время сборки предмета, которого нехватает
+    public static int price_for_diamonds_panel_slot_3_quantity { get; set; }//Количество предмета, которого нехватает
+
     public static int price_for_diamonds_panel_button_ok_diamonds_quantity { get; set; }//Количество алмазов, необходимое для продолжения
+
 
 }

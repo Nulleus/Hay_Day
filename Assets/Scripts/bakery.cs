@@ -8,7 +8,6 @@ public class bakery : MonoBehaviour
 {
     public int count = 0;
     public bool count_on = false;
-    
     public Vector3 primary_position;//Сохранение начального положения объкта
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
@@ -19,35 +18,35 @@ public class bakery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("+++++++++" + GameObject_Enable_Controller.bakery_arrow);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (globals.bakery_slots_panel_visible)
-        {
-            globals.bakery_slots_panel_visible = true;
-        }
-        else
+        if (GameObject_Enable_Controller.bakery_slots_panel.activeSelf)
         {
             GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
         }
-        if (globals.bakery_slots_predmets_visible)
+        else
         {
-            globals.bakery_slots_predmets_visible = true;
-            globals.bakery_slots_zagruzki_visible = true;
-            
+            GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);
+        }
+        if (GameObject_Enable_Controller.bakery_slots_predmets.activeSelf)
+        {
+            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(true);
+            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);           
         }
         else
         {
-            globals.bakery_slots_predmets_visible = false;
-            globals.bakery_slots_zagruzki_visible = false;
+            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
+            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
         }
         if (globals.bakery_move_mode_on)//Если режим перемещения включен
         {
-            globals.bakery_slots_predmets_visible = false;
-            globals.bakery_slots_zagruzki_visible = false;
-            globals.bakery_slots_panel_visible = true;
+            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
+            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
+            GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);
             gameObject.tag = "obj_move_mod";
 
             if (globals.collision_move_mod_on)
@@ -67,8 +66,8 @@ public class bakery : MonoBehaviour
         }
         else
         {
-            globals.bakery_slots_panel_visible = false;
-            globals.farm_map_box_colliders_enabled = false;
+            GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
+            GameObject_Enable_Controller.farm_box_colliders.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
             gameObject.tag = globals.bakery_type_obj;//
 
@@ -86,14 +85,12 @@ public class bakery : MonoBehaviour
             {
                 globals.bakery_move_mode_on = true;//Активация режима перемещение
                 GameObject_Enable_Controller.bakery_arrow.SetActive(false);//Скрытие стрелочки
-                GameObject_Enable_Controller.farm_box_colliders.SetActive(false);
+                GameObject_Enable_Controller.farm_box_colliders.SetActive(true);
                 GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);//Включаем панель с кнопкой Flip
                 count_on = false;
             }
         }
         otgruzka_predmeta();//Контоль отгрузк предмета
-        if (globals.bakery_visible) { gameObject.SetActive(true); }
-        else { gameObject.SetActive(false); }
     }
     void offset_massive()//Смещение массива на одну позицию  
     {
@@ -322,12 +319,16 @@ public class bakery : MonoBehaviour
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
+
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*-1;
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "Пшеница";
-                globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
-                globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2м.";
-
-                globals.price_for_diamonds_panel_visible = true;
+                globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2 м.";
+                globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
+                GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
+                GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
+                GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
 
                 return;
             }
@@ -335,15 +336,44 @@ public class bakery : MonoBehaviour
         if (predmet == "corn_bread")
         {
             building_time = 22;//Время сборки
-            if ((globals.corn - 2 > 0)&&(globals.egg - 2 > 0))
-            {
+            if ((globals.corn - 2 >= 0)&&(globals.egg - 2 >= 0))
+            {               
                 globals.corn = globals.corn - 2;
                 globals.egg = globals.egg - 2;
             }
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-                return;
+                Debug.Log("corn:"+globals.corn+ "egg:" + globals.egg);
+                if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
+                {
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "Кукуруза";
+                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
+                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                    globals.price_for_diamonds_panel_slot_1_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
+                    globals.price_for_diamonds_panel_slot_1_predmet_name = "Яйцо";
+                    globals.price_for_diamonds_panel_slot_1_predmet_info = "Берется у кур.";
+                    globals.price_for_diamonds_panel_slot_1_predmet_building_time = "20 м.";
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
+                    //globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 
+                    //Тут надо посчитать сколько алмазов необходимо
+                    return;
+                }
+                if (globals.corn - 2 < 0)//Если нехватило кукурузы
+                {
+
+                }
+                if (globals.egg - 2 < 0)//Если нехватило яиц
+                {
+
+                }
+
+                    return;
             }
         }
         var nowtime = DateTime.Now;//Текущее время
@@ -513,15 +543,15 @@ public class bakery : MonoBehaviour
         else//Если globals.bakery_move_mode_on==false
         {
 
-            if (globals.bakery_slots_predmets_visible)
+            if (GameObject_Enable_Controller.bakery_slots_predmets.activeSelf)
             {
-                globals.bakery_slots_zagruzki_visible = false;
-                globals.bakery_slots_predmets_visible = false;
+                GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
+                GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
             }
             else
             {
-                globals.bakery_slots_zagruzki_visible = true;
-                globals.bakery_slots_predmets_visible = true;
+                GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);
+                GameObject_Enable_Controller.bakery_slots_predmets.SetActive(true);
             }
         }
         if (globals.bakery_array_slots_otgruzki[0, 0] != "")//Если слоты отгрузки не пустые, переместить этот код в другое место

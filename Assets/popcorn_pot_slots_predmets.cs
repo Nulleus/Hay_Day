@@ -13,7 +13,6 @@ public class popcorn_pot_slots_predmets : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (globals.bakery_visible) { gameObject.SetActive(true); }
-        else { gameObject.SetActive(false); }
+
     }
 }

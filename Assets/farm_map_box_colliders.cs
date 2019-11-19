@@ -12,7 +12,6 @@ public class farm_map_box_colliders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Collider=" + globals.farm_map_box_colliders_enabled);
 
     }
 }
