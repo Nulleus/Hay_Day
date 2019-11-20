@@ -63,8 +63,11 @@ public class globals : MonoBehaviour
     public static int duct_tape_price_for_diamonds { get; set; }//Цена одного скотча в алмазах
     public static int plank { get; set; }//Количество досок в амбаре
     public static int plank_price_for_diamonds { get; set; }//Цена одной доски за алмазы
+
     public static int cow_feed { get; set; }//Количество коровьего корма в амбаре
     public static int cow_feed_price_for_diamonds { get; set; }//Цена одного коровьего корма 
+    public static int chicken_feed { get; set; }//Количество куриного корма в амбаре
+    public static int chicken_feed_price_for_diamonds { get; set; }//Цена одного куриного корма 
     public static int milk { get; set; }//Количество коровьего молока в амбаре
     public static int milk_price_for_diamonds { get; set; }//Цена одного коровьего молока в алмазах
     public static int bread { get; set; }//Количество хлеба в амбаре
@@ -81,6 +84,7 @@ public class globals : MonoBehaviour
     public static int cheese_price_for_diamonds { get; set; }//Цена одного сыра в алмазах
     public static int egg { get; set; }//Количество яиц в амбаре
     public static int egg_price_for_diamonds { get; set; }//Цена одного яйца в алмазах
+
     public static int nail { get; set; }//Количество гвоздей в амбаре
     public static int nail_price_for_diamonds { get; set; }//Цена одного гвоздя в алмазах
     public static int screew { get; set; }//Количество шурупов в амбаре
@@ -154,6 +158,7 @@ public class globals : MonoBehaviour
     public static int order_board_slot_0_predmet_5_quantity { get; set; } //Количество необходимого предмета в слоте 0
     //===================price_for_diamonds_panel=====================================================================//
     //public static bool price_for_diamonds_panel_visible { get; set; }//Видимость price_for_diamonds_panel(Не работает, так как после скрытия объекта, скрип перестает выполняться) Для исправления, необходимо написать контроллер, который бы постоянно за этим следил и выполнялся
+    public static string price_for_diamonds_panel_current_item;//Текущий выбранный предмет, у которого нехватает ингредиентов 
     public static string price_for_diamonds_panel_slot_0_predmet_name{ get; set; }//Наименование предмета, которого нехватает
     public static string price_for_diamonds_panel_slot_0_predmet_info { get; set; }//Информация о предмете, которого нехватает
     public static string price_for_diamonds_panel_slot_0_predmet_building_time{ get; set; }//Время сборки предмета, которого нехватает

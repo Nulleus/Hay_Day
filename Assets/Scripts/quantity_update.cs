@@ -12,6 +12,7 @@ public class quantity_update : MonoBehaviour
 
 
     public GameObject barn_panel_cow_feed_quantity_text;
+    public GameObject barn_panel_chicken_feed_quantity_text;
     public GameObject barn_panel_milk_quantity_text;
     public GameObject barn_panel_bread_quantity_text;
     public GameObject barn_panel_corn_bread_quantity_text;
@@ -52,6 +53,7 @@ public class quantity_update : MonoBehaviour
         barn_panel_duct_tape_quantity_text = GameObject.Find("barn_panel_duct_tape_quantity_text");
         barn_panel_plank_quantity_text = GameObject.Find("barn_panel_plank_quantity_text");
 
+        barn_panel_chicken_feed_quantity_text = GameObject.Find("barn_panel_chicken_feed_quantity_text");
         barn_panel_cow_feed_quantity_text = GameObject.Find("barn_panel_cow_feed_quantity_text");
         barn_panel_milk_quantity_text = GameObject.Find("barn_panel_milk_quantity_text");
         barn_panel_bread_quantity_text = GameObject.Find("barn_panel_bread_quantity_text");
@@ -94,10 +96,14 @@ public class quantity_update : MonoBehaviour
     void Update()
     {
         //==================================barn========================================//
-        barn_panel_bolt_quantity_text.GetComponent<Text>().text = globals.bolt.ToString();//Количество болтов в амбаре
+        if (gameObject.name == "barn_panel_bolt_quantity_text")
+        {
+            gameObject.GetComponent<Text>().text = globals.bolt.ToString();//Количество болтов в амбаре
+        }
         barn_panel_duct_tape_quantity_text.GetComponent<Text>().text = globals.duct_tape.ToString();//Количество клейкой ленты в амбаре
         barn_panel_plank_quantity_text.GetComponent<Text>().text = globals.plank.ToString();//Количество досок в амбаре
 
+        barn_panel_chicken_feed_quantity_text.GetComponent<Text>().text = globals.chicken_feed.ToString();//Количество куриного корма в амбаре
         barn_panel_cow_feed_quantity_text.GetComponent<Text>().text = globals.cow_feed.ToString();//Количество коровьего корма в амбаре
         barn_panel_milk_quantity_text.GetComponent<Text>().text = globals.milk.ToString();//Количество молока в амбаре
         barn_panel_bread_quantity_text.GetComponent<Text>().text = globals.bread.ToString();//Количество хлеба в амбаре
@@ -135,7 +141,8 @@ public class quantity_update : MonoBehaviour
 
 
 
-    var busy_silo = globals.wheat +
+    var busy_silo = 
+               globals.wheat +
                globals.corn +
                globals.soybean +
                globals.sugarcane +
@@ -147,6 +154,7 @@ public class quantity_update : MonoBehaviour
            globals.bolt +
            globals.duct_tape +
            globals.plank +
+           globals.chicken_feed +
            globals.cow_feed +
            globals.milk +
            globals.bread +

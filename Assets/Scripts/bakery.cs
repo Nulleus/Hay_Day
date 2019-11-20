@@ -321,7 +321,7 @@ public class bakery : MonoBehaviour
                 Debug.Log("Нехватает ингредиентов!");
 
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*-1;
-                globals.price_for_diamonds_panel_slot_0_predmet_name = "Пшеница";
+                globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2 м.";
                 globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
                 GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
@@ -336,7 +336,8 @@ public class bakery : MonoBehaviour
         if (predmet == "corn_bread")
         {
             building_time = 22;//Время сборки
-            if ((globals.corn - 2 >= 0)&&(globals.egg - 2 >= 0))
+
+            if ((globals.corn - 2 >= 0)&&(globals.egg - 2 >= 0))//Если всего хватает
             {               
                 globals.corn = globals.corn - 2;
                 globals.egg = globals.egg - 2;
@@ -345,35 +346,64 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 Debug.Log("corn:"+globals.corn+ "egg:" + globals.egg);
+                globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
-                    globals.price_for_diamonds_panel_slot_0_predmet_name = "Кукуруза";
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
                     globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
                     globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
                     globals.price_for_diamonds_panel_slot_1_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
-                    globals.price_for_diamonds_panel_slot_1_predmet_name = "Яйцо";
+                    globals.price_for_diamonds_panel_slot_1_predmet_name = "egg";
                     globals.price_for_diamonds_panel_slot_1_predmet_info = "Берется у кур.";
                     globals.price_for_diamonds_panel_slot_1_predmet_building_time = "20 м.";
-                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
+                    //Количество необходимых алмазов = цена продукта в алмазах * количество
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity =
+                                                  (globals.corn_bread_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
+                                                  (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity);
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
-                    //globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 
+
                     //Тут надо посчитать сколько алмазов необходимо
                     return;
                 }
-                if (globals.corn - 2 < 0)//Если нехватило кукурузы
+                if (globals.corn - 2 < 0)//Если нехватило только кукурузы
                 {
-
-                }
-                if (globals.egg - 2 < 0)//Если нехватило яиц
-                {
-
-                }
-
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
+                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
+                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                    //Количество необходимых алмазов = цена продукта в алмазах * количество
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity =globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
                     return;
+                }
+                if (globals.egg - 2 < 0)//Если нехватило только яиц
+                {
+                    Debug.Log("Нехватило только яиц");
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "egg";
+                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Берется у кур.";
+                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "20 м.";
+                    //Количество необходимых алмазов = цена продукта в алмазах * количество
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
+                    return;
+
+                }
+
+                return;
             }
         }
         var nowtime = DateTime.Now;//Текущее время
