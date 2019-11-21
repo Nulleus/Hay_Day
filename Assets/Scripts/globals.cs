@@ -84,6 +84,9 @@ public class globals : MonoBehaviour
     public static int cheese_price_for_diamonds { get; set; }//Цена одного сыра в алмазах
     public static int egg { get; set; }//Количество яиц в амбаре
     public static int egg_price_for_diamonds { get; set; }//Цена одного яйца в алмазах
+    public static int popcorn { get; set; }//Количество попкорна
+    public static int popcorn_price_for_diamonds { get; set; }//Количество одного попкорна в алмазах
+
 
     public static int nail { get; set; }//Количество гвоздей в амбаре
     public static int nail_price_for_diamonds { get; set; }//Цена одного гвоздя в алмазах

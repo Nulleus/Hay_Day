@@ -305,31 +305,38 @@ public class bakery : MonoBehaviour
     }//Отгрузка предмета из слота загрузки в слот отгрузки
     public static void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
     {
+        //Если все слоты заняты, не загружать
+
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
         Debug.Log("add: "+predmet);
         int building_time = 20;//Время сборки предмета 10 секунд
         if (predmet == "bread")
         {
+            if (globals.bakery_array_slots_zagruzki[globals.bakery_slots_zagruzki_open - 1,0] != "")//Если последний открытый слот пекарни не пустой
+            {
+                Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
+                return;
+            }
             building_time = 20;//Время сборки
-            if (globals.wheat - 3 > 0)
+            if (globals.wheat - 3 >= 0)
             {
                 globals.wheat = globals.wheat - 3;
             }
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-
-                globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*-1;
+                globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*(-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2 м.";
                 globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.wheat_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
                 GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
                 GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                 GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
                 GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
                 GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
-
                 return;
             }
         }
@@ -359,15 +366,17 @@ public class bakery : MonoBehaviour
                     globals.price_for_diamonds_panel_slot_1_predmet_building_time = "20 м.";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity =
-                                                  (globals.corn_bread_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
+                                                  (globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
                                                   (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity);
+                    Debug.Log("globals.price_for_diamonds_panel_button_ok_diamonds_quantity=" + globals.price_for_diamonds_panel_button_ok_diamonds_quantity);
+                    Debug.Log("globals.price_for_diamonds_panel_slot_0_quantity=" + globals.price_for_diamonds_panel_slot_0_quantity);
+                    Debug.Log("globals.egg_price_for_diamonds=" + globals.egg_price_for_diamonds);
+                    Debug.Log("globals.price_for_diamonds_panel_slot_1_quantity="+ globals.price_for_diamonds_panel_slot_1_quantity);
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
-
-                    //Тут надо посчитать сколько алмазов необходимо
                     return;
                 }
                 if (globals.corn - 2 < 0)//Если нехватило только кукурузы
@@ -393,7 +402,9 @@ public class bakery : MonoBehaviour
                     globals.price_for_diamonds_panel_slot_0_predmet_info = "Берется у кур.";
                     globals.price_for_diamonds_panel_slot_0_predmet_building_time = "20 м.";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
+                    //GameObject_Enable_Controller.price_for_diamonds_panel_button_ok_diamonds_quantity.GetComponent<Text>().text = (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity).ToString();
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    Debug.Log("globals.price_for_diamonds_panel_button_ok_diamonds_quantity=" + globals.price_for_diamonds_panel_button_ok_diamonds_quantity);
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);

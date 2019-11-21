@@ -58,8 +58,10 @@ public class load_data : MonoBehaviour
         globals.butter = 13;
         globals.butter_price_for_diamonds = 3;
         globals.cheese = 14;
-
+        globals.cheese_price_for_diamonds = 4;
+        globals.egg_price_for_diamonds = 2;
         globals.egg = 10;
+
         globals.nail = 10;
         globals.screew = 11;
         globals.wood_panel = 10;
@@ -85,7 +87,6 @@ public class load_data : MonoBehaviour
         //=======================bakery==================================//
         globals.bakery_type_obj = "production_building";
         globals.bakery_move_mode_on = false;//Включен ли режим редактирования
-
         globals.bakery_slots_zagruzki_open = 9;
         globals.bakery_array_slots_zagruzki = new string[9, 3] {
             {"", "", "" },
@@ -132,6 +133,8 @@ public class load_data : MonoBehaviour
         GameObject_Enable_Controller.farm_box_colliders = GameObject.Find("farm_map_box_colliders");
 
         GameObject_Enable_Controller.order_board_panel = GameObject.Find("order_board_panel");
+        //=======================price_for_diamonds_paanel=================================================================//
+        GameObject_Enable_Controller.price_for_diamonds_panel_button_ok_diamonds_quantity = GameObject.Find("price_for_diamonds_panel_button_ok_diamonds_quantity");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0 = GameObject.Find("price_for_diamonds_panel_slot_0");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_info = GameObject.Find("price_for_diamonds_panel_slot_0_info");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_1 = GameObject.Find("price_for_diamonds_panel_slot_1");
@@ -142,7 +145,7 @@ public class load_data : MonoBehaviour
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_3_info = GameObject.Find("price_for_diamonds_panel_slot_3_info");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
-        //========================Diactivation===========================================//
+        //========================Diactivation(Состояние при старте приложения)===========================================//
         GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
         GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
         GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
