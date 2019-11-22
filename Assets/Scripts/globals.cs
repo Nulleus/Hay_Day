@@ -74,8 +74,21 @@ public class globals : MonoBehaviour
     public static int bread_price_for_diamonds { get; set; }//Цена одного хлеба в алмазах
     public static int corn_bread { get; set; }//Количество кукурузного хлеба в амбаре
     public static int corn_bread_price_for_diamonds { get; set; }//Цена одного кукурузного хлеба в алмазах
+    //cookie//
+    public static int cookie_open_lvl { get; set; }//Уровень, с которого открывается печенье
+    public static int cookie_price_max_for_coin { get; set; }//Максимальная цена печенья
+    public static int cookie_building_time { get; set; }//Время производства печенья в секундах (51 минута)
+    public static int cookie_experience_point { get; set; }//Очков опыта за одно печенье   
+    public static int cookie_price_for_diamonds { get; set; }//Цена одного печенья в алмазах    
     public static int cookie { get; set; }//Количество печенья в амбаре
-    public static int cookie_price_for_diamonds { get; set; }//Цена одного печенья в алмазах
+    //brown_sugar//
+    public static int brown_sugar { get; set; }//Количество коричневого сахара
+    public static int brown_sugar_open_lvl { get; set; }//Уровень, с которого открывается коричневый сахар
+    public static int brown_sugar_price_max_for_coin { get; set; }//Максимальная цена одноо коричневого сахара
+    public static int brown_sugar_building_time { get; set; }//Время производства коричневого сахара в секундах
+    public static int brown_sugar_experience_point { get; set; }//Очков опыта за один коричневый сахар   
+    public static int brown_sugar_price_for_diamonds { get; set; }//Цена одного коричневого сахара в алмазах 
+    //cream//
     public static int cream { get; set; }//Количество крема в амбаре
     public static int cream_price_for_diamonds { get; set; }//Цена одних сливок в алмазах
     public static int butter { get; set; }//Количество масла в амбаре

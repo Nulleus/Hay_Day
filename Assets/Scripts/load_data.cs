@@ -51,8 +51,21 @@ public class load_data : MonoBehaviour
         globals.bread_price_for_diamonds = 1;
         globals.corn_bread = 14;
         globals.corn_bread_price_for_diamonds = 3;
+        //===============cookie===============//
         globals.cookie = 15;
+        globals.cookie_open_lvl = 10;
+        globals.cookie_price_max_for_coin = 104;
+        globals.cookie_building_time = 3600;
+        globals.cookie_experience_point = 13;
         globals.cookie_price_for_diamonds = 4;
+        //===============brown_sugar===========//
+        globals.brown_sugar = 15;
+        globals.brown_sugar_open_lvl = 7;
+        globals.brown_sugar_price_max_for_coin = 32;
+        globals.brown_sugar_building_time = 1200;
+        globals.brown_sugar_experience_point = 4;
+        globals.brown_sugar_price_for_diamonds = 2;
+        //===============cream=================//
         globals.cream = 12;
         globals.cream_price_for_diamonds = 2;
         globals.butter = 13;

@@ -16,6 +16,7 @@ public class price_for_diamonds_panel_slot_0 : MonoBehaviour
     {
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "empty") { anim.CrossFade("empty", 0); }
         //====predmets=================================================//
+        
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "egg") { anim.CrossFade("egg", 0); }
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "bread") { anim.CrossFade("bread", 0); }
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "chicken_feed") { anim.CrossFade("chicken_feed", 0); }
@@ -24,7 +25,10 @@ public class price_for_diamonds_panel_slot_0 : MonoBehaviour
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "cream") { anim.CrossFade("cream", 0); }
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "popcorn") { anim.CrossFade("popcorn", 0); }
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "butter") { anim.CrossFade("butter", 0); }
-
+        if (globals.price_for_diamonds_panel_slot_0_predmet_name == "brown_sugar") { anim.CrossFade("brown_sugar", 0); }
+        if (globals.price_for_diamonds_panel_slot_0_predmet_name == "cookie") { anim.CrossFade("cookie", 0); }
+        if (globals.price_for_diamonds_panel_slot_0_predmet_name == "pancate") { anim.CrossFade("pancate", 0); }
+        if (globals.price_for_diamonds_panel_slot_0_predmet_name == "bakon") { anim.CrossFade("bakon", 0); }
         //====crop====================================================//
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "wheat") { anim.CrossFade("wheat", 0); }
         if (globals.price_for_diamonds_panel_slot_0_predmet_name == "corn") { anim.CrossFade("corn", 0); }

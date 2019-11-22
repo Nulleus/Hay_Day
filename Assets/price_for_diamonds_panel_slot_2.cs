@@ -24,6 +24,7 @@ public class price_for_diamonds_panel_slot_2 : MonoBehaviour
         if (globals.price_for_diamonds_panel_slot_2_predmet_name == "cream") { anim.CrossFade("cream", 0); }
         if (globals.price_for_diamonds_panel_slot_2_predmet_name == "popcorn") { anim.CrossFade("popcorn", 0); }
         if (globals.price_for_diamonds_panel_slot_2_predmet_name == "butter") { anim.CrossFade("butter", 0); }
+        if (globals.price_for_diamonds_panel_slot_2_predmet_name == "brown_sugar") { anim.CrossFade("brown_sugar", 0); }
 
         //====crop====================================================//
         if (globals.price_for_diamonds_panel_slot_2_predmet_name == "wheat") { anim.CrossFade("wheat", 0); }
