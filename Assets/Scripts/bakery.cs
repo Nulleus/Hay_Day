@@ -419,7 +419,7 @@ public class bakery : MonoBehaviour
         }
         if (predmet == "cookie")
         {
-            building_time = 22;//Время сборки, добавить сюда глобальную переменную
+            building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
 
             if ((globals.corn - 2 >= 0) && (globals.egg - 2 >= 0))//Если всего хватает
             {
