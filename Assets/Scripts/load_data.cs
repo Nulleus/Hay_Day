@@ -11,7 +11,8 @@ public class load_data : MonoBehaviour
     {
         //==========================farm_map_box_colliders==========================//
         //globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
-
+        globals.user_experience_point = 0;
+        globals.user_level = 0;
         globals.collision_move_mod_on = false;
         //==========================cow_0=================================//
         globals.cow_0_begin_stage_1 = DateTime.Now;
@@ -217,7 +218,7 @@ public class load_data : MonoBehaviour
         globals.cookie_experience_point = 13;
         globals.cookie_price_for_diamonds = 4;
         //===============brown_sugar===========//
-        globals.brown_sugar = 15;
+        globals.brown_sugar = 5;
         globals.brown_sugar_open_lvl = 7;
         globals.brown_sugar_price_max_for_coin = 32;
         globals.brown_sugar_building_time = 1200;

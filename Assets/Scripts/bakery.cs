@@ -329,8 +329,6 @@ public class bakery : MonoBehaviour
                 globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*(-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
-                globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2 м.";
-                globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
                 globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.wheat_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
                 GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
                 GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
@@ -383,8 +381,6 @@ public class bakery : MonoBehaviour
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
-                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
-                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity =globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
@@ -399,8 +395,6 @@ public class bakery : MonoBehaviour
                     Debug.Log("Нехватило только яиц");
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "egg";
-                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Берется у кур.";
-                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "20 м.";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     //GameObject_Enable_Controller.price_for_diamonds_panel_button_ok_diamonds_quantity.GetComponent<Text>().text = (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity).ToString();
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
@@ -419,32 +413,32 @@ public class bakery : MonoBehaviour
         }
         if (predmet == "cookie")
         {
-            building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
-
-            if ((globals.corn - 2 >= 0) && (globals.egg - 2 >= 0))//Если всего хватает
+            building_time = 20;
+            //building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
+            if ((globals.brown_sugar - 1 >= 0) && (globals.egg - 2 >= 0) && (globals.wheat - 2 >=0))//Если всего хватает
             {
-                globals.corn = globals.corn - 2;
+                globals.brown_sugar = globals.brown_sugar - 1;
                 globals.egg = globals.egg - 2;
+                globals.wheat = globals.wheat - 2;
             }
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-                Debug.Log("corn:" + globals.corn + "egg:" + globals.egg);
+                Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat"+ globals.wheat);
                 globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
-                if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
+                if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) &&(globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
                 {
-                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
-                    globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
-                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
-                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "brown_sugar";
                     globals.price_for_diamonds_panel_slot_1_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "egg";
-                    globals.price_for_diamonds_panel_slot_1_predmet_info = "Берется у кур.";
-                    globals.price_for_diamonds_panel_slot_1_predmet_building_time = "20 м.";
+                    globals.price_for_diamonds_panel_slot_2_quantity = (globals.wheat - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
+                    globals.price_for_diamonds_panel_slot_2_predmet_name = "wheat";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity =
-                                                  (globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
-                                                  (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity);
+                                                  (globals.brown_sugar_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
+                                                  (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity)+
+                                                  (globals.wheat_price_for_diamonds * globals.price_for_diamonds_panel_slot_2_quantity);
                     Debug.Log("globals.price_for_diamonds_panel_button_ok_diamonds_quantity=" + globals.price_for_diamonds_panel_button_ok_diamonds_quantity);
                     Debug.Log("globals.price_for_diamonds_panel_slot_0_quantity=" + globals.price_for_diamonds_panel_slot_0_quantity);
                     Debug.Log("globals.egg_price_for_diamonds=" + globals.egg_price_for_diamonds);
@@ -452,18 +446,16 @@ public class bakery : MonoBehaviour
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
-                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
                     return;
                 }
-                if (globals.corn - 2 < 0)//Если нехватило только кукурузы
+                if (globals.brown_sugar - 1 < 0)//Если нехватило только коричневого сахара
                 {
-                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
-                    globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
-                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Сбор урожая через 2м.";
-                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "2 м.";
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "brown_sugar";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
-                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.brown_sugar_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
@@ -476,8 +468,6 @@ public class bakery : MonoBehaviour
                     Debug.Log("Нехватило только яиц");
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "egg";
-                    globals.price_for_diamonds_panel_slot_0_predmet_info = "Берется у кур.";
-                    globals.price_for_diamonds_panel_slot_0_predmet_building_time = "20 м.";
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     //GameObject_Enable_Controller.price_for_diamonds_panel_button_ok_diamonds_quantity.GetComponent<Text>().text = (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity).ToString();
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
@@ -488,7 +478,20 @@ public class bakery : MonoBehaviour
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
                     return;
-
+                }
+                if (globals.wheat - 2 < 0)
+                {
+                    Debug.Log("Нехватило только пшеницы");
+                    globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                    globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 2) * (-1);
+                    globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.wheat_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
+                    GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
+                    return;
                 }
 
                 return;
@@ -678,10 +681,14 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("bread mouseup");
                 globals.bread++;//Прибавляем количество хлеба на склад
+                Debug.Log("bread = " + globals.bread);
+                globals.user_experience_point = globals.user_experience_point + globals.bread_experience_point;
+                Debug.Log("globals.user_experience_point="+ globals.user_experience_point);
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                Debug.Log("bread = " + globals.bread);
+                
+
                 offset_massive_otgruzki();
                 return;
             }
@@ -689,10 +696,12 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("corn_bread mouseup");
                 globals.corn_bread++;//Прибавляем количество хлеба на склад
+                Debug.Log("corn_bread = " + globals.corn_bread);
+                globals.user_experience_point = globals.user_experience_point + globals.corn_bread_experience_point;
+                Debug.Log("globals.user_experience_point" + globals.user_experience_point);
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                Debug.Log("corn_bread = " + globals.corn_bread);
                 offset_massive_otgruzki();
                 return;
             }
@@ -700,10 +709,12 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("cookie mouseup");
                 globals.cookie++;//Прибавляем количество хлеба на склад
+                Debug.Log("cookie = " + globals.cookie);
+                globals.user_experience_point = globals.user_experience_point + globals.cookie_experience_point;
+                Debug.Log("globals.user_experience_point" + globals.user_experience_point);
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                Debug.Log("cookie = " + globals.cookie);
                 offset_massive_otgruzki();
                 return;
             }

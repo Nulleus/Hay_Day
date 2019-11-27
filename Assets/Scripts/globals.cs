@@ -35,8 +35,8 @@ public class globals : MonoBehaviour
     public static string password_users { get; set; }//Пароль пользователя
     public static int id_user { get; set; }//Уникальный идентификатор пользователя
 
-    public static int skil_user { get; set; }//Очков у пользователя
-    public static int level_user { get; set; }//Уровень пользователя
+    public static int user_experience_point { get; set; }//Очков опыта у пользователя
+    public static int user_level{ get; set; }//Уровень пользователя
 
     public static string predmetname { get; set; }//Выбранный предмет для посадки
     //====================================Количество культур=============================================//
