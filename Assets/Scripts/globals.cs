@@ -5,6 +5,23 @@ using UnityEngine;
 
 public class globals : MonoBehaviour
 {
+    //===========================level=============================================//
+    public static int level_1_experience_point_threshold { get; set; }//
+    public static int level_2_experience_point_threshold { get; set; }//
+    public static int level_3_experience_point_threshold { get; set; }//
+    public static int level_4_experience_point_threshold { get; set; }//
+    public static int level_5_experience_point_threshold { get; set; }//
+    public static int level_6_experience_point_threshold { get; set; }//
+    public static int level_7_experience_point_threshold { get; set; }//
+    public static int level_8_experience_point_threshold { get; set; }//
+    public static int level_9_experience_point_threshold { get; set; }//
+    public static int level_10_experience_point_threshold { get; set; }//
+    public static int level_11_experience_point_threshold { get; set; }//
+    public static int level_12_experience_point_threshold { get; set; }//
+    public static int level_13_experience_point_threshold { get; set; }//
+    public static int level_14_experience_point_threshold { get; set; }//
+    public static int level_15_experience_point_threshold { get; set; }//
+
     //==========================farm_map_box_colliders==========================//
     //public static bool farm_map_box_colliders_enabled { get; set; }//Доступность коллайдеров
     public static bool collision_move_mod_on { get; set; }//Столкновение с  другим объектом в режиме редактирования

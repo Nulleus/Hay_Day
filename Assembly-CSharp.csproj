@@ -97,6 +97,8 @@
     <Compile Include="Assets\cow_4.cs" />
     <Compile Include="Assets\cow_5.cs" />
     <Compile Include="Assets\cow_feed_quantity_text.cs" />
+    <Compile Include="Assets\experience_point_ui_experience_point_text.cs" />
+    <Compile Include="Assets\experience_point_ui_level_text.cs" />
     <Compile Include="Assets\farm_map_box_collider_green.cs" />
     <Compile Include="Assets\farm_map_box_colliders.cs" />
     <Compile Include="Assets\GameObject_Enable_Controller.cs" />
@@ -181,6 +183,7 @@
     <Compile Include="Assets\Scripts\predmet_farm.cs" />
     <Compile Include="Assets\Scripts\production_building_farm.cs" />
     <Compile Include="Assets\Scripts\quantity_update.cs" />
+    <Compile Include="Assets\Scripts\RectTransformExtensions.cs" />
     <Compile Include="Assets\Scripts\refresh_backery_0.cs" />
     <Compile Include="Assets\Scripts\refresh_dairy.cs" />
     <Compile Include="Assets\Scripts\refresh_field_0.cs" />

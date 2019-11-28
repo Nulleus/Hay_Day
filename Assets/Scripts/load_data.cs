@@ -9,10 +9,27 @@ public class load_data : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //==========================farm_map_box_colliders==========================//
-        //globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
+        //================level=====================================================//
+        globals.level_1_experience_point_threshold = 27;// Порог 1 уровня
+        globals.level_2_experience_point_threshold = 34; //7
+        globals.level_3_experience_point_threshold = 48; //14
+        globals.level_4_experience_point_threshold = 78; //30
+        globals.level_5_experience_point_threshold = 128; //50
+        globals.level_6_experience_point_threshold = 348; //220
+        globals.level_7_experience_point_threshold = 718; //370
+        globals.level_8_experience_point_threshold = 1208; //490
+        globals.level_9_experience_point_threshold = 1998;//790
+        globals.level_10_experience_point_threshold = 2958; //960
+        globals.level_11_experience_point_threshold = 4138; //1180
+        globals.level_12_experience_point_threshold = 5688; //1550
+        globals.level_13_experience_point_threshold = 7478; //1790
+        globals.level_14_experience_point_threshold = 9748; //2270
+        globals.level_15_experience_point_threshold = 12628; //2880
+
+ //==========================farm_map_box_colliders==========================//
+ //globals.farm_map_box_colliders_enabled = false;//Доступность коллайдеров
         globals.user_experience_point = 0;
-        globals.user_level = 0;
+        globals.user_level = 1;
         globals.collision_move_mod_on = false;
         //==========================cow_0=================================//
         globals.cow_0_begin_stage_1 = DateTime.Now;
