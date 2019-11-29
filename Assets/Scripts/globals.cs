@@ -229,6 +229,13 @@ public class globals : MonoBehaviour
     public static int butter_experience_point { get; set; }//Очков опыта за один масло 
     public static int butter_price_for_diamonds { get; set; }//Цена одного масла в алмазах    
     public static int butter { get; set; }//Количество масла в амбаре
+    //=============================pancake=====================================================================//
+    public static int pancake_open_lvl { get; set; }//Уровень, с которого открывается 
+    public static int pancake_price_max_for_coin { get; set; }//Максимальная цена 
+    public static int pancake_building_time { get; set; }//Время производства в секундах
+    public static int pancake_experience_point { get; set; }//Очков опыта за 1шт
+    public static int pancake_price_for_diamonds { get; set; }//Цена 1шт в алмазах    
+    public static int pancake { get; set; }//Количество в амбаре
     //=============================cheese=====================================================================//
     public static int cheese_open_lvl { get; set; }//Уровень, с которого открывается сыр
     public static int cheese_price_max_for_coin { get; set; }//Максимальная цена сыра
@@ -250,6 +257,14 @@ public class globals : MonoBehaviour
     public static int popcorn_experience_point { get; set; }//Очков опыта за один попкорн 
     public static int popcorn_price_for_diamonds { get; set; }//Цена одного попкорно в алмазах    
     public static int popcorn { get; set; }//Количество попкорна в амбаре
+    //=============================bacon=====================================================================//
+    public static int bacon_open_lvl { get; set; }//Уровень, с которого открывается 
+    public static int bacon_price_max_for_coin { get; set; }//Максимальная цена 
+    public static int bacon_building_time { get; set; }//Время производства в секундах
+    public static int bacon_experience_point { get; set; }//Очков опыта за 1шт
+    public static int bacon_price_for_diamonds { get; set; }//Цена 1шт в алмазах    
+    public static int bacon { get; set; }//Количество в амбаре
+
     //Upgrade_silo//
     public static int nail { get; set; }//Количество гвоздей в амбаре
     public static int nail_price_max_for_coin { get; set; }//Максимальная цена гвоздя

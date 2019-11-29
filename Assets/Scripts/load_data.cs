@@ -163,6 +163,7 @@ public class load_data : MonoBehaviour
         globals.butter_price_for_diamonds = 3;  //Цена одного масла в алмазах    
         globals.butter = 2;  //Количество масла в амбаре
         //=============================cheese=====================================================================//
+
         globals.cheese_open_lvl = 12;   //Уровень, с которого открывается сыр
         globals.cheese_price_max_for_coin = 122;  //Максимальная цена сыра
         globals.cheese_building_time = 12;   //Время производства сыра в секундах (3600)
@@ -211,6 +212,20 @@ public class load_data : MonoBehaviour
         globals.pumpkin_pie_experience_point = 19;  //Очков опыта за 1шт 
         globals.pumpkin_pie_price_for_diamonds = 5;   //Цена 1шт в алмазах    
         globals.pumpkin_pie = 4;
+        //=============================bacon=====================================================================//
+        globals.bacon_open_lvl = 10;//Уровень, с которого открывается 
+        globals.bacon_price_max_for_coin = 50;//Максимальная цена 
+        globals.bacon_building_time = 14400;//Время производства в секундах
+        globals.bacon_experience_point = 5;//Очков опыта за 1шт
+        globals.bacon_price_for_diamonds = 7; //Цена 1шт в алмазах    
+        globals.bacon = 2; //Количество в амбаре
+        //=============================pancake=====================================================================//
+        globals.pancake_open_lvl = 9;//Уровень, с которого открывается 
+        globals.pancake_price_max_for_coin = 108;//Максимальная цена 
+        globals.pancake_building_time = 1800; ;//Время производства в секундах
+        globals.pancake_experience_point = 13;//Очков опыта за 1шт
+        globals.pancake_price_for_diamonds = 3; //Цена 1шт в алмазах    
+        globals.pancake = 2; //Количество в амбаре
 
 
         //Upgrade_silo//
