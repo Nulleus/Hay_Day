@@ -63,3 +63,6 @@ sql_client.cs
 
 #Android studio libraties
 Library/
+
+# Pack files
+*.pack
