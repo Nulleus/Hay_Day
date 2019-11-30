@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 # Password
 sql_client.cs
+
+#Android studio libraties
+Library/
