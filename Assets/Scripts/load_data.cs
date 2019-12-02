@@ -308,6 +308,7 @@ public class load_data : MonoBehaviour
         globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 0;
         //=============================GameObjectEnabled===========================//
         //=======================Find==============================//
+        GameObject_Enable_Controller.slot_info = GameObject.Find("slot_info");
         GameObject_Enable_Controller.price_for_diamonds_panel = GameObject.Find("price_for_diamonds_panel");
         GameObject_Enable_Controller.bakery = GameObject.Find("bakery");
         GameObject_Enable_Controller.bakery_slots_panel = GameObject.Find("bakery_slots_panel");
@@ -335,6 +336,7 @@ public class load_data : MonoBehaviour
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
         GameObject_Enable_Controller.price_for_diamonds_panel_slot_0_quantity_text = GameObject.Find("price_for_diamonds_panel_slot_0_quantity_text");
         //========================Diactivation(Состояние при старте приложения)===========================================//
+        GameObject_Enable_Controller.slot_info.SetActive(false);
         GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
         GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
         GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);

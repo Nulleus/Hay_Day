@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameObject_Enable_Controller : MonoBehaviour
 {
+    public static GameObject slot_info; 
     public static GameObject price_for_diamonds_panel;
     public static GameObject price_for_diamonds_panel_button_ok_diamonds_quantity;
     public static GameObject bakery;

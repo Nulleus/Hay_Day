@@ -91,12 +91,14 @@ public class slot_predmet : MonoBehaviour
     void OnMouseUp()//Когда отпускаешь кнопку
     {
         gameObject.transform.position = primary_position;//Загружаем первоначальную позицию объекта
+        GameObject_Enable_Controller.slot_info.SetActive(false);
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
         mousedrag_block_on = false;
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         primary_position = gameObject.transform.position;
+        GameObject_Enable_Controller.slot_info.SetActive(true);
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
