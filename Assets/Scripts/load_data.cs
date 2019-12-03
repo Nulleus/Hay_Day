@@ -306,6 +306,13 @@ public class load_data : MonoBehaviour
         globals.price_for_diamonds_panel_slot_0_predmet_building_time = "predmet_building_time, Слот0, Пусто";
         globals.price_for_diamonds_panel_slot_0_quantity = 0;
         globals.price_for_diamonds_panel_button_ok_diamonds_quantity = 0;
+
+        globals.slot_info_main_predmet_name = "empty";
+        globals.slot_info_predmet_sprite_0 = "empty";
+        globals.slot_info_predmet_sprite_1 = "empty";
+        globals.slot_info_predmet_sprite_2 = "empty";
+        globals.slot_info_predmet_sprite_3 = "empty";
+
         //=============================GameObjectEnabled===========================//
         //=======================Find==============================//
         GameObject_Enable_Controller.slot_info = GameObject.Find("slot_info");

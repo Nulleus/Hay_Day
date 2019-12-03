@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class globals : MonoBehaviour
 {
+    public static string slot_info_main_predmet_name;
+    public static string slot_info_predmet_sprite_0;
+    public static string slot_info_predmet_sprite_1;
+    public static string slot_info_predmet_sprite_2;
+    public static string slot_info_predmet_sprite_3;
+
     //===========================level=============================================//
     public static int level_1_experience_point_threshold { get; set; }//
     public static int level_2_experience_point_threshold { get; set; }//

@@ -201,6 +201,10 @@
     <Compile Include="Assets\Scripts\sql_client.cs" />
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
     <Compile Include="Assets\slot_0_bakery_time_text.cs" />
+    <Compile Include="Assets\slot_info_predmet_controller.cs" />
+    <Compile Include="Assets\slot_info_predmet_quantity_0.cs" />
+    <Compile Include="Assets\slot_info_predmet_quantity_1.cs" />
+    <Compile Include="Assets\slot_info_predmet_sprite_0.cs" />
     <Compile Include="Assets\slots_predmets_bakery.cs" />
     <Compile Include="Assets\soybean_quantity.cs" />
     <Compile Include="Assets\sugarcane_quantity.cs" />
