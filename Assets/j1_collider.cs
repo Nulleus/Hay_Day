@@ -6,6 +6,7 @@ using System;
 public class j1_collider : MonoBehaviour
 {
     public GameObject bakery_arrow;
+    public string nameObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class j1_collider : MonoBehaviour
     {
         if (globals.bakery_move_mode_on)//Если режим перемещения включен
         {
+
             if (collision.gameObject.tag == "production_building")
             {
                 globals.collision_move_mod_on = false;
@@ -45,7 +47,8 @@ public class j1_collider : MonoBehaviour
                 ((other.gameObject.tag == "map_collider_green") ||//зеленым колайдером
                 (other.gameObject.tag == "map_collider_red"))) //красным коллайдером
                 {
-                        GameObject.Find("bakery").transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае
+                //GameObject.Find.GetComponent<ProductionBuilding>
+                GameObject.Find("bakery").transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае
                         if (other.gameObject.tag == "map_collider_green") //Если столкнулись с зеленым коллайдером и (не) столкнулись с другим объектом
                         {
                             globals.collision_move_mod_on = false;

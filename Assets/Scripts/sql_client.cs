@@ -7,7 +7,7 @@ using System.Data;
 
 using System.Text;
 
-public class sql_client : MonoBehaviour {
+public class sql_client {
     public void SQL_Data_ID()
     {
         //Connection string
@@ -35,15 +35,6 @@ public class sql_client : MonoBehaviour {
     }
 
     
-    // Use this for initialization
-    void Start () {
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
 	
 

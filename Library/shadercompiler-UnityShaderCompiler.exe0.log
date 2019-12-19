@@ -1,13 +1,2 @@
-Base path: C:/Program Files/Unity/Editor/Data
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+Base path: 'C:/Program Files/Unity/Hub/Editor/2020.1.0a15/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.1.0a15/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler

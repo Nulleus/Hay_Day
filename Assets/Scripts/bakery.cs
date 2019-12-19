@@ -6,19 +6,25 @@ using UnityEngine.UI;
 
 public class bakery : MonoBehaviour
 {
+    private GameObject mainCamera; 
+    public bool slots_panel_on;
     public int count = 0;
     public bool count_on = false;
     public Vector3 primary_position;//Сохранение начального положения объкта
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
     string temp;
-    
+    public sql_client SC;
     public bool mousedrag_block_on = false;
+    private bool move_mode_on;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("+++++++++" + GameObject_Enable_Controller.bakery_arrow);
+        mainCamera = GameObject.Find("MainCamera");
+        
+        //string json = JsonUtility.ToJson(bakery);
+        //Debug.Log("+++++++++" + GameObject_Enable_Controller.bakery_arrow);
     }
 
     // Update is called once per frame
@@ -35,7 +41,7 @@ public class bakery : MonoBehaviour
         if (GameObject_Enable_Controller.bakery_slots_predmets.activeSelf)
         {
             GameObject_Enable_Controller.bakery_slots_predmets.SetActive(true);
-            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);           
+            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);
         }
         else
         {
@@ -176,7 +182,7 @@ public class bakery : MonoBehaviour
     {
         //Добавить цикл прохода, только по откытым слотам
         var nowtime = DateTime.Now;
-        
+
         if (globals.bakery_array_slots_zagruzki[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
         {
             TimeSpan time = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -309,11 +315,11 @@ public class bakery : MonoBehaviour
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
-        Debug.Log("add: "+predmet);
+        Debug.Log("add: " + predmet);
         int building_time = 10;//Время сборки предмета 10 секунд
         if (predmet == "bread")
         {
-            if (globals.bakery_array_slots_zagruzki[globals.bakery_slots_zagruzki_open - 1,0] != "")//Если последний открытый слот пекарни не пустой
+            if (globals.bakery_array_slots_zagruzki[globals.bakery_slots_zagruzki_open - 1, 0] != "")//Если последний открытый слот пекарни не пустой
             {
                 Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
                 return;
@@ -327,7 +333,7 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
-                globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat-3)*(-1);
+                globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 3) * (-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_1_quantity = 0;
                 globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";
@@ -348,15 +354,15 @@ public class bakery : MonoBehaviour
         {
             building_time = 10;//Время сборки
 
-            if ((globals.corn - 2 >= 0)&&(globals.egg - 2 >= 0))//Если всего хватает
-            {               
+            if ((globals.corn - 2 >= 0) && (globals.egg - 2 >= 0))//Если всего хватает
+            {
                 globals.corn = globals.corn - 2;
                 globals.egg = globals.egg - 2;
             }
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-                Debug.Log("corn:"+globals.corn+ "egg:" + globals.egg);
+                Debug.Log("corn:" + globals.corn + "egg:" + globals.egg);
                 globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
                 {
@@ -379,7 +385,7 @@ public class bakery : MonoBehaviour
                     Debug.Log("globals.price_for_diamonds_panel_button_ok_diamonds_quantity=" + globals.price_for_diamonds_panel_button_ok_diamonds_quantity);
                     Debug.Log("globals.price_for_diamonds_panel_slot_0_quantity=" + globals.price_for_diamonds_panel_slot_0_quantity);
                     Debug.Log("globals.egg_price_for_diamonds=" + globals.egg_price_for_diamonds);
-                    Debug.Log("globals.price_for_diamonds_panel_slot_1_quantity="+ globals.price_for_diamonds_panel_slot_1_quantity);
+                    Debug.Log("globals.price_for_diamonds_panel_slot_1_quantity=" + globals.price_for_diamonds_panel_slot_1_quantity);
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
@@ -398,7 +404,7 @@ public class bakery : MonoBehaviour
                     globals.price_for_diamonds_panel_slot_3_predmet_name = "empty";
                     globals.price_for_diamonds_panel_slot_3_quantity = 0;
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
-                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity =globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
+                    globals.price_for_diamonds_panel_button_ok_diamonds_quantity = globals.corn_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity;
                     GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(false);
@@ -437,7 +443,7 @@ public class bakery : MonoBehaviour
         {
             building_time = 10;
             //building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
-            if ((globals.brown_sugar - 1 >= 0) && (globals.egg - 2 >= 0) && (globals.wheat - 2 >=0))//Если всего хватает
+            if ((globals.brown_sugar - 1 >= 0) && (globals.egg - 2 >= 0) && (globals.wheat - 2 >= 0))//Если всего хватает
             {
                 globals.brown_sugar = globals.brown_sugar - 1;
                 globals.egg = globals.egg - 2;
@@ -446,9 +452,9 @@ public class bakery : MonoBehaviour
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-                Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat"+ globals.wheat);
+                Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat" + globals.wheat);
                 globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
-                if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) &&(globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
+                if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) && (globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "brown_sugar";
@@ -461,7 +467,7 @@ public class bakery : MonoBehaviour
                     //Количество необходимых алмазов = цена продукта в алмазах * количество
                     globals.price_for_diamonds_panel_button_ok_diamonds_quantity =
                                                   (globals.brown_sugar_price_for_diamonds * globals.price_for_diamonds_panel_slot_0_quantity) +
-                                                  (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity)+
+                                                  (globals.egg_price_for_diamonds * globals.price_for_diamonds_panel_slot_1_quantity) +
                                                   (globals.wheat_price_for_diamonds * globals.price_for_diamonds_panel_slot_2_quantity);
                     Debug.Log("globals.price_for_diamonds_panel_button_ok_diamonds_quantity=" + globals.price_for_diamonds_panel_button_ok_diamonds_quantity);
                     Debug.Log("globals.price_for_diamonds_panel_slot_0_quantity=" + globals.price_for_diamonds_panel_slot_0_quantity);
@@ -541,7 +547,7 @@ public class bakery : MonoBehaviour
         }
         var nowtime = DateTime.Now;//Текущее время
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
-        {           
+        {
             globals.bakery_array_slots_zagruzki[0, 0] = predmet; //Загружаемый предмет
             globals.bakery_array_slots_zagruzki[0, 1] = Convert.ToString(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
             globals.bakery_array_slots_zagruzki[0, 2] = Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
@@ -678,7 +684,7 @@ public class bakery : MonoBehaviour
     }
 
     void OnMouseUp()//Когда отпускаешь кнопку
-    {        
+    {
         count = 0;
         count_on = false;
         GameObject_Enable_Controller.bakery_arrow_0.GetComponent<Renderer>().material.color = Color.white;
@@ -693,13 +699,13 @@ public class bakery : MonoBehaviour
 
             if (gameObject.GetComponent<Renderer>().material.color == Color.red)
             {
-                gameObject.transform.position = globals.bakery_primary_position;//Возвращаем пекарню на начальную точку
+                gameObject.transform.position = primary_position;//Возвращаем пекарню на начальную точку
                 gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
             }
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)
             {
-                gameObject.transform.position = globals.bakery_primary_position;
-                GameObject.Find("bakery_collider").transform.position = globals.bakery_primary_position;
+                gameObject.transform.position = primary_position;
+                GameObject.Find("bakery_collider").transform.position = primary_position;
             }
 
         }
@@ -725,11 +731,11 @@ public class bakery : MonoBehaviour
                 globals.bread++;//Прибавляем количество хлеба на склад
                 Debug.Log("bread = " + globals.bread);
                 globals.user_experience_point = globals.user_experience_point + globals.bread_experience_point;
-                Debug.Log("globals.user_experience_point="+ globals.user_experience_point);
+                Debug.Log("globals.user_experience_point=" + globals.user_experience_point);
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                
+
 
                 offset_massive_otgruzki();
                 return;
@@ -768,13 +774,13 @@ public class bakery : MonoBehaviour
         {
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
             {
-                globals.bakery_primary_position = gameObject.transform.position;//Запоминаем позицию пекарни
+                primary_position = gameObject.transform.position;//Запоминаем позицию пекарни
             }
         }
         if (globals.bakery_move_mode_on == false)//Если режим перемещения не активирован
         {
 
-            globals.bakery_primary_position = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
+            primary_position = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
             GameObject_Enable_Controller.bakery_arrow.SetActive(true);//Активируем стрелку
             count = 0;//Обнуляем счетчик
             count_on = true;//Запускаем счетчик 
@@ -782,9 +788,10 @@ public class bakery : MonoBehaviour
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
-        globals.zoom = false;
-        globals.drag = false;
-        if (globals.bakery_move_mode_on)
+        mainCamera.GetComponent<CameraScript>().SetIsZoomBlocked(false);
+        mainCamera.GetComponent<CameraScript>().SetIsDragBlocked(false);
+        CameraScript CS = CameraScript.Instantiate();
+        if (move_mode_on)
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
