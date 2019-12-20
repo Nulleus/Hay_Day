@@ -7,28 +7,48 @@ using UnityEngine.UI;
 
 public class ProductionBuilding : MonoBehaviour
 {
-    public bool slots_panel_on;
-    public int count = 0;
-    public bool count_on = false;
-    public Vector3 primary_position;//Сохранение начального положения объкта
-    public Vector3 offset; //Смещение
-    public Vector3 screenPoint;
-    string temp;
-    public sql_client SC;
-    public bool mousedrag_block_on = false;
-    // Start is called before the first frame update
+    private bool IsSlotsPanelGetOn;
+    private int Count = 0;
+    private bool IsCountOn = false;
+    private Vector3 PrimaryPosition;//Сохранение начального положения объкта
+    private Vector3 Offset; //Смещение
+    private Vector3 ScreenPoint;
+    private string Temp;
+    private sql_client SC;
+    private bool IsMouseDragBlockOn = false;
+    private bool IsMoveModeOn;
+
+    GameObject MainCamera;
+    GameObject Collider;
+    GameObject Arrow;
+    GameObject Arrow0;
+    GameObject Arrow1;
+    GameObject Arrow2;
+    GameObject Arrow3;
+    GameObject Arrow4;
+    GameObject SlotsPanel;
+    GameObject ButtonFlip;
+    GameObject ButtonMoveOff;
+    GameObject SlotsPredmets;
+    GameObject SlotsZagruzki;
+    GameObject SlotsOtgruzki;
+    private void OnEnable()
+    {
+        Debug.Log(CameraScript.Instance.MyTestString);
+    }
     void Start()
     {
-        //Получить текущее имя объекта
-        //CreateObject();
-         
+        CameraScript.Instance.IsZoomBlocked = false;
+
+        SlotsPanel = gameObject.transform.Find("SlotsPanel").gameObject;//Find Child gameobject
+        Collider = gameObject.transform.Find("Collider").gameObject;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Collider.SetActive(false);
     }
     void CreateObject()
     {

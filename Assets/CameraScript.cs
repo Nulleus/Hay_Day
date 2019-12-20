@@ -2,102 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class CameraScript : Singleton<CameraScript>
 {
+    // (Optional) Prevent non-singleton constructor use.
+    protected CameraScript() { }
 
+    // Then add whatever code to the class you need as you normally would.
+    public string MyTestString = "Hello world!";
     //=========================================ограничение камеры=====================//
-    private float xMargin = 1f; // Distance in the x axis the player can move before the camera follows.
-    public float yMargin = 1f; // Distance in the y axis the player can move before the camera follows.
-    public float xSmooth = 8f; // How smoothly the camera catches up with it's target movement in the x axis.
-    public float ySmooth = 8f; // How smoothly the camera catches up with it's target movement in the y axis.
-    public Vector2 maxXAndY; // The maximum x and y coordinates the camera can have.
-    public Vector2 minXAndY; // The minimum x and y coordinates the camera can have.
-    private bool IsZoomBlocked;
-    private bool IsDragBlocked;
-    private Transform m_Player; // Reference to the player's transform.
+    private float XMargin = 1f; // Distance in the x axis the player can move before the camera follows.
+    private float YMargin = 1f; // Distance in the y axis the player can move before the camera follows.
+    private float XSmooth = 8f; // How smoothly the camera catches up with it's target movement in the x axis.
+    private float YSmooth = 8f; // How smoothly the camera catches up with it's target movement in the y axis.
+    private Vector2 MaxXAndY; // The maximum x and y coordinates the camera can have.
+    private Vector2 MinXAndY; // The minimum x and y coordinates the camera can have.
+    public bool IsZoomBlocked //Blocked Zooming
+    { get; set; }
+    public bool IsDragBlocked //Blocked Drag
+    { get; set; }
+
+    private Transform MPlayer; // Reference to the player's transform.
     //==================================================================================//
     // экранные координаты начальной точки касания
-    private Vector3 initialTouchPosition;
+    private Vector3 InitialTouchPosition;
     // мировые координаты камеры при инициировании
     // перемещения/масштабирования
-    private Vector3 initialCameraPosition;
+    private Vector3 InitialCameraPosition;
 
     // экранные координаты начальной точки первого касания
-    private Vector3 initialTouch0Position;
+    private Vector3 InitialTouch0Position;
     // экранные координаты начальной точки второго касания
-    private Vector3 initialTouch1Position;
+    private Vector3 InitialTouch1Position;
     // средняя точка между начальными координатами касаний
-    private Vector3 initialMidPointScreen;
+    private Vector3 InitialMidPointScreen;
     // ортогональный размер камеры на момент начала масштабирования
-    private float initialOrthographicSize;
-    private Camera cam;
+    private float InitialOrthographicSize;
+    private Camera Cam;
     //Координаты карты
-    private float mapX = -260.5f;
-    private float mapY = 29.6f;
+    private float MapX = -260.5f;
+    private float MapY = 29.6f;
     //Переменные
-    private float minX;
-    private float maxX;
-    private float minY;
-    private float maxY;
-    private float vertExtent;
-    private float horzExtent;
-    private Vector3 v3;
+    private float MinX;
+    private float MaxX;
+    private float MinY;
+    private float MaxY;
+    private float VertExtent;
+    private float HorzExtent;
+    private Vector3 V3;
     private float ScreeToWorldPoint1;
 
     // Use this for initialization
     void Start()
     {
 
-        cam = GetComponentInChildren<Camera>();
+        Cam = GetComponentInChildren<Camera>();
         // двигаем камеру
-        SetIsDragBlocked(true);
-        SetIsZoomBlocked(true);
+        IsDragBlocked = true;
+        IsZoomBlocked = true;
         // масштабируем
         //=====Ограничение камеры========//
-        vertExtent = cam.orthographicSize;
-        horzExtent = vertExtent * Screen.width / Screen.height;
+        VertExtent = Cam.orthographicSize;
+        HorzExtent = VertExtent * Screen.width / Screen.height;
         // Calculations assume map is position at the origin
-        minX = horzExtent - mapX / 2.0f;
-        maxX = mapX / 2.0f - horzExtent;
-        minY = vertExtent - mapY / 2.0f;
-        maxY = mapY / 2.0f - vertExtent;
-        //Debug.Log("vert:" + vertExtent +"horz:"+ horzExtent);
-        //Debug.Log("SH:" + Screen.height + ";SW:" + Screen.width);
+        MinX = HorzExtent - MapX / 2.0f;
+        MaxX = MapX / 2.0f - HorzExtent;
+        MinY = VertExtent - MapY / 2.0f;
+        MaxY = MapY / 2.0f - VertExtent;
     }
     //Calculate orthographic camera bounds 
     void CheckBoundCamera()
     {
-        float height = 2f * cam.orthographicSize;
-        float width = height * cam.aspect;
+        float height = 2f * Cam.orthographicSize;
+        float width = height * Cam.aspect;
         Vector2 t0 = transform.position;
         float t1 = t0.y + (height / 2);
         float t2 = t0.x - (width / 2);
         float t3 = t0.y - (height / 2);
         float t4 = t0.x + (width / 2);
-        //Debug.Log(t0);
-        // Debug.Log(t1);
-        //Debug.Log(t2);
-        //Debug.Log(t3);
-        //Debug.Log(t4);
-        // float size = rectTransform.re
     }
     // Update is called once per frame
-    public bool GetIsZoomBlocked()
-    {
-        return IsZoomBlocked;
-    }
-    public bool GetIsDragBlocked()
-    {
-        return IsZoomBlocked;
-    }
-    public void SetIsZoomBlocked(bool isBlocked)
-    {
-       IsZoomBlocked = isBlocked;
-    }
-    public void SetIsDragBlocked(bool isBlocked)
-    {
-        IsDragBlocked = isBlocked;
-    }
+
     void Update()
     {
         //
@@ -105,24 +89,24 @@ public class CameraScript : MonoBehaviour
 
         if (Input.touchCount == 1)
         {
-            SetIsZoomBlocked(false);
+            IsZoomBlocked = true;
             Touch touch0 = Input.GetTouch(0);
 
             if (IsTouching(touch0))
             {
                 if (!IsDragBlocked)
                 {
-                    initialTouchPosition = touch0.position;
-                    initialCameraPosition = transform.position;
+                    InitialTouchPosition = touch0.position;
+                    InitialCameraPosition = transform.position;
 
-                    SetIsDragBlocked(true);
+                    IsDragBlocked = true;
                 }
                 else
                 {
-                    Vector2 delta = cam.ScreenToWorldPoint(touch0.position) -
-                                    cam.ScreenToWorldPoint(initialTouchPosition);
+                    Vector2 delta = Cam.ScreenToWorldPoint(touch0.position) -
+                                    Cam.ScreenToWorldPoint(InitialTouchPosition);
 
-                    Vector3 newPos = initialCameraPosition;
+                    Vector3 newPos = InitialCameraPosition;
                     newPos.x -= delta.x;
                     newPos.y -= delta.y;
 
@@ -132,54 +116,54 @@ public class CameraScript : MonoBehaviour
 
             if (!IsTouching(touch0))
             {
-                SetIsDragBlocked(false);
+                IsZoomBlocked = false;
             }
         }
         else
         {
-            SetIsDragBlocked(false);
+            IsDragBlocked = false;
         }
 
         if (Input.touchCount == 2)
         {
-            SetIsDragBlocked(false);
+            IsDragBlocked = false;
 
             Touch touch0 = Input.GetTouch(0);
             Touch touch1 = Input.GetTouch(1);
 
             if (!IsZoomBlocked)
             {
-                initialTouch0Position = touch0.position;
-                initialTouch1Position = touch1.position;
-                initialCameraPosition = transform.position;
-                initialOrthographicSize = Camera.main.orthographicSize;
-                initialMidPointScreen = (touch0.position + touch1.position) / 2;
+                InitialTouch0Position = touch0.position;
+                InitialTouch1Position = touch1.position;
+                InitialCameraPosition = transform.position;
+                InitialOrthographicSize = Camera.main.orthographicSize;
+                InitialMidPointScreen = (touch0.position + touch1.position) / 2;
 
-                SetIsZoomBlocked(true);
+                IsZoomBlocked = true;
             }
             else
             {
-                transform.position = initialCameraPosition;
-                cam.orthographicSize = initialOrthographicSize;
+                transform.position = InitialCameraPosition;
+                Cam.orthographicSize = InitialOrthographicSize;
 
                 float scaleFactor = GetScaleFactor(touch0.position,
                                                    touch1.position,
-                                                   initialTouch0Position,
-                                                   initialTouch1Position);
+                                                   InitialTouch0Position,
+                                                   InitialTouch1Position);
 
                 Vector2 currentMidPoint = (touch0.position + touch1.position) / 2;
-                Vector3 initialPointWorldBeforeZoom = cam.ScreenToWorldPoint(initialMidPointScreen);
+                Vector3 initialPointWorldBeforeZoom = Cam.ScreenToWorldPoint(InitialMidPointScreen);
 
-                Camera.main.orthographicSize = initialOrthographicSize / scaleFactor;
+                Camera.main.orthographicSize = InitialOrthographicSize / scaleFactor;
 
-                Vector3 initialPointWorldAfterZoom = cam.ScreenToWorldPoint(initialMidPointScreen);
+                Vector3 initialPointWorldAfterZoom = Cam.ScreenToWorldPoint(InitialMidPointScreen);
                 Vector2 initialPointDelta = initialPointWorldBeforeZoom - initialPointWorldAfterZoom;
 
                 Vector2 oldAndNewPointDelta =
-                    cam.ScreenToWorldPoint(currentMidPoint) -
-                    cam.ScreenToWorldPoint(initialMidPointScreen);
+                    Cam.ScreenToWorldPoint(currentMidPoint) -
+                    Cam.ScreenToWorldPoint(InitialMidPointScreen);
 
-                Vector3 newPos = initialCameraPosition;
+                Vector3 newPos = InitialCameraPosition;
                 newPos.x -= oldAndNewPointDelta.x - initialPointDelta.x;
                 newPos.y -= oldAndNewPointDelta.y - initialPointDelta.y;
 
@@ -188,7 +172,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            SetIsZoomBlocked(false);
+            IsZoomBlocked = false;
         }
     }
 

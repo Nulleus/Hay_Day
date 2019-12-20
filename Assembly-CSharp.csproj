@@ -67,6 +67,7 @@
     <Compile Include="Assets\ProductionBuildingController.cs" />
     <Compile Include="Assets\Scripts\Obj_Click.cs" />
     <Compile Include="Assets\Scripts\RectTransformExtensions.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
