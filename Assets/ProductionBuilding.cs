@@ -32,14 +32,15 @@ public class ProductionBuilding : MonoBehaviour
     GameObject SlotsPredmets;
     GameObject SlotsZagruzki;
     GameObject SlotsOtgruzki;
+
     private void OnEnable()
     {
-        Debug.Log(CameraScript.Instance.MyTestString);
+        // Debug.Log(CameraScript.Instance.IsZoomBlocked);
     }
+
     void Start()
     {
-        CameraScript.Instance.IsZoomBlocked = false;
-
+      
         SlotsPanel = gameObject.transform.Find("SlotsPanel").gameObject;//Find Child gameobject
         Collider = gameObject.transform.Find("Collider").gameObject;
 
@@ -50,6 +51,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         Collider.SetActive(false);
     }
+
     void CreateObject()
     {
         //Тут запрос на определение дочерних объектов у gameobject.name(текущего объекта)

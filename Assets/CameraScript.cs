@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : Singleton<CameraScript>
+public class CameraScript : MonoBehaviour
 {
     // (Optional) Prevent non-singleton constructor use.
     protected CameraScript() { }

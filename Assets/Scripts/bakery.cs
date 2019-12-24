@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class bakery : MonoBehaviour
 {
+    private string TypeObject= "production_building";
     private GameObject MainCamera; 
     private bool IsSlotsPanelGetOn;
     private int Count = 0;
@@ -16,8 +17,10 @@ public class bakery : MonoBehaviour
     private string Temp;
     private sql_client SC;
     private bool IsMouseDragBlockOn = false;
-    private bool IsMoveModeOn;
-
+    private bool IsMoveModeOn=false;
+    private bool IsCollisionMoveModeOn = false;
+    private string[,] ArraySlotsLoading;
+    private string[,] ArraySlotsShipment;
     GameObject Collider;
     GameObject Arrow;
     GameObject Arrow0;
@@ -28,49 +31,61 @@ public class bakery : MonoBehaviour
     GameObject SlotsPanel;
     GameObject ButtonFlip;
     GameObject ButtonMoveOff;
-    GameObject SlotsPredmets;
-    GameObject SlotsZagruzki;
-    GameObject SlotsOtgruzki;
+    GameObject SlotsSubject;
+    GameObject SlotsLoading;
+    GameObject SlotsShipment;
+    GameObject FarmBoxColliders;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
+        SlotsSubject.transform.Find("SlotsSubject");
+        SlotsLoading.transform.Find("SlotsLoading");
+        SlotsShipment.transform.Find("SlotsShipment");
+        FarmBoxColliders.transform.Find("FarmBoxColliders");
+        Arrow.transform.Find("Arrow");
+        Arrow0.transform.Find("Arrow0");
+        Arrow1.transform.Find("Arrow1");
+        Arrow2.transform.Find("Arrow2");
+        Arrow3.transform.Find("Arrow3");
+        Arrow4.transform.Find("Arrow4");
         //MainCamera = GameObject.Find("MainCamera");
-       //SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
-       //Collider.transform.Find("Collider");
+        //SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
+        //Collider.transform.Find("Collider");
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (GameObject_Enable_Controller.bakery_slots_panel.activeSelf)
+        if (SlotsPanel.activeSelf)
         {
-            GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
+            SlotsPanel.SetActive(false);
         }
         else
         {
-            GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);
+            SlotsPanel.SetActive(true);
         }
-        if (GameObject_Enable_Controller.bakery_slots_predmets.activeSelf)
+
+        if (SlotsSubject.activeSelf)
         {
-            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(true);
-            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);
+            SlotsSubject.SetActive(true);
+            SlotsLoading.SetActive(true);
         }
         else
         {
-            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
-            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
+            SlotsSubject.SetActive(false);
+            SlotsLoading.SetActive(false);
         }
-        if (globals.bakery_move_mode_on)//Если режим перемещения включен
+        if (IsMoveModeOn)//Если режим перемещения включен
         {
-            GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
-            GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
-            GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);
+            SlotsSubject.SetActive(false);
+            SlotsLoading.SetActive(false);
+            SlotsPanel.SetActive(true);
             gameObject.tag = "obj_move_mod";
 
-            if (globals.collision_move_mod_on)
+            if (IsCollisionMoveModeOn)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет
             }
@@ -78,7 +93,7 @@ public class bakery : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.white;//Окрашиваем пекарню в белый цвет
             }
-            if (gameObject.GetComponent<Renderer>().material.color != Color.red)
+            if (gameObject.GetComponent<Renderer>().material.color != Color.red)//Эффект мигания
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
             }
@@ -87,8 +102,8 @@ public class bakery : MonoBehaviour
         }
         else
         {
-            GameObject_Enable_Controller.bakery_slots_panel.SetActive(false);
-            GameObject_Enable_Controller.farm_box_colliders.SetActive(false);
+            SlotsPanel.SetActive(false);
+            FarmBoxColliders.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
             gameObject.tag = globals.bakery_type_obj;//
 
@@ -97,222 +112,225 @@ public class bakery : MonoBehaviour
         {
             Count++;
 
-            if (Count == 6) { GameObject_Enable_Controller.bakery_arrow_0.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 12) { GameObject_Enable_Controller.bakery_arrow_1.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 18) { GameObject_Enable_Controller.bakery_arrow_2.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 24) { GameObject_Enable_Controller.bakery_arrow_3.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 30) { GameObject_Enable_Controller.bakery_arrow_4.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 6) { Arrow0.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 12) { Arrow1.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 18) { Arrow2.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 24) { Arrow3.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 30) { Arrow4.GetComponent<Renderer>().material.color = Color.yellow; }
             if (Count > 30)//Активация режима перемещение
             {
-                globals.bakery_move_mode_on = true;//Активация режима перемещение
-                GameObject_Enable_Controller.bakery_arrow.SetActive(false);//Скрытие стрелочки
-                GameObject_Enable_Controller.farm_box_colliders.SetActive(true);
-                GameObject_Enable_Controller.bakery_slots_panel.SetActive(true);//Включаем панель с кнопкой Flip
+                IsMoveModeOn = true;//Активация режима перемещение
+                Arrow.SetActive(false);//Скрытие стрелочки
+                FarmBoxColliders.SetActive(true);
+                SlotsPanel.SetActive(true);//Включаем панель с кнопкой Flip
                 IsCountOn = false;
             }
         }
-        otgruzka_predmeta();//Контоль отгрузк предмета
+        ShipmentPredmet();//Контоль отгрузк предмета
     }
-    void offset_massive()//Смещение массива на одну позицию  
+    void OffsetArray()//Смещение массива на одну позицию  
     {
         //Добавить цикл, для прохода по открытым объектам
-        globals.bakery_array_slots_zagruzki[0, 0] = globals.bakery_array_slots_zagruzki[1, 0];
-        globals.bakery_array_slots_zagruzki[0, 1] = globals.bakery_array_slots_zagruzki[1, 1];
-        globals.bakery_array_slots_zagruzki[0, 2] = globals.bakery_array_slots_zagruzki[1, 2];
+        ArraySlotsLoading[0, 0] = ArraySlotsLoading[1, 0];
+        ArraySlotsLoading[0, 1] = ArraySlotsLoading[1, 1];
+        ArraySlotsLoading[0, 2] = ArraySlotsLoading[1, 2];
 
-        globals.bakery_array_slots_zagruzki[1, 0] = globals.bakery_array_slots_zagruzki[2, 0];
-        globals.bakery_array_slots_zagruzki[1, 1] = globals.bakery_array_slots_zagruzki[2, 1];
-        globals.bakery_array_slots_zagruzki[1, 2] = globals.bakery_array_slots_zagruzki[2, 2];
+        ArraySlotsLoading[1, 0] = ArraySlotsLoading[2, 0];
+        ArraySlotsLoading[1, 1] = ArraySlotsLoading[2, 1];
+        ArraySlotsLoading[1, 2] = ArraySlotsLoading[2, 2];
 
-        globals.bakery_array_slots_zagruzki[2, 0] = globals.bakery_array_slots_zagruzki[3, 0];
-        globals.bakery_array_slots_zagruzki[2, 1] = globals.bakery_array_slots_zagruzki[3, 1];
-        globals.bakery_array_slots_zagruzki[2, 2] = globals.bakery_array_slots_zagruzki[3, 2];
+        ArraySlotsLoading[2, 0] = ArraySlotsLoading[3, 0];
+        ArraySlotsLoading[2, 1] = ArraySlotsLoading[3, 1];
+        ArraySlotsLoading[2, 2] = ArraySlotsLoading[3, 2];
 
-        globals.bakery_array_slots_zagruzki[3, 0] = globals.bakery_array_slots_zagruzki[4, 0];
-        globals.bakery_array_slots_zagruzki[3, 1] = globals.bakery_array_slots_zagruzki[4, 1];
-        globals.bakery_array_slots_zagruzki[3, 2] = globals.bakery_array_slots_zagruzki[4, 2];
+        ArraySlotsLoading[3, 0] = ArraySlotsLoading[4, 0];
+        ArraySlotsLoading[3, 1] = ArraySlotsLoading[4, 1];
+        ArraySlotsLoading[3, 2] = ArraySlotsLoading[4, 2];
 
-        globals.bakery_array_slots_zagruzki[4, 0] = globals.bakery_array_slots_zagruzki[5, 0];
-        globals.bakery_array_slots_zagruzki[4, 1] = globals.bakery_array_slots_zagruzki[5, 1];
-        globals.bakery_array_slots_zagruzki[4, 2] = globals.bakery_array_slots_zagruzki[5, 2];
+        ArraySlotsLoading[4, 0] = ArraySlotsLoading[5, 0];
+        ArraySlotsLoading[4, 1] = ArraySlotsLoading[5, 1];
+        ArraySlotsLoading[4, 2] = ArraySlotsLoading[5, 2];
 
-        globals.bakery_array_slots_zagruzki[5, 0] = globals.bakery_array_slots_zagruzki[6, 0];
-        globals.bakery_array_slots_zagruzki[5, 1] = globals.bakery_array_slots_zagruzki[6, 1];
-        globals.bakery_array_slots_zagruzki[5, 2] = globals.bakery_array_slots_zagruzki[6, 2];
+        ArraySlotsLoading[5, 0] = ArraySlotsLoading[6, 0];
+        ArraySlotsLoading[5, 1] = ArraySlotsLoading[6, 1];
+        ArraySlotsLoading[5, 2] = ArraySlotsLoading[6, 2];
 
-        globals.bakery_array_slots_zagruzki[6, 0] = globals.bakery_array_slots_zagruzki[7, 0];
-        globals.bakery_array_slots_zagruzki[6, 1] = globals.bakery_array_slots_zagruzki[7, 1];
-        globals.bakery_array_slots_zagruzki[6, 2] = globals.bakery_array_slots_zagruzki[7, 2];
+        ArraySlotsLoading[6, 0] = ArraySlotsLoading[7, 0];
+        ArraySlotsLoading[6, 1] = ArraySlotsLoading[7, 1];
+        ArraySlotsLoading[6, 2] = ArraySlotsLoading[7, 2];
 
-        globals.bakery_array_slots_zagruzki[7, 0] = globals.bakery_array_slots_zagruzki[8, 0];
-        globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[8, 1];
-        globals.bakery_array_slots_zagruzki[7, 2] = globals.bakery_array_slots_zagruzki[8, 2];
+        ArraySlotsLoading[7, 0] = ArraySlotsLoading[8, 0];
+        ArraySlotsLoading[7, 1] = ArraySlotsLoading[8, 1];
+        ArraySlotsLoading[7, 2] = ArraySlotsLoading[8, 2];
 
-        globals.bakery_array_slots_zagruzki[8, 0] = "";
-        globals.bakery_array_slots_zagruzki[8, 1] = "";
-        globals.bakery_array_slots_zagruzki[8, 2] = "";
+        ArraySlotsLoading[8, 0] = "";
+        ArraySlotsLoading[8, 1] = "";
+        ArraySlotsLoading[8, 2] = "";
+
 
 
     }
-    void offset_massive_otgruzki()
+    void OffsetArrayShipment()
     {
         //Добавить цикл, для прохода по открытым объектам
-        globals.bakery_array_slots_otgruzki[0, 0] = globals.bakery_array_slots_otgruzki[1, 0];
-        globals.bakery_array_slots_otgruzki[0, 1] = globals.bakery_array_slots_otgruzki[1, 1];
-        globals.bakery_array_slots_otgruzki[0, 2] = globals.bakery_array_slots_otgruzki[1, 2];
+        ArraySlotsShipment[0, 0] = ArraySlotsShipment[1, 0];
+        ArraySlotsShipment[0, 1] = ArraySlotsShipment[1, 1];
+        ArraySlotsShipment[0, 2] = ArraySlotsShipment[1, 2];
 
-        globals.bakery_array_slots_otgruzki[1, 0] = globals.bakery_array_slots_otgruzki[2, 0];
-        globals.bakery_array_slots_otgruzki[1, 1] = globals.bakery_array_slots_otgruzki[2, 1];
-        globals.bakery_array_slots_otgruzki[1, 2] = globals.bakery_array_slots_otgruzki[2, 2];
+        ArraySlotsShipment[1, 0] = ArraySlotsShipment[2, 0];
+        ArraySlotsShipment[1, 1] = ArraySlotsShipment[2, 1];
+        ArraySlotsShipment[1, 2] = ArraySlotsShipment[2, 2];
 
-        globals.bakery_array_slots_otgruzki[2, 0] = globals.bakery_array_slots_otgruzki[3, 0];
-        globals.bakery_array_slots_otgruzki[2, 1] = globals.bakery_array_slots_otgruzki[3, 1];
-        globals.bakery_array_slots_otgruzki[2, 2] = globals.bakery_array_slots_otgruzki[3, 2];
+        ArraySlotsShipment[2, 0] = ArraySlotsShipment[3, 0];
+        ArraySlotsShipment[2, 1] = ArraySlotsShipment[3, 1];
+        ArraySlotsShipment[2, 2] = ArraySlotsShipment[3, 2];
 
-        globals.bakery_array_slots_otgruzki[3, 0] = globals.bakery_array_slots_otgruzki[4, 0];
-        globals.bakery_array_slots_otgruzki[3, 1] = globals.bakery_array_slots_otgruzki[4, 1];
-        globals.bakery_array_slots_otgruzki[3, 2] = globals.bakery_array_slots_otgruzki[4, 2];
+        ArraySlotsShipment[3, 0] = ArraySlotsShipment[4, 0];
+        ArraySlotsShipment[3, 1] = ArraySlotsShipment[4, 1];
+        ArraySlotsShipment[3, 2] = ArraySlotsShipment[4, 2];
 
-        globals.bakery_array_slots_otgruzki[4, 0] = globals.bakery_array_slots_otgruzki[5, 0];
-        globals.bakery_array_slots_otgruzki[4, 1] = globals.bakery_array_slots_otgruzki[5, 1];
-        globals.bakery_array_slots_otgruzki[4, 2] = globals.bakery_array_slots_otgruzki[5, 2];
+        ArraySlotsShipment[4, 0] = ArraySlotsShipment[5, 0];
+        ArraySlotsShipment[4, 1] = ArraySlotsShipment[5, 1];
+        ArraySlotsShipment[4, 2] = ArraySlotsShipment[5, 2];
 
-        globals.bakery_array_slots_otgruzki[5, 0] = globals.bakery_array_slots_otgruzki[6, 0];
-        globals.bakery_array_slots_otgruzki[5, 1] = globals.bakery_array_slots_otgruzki[6, 1];
-        globals.bakery_array_slots_otgruzki[5, 2] = globals.bakery_array_slots_otgruzki[6, 2];
+        ArraySlotsShipment[5, 0] = ArraySlotsShipment[6, 0];
+        ArraySlotsShipment[5, 1] = ArraySlotsShipment[6, 1];
+        ArraySlotsShipment[5, 2] = ArraySlotsShipment[6, 2];
 
-        globals.bakery_array_slots_otgruzki[6, 0] = globals.bakery_array_slots_otgruzki[7, 0];
-        globals.bakery_array_slots_otgruzki[6, 1] = globals.bakery_array_slots_otgruzki[7, 1];
-        globals.bakery_array_slots_otgruzki[6, 2] = globals.bakery_array_slots_otgruzki[7, 2];
+        ArraySlotsShipment[6, 0] = ArraySlotsShipment[7, 0];
+        ArraySlotsShipment[6, 1] = ArraySlotsShipment[7, 1];
+        ArraySlotsShipment[6, 2] = ArraySlotsShipment[7, 2];
 
-        globals.bakery_array_slots_otgruzki[7, 0] = globals.bakery_array_slots_otgruzki[8, 0];
-        globals.bakery_array_slots_otgruzki[7, 1] = globals.bakery_array_slots_otgruzki[8, 1];
-        globals.bakery_array_slots_otgruzki[7, 2] = globals.bakery_array_slots_otgruzki[8, 2];
+        ArraySlotsShipment[7, 0] = ArraySlotsShipment[8, 0];
+        ArraySlotsShipment[7, 1] = ArraySlotsShipment[8, 1];
+        ArraySlotsShipment[7, 2] = ArraySlotsShipment[8, 2];
 
-        globals.bakery_array_slots_otgruzki[8, 0] = "";
-        globals.bakery_array_slots_otgruzki[8, 1] = "";
-        globals.bakery_array_slots_otgruzki[8, 2] = "";
+        ArraySlotsShipment[8, 0] = "";
+        ArraySlotsShipment[8, 1] = "";
+        ArraySlotsShipment[8, 2] = "";
+
     }
-    void otgruzka_predmeta()
+    void ShipmentPredmet()
     {
         //Добавить цикл прохода, только по откытым слотам
         var nowtime = DateTime.Now;
 
-        if (globals.bakery_array_slots_zagruzki[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
+        if (ArraySlotsLoading[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
         {
-            TimeSpan time = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
+            TimeSpan time = Convert.ToDateTime(ArraySlotsLoading[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             //Разница дат            
-            if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата отгрузки < текущей даты)
+            if (Convert.ToDateTime(ArraySlotsLoading[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата отгрузки < текущей даты)
             {
-                if (globals.bakery_array_slots_otgruzki[0, 0] == "")//Если слот отгрузки 0, пустой
+                if (ArraySlotsShipment[0, 0] == "")//Если слот отгрузки 0, пустой
                 {
-                    globals.bakery_array_slots_otgruzki[0, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";//Очищаем слот загрузки с именем предмета
-                    globals.bakery_array_slots_otgruzki[0, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";//Очищаем слот загрузки с датой загрузки предмета
-                    globals.bakery_array_slots_otgruzki[0, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";//Очищаем слот загрузки с датой отгрузки предмета
-                    offset_massive();
+                    ArraySlotsShipment[0, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";//Очищаем слот загрузки с именем предмета
+                    ArraySlotsShipment[0, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";//Очищаем слот загрузки с датой загрузки предмета
+                    ArraySlotsShipment[0, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";//Очищаем слот загрузки с датой отгрузки предмета
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 0 ");
 
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[1, 0] == "")
+                if (ArraySlotsShipment[1, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[1, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[1, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[1, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[1, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[1, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[1, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 1 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[2, 0] == "")
+                if (ArraySlotsShipment[2, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[2, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[2, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[2, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[2, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[2, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[2, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 2 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[3, 0] == "")
+                if (ArraySlotsShipment[3, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[3, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[3, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[3, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[3, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[3, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[3, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 3 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[4, 0] == "")
+                if (ArraySlotsShipment[4, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[4, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[4, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[4, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[4, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[4, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[4, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 4 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[5, 0] == "")
+                if (ArraySlotsShipment[5, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[5, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[5, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[5, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[5, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[5, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[5, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 5 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[6, 0] == "")
+                if (ArraySlotsShipment[6, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[6, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[6, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[6, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[6, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[6, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[6, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 6 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[7, 0] == "")
+                if (ArraySlotsShipment[7, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[7, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[7, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[7, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[7, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[7, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[7, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 7 ");
                     return;
                 }
-                if (globals.bakery_array_slots_otgruzki[8, 0] == "")
+                if (ArraySlotsShipment[8, 0] == "")
                 {
-                    globals.bakery_array_slots_otgruzki[8, 0] = globals.bakery_array_slots_zagruzki[0, 0];//Имя предмета
-                    globals.bakery_array_slots_zagruzki[0, 0] = "";
-                    globals.bakery_array_slots_otgruzki[8, 1] = globals.bakery_array_slots_zagruzki[0, 1];//Дата загрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 1] = "";
-                    globals.bakery_array_slots_otgruzki[8, 2] = globals.bakery_array_slots_zagruzki[0, 2]; //Дата отгрузки предмета
-                    globals.bakery_array_slots_zagruzki[0, 2] = "";
-                    offset_massive();
+                    ArraySlotsShipment[8, 0] = ArraySlotsLoading[0, 0];//Имя предмета
+                    ArraySlotsLoading[0, 0] = "";
+                    ArraySlotsShipment[8, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
+                    ArraySlotsLoading[0, 1] = "";
+                    ArraySlotsShipment[8, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
+                    ArraySlotsLoading[0, 2] = "";
+                    OffsetArray();
                     Debug.Log("Отгрузился в слот отгрузки: 8 ");
                     return;
                 }
+
 
             }
 
@@ -324,15 +342,15 @@ public class bakery : MonoBehaviour
 
         }
     }//Отгрузка предмета из слота загрузки в слот отгрузки
-    public static void add_in_slot_predmet(string predmet)//Метод добавления предмета в слоты
+    public static void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
     {
         //Если все слоты заняты, не загружать
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
-        Debug.Log("add: " + predmet);
+        Debug.Log("add: " + subject);
         int building_time = 10;//Время сборки предмета 10 секунд
-        if (predmet == "bread")
+        if (subject == "bread")
         {
             if (globals.bakery_array_slots_zagruzki[globals.bakery_slots_zagruzki_open - 1, 0] != "")//Если последний открытый слот пекарни не пустой
             {
@@ -347,7 +365,7 @@ public class bakery : MonoBehaviour
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
-                globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 3) * (-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_1_quantity = 0;
@@ -365,7 +383,7 @@ public class bakery : MonoBehaviour
                 return;
             }
         }
-        if (predmet == "corn_bread")
+        if (subject == "corn_bread")
         {
             building_time = 10;//Время сборки
 
@@ -378,7 +396,7 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 Debug.Log("corn:" + globals.corn + "egg:" + globals.egg);
-                globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
@@ -410,6 +428,7 @@ public class bakery : MonoBehaviour
                 }
                 if (globals.corn - 2 < 0)//Если нехватило только кукурузы
                 {
+
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";
@@ -454,7 +473,7 @@ public class bakery : MonoBehaviour
                 return;
             }
         }
-        if (predmet == "cookie")
+        if (subject == "cookie")
         {
             building_time = 10;
             //building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
@@ -468,7 +487,7 @@ public class bakery : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat" + globals.wheat);
-                globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) && (globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
@@ -539,7 +558,7 @@ public class bakery : MonoBehaviour
                 if (globals.wheat - 2 < 0)
                 {
                     Debug.Log("Нехватило только пшеницы");
-                    globals.price_for_diamonds_panel_current_item = predmet;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                    globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 2) * (-1);
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";
@@ -563,7 +582,7 @@ public class bakery : MonoBehaviour
         var nowtime = DateTime.Now;//Текущее время
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[0, 0] = predmet; //Загружаемый предмет
+            globals.bakery_array_slots_zagruzki[0, 0] = subject; //Загружаемый предмет
             globals.bakery_array_slots_zagruzki[0, 1] = Convert.ToString(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
             globals.bakery_array_slots_zagruzki[0, 2] = Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
             Debug.Log("globals.bakery_array_slots_zagruzki[0, 0]" + globals.bakery_array_slots_zagruzki[0, 0]);
@@ -573,7 +592,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[1, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[1, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[1, 0] = subject;
             globals.bakery_array_slots_zagruzki[1, 1] = globals.bakery_array_slots_zagruzki[0, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[1, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -584,7 +603,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[2, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[2, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[2, 0] = subject;
             globals.bakery_array_slots_zagruzki[2, 1] = globals.bakery_array_slots_zagruzki[1, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[1, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[2, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -595,7 +614,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[3, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[3, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[3, 0] = subject;
             globals.bakery_array_slots_zagruzki[3, 1] = globals.bakery_array_slots_zagruzki[2, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[2, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[3, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -606,7 +625,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[4, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[4, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[4, 0] = subject;
             globals.bakery_array_slots_zagruzki[4, 1] = globals.bakery_array_slots_zagruzki[3, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[3, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[4, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -617,7 +636,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[5, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[5, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[5, 0] = subject;
             globals.bakery_array_slots_zagruzki[5, 1] = globals.bakery_array_slots_zagruzki[4, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[4, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[5, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -628,7 +647,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[6, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[6, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[6, 0] = subject;
             globals.bakery_array_slots_zagruzki[6, 1] = globals.bakery_array_slots_zagruzki[5, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[5, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[6, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -639,7 +658,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[7, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[7, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[7, 0] = subject;
             globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[6, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[6, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[7, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -650,7 +669,7 @@ public class bakery : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[8, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[8, 0] = predmet;
+            globals.bakery_array_slots_zagruzki[8, 0] = subject;
             globals.bakery_array_slots_zagruzki[8, 1] = globals.bakery_array_slots_zagruzki[7, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[7, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[8, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -752,7 +771,7 @@ public class bakery : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
 
 
-                offset_massive_otgruzki();
+                OffsetArrayShipment();
                 return;
             }
             if (globals.bakery_array_slots_otgruzki[0, 0] == "corn_bread")
@@ -765,7 +784,7 @@ public class bakery : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                offset_massive_otgruzki();
+                OffsetArrayShipment();
                 return;
             }
             if (globals.bakery_array_slots_otgruzki[0, 0] == "cookie")
@@ -778,7 +797,7 @@ public class bakery : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                offset_massive_otgruzki();
+                OffsetArrayShipment();
                 return;
             }
         }
@@ -803,15 +822,6 @@ public class bakery : MonoBehaviour
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
-        MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
-        MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
-        if (IsMoveModeOn)
-        {
-            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenPoint.z);
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + Offset;
-            GameObject.Find("bakery_collider").transform.position = curPosition;
-            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
-            MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
-        }
+
     }
 }

@@ -67,7 +67,6 @@
     <Compile Include="Assets\ProductionBuildingController.cs" />
     <Compile Include="Assets\Scripts\Obj_Click.cs" />
     <Compile Include="Assets\Scripts\RectTransformExtensions.cs" />
-    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\bakery.cs" />
     <Compile Include="Assets\Scripts\button_click.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="Assets\Scripts\refresh_backery_0.cs" />
     <Compile Include="Assets\Scripts\refresh_dairy.cs" />
     <Compile Include="Assets\Scripts\refresh_field_0.cs" />
-    <Compile Include="Assets\Scripts\silo.cs" />
     <Compile Include="Assets\Scripts\silo_button_close.cs" />
     <Compile Include="Assets\Scripts\silo_button_increase_capacity.cs" />
     <Compile Include="Assets\Scripts\silo_nail_quantity_text.cs" />
@@ -115,6 +113,8 @@
     <Compile Include="Assets\Scripts\soybean_quantity_script.cs" />
     <Compile Include="Assets\Scripts\sql_client.cs" />
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
+    <Compile Include="Assets\Silo.cs" />
+    <Compile Include="Assets\SwipeManager.cs" />
     <Compile Include="Assets\WorldCreation.cs" />
     <Compile Include="Assets\bakery_button_flip.cs" />
     <Compile Include="Assets\bakery_button_move_off.cs" />
