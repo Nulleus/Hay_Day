@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\CameraScript.cs" />
     <Compile Include="Assets\GameObject_Enable_Controller.cs" />
+    <Compile Include="Assets\Ingredients.cs" />
     <Compile Include="Assets\ProductionBuilding.cs" />
     <Compile Include="Assets\ProductionBuildingCollider.cs" />
     <Compile Include="Assets\ProductionBuildingController.cs" />
@@ -114,6 +115,9 @@
     <Compile Include="Assets\Scripts\sql_client.cs" />
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
     <Compile Include="Assets\Silo.cs" />
+    <Compile Include="Assets\SlotInfo.cs" />
+    <Compile Include="Assets\Storage.cs" />
+    <Compile Include="Assets\Subject.cs" />
     <Compile Include="Assets\SwipeManager.cs" />
     <Compile Include="Assets\WorldCreation.cs" />
     <Compile Include="Assets\bakery_button_flip.cs" />

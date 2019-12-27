@@ -144,7 +144,7 @@ public class price_for_diamonds_panel_button_ok : MonoBehaviour
             Debug.Log("Недостаточно Алмазов!");
             return;
         }
-        bakery.add_in_slot_predmet(globals.price_for_diamonds_panel_current_item);
+        //bakery.add_in_slot_predmet(globals.price_for_diamonds_panel_current_item);
         GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(false);
         
         //Списать алмазы

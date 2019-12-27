@@ -21,6 +21,8 @@ public class bakery : MonoBehaviour
     private bool IsCollisionMoveModeOn = false;
     private string[,] ArraySlotsLoading;
     private string[,] ArraySlotsShipment;
+    private int OpenSlots;
+
     GameObject Collider;
     GameObject Arrow;
     GameObject Arrow0;
@@ -342,29 +344,37 @@ public class bakery : MonoBehaviour
 
         }
     }//Отгрузка предмета из слота загрузки в слот отгрузки
-    public static void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
+    public void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
     {
+        
+        //GameObject.Find(subject).GetComponent
         //Если все слоты заняты, не загружать
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
         Debug.Log("add: " + subject);
-        int building_time = 10;//Время сборки предмета 10 секунд
+        //GameObject GO;
+        //GO = GameObject.Find("Bread").GetComponent<Subject>().GetCount();
+        int building_time = 20;//Время сборки
+
         if (subject == "bread")
         {
-            if (globals.bakery_array_slots_zagruzki[globals.bakery_slots_zagruzki_open - 1, 0] != "")//Если последний открытый слот пекарни не пустой
+            if (ArraySlotsLoading[OpenSlots - 1, 0] != "")//Если последний открытый слот пекарни не пустой
             {
                 Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
                 return;
             }
-            building_time = 20;//Время сборки
-            if (globals.wheat - 3 >= 0)
+            
+            //Проверка наличия всех ингридиентов
+            if (GameObject.Find("Wheat").GetComponent<Subject>().GetCount() - 3 >= 0)
             {
-                globals.wheat = globals.wheat - 3;
+                GameObject.Find("Wheat").GetComponent<Subject>().SetCount(-3);
+                //globals.wheat = globals.wheat - 3;
             }
             else
             {
                 Debug.Log("Нехватает ингредиентов!");
+                //GameObject.Find("")
                 globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 3) * (-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";

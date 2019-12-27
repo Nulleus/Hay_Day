@@ -52,19 +52,19 @@ public class slot_predmet : MonoBehaviour
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            bakery.add_in_slot_predmet("bread");
+            //bakery.add_in_slot_predmet("bread");
         }
         if ((predmet == "corn_bread") && (other.gameObject.name == "bakery_slot_0_zagruzki_frame")) //Загрузка хлеба в slot_backery_0_0
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            bakery.add_in_slot_predmet("corn_bread");
+            //bakery.add_in_slot_predmet("corn_bread");
         }
         if ((predmet == "cookie") && (other.gameObject.name == "bakery_slot_0_zagruzki_frame")) //Загрузка хлеба в slot_backery_0_0
         {
             mousedrag_block_on = true;
             gameObject.transform.position = primary_position; //Тут предмет должен возвратится обратно на начальную позицию
-            bakery.add_in_slot_predmet("cookie");
+            //bakery.add_in_slot_predmet("cookie");
         }
 
         if ((predmet == "cream") && (other.gameObject.name == "bakery_slot_0_zagruzki_frame")) //Загрузка хлеба в slot_backery_0_0
