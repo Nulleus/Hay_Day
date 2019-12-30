@@ -37,6 +37,7 @@ public class bakery : MonoBehaviour
     GameObject SlotsLoading;
     GameObject SlotsShipment;
     GameObject FarmBoxColliders;
+    GameObject SlotInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,7 @@ public class bakery : MonoBehaviour
         Arrow2.transform.Find("Arrow2");
         Arrow3.transform.Find("Arrow3");
         Arrow4.transform.Find("Arrow4");
+        SlotInfo = GameObject.Find("SlotInfo");
         //MainCamera = GameObject.Find("MainCamera");
         //SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
         //Collider.transform.Find("Collider");
@@ -346,25 +348,42 @@ public class bakery : MonoBehaviour
     }//Отгрузка предмета из слота загрузки в слот отгрузки
     public void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
     {
-        
-        //GameObject.Find(subject).GetComponent
-        //Если все слоты заняты, не загружать
 
+        //Если все слоты заняты, не загружать
+        if (ArraySlotsLoading[OpenSlots - 1, 0] != "")//Если последний открытый слот пекарни не пустой
+        {
+            Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
+            return;
+        }
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
         Debug.Log("add: " + subject);
-        //GameObject GO;
-        //GO = GameObject.Find("Bread").GetComponent<Subject>().GetCount();
         int building_time = 20;//Время сборки
+        GameObject GO = GameObject.Find(subject);//Поиск объекта
+        
+        string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
+        //Поиск объекта из массива
+        foreach (string ingredient in ingredients)//Перебор найденных ингредиентов
+        {
+            //Получаем количество, необходимое для производства
+           if( GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient) >= 0)
+            {
+                GameObject.Find(ingredient).GetComponent<Subject>().SetCount(GO.GetComponent<Ingredients>().GetCountByName(ingredient));
+            }
+           else
+            {
+                Debug.Log("Нехватает ингредиентов!");
+                //Добавляем в SlotInfo, ингредиенты, которых нехватает и их количество
+
+                SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
+            }
+        }
 
         if (subject == "bread")
         {
-            if (ArraySlotsLoading[OpenSlots - 1, 0] != "")//Если последний открытый слот пекарни не пустой
-            {
-                Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
-                return;
-            }
+
             
+
             //Проверка наличия всех ингридиентов
             if (GameObject.Find("Wheat").GetComponent<Subject>().GetCount() - 3 >= 0)
             {

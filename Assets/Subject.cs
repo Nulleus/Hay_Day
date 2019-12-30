@@ -15,7 +15,7 @@ public class Subject : MonoBehaviour
     [SerializeField]
     private int ExperiencePoint;
     [SerializeField]
-
+    
    public int GetCount()
     {
         return Count;
@@ -27,7 +27,8 @@ public class Subject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Получение рецепта
+
     }
     // Update is called once per frame
     void Update()
