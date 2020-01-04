@@ -23,7 +23,7 @@ public class Ingredients : MonoBehaviour
     {
         return Subject;
     }
-    public string[] GetAllKeysSubjects()
+    public string[] GetAllKeysSubjects()//Получаем все ингредиенты, которые используются для изготовления предмета
     {
         int i=0;
         string[] Array = new string[10];

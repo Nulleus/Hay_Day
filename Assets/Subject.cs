@@ -5,6 +5,8 @@ using UnityEngine;
 public class Subject : MonoBehaviour
 {
     [SerializeField]
+    private string Storage;
+    [SerializeField]
     private int Count;
     [SerializeField]
     private int PriceMaxForCoins;

@@ -23,6 +23,7 @@ public class bakery : MonoBehaviour
     private string[,] ArraySlotsShipment;
     private int OpenSlots;
 
+    GameObject Subjects;
     GameObject Collider;
     GameObject Arrow;
     GameObject Arrow0;
@@ -42,9 +43,10 @@ public class bakery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
-        SlotsSubject.transform.Find("SlotsSubject");
-        SlotsLoading.transform.Find("SlotsLoading");
+        Subjects = transform.Find("Subjects").gameObject;//Поиск хранилища со всеми предметами игры
+        SlotsPanel = transform.Find("SlotsPanel").gameObject;//Find Child gameobject
+        SlotsSubject = transform.Find("SlotsSubject").gameObject;
+        SlotsLoading = transform.Find("SlotsLoading").gameObject;
         SlotsShipment.transform.Find("SlotsShipment");
         FarmBoxColliders.transform.Find("FarmBoxColliders");
         Arrow.transform.Find("Arrow");
