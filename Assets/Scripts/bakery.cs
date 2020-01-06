@@ -132,7 +132,7 @@ public class bakery : MonoBehaviour
                 IsCountOn = false;
             }
         }
-        ShipmentPredmet();//Контоль отгрузк предмета
+        ShipmentSubject();//Контоль отгрузк предмета
     }
     void OffsetArray()//Смещение массива на одну позицию  
     {
@@ -216,7 +216,7 @@ public class bakery : MonoBehaviour
         ArraySlotsShipment[8, 2] = "";
 
     }
-    void ShipmentPredmet()
+    void ShipmentSubject()
     {
         //Добавить цикл прохода, только по откытым слотам
         var nowtime = DateTime.Now;
@@ -348,6 +348,7 @@ public class bakery : MonoBehaviour
 
         }
     }//Отгрузка предмета из слота загрузки в слот отгрузки
+    //public void Add
     public void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
     {
 
@@ -361,23 +362,28 @@ public class bakery : MonoBehaviour
         DateTime time_slot;
         Debug.Log("add: " + subject);
         int building_time = 20;//Время сборки
-        GameObject GO = GameObject.Find(subject);//Поиск объекта
+        GameObject GO = GameObject.Find(subject);//Поиск объекта, например Bread
         
         string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
         //Поиск объекта из массива
         foreach (string ingredient in ingredients)//Перебор найденных ингредиентов
         {
-            //Получаем количество, необходимое для производства
+            //Если найденый ингредиент и его количество на складе минус(необходимое количество для производства)>=0, тогда выполняем действие
            if( GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient) >= 0)
             {
+                //Вычитаем количество предмета через сетод SetCount
                 GameObject.Find(ingredient).GetComponent<Subject>().SetCount(GO.GetComponent<Ingredients>().GetCountByName(ingredient));
             }
            else
             {
                 Debug.Log("Нехватает ингредиентов!");
                 //Добавляем в SlotInfo, ингредиенты, которых нехватает и их количество
+                //Предмет
 
-                SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
+                //Количество, которого нехватает = Количество ингредиентов на складе - Необходимое количество ингредиентов для производства
+                var countMissing = (GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient)) * (-1);//-1 Для получения положительного числа
+                //Информация для Панели слота инфо с 
+                //Не тут лолжно быть, а на MouseDown SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
             }
         }
 

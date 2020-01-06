@@ -73,7 +73,6 @@ public class SlotInfo : MonoBehaviour
     }
     public void AddMissingIngredientAnimator(GameObject go, string value)
     {
-        
         try
         {
             go.GetComponent<Animator>().CrossFade(value, 0);
@@ -101,17 +100,6 @@ public class SlotInfo : MonoBehaviour
     }
     public void AddMissingIngredient(GameObject go, string value)//Какого предмета нехватает, количество
     {
-
-        //Получить список GameObject со свободными слотами
-        //go.gameObject.Name
-        if (go.GetComponent<Text>().text == "")
-        {
-
-        }
-        else
-        {
-            Debug.Log("Этот слот занят, переход к следующему");
-        }
 
     }
     public void GetFreeSlots()

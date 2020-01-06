@@ -753,11 +753,10 @@ public class MyDictionary : SerializableDictionary<string, int> { }
 [Serializable] public class MyDictionary2 : SerializableDictionary<KeyCode, GameObject> { }
 public class Ingredients : MonoBehaviour
 {
-    public MyDictionary1 dictionary1;
+    public MyDictionary1 Subject;
     public MyDictionary2 dictionary2;
     public MyDictionary dictionary;
     private string Name;
-    private Dictionary<string, int> Subject = new Dictionary<string, int>();
     // Start is called before the first frame update
 
     
@@ -770,7 +769,7 @@ public class Ingredients : MonoBehaviour
         Subject.Add(ingredient, count);
     }
 
-    public Dictionary<string,int> GetSubjects()
+    public MyDictionary1 GetSubjects()
     {
         return Subject;
     }
@@ -778,7 +777,8 @@ public class Ingredients : MonoBehaviour
     {
         int i=0;
         string[] Array = new string[10];
-        Dictionary<string, int>.KeyCollection keyColl = Subject.Keys;
+        
+        Dictionary<string, int>.KeyCollection keyColl = Subject.AsDictionary.Keys;
         foreach (string s in keyColl)
         {
             i++;

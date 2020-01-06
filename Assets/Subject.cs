@@ -13,7 +13,7 @@ public class Subject : MonoBehaviour
     [SerializeField]
     private int PriceForDiamonds;
     [SerializeField]
-    private int BuildingTime;
+    private int BuildingTimeSec;
     [SerializeField]
     private int ExperiencePoint;
     [SerializeField]
