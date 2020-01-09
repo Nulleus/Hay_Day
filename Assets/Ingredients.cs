@@ -787,4 +787,11 @@ public class Ingredients : MonoBehaviour
         }
         return Array;
     }
+    public void DownloadData(string subject)
+    {
+        sql_client SC = new sql_client();
+        SC.SQL_Data_ID("Server = 127.0.0.1; Database = Farm_DB; User ID = farm_test; Password = z173500SS", "select * from");
+        //Получаем ингредиент и добавлляем их в список
+        //Subject.Add();
+    }
 }
