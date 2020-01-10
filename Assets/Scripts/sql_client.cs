@@ -8,26 +8,27 @@ using System.Data;
 using System.Text;
 
 public class sql_client {
-    public void SQL_Data_ID()
+    public void SQL_Data_ID(string connectionString, string sql)
     {
         //Connection string
         SqlConnection connstr = new SqlConnection();
-        string connectionString = "Server = 127.0.0.1; Database = Farm_DB; User ID = farm_test; Password = z173500SS";
+        //connectionString = "Server = 127.0.0.1; Database = Farm_DB; User ID = farm_test; Password = z173500SS";
         IDbConnection dbcon;
         using (dbcon = new SqlConnection(connectionString))
         {
             dbcon.Open();
             using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                string sql = "select ID from TBL_USERS WHERE LOGIN='"+globals.login_users+"' AND PASWORD='"+globals.password_users+"'";
+                //string sql = "select ID from TBL_USERS WHERE LOGIN='"+globals.login_users+"' AND PASWORD='"+globals.password_users+"'";
                 dbcmd.CommandText = sql;
                 using (IDataReader reader = dbcmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        globals.id_user = (int)reader["ID"];
+                        //Ingredients ingredients
+                        //globals.id_user = (int)reader["ID"];
                         //string LastName = (string)reader["lname"];
-                        Debug.Log("ID: " + globals.id_user);
+                        //Debug.Log("ID: " + globals.id_user);
                     }
                 }
             }
