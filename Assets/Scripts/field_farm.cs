@@ -114,7 +114,7 @@ public class field_farm : MonoBehaviour
                 panel_authorization.SetActive(false);//Скрываем панель авторизации
 
                 sql_client sc = new sql_client();
-                sc.SQL_Data_ID();
+                //sc.SQL_Data_ID();
                 //sc.SQL_Data("select * from TBL_USERS");
                 //Debug.Log(sc.SQL_Data("select * from TBL_USERS"));
             }
