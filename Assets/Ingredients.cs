@@ -6,6 +6,8 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEditor;
 using UnityObject = UnityEngine.Object;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
 {
@@ -757,9 +759,10 @@ public class Ingredients : MonoBehaviour
     public MyDictionary2 dictionary2;
     public MyDictionary dictionary;
     private string Name;
+    MySqlConnection connection;
     // Start is called before the first frame update
 
-    
+
     public int GetCountByName(string name)
     {
         return Subject[name];
@@ -787,11 +790,34 @@ public class Ingredients : MonoBehaviour
         }
         return Array;
     }
-    public void DownloadData(string subject)
+    void Start()
     {
-        sql_client SC = new sql_client();
-        SC.SQL_Data_ID("Server = 127.0.0.1; Database = Farm_DB; User ID = farm_test; Password = z173500SS", "select * from");
+
+        DownloadData("SERVER = mailruz6.beget.tech;DATABASE = mailruz6_hayday;USER = mailruz6_hayday;PASSWORD = z173500qw;", @"SELECT * FROM Ingredients INNER JOIN Subjects ON Ingredients.ParentSubjectID = Subjects.IDSubject WHERE Subjects.NameSubject = '"+gameObject.name+"'", gameObject.name);
+
         //Получаем ингредиент и добавлляем их в список
         //Subject.Add();
     }
+    public void DownloadData(string connectionString, string sql,string subject)
+    {
+        // создаём объект для подключения к БД
+        MySqlConnection conn = new MySqlConnection(connectionString);
+        // устанавливаем соединение с БД
+        conn.Open();
+        // объект для выполнения SQL-запроса
+        MySqlCommand command = new MySqlCommand(sql, conn);
+        // объект для чтения ответа сервера
+        MySqlDataReader reader = command.ExecuteReader();
+        // читаем результат
+        while (reader.Read())
+        {
+            Subject.Add((string)reader["NameSubject"], (int)reader["Count"]);
+            // элементы массива [] - это значения столбцов из запроса SELECT
+            //Console.WriteLine(reader[0].ToString() + " " + reader[1].ToString());
+        }
+        reader.Close(); // закрываем reader
+                        // закрываем соединение с БД
+        conn.Close();
+    }
 }
+    
