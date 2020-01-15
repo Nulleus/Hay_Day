@@ -793,7 +793,12 @@ public class Ingredients : MonoBehaviour
     void Start()
     {
 
-        DownloadData("SERVER = mailruz6.beget.tech;DATABASE = mailruz6_hayday;USER = mailruz6_hayday;PASSWORD = z173500qw;", @"SELECT * FROM Ingredients INNER JOIN Subjects ON Ingredients.ParentSubjectID = Subjects.IDSubject WHERE Subjects.NameSubject = '"+gameObject.name+"'", gameObject.name);
+        DownloadData("SERVER = mailruz6.beget.tech;DATABASE = mailruz6_hayday;USER = mailruz6_hayday;PASSWORD = z173500qw;",
+            @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
+                JOIN Subjects CS ON i.SubjectID = CS.IDSubject 
+                JOIN Subjects PS ON i.ParentSubjectID = PS.IDSubject
+                WHERE PS.NameSubject= '" + gameObject.name+"'", 
+            gameObject.name);
 
         //Получаем ингредиент и добавлляем их в список
         //Subject.Add();
@@ -811,7 +816,7 @@ public class Ingredients : MonoBehaviour
         // читаем результат
         while (reader.Read())
         {
-            Subject.Add((string)reader["NameSubject"], (int)reader["Count"]);
+            Subject.Add((string)reader["ChildSubject"], (int)reader["Count"]);
             // элементы массива [] - это значения столбцов из запроса SELECT
             //Console.WriteLine(reader[0].ToString() + " " + reader[1].ToString());
         }
