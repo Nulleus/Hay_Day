@@ -793,7 +793,7 @@ public class Ingredients : MonoBehaviour
     void Start()
     {
 
-        DownloadData("SERVER = ;DATABASE = ;USER = ;PASSWORD = ;",
+        DownloadData("SERVER = mailruz6.beget.tech;DATABASE = mailruz6_hayday;USER = mailruz6_hayday;PASSWORD = z173500qw;",
             @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
                 JOIN Subjects CS ON i.SubjectID = CS.IDSubject 
                 JOIN Subjects PS ON i.ParentSubjectID = PS.IDSubject
