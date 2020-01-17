@@ -13,6 +13,10 @@
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
+# ConnectionString,Password
+
+/[Aa]ssets/Scripts*
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
