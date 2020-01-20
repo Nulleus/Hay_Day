@@ -25,7 +25,7 @@ public class SlotInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SlotInfoMainSubjectName.transform.Find("SlotInfoMainSubjectName");
+        SlotInfoMainSubjectName.transform.Find("SlotInfoMainSubjectName");//Поиск дочернего элемента
         SlotInfoSubject0.transform.Find("SlotInfoSubject0");
         SlotInfoSubjectQuantity0.transform.Find("SlotInfoSubjectQuantity0");
         SlotInfoSubjectImage0.transform.Find("SlotInfoSubjectImage0");
@@ -43,20 +43,15 @@ public class SlotInfo : MonoBehaviour
         SlotInfoMainSubjectStorageQuantity.transform.Find("SlotInfoMainSubjectStorageQuantity");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ClearComponentText(GameObject go)
+    public void ClearComponentText(GameObject go)//Очистка текста у игрового объекта
     {
         go.GetComponent<Text>().text = "";
     }
-    public void ClearComponentAnimator(GameObject go)
+    public void ClearComponentAnimator(GameObject go)//Запуск пустой анимации
     {
         go.GetComponent<Animator>().CrossFade("Empty",0);
     }
-    public void ClearAllSlotsInfo()
+    public void ClearAllSlotsInfo()//Очистка слотов информации
     {
         ClearComponentText(SlotInfoMainSubjectName);
         ClearComponentText(SlotInfoSubjectQuantity0);
@@ -71,7 +66,7 @@ public class SlotInfo : MonoBehaviour
         ClearComponentText(SlotInfoMainSubjectStorageImage);
         ClearComponentText(SlotInfoMainSubjectStorageQuantity);
     }
-    public void AddMissingIngredientAnimator(GameObject go, string value)
+    public void AddMissingIngredientAnimator(GameObject go, string value)//Анимация слота с ингредиентом, которого нехватает
     {
         try
         {
@@ -86,7 +81,7 @@ public class SlotInfo : MonoBehaviour
             Debug.Log("finaly AddMissingIngredientAnimator");
         }
     }
-    public void AddMissingIngredientText(GameObject go, string value)
+    public void AddMissingIngredientText(GameObject go, string value)//Добавление текста, выбранному объекту и значение текста
     {
         if (go.GetComponent<Text>().text == "")
         {
@@ -102,9 +97,14 @@ public class SlotInfo : MonoBehaviour
     {
 
     }
-    public void GetFreeSlots()
+    public GameObject GetFreeSlot()//Получение свободного слота
     {
-
+        //Сканирование свободности слотов по имени
+        if (SlotInfoSubject0.GetComponent<Text>().text == ""){return SlotInfoSubject0;}
+        if (SlotInfoSubject1.GetComponent<Text>().text == ""){return SlotInfoSubject1;}
+        if (SlotInfoSubject2.GetComponent<Text>().text == "") { return SlotInfoSubject2; }
+        if (SlotInfoSubject3.GetComponent<Text>().text == "") { return SlotInfoSubject3; }
+        return null;
     }
 
 }
