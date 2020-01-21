@@ -26,18 +26,24 @@ public class SlotInfo : MonoBehaviour
     void Start()
     {
         SlotInfoMainSubjectName.transform.Find("SlotInfoMainSubjectName");//Поиск дочернего элемента
+
         SlotInfoSubject0.transform.Find("SlotInfoSubject0");
         SlotInfoSubjectQuantity0.transform.Find("SlotInfoSubjectQuantity0");
         SlotInfoSubjectImage0.transform.Find("SlotInfoSubjectImage0");
+
+
         SlotInfoSubject1.transform.Find("SlotInfoSubject1");
         SlotInfoSubjectQuantity1.transform.Find("SlotInfoSubjectQuantity1");
         SlotInfoSubjectImage1.transform.Find("SlotInfoSubjectImage1");
+
         SlotInfoSubject2.transform.Find("SlotInfoSubject2");
         SlotInfoSubjectQuantity2.transform.Find("SlotInfoSubjectQuantity2");
         SlotInfoSubjectImage2.transform.Find("SlotInfoSubjectImage2");
+
         SlotInfoSubject3.transform.Find("SlotInfoSubject3");
         SlotInfoSubjectQuantity3.transform.Find("SlotInfoSubjectQuantity3");
         SlotInfoSubjectImage3.transform.Find("SlotInfoSubjectImage3");
+
         SlotInfoMainSubjectBuildingTime.transform.Find("SlotInfoMainSubjectBuildingTime");
         SlotInfoMainSubjectStorageImage.transform.Find("SlotInfoMainSubjectStorageImage");
         SlotInfoMainSubjectStorageQuantity.transform.Find("SlotInfoMainSubjectStorageQuantity");
@@ -65,6 +71,7 @@ public class SlotInfo : MonoBehaviour
         ClearComponentText(SlotInfoMainSubjectBuildingTime);
         ClearComponentText(SlotInfoMainSubjectStorageImage);
         ClearComponentText(SlotInfoMainSubjectStorageQuantity);
+
     }
     public void AddMissingIngredientAnimator(GameObject go, string value)//Анимация слота с ингредиентом, которого нехватает
     {
@@ -93,18 +100,20 @@ public class SlotInfo : MonoBehaviour
         }
         
     }
-    public void AddMissingIngredient(GameObject go, string value)//Какого предмета нехватает, количество
+    public void AddMissingIngredient(GameObject go,string subject, int value)//Какого предмета нехватает, количество
     {
-
+        go.GetComponent<SlotInfoSubject>().SetSubjectName(subject);
+        go.GetComponent<SlotInfoSubject>().SetSubjectCount(value);
     }
     public GameObject GetFreeSlot()//Получение свободного слота
     {
         //Сканирование свободности слотов по имени
-        if (SlotInfoSubject0.GetComponent<Text>().text == ""){return SlotInfoSubject0;}
-        if (SlotInfoSubject1.GetComponent<Text>().text == ""){return SlotInfoSubject1;}
-        if (SlotInfoSubject2.GetComponent<Text>().text == "") { return SlotInfoSubject2; }
-        if (SlotInfoSubject3.GetComponent<Text>().text == "") { return SlotInfoSubject3; }
+        if (SlotInfoSubject0.GetComponent<SlotInfoSubject>().GetSubjectName() == ""){return SlotInfoSubject0;}
+        if (SlotInfoSubject1.GetComponent<SlotInfoSubject>().GetSubjectName() == "") { return SlotInfoSubject1; }
+        if (SlotInfoSubject2.GetComponent<SlotInfoSubject>().GetSubjectName() == "") { return SlotInfoSubject2; }
+        if (SlotInfoSubject3.GetComponent<SlotInfoSubject>().GetSubjectName() == "") { return SlotInfoSubject3; }
         return null;
     }
+    
 
 }

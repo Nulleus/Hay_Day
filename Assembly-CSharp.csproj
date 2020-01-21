@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
     <Compile Include="Assets\Silo.cs" />
     <Compile Include="Assets\SlotInfo.cs" />
+    <Compile Include="Assets\SlotInfoSubject.cs" />
     <Compile Include="Assets\Storage.cs" />
     <Compile Include="Assets\Subject.cs" />
     <Compile Include="Assets\SwipeManager.cs" />
