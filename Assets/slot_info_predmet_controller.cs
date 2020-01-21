@@ -10,7 +10,7 @@ public class slot_info_predmet_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SlotSubject.GetComponent<>
     }
 
     // Update is called once per frame
