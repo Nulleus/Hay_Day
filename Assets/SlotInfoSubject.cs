@@ -8,16 +8,24 @@ public class SlotInfoSubject : MonoBehaviour
     private string SubjectName;//Предмет
     [SerializeField]
     private int SubjectCount;//Необходимое количество
+    [SerializeField]
+    private int StorageSubjectCount;//Количество на складе
 
-    public string GetSubjectName()
+    public int GetStorageSubjectCount()//Получение количества предмета на складе
+    {
+        StorageSubjectCount = GameObject.Find(SubjectName).GetComponent<Subject>().GetCount();
+        return StorageSubjectCount;
+    }
+
+    public string GetSubjectName()//Получение имени предмета
     {
         return SubjectName;
     }
-    public void SetSubjectName(string subjectName)
+    public void SetSubjectName(string subjectName)//Присвоение имени предмету
     {
         SubjectName=subjectName;
     }
-    public int GetSubjectCount()
+    public int GetSubjectCount()//Получение количества предмета
     {
         return SubjectCount;
     }

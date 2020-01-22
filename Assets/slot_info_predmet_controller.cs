@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class slot_info_predmet_controller : MonoBehaviour
 {
-    public GameObject SlotSubject;
-    public Component SlotComponent;
+
     // Start is called before the first frame update
     void Start()
     {
-        SlotSubject.GetComponent<>
+
     }
 
     // Update is called once per frame
