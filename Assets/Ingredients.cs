@@ -776,7 +776,7 @@ public class Ingredients : MonoBehaviour
     {
         return Subject;
     }
-    public string[] GetAllKeysSubjects()//Получаем все ингредиенты, которые используются для изготовления предмета
+    public string[] GetAllKeysSubjects()//Получаем все ингредиенты и их количество, которые используются для изготовления предмета
     {
         int i=0;
         string[] Array = new string[10];
@@ -790,6 +790,7 @@ public class Ingredients : MonoBehaviour
         }
         return Array;
     }
+
     void Start()
     {
 
