@@ -30,6 +30,10 @@ public class SlotInfo : MonoBehaviour
         SlotInfoMainSubjectStorageImage.transform.Find("SlotInfoMainSubjectStorageImage");
         SlotInfoMainSubjectStorageQuantity.transform.Find("SlotInfoMainSubjectStorageQuantity");
     }
+    public void AddValuesInSlots()
+    {
+
+    }
 
     public void ResetText(GameObject go)//Очистка текста у игрового объекта
     {
@@ -91,9 +95,32 @@ public class SlotInfo : MonoBehaviour
         if (SlotInfoSubject3.GetComponent<SlotInfoSubject>().GetSubjectName() == "") { return SlotInfoSubject3; }
         return null;
     }
-    public void AddIngredientsByNameSubject(string subject)
+    public void AddIngredientsByNameSubject(string subject)//Добавление информации об ингредиентах в SlotInfo по имени объекта
     {
         var ingredients = GameObject.Find(subject).GetComponent<Ingredients>().GetSubjects();
+        //Очищаем все слоты, перед добавлением новой информации
+        ResetAllSlotsInfo();
+        //Получаем свободный SlotSubjectN
+        var freeSlot = GetFreeSlot();
+        //Проходимся циклом по ингредиентам и их необходимому количеству
+        foreach (KeyValuePair<string, int> kvp in ingredients)
+        {
+            int storageCount = freeSlot.GetComponent<SlotInfoSubject>().GetStorageSubjectCount();
+            freeSlot.GetComponent<SlotInfoSubject>().AddValueInSlot(freeSlot, kvp.Key,storageCount, kvp.Value);
+            Debug.Log(kvp.Key);//Имя предмета
+            Debug.Log(kvp.Value);//Количество
+        }
+        //Имя предмета, который можно изготовить
+        SlotInfoMainSubjectName.GetComponent<Text>().text = subject;
+        //Поиск времени изготовления предмета по имени      
+        SlotInfoMainSubjectBuildingTime.GetComponent<Text>().text = GameObject.Find(subject).GetComponent<Subject>().GetBuildingTimeSec().ToString()+" c.";
+        //Получение имени хранилища, для данного объекта
+        string storageName = GameObject.Find(subject).GetComponent<Subject>().GetStorageName()+"_4";
+        //Картинка хранилища для конкретного объекта
+        SlotInfoMainSubjectStorageImage.GetComponent<Animator>().CrossFade(storageName, 0);
+        //Количество конкретного объекта на складе
+        SlotInfoMainSubjectStorageQuantity.GetComponent<Text>().text = GameObject.Find(subject).GetComponent<Subject>().GetCount().ToString();
+
     }
     
 

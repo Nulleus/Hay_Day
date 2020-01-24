@@ -763,7 +763,7 @@ public class Ingredients : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public int GetCountByName(string name)
+    public int GetCountByName(string name)//Получаем количество предметов, необходимых для производства по имени объекта
     {
         return Subject[name];
     }
@@ -772,23 +772,24 @@ public class Ingredients : MonoBehaviour
         Subject.Add(ingredient, count);
     }
 
-    public MyDictionary1 GetSubjects()
+
+    public Dictionary<string,int> GetSubjects()
     {
-        return Subject;
-    }
-    public string[] GetAllKeysSubjects()//Получаем все ингредиенты и их количество, которые используются для изготовления предмета
+        return Subject.AsDictionary;
+    } 
+    public string[] GetAllKeysSubjects()//Получаем все предметы, которые используются для изготовления другого предмета
     {
         int i=0;
-        string[] Array = new string[10];
+        string[] array = new string[10];
         
         Dictionary<string, int>.KeyCollection keyColl = Subject.AsDictionary.Keys;
         foreach (string s in keyColl)
         {
             i++;
-            Array[i] = s;
+            array[i] = s;
             print("Key = {0}"+ s);
         }
-        return Array;
+        return array;
     }
 
     void Start()

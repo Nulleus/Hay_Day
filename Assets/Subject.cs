@@ -17,8 +17,17 @@ public class Subject : MonoBehaviour
     [SerializeField]
     private int ExperiencePoint;
     [SerializeField]
-    
-   public int GetCount()
+
+    public string GetStorageName()
+    {
+        return Storage;
+    }
+
+    public int GetBuildingTimeSec()
+    {
+        return BuildingTimeSec;
+    }
+    public int GetCount()
     {
         return Count;
     }

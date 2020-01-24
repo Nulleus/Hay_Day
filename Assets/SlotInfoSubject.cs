@@ -63,19 +63,60 @@ public class SlotInfoSubject : MonoBehaviour
     {
         return SubjectName;
     }
-    public void SetSubjectName(string subjectName)//Присвоение имени предмету
+    public void SetSubjectName(string subjectName)//Присвоение имени предмету и вывод 
     {
-        SubjectName=subjectName;
+        SubjectName =subjectName;   
+    }
+    //Пустой слот, имя объекта, количество на складе, количество необходимое для производства.
+    public void AddValueInSlot(GameObject GO,string subjectName, int storageSubjectCount, int subjectCount )
+    {
+        SetSubjectName(subjectName);
+        SetStorageSubjectCount(storageSubjectCount);
+        SetSubjectCount(subjectCount);
+        if (GO.name == "SlotInfoSubject0")
+        {
+            SlotInfoSubjectImage0.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectQuantity0.GetComponent<Text>().text =
+                StorageSubjectCount.ToString() + 
+                "/"+
+                SubjectCount.ToString();
+        }
+        if (GO.name == "SlotInfoSubject1")
+        {
+            SlotInfoSubjectImage1.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectQuantity1.GetComponent<Text>().text =
+                StorageSubjectCount.ToString() +
+                "/" +
+                SubjectCount.ToString();
+        }
+        if (GO.name == "SlotInfoSubject2")
+        {
+            SlotInfoSubjectImage2.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectQuantity2.GetComponent<Text>().text =
+                StorageSubjectCount.ToString() +
+                "/" +
+                SubjectCount.ToString();
+        }
+        if (GO.name == "SlotInfoSubject3")
+        {
+            SlotInfoSubjectImage3.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectQuantity3.GetComponent<Text>().text =
+                StorageSubjectCount.ToString() +
+                "/" +
+                SubjectCount.ToString();
+        }
+
+
     }
     public int GetSubjectCount()//Получение количества предмета
     {
         return SubjectCount;
     }
-    public void SetSubjectCount(int subjectCount)//Присвоение количества предмета
+    public void SetSubjectCount(int subjectCount)//Присвоение значения, необходимого для производства
     {
         SubjectCount = subjectCount;
     }
-    public void SetStorageSubjectCount(int storageSubjectCount)//Просвоение количества предмета на складе
+    public void SetStorageSubjectCount(int storageSubjectCount)//Присвоение количества предмета на складе
     {
         StorageSubjectCount = storageSubjectCount;
     }

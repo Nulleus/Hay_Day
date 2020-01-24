@@ -99,7 +99,7 @@ public class slot_predmet : MonoBehaviour
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         primary_position = gameObject.transform.position;
         GameObject_Enable_Controller.slot_info.SetActive(true);
-       // GameObject.Find("SlotInfo").GetComponent<SlotInfo>().Add
+        GameObject.Find("SlotInfo").GetComponent<SlotInfo>().AddIngredientsByNameSubject(gameObject.name);
         if (gameObject.name == "bread")
         {
 
