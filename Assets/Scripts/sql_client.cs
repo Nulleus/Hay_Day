@@ -8,6 +8,8 @@ using System.Data;
 using System.Text;
 
 public class sql_client {
+
+
     public void SQL_Data_ID(string connectionString, string sql)
     {
         //Connection string

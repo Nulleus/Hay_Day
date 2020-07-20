@@ -39,6 +39,7 @@ public class bakery : MonoBehaviour
     GameObject SlotsShipment;
     GameObject FarmBoxColliders;
     GameObject SlotInfo;
+    GameObject ConnectionString;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +48,8 @@ public class bakery : MonoBehaviour
         SlotsPanel = transform.Find("SlotsPanel").gameObject;//Find Child gameobject
         SlotsSubject = transform.Find("SlotsSubject").gameObject;
         SlotsLoading = transform.Find("SlotsLoading").gameObject;
-        SlotsShipment.transform.Find("SlotsShipment");
-        FarmBoxColliders.transform.Find("FarmBoxColliders");
+        SlotsShipment = transform.Find("SlotsShipment").gameObject;
+        FarmBoxColliders = transform.Find("FarmBoxColliders").gameObject;
         Arrow.transform.Find("Arrow");
         Arrow0.transform.Find("Arrow0");
         Arrow1.transform.Find("Arrow1");
@@ -56,6 +57,7 @@ public class bakery : MonoBehaviour
         Arrow3.transform.Find("Arrow3");
         Arrow4.transform.Find("Arrow4");
         SlotInfo = GameObject.Find("SlotInfo");
+        ConnectionString = GameObject.Find("ConnectionString");
         //MainCamera = GameObject.Find("MainCamera");
         //SlotsPanel.transform.Find("SlotsPanel");//Find Child gameobject
         //Collider.transform.Find("Collider");
@@ -64,16 +66,19 @@ public class bakery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Проверяем, активена ли панель со слотами
         if (SlotsPanel.activeSelf)
         {
+            //Если активна, тогда диактивируем ее
             SlotsPanel.SetActive(false);
         }
         else
         {
+            //Если не активна, активируем ее
             SlotsPanel.SetActive(true);
         }
 
+        //Если слоты с предметами активны
         if (SlotsSubject.activeSelf)
         {
             SlotsSubject.SetActive(true);

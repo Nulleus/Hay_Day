@@ -63,6 +63,7 @@
      <Compile Include="Assets\ProductionBuilding.cs" />
      <Compile Include="Assets\ProductionBuildingCollider.cs" />
      <Compile Include="Assets\ProductionBuildingController.cs" />
+     <Compile Include="Assets\SQLClient.cs" />
      <Compile Include="Assets\Scripts\Obj_Click.cs" />
      <Compile Include="Assets\Scripts\RectTransformExtensions.cs" />
      <Compile Include="Assets\Scripts\bakery.cs" />

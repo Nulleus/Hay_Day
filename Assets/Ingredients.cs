@@ -755,11 +755,15 @@ public class MyDictionary : SerializableDictionary<string, int> { }
 [Serializable] public class MyDictionary2 : SerializableDictionary<KeyCode, GameObject> { }
 public class Ingredients : MonoBehaviour
 {
+    public string Server;
+    public string DataBase;
+    public string UserName;
+    public string UserPassword;
+
     public MyDictionary1 Subject;
     public MyDictionary2 dictionary2;
     public MyDictionary dictionary;
     private string Name;
-    MySqlConnection connection;
     // Start is called before the first frame update
 
 
@@ -794,15 +798,15 @@ public class Ingredients : MonoBehaviour
 
     void Start()
     {
-
-        DownloadData("SERVER = ;DATABASE = ;USER = ;PASSWORD = ;",
+        
+        DownloadData("Server="+Server+";"+"DataBase="+DataBase+";"+"USER="+UserName+";"+"PASSWORD="+UserPassword+";",
             @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
                 JOIN Subjects CS ON i.SubjectID = CS.IDSubject 
                 JOIN Subjects PS ON i.ParentSubjectID = PS.IDSubject
                 WHERE PS.NameSubject= '" + gameObject.name+"'", 
             gameObject.name);
 
-        //Получаем ингредиент и добавлляем их в список
+        //Получаем ингредиенты и добавлляем их в список
         //Subject.Add();
     }
     public void DownloadData(string connectionString, string sql,string subject)
