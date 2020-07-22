@@ -755,11 +755,11 @@ public class MyDictionary : SerializableDictionary<string, int> { }
 [Serializable] public class MyDictionary2 : SerializableDictionary<KeyCode, GameObject> { }
 public class Ingredients : MonoBehaviour
 {
-    public string Server;
-    public string DataBase;
-    public string UserName;
-    public string UserPassword;
-
+    string Server;
+    string DataBase;
+    string UserName;
+    string UserPassword;
+    //GameObject Server;
     public MyDictionary1 Subject;
     public MyDictionary2 dictionary2;
     public MyDictionary dictionary;
@@ -798,8 +798,11 @@ public class Ingredients : MonoBehaviour
 
     void Start()
     {
-        
-        DownloadData("Server="+Server+";"+"DataBase="+DataBase+";"+"USER="+UserName+";"+"PASSWORD="+UserPassword+";",
+            //Server=GameObject.;
+    //public string DataBase;
+    //public string UserName;
+    //public string UserPassword;
+    DownloadData("Server="+Server+";"+"DataBase="+DataBase+";"+"USER="+UserName+";"+"PASSWORD="+UserPassword+";",
             @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
                 JOIN Subjects CS ON i.SubjectID = CS.IDSubject 
                 JOIN Subjects PS ON i.ParentSubjectID = PS.IDSubject

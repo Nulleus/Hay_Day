@@ -120,6 +120,7 @@
      <Compile Include="Assets\Storage.cs" />
      <Compile Include="Assets\Subject.cs" />
      <Compile Include="Assets\SwipeManager.cs" />
+     <Compile Include="Assets\UserData.cs" />
      <Compile Include="Assets\WorldCreation.cs" />
      <Compile Include="Assets\bakery_button_flip.cs" />
      <Compile Include="Assets\bakery_button_move_off.cs" />

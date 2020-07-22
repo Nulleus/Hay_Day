@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class button_click : MonoBehaviour
 {
-
+    public string Effect;//Действие при нажатии 
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,10 @@ public class button_click : MonoBehaviour
     }
     void OnMouseUp()
     {
+        if (Effect == "Authorization")
+        {
+            //Процесс авторизации
+        }
         //Debug.Log("Нажата кнопка Увеличить вместимость");
         if (gameObject.name == "silo_button_close")
         {
