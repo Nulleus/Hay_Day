@@ -7,14 +7,7 @@ public class button_click : MonoBehaviour
 {
     public string Effect;//Действие при нажатии 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Authorization()
     {
 
     }
@@ -26,7 +19,9 @@ public class button_click : MonoBehaviour
     {
         if (Effect == "Authorization")
         {
+            
             //Процесс авторизации
+
         }
         //Debug.Log("Нажата кнопка Увеличить вместимость");
         if (gameObject.name == "silo_button_close")
@@ -43,4 +38,5 @@ public class button_click : MonoBehaviour
         }
 
     }
+
 }

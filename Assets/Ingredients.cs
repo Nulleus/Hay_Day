@@ -755,11 +755,7 @@ public class MyDictionary : SerializableDictionary<string, int> { }
 [Serializable] public class MyDictionary2 : SerializableDictionary<KeyCode, GameObject> { }
 public class Ingredients : MonoBehaviour
 {
-    string Server;
-    string DataBase;
-    string UserName;
-    string UserPassword;
-    //GameObject Server;
+    string ConnectionString;
     public MyDictionary1 Subject;
     public MyDictionary2 dictionary2;
     public MyDictionary dictionary;
@@ -798,11 +794,9 @@ public class Ingredients : MonoBehaviour
 
     void Start()
     {
-            //Server=GameObject.;
-    //public string DataBase;
-    //public string UserName;
-    //public string UserPassword;
-    DownloadData("Server="+Server+";"+"DataBase="+DataBase+";"+"USER="+UserName+";"+"PASSWORD="+UserPassword+";",
+        ConnectionString = GameObject.Find("User").GetComponent<UserData>().ConnectionString;//Получение данных для подключения из единой точки входа
+        
+        DownloadData(ConnectionString,
             @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
                 JOIN Subjects CS ON i.SubjectID = CS.IDSubject 
                 JOIN Subjects PS ON i.ParentSubjectID = PS.IDSubject
