@@ -161,7 +161,7 @@
     <Compile Include="Assets\price_for_diamonds_panel_slot_1.cs" />
     <Compile Include="Assets\soybean_quantity.cs" />
     <Compile Include="Assets\bakery_slot_2_otgruzki.cs" />
-    <Compile Include="Assets\Scripts\button_click.cs" />
+    <Compile Include="Assets\UserSQLRequest.cs" />
     <Compile Include="Assets\cow_4.cs" />
     <Compile Include="Assets\barn_plank_quantity_text.cs" />
     <Compile Include="Assets\bakery_button_flip.cs" />
@@ -218,7 +218,7 @@
     <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_button_close.cs" />
-    <Compile Include="Assets\UserSQLRequest.cs" />
+    <Compile Include="Assets\ButtonScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Libraries\MySql.Data.dll" />
