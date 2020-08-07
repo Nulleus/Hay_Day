@@ -7,36 +7,23 @@ using UnityEngine.UI;
 
 public class ProductionBuilding : MonoBehaviour
 {
-    private bool IsSlotsPanelGetOn;
-    private int Count = 0;
-    private bool IsCountOn = false;
-    private Vector3 PrimaryPosition;//Сохранение начального положения объкта
-    private Vector3 Offset; //Смещение
-    private Vector3 ScreenPoint;
-    private string Temp;
-    private sql_client SC;
-    private bool IsMouseDragBlockOn = false;
-    private bool IsMoveModeOn;
+    //==============Свойства здания=======================//
+    [SerializeField]
+    string NameSystem;//Системное имя объекта
+    [SerializeField]
+    string NameView;//Отображаемое имя объекта
+    int OpenLevel;// Уровень, на котором открывается объект
+    int PriceCoins;//Цена здания в монетах
+    int BuildingTimeSec;//Время постройки здания в секундах
+    int PriceDiamondsForMaxTimes;//Стоимость ускорения постройки здания в алмазах
+    int OpenSlotsDefault;//Открытых слотов по умолчанию
+    int OpenSlots; //Открытых слотов
 
-    GameObject MainCamera;
+
+    //=======Дочерние и другие объекты================//
     GameObject Collider;
     GameObject Arrow;
-    GameObject Arrow0;
-    GameObject Arrow1;
-    GameObject Arrow2;
-    GameObject Arrow3;
-    GameObject Arrow4;
-    GameObject SlotsPanel;
-    GameObject ButtonFlip;
-    GameObject ButtonMoveOff;
-    GameObject SlotsPredmets;
-    GameObject SlotsZagruzki;
-    GameObject SlotsOtgruzki;
 
-    private void OnEnable()
-    {
-        // Debug.Log(CameraScript.Instance.IsZoomBlocked);
-    }
 
     void Start()
     {
@@ -49,15 +36,8 @@ public class ProductionBuilding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider.SetActive(false);
-    }
-
-    void CreateObject()
-    {
-        //Тут запрос на определение дочерних объектов у gameobject.name(текущего объекта)
-        //Если нужно создать объект, создаем его
-        GameObject go = new GameObject("bakery_arrow");
-        go.transform.SetParent(this.transform);
 
     }
+
+
 }
