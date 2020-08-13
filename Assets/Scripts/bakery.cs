@@ -104,7 +104,7 @@ public class bakery : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.white;//Окрашиваем пекарню в белый цвет
             }
-            if (gameObject.GetComponent<Renderer>().material.color != Color.red)//Эффект мигания
+            if (gameObject.GetComponent<Renderer>().material.color != Color.red)//Эффект мигания здания
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
             }
@@ -123,11 +123,11 @@ public class bakery : MonoBehaviour
         {
             Count++;
 
-            if (Count == 6) { Arrow0.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 12) { Arrow1.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 18) { Arrow2.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 24) { Arrow3.GetComponent<Renderer>().material.color = Color.yellow; }
-            if (Count == 30) { Arrow4.GetComponent<Renderer>().material.color = Color.yellow; }
+            if (Count == 6) { Arrow0.GetComponent<Renderer>().material.color = Color.yellow; } //Закрашена часть стрелки 0
+            if (Count == 12) { Arrow1.GetComponent<Renderer>().material.color = Color.yellow; } //Закрашена часть стрелки 1
+            if (Count == 18) { Arrow2.GetComponent<Renderer>().material.color = Color.yellow; } //Закрашена часть стрелки 2
+            if (Count == 24) { Arrow3.GetComponent<Renderer>().material.color = Color.yellow; } //Закрашена часть стрелки 3
+            if (Count == 30) { Arrow4.GetComponent<Renderer>().material.color = Color.yellow; } //Закрашена часть стрелки 4
             if (Count > 30)//Активация режима перемещение
             {
                 IsMoveModeOn = true;//Активация режима перемещение

@@ -18,11 +18,18 @@ public class Arrow : MonoBehaviour
         Arrow3 = gameObject.transform.Find("Arrow3").gameObject;//Find Child gameobject
         Arrow4 = gameObject.transform.Find("Arrow4").gameObject;//Find Child gameobject
     }
-
-    public void BrushColor(GameObject go, Color color)
+    //Изменение цвета объекта
+    public void BrushColor(string go, Color color)//Игровой объект, цвет
     {
-        go.GetComponent<Renderer>().material.color = color;
+        if (go == "Arrow0") { Arrow0.GetComponent<Renderer>().material.color = color; }
+        if (go == "Arrow1") { Arrow1.GetComponent<Renderer>().material.color = color; }
+        if (go == "Arrow2") { Arrow2.GetComponent<Renderer>().material.color = color; }
+        if (go == "Arrow3") { Arrow3.GetComponent<Renderer>().material.color = color; }
+        if (go == "Arrow4") { Arrow4.GetComponent<Renderer>().material.color = color; }
     }
+
+
+
     // Update is called once per frame
     void Update()
     {
