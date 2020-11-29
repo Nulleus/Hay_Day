@@ -54,10 +54,13 @@ public class globals : MonoBehaviour
     public static bool zoom { get; set; }
     public static bool drag { get; set; }
     //===============================OBJ:поле_0============================================//
-    public static string login_users { get; set; }//Логин пользователя
-    public static string password_users { get; set; }//Пароль пользователя
+    public static string login_user { get; set; }//Логин пользователя
+    public static string password_user { get; set; }//Пароль пользователя
     public static int id_user { get; set; }//Уникальный идентификатор пользователя
 
+    public static string nickname_user { get; set; }//Никнейм пользователя
+
+    public static string farm_name_user { get; set; }//Имя фермы пользователя
     public static int user_experience_point { get; set; }//Очков опыта у пользователя
     public static int user_level{ get; set; }//Уровень пользователя
 

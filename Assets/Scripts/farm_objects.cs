@@ -294,13 +294,13 @@ public class farm_objects : MonoBehaviour
             {
                 GameObject inputfieldlogin = GameObject.Find("InputField_Login");//Получаем ссылку на объект
                 InputField inputfieldCoLogin = inputfieldlogin.GetComponent<InputField>();//Получаем компонент объекта
-                globals.login_users = inputfieldCoLogin.text;
+                globals.login_user = inputfieldCoLogin.text;
 
                 GameObject inputfieldpassword = GameObject.Find("InputField_Password");//Получаем ссылку на объект
                 InputField inputfieldCoPassword = inputfieldpassword.GetComponent<InputField>();//Получаем компонент объекта
-                globals.password_users = inputfieldCoPassword.text;
-                Debug.Log(globals.password_users);
-                Debug.Log(globals.login_users);
+                globals.password_user = inputfieldCoPassword.text;
+                Debug.Log(globals.password_user);
+                Debug.Log(globals.login_user);
 
                 GameObject panel_authorization = GameObject.Find("panel_authorization");//Получаем ссылку на объект
                 panel_authorization.SetActive(false);//Скрываем панель авторизации

@@ -18,6 +18,8 @@ public class ProductionBuilding : MonoBehaviour
     int PriceDiamondsForMaxTimes;//Стоимость ускорения постройки здания в алмазах
     int OpenSlotsDefault;//Открытых слотов по умолчанию
     int OpenSlots; //Открытых слотов
+    Vector3 PrimaryPosition;
+    string Temp;
 
     private bool IsMoveModeOn = false;
     private bool IsCollisionMoveModeOn = false;
