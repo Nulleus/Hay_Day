@@ -37,6 +37,11 @@ public class Users : MonoBehaviour
             //gameObject.GetComponent<EnterAuthorization>().Authorization("failed");
             //Debug.Log("Authorization Failed");
         //}
+        if (reader.HasRows == false)
+        {
+            gameObject.GetComponent<EnterAuthorization>().Authorization("failed");
+            Debug.Log("Authorization Failed");
+        }
         while (reader.Read())
         {
             Debug.Log("while (reader.Read())");
@@ -54,6 +59,7 @@ public class Users : MonoBehaviour
             Debug.Log("Nickname=" + globals.nickname_user);
             Debug.Log("FarmName=" + globals.farm_name_user);
         }
+        
         reader.Close(); // закрываем reader
         // закрываем соединение с БД
         conn.Close();
