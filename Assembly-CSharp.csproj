@@ -111,6 +111,7 @@
     <Compile Include="Assets\bakery_slot_6_otgruzki.cs" />
     <Compile Include="Assets\Scripts\quantity_update.cs" />
     <Compile Include="Assets\barn_duct_tape_quantity_text.cs" />
+    <Compile Include="Assets\Users.cs" />
     <Compile Include="Assets\CameraScript.cs" />
     <Compile Include="Assets\ButtonScript.cs" />
     <Compile Include="Assets\experience_point_ui_experience_point_text.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Assets\Scripts\coin_quantity.cs" />
     <Compile Include="Assets\Silo.cs" />
     <Compile Include="Assets\slot_info_predmet_quantity_1.cs" />
+    <Compile Include="Assets\EnterAuthorization.cs" />
     <Compile Include="Assets\bakery_slot_6_zagruzki.cs" />
     <Compile Include="Assets\barn_upgrade_info_text.cs" />
     <Compile Include="Assets\bakery_slot_2_zagruzki.cs" />
@@ -220,8 +222,7 @@
     <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_button_close.cs" />
-    <Compile Include="Assets\EnterAuthorization.cs" />
-    <Compile Include="Assets\Users.cs" />
+    <Compile Include="Assets\LoginSystem.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Libraries\MySql.Data.dll" />
