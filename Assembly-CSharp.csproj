@@ -129,6 +129,7 @@
     <Compile Include="Assets\kiosk_panel_button_close.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_3_info_predmet_name_text.cs" />
     <Compile Include="Assets\kiosk_silo_button_PutUp.cs" />
+    <Compile Include="Assets\Slot.cs" />
     <Compile Include="Assets\Scripts\slot_predmet.cs" />
     <Compile Include="Assets\Scripts\corn_quantity.cs" />
     <Compile Include="Assets\bakery_slot_8_otgruzki.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Assets\bakery_slot_0_zagruzki.cs" />
     <Compile Include="Assets\SlotInfoSubjectQuantity.cs" />
     <Compile Include="Assets\slot_info_predmet_controller.cs" />
+    <Compile Include="Assets\Point.cs" />
     <Compile Include="Assets\Scripts\globals.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_1.cs" />
     <Compile Include="Assets\soybean_quantity.cs" />
@@ -223,7 +225,7 @@
     <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_button_close.cs" />
-    <Compile Include="Assets\Point.cs" />
+    <Compile Include="Assets\Contents.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Libraries\MySql.Data.dll" />
