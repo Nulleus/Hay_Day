@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Data.SqlClient;
-using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 
 public class UserData : MonoBehaviour
 {
@@ -24,28 +25,28 @@ public class UserData : MonoBehaviour
             "DataBase=" + DataBase + ";" + 
             "USER=" + UserName + ";" + 
             "PASSWORD=" + UserPassword + ";";
-        GetIDUser();
+        //GetIDUser();
     }
 
-    // Update is called once per frame
-    public void GetIDUser() //Получениие уникального идентификатора пользователя
-    {
-        SQLQuery = "SELECT id_user from users WHERE login='Admin' AND pasword='123'";
-        IDbConnection dbcon;
-        using (dbcon = new SqlConnection(ConnectionString))
-        {
-            dbcon.Open();//Открытие соединения с базой данных
-            using (IDbCommand dbcmd = dbcon.CreateCommand())
-            {
-                dbcmd.CommandText = SQLQuery;
-                using (IDataReader reader = dbcmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        IDUser = ((int)reader["id_user"]);
-                    }
-                }
-            }
-        }
-    }
+    /*   // Update is called once per frame
+       public void GetIDUser() //Получениие уникального идентификатора пользователя
+       {
+           SQLQuery = "SELECT id_user from users WHERE login='Admin' AND pasword='123'";
+           IDbConnection dbcon;
+           using (dbcon = new SqlConnection(ConnectionString))
+           {
+               dbcon.Open();//Открытие соединения с базой данных
+               using (IDbCommand dbcmd = dbcon.CreateCommand())
+               {
+                   dbcmd.CommandText = SQLQuery;
+                   using (IDataReader reader = dbcmd.ExecuteReader())
+                   {
+                       while (reader.Read())
+                       {
+                           IDUser = ((int)reader["id_user"]);
+                       }
+                   }
+               }
+           }
+       }*/
 }

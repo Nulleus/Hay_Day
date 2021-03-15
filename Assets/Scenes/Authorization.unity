@@ -1778,6 +1778,7 @@ GameObject:
   - component: {fileID: 1907218246}
   - component: {fileID: 1907218248}
   - component: {fileID: 1907218249}
+  - component: {fileID: 1907218250}
   m_Layer: 0
   m_Name: Users
   m_TagString: Untagged
@@ -1803,6 +1804,8 @@ MonoBehaviour:
   UserName: mailruz6_hayday
   UserPassword: z173500qw
   ConnectionString: 
+  SQLQuery: 
+  QueryResult: []
 --- !u!4 &1907218247
 Transform:
   m_ObjectHideFlags: 0
@@ -1830,8 +1833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  LoginUser: 
-  PasswordUser: 
+  LoginUser: admin
+  PasswordUser: 123
   NicknameUser: 
   Farmname: 
 --- !u!114 &1907218249
@@ -1847,6 +1850,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWindow: 0
+--- !u!114 &1907218250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907218245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2050c79876eac742bb77dd88cd31521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IDUser: 0
+  Server: mailruz6.beget.tech
+  DataBase: mailruz6_hayday
+  UserName: mailruz6_hayday
+  UserPassword: z173500qw
+  ConnectionString: 
 --- !u!1 &1914411809
 GameObject:
   m_ObjectHideFlags: 0

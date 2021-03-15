@@ -136,6 +136,7 @@
     <Compile Include="Assets\cow_3.cs" />
     <Compile Include="Assets\Scripts\wheat_quantity.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_0_info_predmet_name_text.cs" />
+    <Compile Include="Assets\Contents.cs" />
     <Compile Include="Assets\Scripts\kiosk_silo_corn.cs" />
     <Compile Include="Assets\LoginSystem.cs" />
     <Compile Include="Assets\Scripts\silo_screew_quantity_text.cs" />
@@ -225,7 +226,7 @@
     <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_button_close.cs" />
-    <Compile Include="Assets\Contents.cs" />
+    <Compile Include="Assets\Connections.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Libraries\MySql.Data.dll" />
