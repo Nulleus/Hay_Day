@@ -7,19 +7,25 @@ using System;
 
 public class Connections : MonoBehaviour
 {
-    public int IDUser;
     public string Server;
     public string DataBase;
     public string UserName;
     public string UserPassword;
     public string ConnectionString;
-    void CheckConnections()
+
+    public void BuildingConnectionString()
     {
         ConnectionString =
-    "Server=" + Server + ";" +
-    "DataBase=" + DataBase + ";" +
-    "USER=" + UserName + ";" +
-    "PASSWORD=" + UserPassword + ";";
+            "Server=" + Server + ";" +
+            "DataBase=" + DataBase + ";" +
+            "USER=" + UserName + ";" +
+            "PASSWORD=" + UserPassword + ";"
+        ;
+    }
+    void CheckConnections()
+    {
+
+        //Доработать входные данные 
         //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
         MySqlConnection conn = new MySqlConnection(ConnectionString);
         try
@@ -48,7 +54,8 @@ public class Connections : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CheckConnections();
+        BuildingConnectionString();//Сборка строки подключения 
+        CheckConnections();//Провека подключения, таблицы, данных 
     }
 
     // Update is called once per frame

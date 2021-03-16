@@ -146,16 +146,15 @@
     <Compile Include="Assets\ProductionBuildingController.cs" />
     <Compile Include="Assets\pumpkin_quantity.cs" />
     <Compile Include="Assets\Scripts\silo_wood_panel_quantity_text.cs" />
-    <Compile Include="Assets\SQLClient.cs" />
     <Compile Include="Assets\Scripts\dairy.cs" />
     <Compile Include="Assets\bakery_slot_4_otgruzki.cs" />
+    <Compile Include="Assets\Connections.cs" />
     <Compile Include="Assets\slots_predmets_bakery.cs" />
     <Compile Include="Assets\SlotInfoSubjectImage.cs" />
     <Compile Include="Assets\SlotInfo.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_2.cs" />
     <Compile Include="Assets\experience_point_ui_level_text.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_0_info_predmet_info_text.cs" />
-    <Compile Include="Assets\UserData.cs" />
     <Compile Include="Assets\Scripts\production_building_farm.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_2_quantity_text.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_slot_2_building_time_text.cs" />
@@ -168,7 +167,6 @@
     <Compile Include="Assets\price_for_diamonds_panel_slot_1.cs" />
     <Compile Include="Assets\soybean_quantity.cs" />
     <Compile Include="Assets\bakery_slot_2_otgruzki.cs" />
-    <Compile Include="Assets\UserSQLRequest.cs" />
     <Compile Include="Assets\cow_4.cs" />
     <Compile Include="Assets\barn_plank_quantity_text.cs" />
     <Compile Include="Assets\bakery_button_flip.cs" />
@@ -226,7 +224,6 @@
     <Compile Include="Assets\price_for_diamonds_panel_button_ok_diamonds_quantity_text.cs" />
     <Compile Include="Assets\j1_bakery.cs" />
     <Compile Include="Assets\price_for_diamonds_panel_button_close.cs" />
-    <Compile Include="Assets\Connections.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Libraries\MySql.Data.dll" />

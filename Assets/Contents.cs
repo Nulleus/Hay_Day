@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Data.SqlClient;
-using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System;
 
 
 public class Contents : MonoBehaviour
@@ -10,31 +11,66 @@ public class Contents : MonoBehaviour
     public string SQLQuery;
     //public string ConnectionString;
     public string[] QueryResult;
-    public GameObject User;
+    public GameObject Data;
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
     public void Start()
     {
-        User = GameObject.Find("User");
-        AddContents("bakery", "bread", "2021-04-14 22:40:00", "2021-04-14 22:45:00", 1, 11);
+        Data = GameObject.Find("Data");
+        AddContents("test1", "bread", "2021-04-14 22:40:00", "2021-04-14 22:45:00", 1, 11);
     }
     public void GetServerDateTime()
     {
 
+    }
+    void CheckConnections()
+    {
+
+        //Доработать входные данные 
+        //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+
+            string sql = "SELECT COUNT(*) FROM users";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            object result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                int r = Convert.ToInt32(result);
+                Debug.Log("Number of countries in the world database is: " + r);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+
+        conn.Close();
+        Debug.Log("Done.");
     }
     public void AddContents(string subject_parent, string subject_child, string time_loading,string time_shipment, int output_quantity, int user_id)
     {
         
         //SQLQuery = "SELECT id_user from Users WHERE login='" + UserName + "' AND pasword='" + UserPassword + "'";
         SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subject_parent+ "','" + subject_child + "','" + time_loading + "','" + time_shipment + "'," + output_quantity + "," + user_id + ")";
-        IDbConnection dbcon;
-        using (dbcon = new SqlConnection(User.GetComponent<UserData>().ConnectionString))
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        try
         {
-            dbcon.Open();//Открытие соединения с базой данных
-            using (IDbCommand dbcmd = dbcon.CreateCommand())
-            {
-                dbcmd.CommandText = SQLQuery;
-            }
+            Console.WriteLine("Connecting to MySQL...");
+            conn.Open();          
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            cmd.ExecuteNonQuery();
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+        conn.Close();
+        Console.WriteLine("Done.");
     }
 }

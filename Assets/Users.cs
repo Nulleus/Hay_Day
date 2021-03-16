@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System;
 
 public class Users : MonoBehaviour
 {
-    public int ID;
-    public string LoginUser;
-    public string PasswordUser;
-    public string NicknameUser;
-    public string Farmname;
-
+    public int IdUser;
+    public string Login;
+    public string Pasword;
+    public string Nickname;
+    public string FarmName;
+    public GameObject Data;
 
     // Start is called before the first frame update
     public void GettingInfoUser() //Получениие информации пользователя по логину и паролю
     {
         Debug.Log("GettingIDUser()");
-        string ConnectionString = GameObject.Find("Users").GetComponent<UserData>().ConnectionString;//Получение данных для подключения из единой точки входа
-        string SQLQuery = "SELECT ID, NicknameUser, FarmName" +
-            " from Users WHERE LoginUser='" + globals.login_user + "' AND PasswordUser='" + globals.password_user + "'";
-        Debug.Log(ConnectionString);
+        Data = GameObject.Find("Data");
+        //Получение данных для подключения из единой точки входа
+        string SQLQuery = "SELECT id_user, nickname, farm_name" +
+            " from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
-        MySqlConnection conn = new MySqlConnection(ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         // устанавливаем соединение с БД
         conn.Open();
         // объект для выполнения SQL-запроса
@@ -45,19 +47,17 @@ public class Users : MonoBehaviour
         while (reader.Read())
         {
             Debug.Log("while (reader.Read())");
-            globals.id_user = (int)reader["ID"];
-            //globals.login_user = (string)reader["LoginUser"];
-            //globals.password_user = (string)reader["PasswordUser"];
-            globals.nickname_user = (string)reader["NicknameUser"];
-            globals.farm_name_user = (string)reader["FarmName"];
-
+            IdUser = (int)reader["id_user"];
+            Login = (string)reader["login"];
+            Nickname = (string)reader["nickname"];
+            FarmName = (string)reader["farm_name"];
             gameObject.GetComponent<EnterAuthorization>().Authorization("ok");
             Debug.Log("Authorization OK");
-            Debug.Log("ID=" + globals.id_user);
-            Debug.Log("Login=" + globals.login_user);
-            Debug.Log("Password=" + globals.password_user);
-            Debug.Log("Nickname=" + globals.nickname_user);
-            Debug.Log("FarmName=" + globals.farm_name_user);
+            Debug.Log("id_user=" + IdUser);
+            Debug.Log("Login=" + Login);
+            Debug.Log("Pasword=" + Pasword);
+            Debug.Log("Nickname=" + Nickname);
+            Debug.Log("FarmName=" + FarmName);
         }
         
         reader.Close(); // закрываем reader

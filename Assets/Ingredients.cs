@@ -794,7 +794,7 @@ public class Ingredients : MonoBehaviour
 
     void Start()
     {
-        ConnectionString = GameObject.Find("User").GetComponent<UserData>().ConnectionString;//Получение данных для подключения из единой точки входа
+        ConnectionString = GameObject.Find("Data").GetComponent<Connections>().ConnectionString;//Получение данных для подключения из единой точки входа
         
         DownloadData(ConnectionString,
             @"SELECT  PS.NameSubject AS ParentSubject, CS.NameSubject AS ChildSubject, i.Count FROM Ingredients i 
