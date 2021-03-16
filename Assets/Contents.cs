@@ -17,7 +17,7 @@ public class Contents : MonoBehaviour
     public void Start()
     {
         Data = GameObject.Find("Data");
-        AddContents("test1", "bread", "2021-04-14 22:40:00", "2021-04-14 22:45:00", 1, 11);
+        AddContents("bakery", "bread", "2021-04-14 22:40:00", "2021-04-14 22:45:00", 1, 11);
     }
     public void GetServerDateTime()
     {
@@ -25,9 +25,7 @@ public class Contents : MonoBehaviour
     }
     void CheckConnections()
     {
-
         //Доработать входные данные 
-        //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
@@ -53,9 +51,7 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
     }
     public void AddContents(string subject_parent, string subject_child, string time_loading,string time_shipment, int output_quantity, int user_id)
-    {
-        
-        //SQLQuery = "SELECT id_user from Users WHERE login='" + UserName + "' AND pasword='" + UserPassword + "'";
+    {        
         SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subject_parent+ "','" + subject_child + "','" + time_loading + "','" + time_shipment + "'," + output_quantity + "," + user_id + ")";
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
