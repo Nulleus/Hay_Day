@@ -12,20 +12,18 @@ public class Users : MonoBehaviour
     public string Pasword;
     public string Nickname;
     public string FarmName;
-    public GameObject Data;
-
+    public string SQLQuery;
     // Start is called before the first frame update
     public void GettingInfoUser() //Получениие информации пользователя по логину и паролю
     {
         Debug.Log("GettingIDUser()");
-        Data = GameObject.Find("Data");
         //Получение данных для подключения из единой точки входа
-        string SQLQuery = "SELECT id_user, nickname, farm_name" +
+        SQLQuery = "SELECT id_user, nickname, farm_name" +
             " from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+       // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         // устанавливаем соединение с БД
         conn.Open();
         // объект для выполнения SQL-запроса
@@ -67,12 +65,48 @@ public class Users : MonoBehaviour
 
     void Start()
     {
-
+        GetInfoUser();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GetInfoUser()
     {
-        
-    }
+        Debug.Log("GetInfoUser()");
+        //tring connStr = "server=localhost;user=root;database=world;port=3306;password=******";
+        //ConnectionString = Data.GetComponent<Connections>().ConnectionString;
+        Debug.Log(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+
+            SQLQuery = "SELECT id_user, nickname, farm_name" +
+            " from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Debug.Log("while (reader.Read())");
+                IdUser = (int)reader["id_user"];
+                Nickname = (string)reader["nickname"];
+                FarmName = (string)reader["farm_name"];
+                //gameObject.GetComponent<EnterAuthorization>().Authorization("ok"); //Нужно тут?
+                Debug.Log("Authorization OK");
+                Debug.Log("id_user=" + IdUser);
+                Debug.Log("Login=" + Login);
+                Debug.Log("Pasword=" + Pasword);
+                Debug.Log("Nickname=" + Nickname);
+                Debug.Log("FarmName=" + FarmName);
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+
+        conn.Close();
+        Debug.Log("Done.");
+}
+
 }

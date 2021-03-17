@@ -11,22 +11,45 @@ public class Contents : MonoBehaviour
     public string SQLQuery;
     //public string ConnectionString;
     public string[] QueryResult;
-    public GameObject Data;
+    public string ServerDateTime;
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
     public void Start()
     {
-        Data = GameObject.Find("Data");
-        AddContents("bakery", "bread", "2021-04-14 22:40:00", "2021-04-14 22:45:00", 1, 11);
+        GetServerDateTime();
+        AddContents("bakery", "bread", ServerDateTime, ServerDateTime, 1, 11);
+        
     }
     public void GetServerDateTime()
     {
-
+        Debug.Log("GetServerDateTime");
+        Debug.Log(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+            SQLQuery = "SELECT NOW()";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ServerDateTime = (DateTime)reader["NOW()"];
+                Debug.Log("NOW()=" + ServerDateTime);
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+        conn.Close();
+        Debug.Log("Done.");
     }
     void CheckConnections()
     {
         //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -50,10 +73,10 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
     }
-    public void AddContents(string subject_parent, string subject_child, string time_loading,string time_shipment, int output_quantity, int user_id)
+    public void AddContents(string subject_parent, string subject_child, string time_loading, string time_shipment, int output_quantity, int user_id)
     {        
         SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subject_parent+ "','" + subject_child + "','" + time_loading + "','" + time_shipment + "'," + output_quantity + "," + user_id + ")";
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
             Console.WriteLine("Connecting to MySQL...");

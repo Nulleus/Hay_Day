@@ -11,7 +11,8 @@ public class Connections : MonoBehaviour
     public string DataBase;
     public string UserName;
     public string UserPassword;
-    public string ConnectionString;
+    public string Port;
+    public static string ConnectionString;
 
     public void BuildingConnectionString()
     {
@@ -19,7 +20,8 @@ public class Connections : MonoBehaviour
             "Server=" + Server + ";" +
             "DataBase=" + DataBase + ";" +
             "USER=" + UserName + ";" +
-            "PASSWORD=" + UserPassword + ";"
+            "PASSWORD=" + UserPassword + ";" +
+            "Port=" + Port + ";"
         ;
     }
     void CheckConnections()
@@ -54,8 +56,12 @@ public class Connections : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BuildingConnectionString();//Сборка строки подключения 
+        //BuildingConnectionString();//Сборка строки подключения 
         CheckConnections();//Провека подключения, таблицы, данных 
+    }
+    void Awake()
+    {
+        BuildingConnectionString();//Должна запуститься первой
     }
 
     // Update is called once per frame
