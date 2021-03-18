@@ -12,6 +12,7 @@ public class Contents : MonoBehaviour
     //public string ConnectionString;
     public string[] QueryResult;
     public string ServerDateTime;
+    public DateTime ServerDateTimeTemp;
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
     public void Start()
@@ -34,7 +35,8 @@ public class Contents : MonoBehaviour
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                ServerDateTime = (DateTime)reader["NOW()"];
+                ServerDateTimeTemp = (DateTime)reader["NOW()"];
+                ServerDateTime = ServerDateTimeTemp.ToString("u");//u: 2008-06-15 21:15:07Z
                 Debug.Log("NOW()=" + ServerDateTime);
             }
             reader.Close();
