@@ -18,11 +18,13 @@ public class Contents : MonoBehaviour
     public void Start()
     {
         GetServerDateTime();
-        AddContents("bakery", "bread", ServerDateTime, ServerDateTime, 1, 11);
+        AddContents("Bakery", "Bread", GetServerDateTime(), ServerDateTime, 1, 11);
         
     }
-    public void GetServerDateTime()
+    static string GetServerDateTime()
     {
+        DateTime serverDateTime;
+        string serverDateTimeTemp;        
         Debug.Log("GetServerDateTime");
         Debug.Log(Connections.ConnectionString);
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
@@ -30,14 +32,48 @@ public class Contents : MonoBehaviour
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            SQLQuery = "SELECT NOW()";
+            var SQLQuery = "SELECT NOW()";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                ServerDateTimeTemp = (DateTime)reader["NOW()"];
-                ServerDateTime = ServerDateTimeTemp.ToString("u");//u: 2008-06-15 21:15:07Z
-                Debug.Log("NOW()=" + ServerDateTime);
+                serverDateTime = (DateTime)reader["NOW()"];//Получаем текущую дату серверного времени
+                //ServerDateTimeTemp.AddSeconds(GetTimeBuilding("Wheat")); //Прибавляем секунды к дате
+                //serverDateTimeTemp = serverDateTime.ToString("u");//u: 2008-06-15 21:15:07Z
+                serverDateTimeTemp = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");//
+                Debug.Log("NOW()=" + serverDateTimeTemp);
+                return serverDateTimeTemp;               
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {            
+            Debug.Log(ex.ToString());
+            return "Error";
+        }
+        conn.Close();
+        Debug.Log("Done.");
+        return "Done";
+    }
+    static int GetTimeBuilding(string subjectName) //Получаем время сборки предмета
+    {
+        int buildingTime;
+        Debug.Log("GetTimeBuilding");
+        Debug.Log(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+            var SQLQuery = "SELECT building_time from subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                buildingTime = (int)reader["building_time"];
+                
+                Debug.Log(buildingTime);
+                return buildingTime;
             }
             reader.Close();
         }
@@ -47,6 +83,7 @@ public class Contents : MonoBehaviour
         }
         conn.Close();
         Debug.Log("Done.");
+        return 0;
     }
     void CheckConnections()
     {
@@ -75,9 +112,13 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
     }
-    public void AddContents(string subject_parent, string subject_child, string time_loading, string time_shipment, int output_quantity, int user_id)
-    {        
-        SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subject_parent+ "','" + subject_child + "','" + time_loading + "','" + time_shipment + "'," + output_quantity + "," + user_id + ")";
+    public void AddContents(string subjectParent, string subjectChild, string timeLoading, string timeShipment, int outputQuantity, int userId) //Метод только добавляет в БД полученные значения
+    {       
+        
+        var timeShipmentTemp = DateTime.Parse(timeShipment);//Конвертируем строку в дату
+        timeShipmentTemp.AddSeconds(GetTimeBuilding(subjectChild));//Прибавляем конвертированной дате секунды производства равную времени производства объъекта
+        timeShipment = timeShipmentTemp.ToString("yyyy-MM-dd HH:mm:ss"); //Конвертируем дату во время определенного формата БД MySQL
+        SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParent+ "','" + subjectChild + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
