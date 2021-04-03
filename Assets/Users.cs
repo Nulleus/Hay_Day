@@ -57,6 +57,11 @@ public class Users : MonoBehaviour
         conn.Close();
     }
 
+    void Awake()
+    {
+        Debug.Log("Awake");
+        Debug.Log(Login);
+    }
     void Start()
     {
         //GetInfoUser();

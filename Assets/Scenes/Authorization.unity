@@ -764,11 +764,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a737635edbea26489372da97083e778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
-  LoginUser: 
-  PasswordUser: 
-  NicknameUser: 
-  Farmname: 
+  IDUser: 0
+  Login: 
+  Pasword: 
+  Nickname: 
+  FarmName: 
+  SQLQuery: 
 --- !u!1 &1002171764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1776,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907218247}
-  - component: {fileID: 1907218246}
   - component: {fileID: 1907218248}
   - component: {fileID: 1907218249}
   - component: {fileID: 1907218250}
@@ -1786,26 +1786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1907218246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907218245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6de6f1aa461b5d419c3718611299350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IDUser: 0
-  Server: mailruz6.beget.tech
-  DataBase: mailruz6_hayday
-  UserName: mailruz6_hayday
-  UserPassword: z173500qw
-  ConnectionString: 
-  SQLQuery: 
-  QueryResult: []
 --- !u!4 &1907218247
 Transform:
   m_ObjectHideFlags: 0
@@ -1832,11 +1812,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a737635edbea26489372da97083e778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
-  LoginUser: admin
-  PasswordUser: 123
-  NicknameUser: 
-  Farmname: 
+  IDUser: 0
+  Login: 
+  Pasword: 
+  Nickname: 
+  FarmName: 
+  SQLQuery: 
 --- !u!114 &1907218249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,12 +1843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2050c79876eac742bb77dd88cd31521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IDUser: 0
   Server: mailruz6.beget.tech
   DataBase: mailruz6_hayday
   UserName: mailruz6_hayday
   UserPassword: z173500qw
-  ConnectionString: 
+  Port: 
 --- !u!1 &1914411809
 GameObject:
   m_ObjectHideFlags: 0
