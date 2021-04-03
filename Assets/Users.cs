@@ -7,20 +7,24 @@ using System;
 
 public class Users : MonoBehaviour
 {
-    public int IdUser;
+    public int IDUser;
     public string Login;
     public string Pasword;
     public string Nickname;
     public string FarmName;
     public string SQLQuery;
     // Start is called before the first frame update
-    public void GettingInfoUser() //Получениие информации пользователя по логину и паролю
+    public void GetIDUser(string login, string password)
     {
-        Debug.Log("GettingIDUser()");
+        if ((login == "")||(password == ""))
+        {
+            Debug.Log("Логин и (или) пароль не введены");
+            
+        }
+        Debug.Log("GetIDUser()");
         //Получение данных для подключения из единой точки входа
-        SQLQuery = "SELECT id_user, nickname, farm_name" +
-            " from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
-       // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        var SQLQuery = "SELECT id_user from users WHERE login='" + login + "' AND pasword='" + password + "'";
+        // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
@@ -34,28 +38,18 @@ public class Users : MonoBehaviour
         //Debug.Log("reader:" + reader.Read());
         //if (reader.Read() == false)
         //{
-            //gameObject.GetComponent<EnterAuthorization>().Authorization("failed");
-            //Debug.Log("Authorization Failed");
+        //gameObject.GetComponent<EnterAuthorization>().Authorization("failed");
+        //Debug.Log("Authorization Failed");
         //}
         if (reader.HasRows == false)
-        {
-            gameObject.GetComponent<EnterAuthorization>().Authorization("failed");
+        {           
             Debug.Log("Authorization Failed");
         }
         while (reader.Read())
         {
-            Debug.Log("while (reader.Read())");
-            IdUser = (int)reader["id_user"];
-            Login = (string)reader["login"];
-            Nickname = (string)reader["nickname"];
-            FarmName = (string)reader["farm_name"];
-            gameObject.GetComponent<EnterAuthorization>().Authorization("ok");
-            Debug.Log("Authorization OK");
-            Debug.Log("id_user=" + IdUser);
-            Debug.Log("Login=" + Login);
-            Debug.Log("Pasword=" + Pasword);
-            Debug.Log("Nickname=" + Nickname);
-            Debug.Log("FarmName=" + FarmName);
+            
+            IDUser= (int)reader["id_user"];
+            Debug.Log(IDUser+" id_user!!!!!!!!!!!!!!!");
         }
         
         reader.Close(); // закрываем reader
@@ -65,7 +59,8 @@ public class Users : MonoBehaviour
 
     void Start()
     {
-        GetInfoUser();
+        //GetInfoUser();
+        GetIDUser(Login, Pasword);
     }
     public void GetInfoUser()
     {
@@ -87,12 +82,12 @@ public class Users : MonoBehaviour
             while (reader.Read())
             {
                 Debug.Log("while (reader.Read())");
-                IdUser = (int)reader["id_user"];
+                IDUser = (int)reader["id_user"];
                 Nickname = (string)reader["nickname"];
                 FarmName = (string)reader["farm_name"];
                 //gameObject.GetComponent<EnterAuthorization>().Authorization("ok"); //Нужно тут?
                 Debug.Log("Authorization OK");
-                Debug.Log("id_user=" + IdUser);
+                Debug.Log("id_user=" + IDUser);
                 Debug.Log("Login=" + Login);
                 Debug.Log("Pasword=" + Pasword);
                 Debug.Log("Nickname=" + Nickname);

@@ -13,7 +13,7 @@ public class EnterAuthorization : MonoBehaviour
     {
         globals.login_user = FieldLogin.GetComponent<Text>().text; //Получаем введенный логин пользователя
         globals.password_user = FieldPassword.GetComponent<InputField>().text; //Получаем введенный пароль пользователя
-        gameObject.GetComponent<Users>().GettingInfoUser();
+        gameObject.GetComponent<Users>().GetInfoUser();
     }
     public void Authorization(string stage)
     {

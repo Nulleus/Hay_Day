@@ -13,8 +13,14 @@ public class Contents : MonoBehaviour
 
     public void Start()
     {
-        AddContents("Bakery", "Bread", 11);      
+        var log = gameObject.GetComponent<Users>().Login;
+        var pas = gameObject.GetComponent<Users>().Pasword;
+        gameObject.GetComponent<Users>().GetIDUser(log, pas);
+
+
+        AddContents("Bakery", "Bread", gameObject.GetComponent<Users>().IDUser);      
     }
+
     static string GetServerDateTime()
     {
         DateTime serverDateTime;
