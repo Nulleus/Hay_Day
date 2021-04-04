@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class bakery_button_flip : MonoBehaviour
 {
-    public GameObject bakery;
+    public GameObject ProductionBuilding;
     // Start is called before the first frame update
     void Start()
     {
-        bakery = GameObject.Find("bakery");
+        ProductionBuilding = GameObject.Find("bakery");
     }
 
     // Update is called once per frame
@@ -18,13 +18,13 @@ public class bakery_button_flip : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        if (bakery.GetComponent<SpriteRenderer>().flipX)
+        if (ProductionBuilding.GetComponent<SpriteRenderer>().flipX)
         {
-            bakery.GetComponent<SpriteRenderer>().flipX = false;
+            ProductionBuilding.GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
-            bakery.GetComponent<SpriteRenderer>().flipX = true;
+            ProductionBuilding.GetComponent<SpriteRenderer>().flipX = true;
         }
             
     }

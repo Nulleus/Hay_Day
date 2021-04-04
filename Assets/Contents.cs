@@ -13,14 +13,36 @@ public class Contents : MonoBehaviour
 
     public void Start()
     {
-        var log = gameObject.GetComponent<Users>().Login;
-        var pas = gameObject.GetComponent<Users>().Pasword;
-        gameObject.GetComponent<Users>().GetIDUser(log, pas);
-
-
         AddContents("Bakery", "Bread", gameObject.GetComponent<Users>().IDUser);      
     }
-
+    public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id)
+    {
+        Debug.Log("GetSubjectChildQueue");
+        Debug.Log(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+            //var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id='" + user_id + "' AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT '" + number_slot + "',1";
+            var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id=" + user_id + " AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT " + number_slot + ",1";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return (string)reader["subject_child"]; 
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+            return "Error";
+        }
+        conn.Close();
+        Debug.Log("Done.");
+        return "Done";
+    }
     static string GetServerDateTime()
     {
         DateTime serverDateTime;
