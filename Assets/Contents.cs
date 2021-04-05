@@ -15,7 +15,7 @@ public class Contents : MonoBehaviour
     {
         AddContents("Bakery", "Bread", gameObject.GetComponent<Users>().IDUser);      
     }
-    public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id)
+    public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
         Debug.Log("GetSubjectChildQueue");
         Debug.Log(Connections.ConnectionString);
@@ -43,7 +43,7 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return "Done";
     }
-    static string GetServerDateTime()
+    static string GetServerDateTime()//Получаем серверное время
     {
         DateTime serverDateTime;
         string serverDateTimeTemp;        

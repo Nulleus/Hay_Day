@@ -36,7 +36,7 @@ public class ProductionBuilding : MonoBehaviour
     GameObject SlotsLoading; //Слоты с загруженными предметами
     GameObject SlotsShipment; //Слоты с отгруженными предметами
 
-
+/*
     void Start()
     {
       
@@ -853,5 +853,6 @@ public class ProductionBuilding : MonoBehaviour
     {
 
     }
+*/
 
 }
