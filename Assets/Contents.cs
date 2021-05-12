@@ -168,10 +168,10 @@ public class Contents : MonoBehaviour
 
         conn.Close();
         Debug.Log("Done.");
-    }
+    }//Проверяем соединение с БД
     public void AddContents(string subjectParent, string subjectChild, int userId) //Метод только добавляет в БД полученные значения
     {
-        string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервераа
+        string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
         string timeShipment = GetSummDateTimeAndSeconds(timeLoading, GetTimeBuilding(subjectChild));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
         int outputQuantity = GetOutputQuantity(subjectChild);//Количество на выходе равно, значению из таблицы output_quantity
 
