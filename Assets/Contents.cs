@@ -13,7 +13,8 @@ public class Contents : MonoBehaviour
 
     public void Start()
     {
-        AddContents("Bakery", "Bread", gameObject.GetComponent<Users>().IDUser);      
+        AddContents("bakery", "bread", gameObject.GetComponent<Users>().IDUser);
+        GetShipmentID("bakery", gameObject.GetComponent<Users>().IDUser);
     }
     public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
@@ -195,4 +196,41 @@ public class Contents : MonoBehaviour
         conn.Close();
         Console.WriteLine("Done.");
     }
+    static int GetShipmentID(string subjectParent, int userID) //Получаем ID первого стоящего на выгрузку объекта
+    {
+        int contentID;
+        Debug.Log("method GetShipmentID");
+        Debug.Log(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+            //var SQLQuery = "SELECT output_quantity from output_quantity_subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
+            var SQLQuery = "SELECT id_content FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent = '" + subjectParent + "' ORDER BY id_content ASC LIMIT 0,1";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                contentID = (int)reader["id_content"];
+
+                Debug.Log(contentID);
+                return contentID;
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+        conn.Close();
+        Debug.Log("Done.");
+        return 0;
+    }
+    //static string GetShipment
+    //Получаем готовый продукт,для каждого слота по номеру(нужно ли это для механики?)
+    //Получаем первый готовый продукт в очереди
+    //Освобождение слота отгрузки(В нем вызываем метод, увеличивающий количество выгруженного предмета на складе)
+    //archive_contents
+
 }
