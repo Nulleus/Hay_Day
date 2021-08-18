@@ -16,7 +16,7 @@ public class SlotInfo : MonoBehaviour
     private GameObject SlotInfoMainSubjectStorageImage;
     private GameObject SlotInfoMainSubjectStorageQuantity;
 
-    // Start is called before the first frame update
+    /*
     void Start()
     {
         SlotInfoMainSubjectName.transform.Find("SlotInfoMainSubjectName");//Поиск дочернего элемента
@@ -123,5 +123,5 @@ public class SlotInfo : MonoBehaviour
 
     }
     
-
+    */
 }

@@ -369,9 +369,9 @@ public class bakery : MonoBehaviour
         int building_time = 20;//Время сборки
         GameObject GO = GameObject.Find(subject);//Поиск объекта, например Bread
         
-        string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
+        //string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
         //Поиск объекта из массива
-        foreach (string ingredient in ingredients)//Перебор найденных ингредиентов
+        /*foreach (string ingredient in ingredients)//Перебор найденных ингредиентов
         {
             //Если найденый ингредиент и его количество на складе минус(необходимое количество для производства)>=0, тогда выполняем действие
            if( GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient) >= 0)
@@ -391,7 +391,7 @@ public class bakery : MonoBehaviour
                 //Не тут лолжно быть, а на MouseDown SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
             }
         }
-
+        */
         if (subject == "bread")
         {
 

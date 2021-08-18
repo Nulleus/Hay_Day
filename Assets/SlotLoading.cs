@@ -20,7 +20,8 @@ public class SlotLoading : MonoBehaviour
             subjectChild = "empty";
         }
         Debug.Log(subjectChild);
-        Anim.CrossFade(subjectChild.ToLower(), 0);
+        //Anim.CrossFade(subjectChild.ToLower(), 0);
+        //Закомментировал потому что неправильно выбрано место для функции, пустая анимация.
     }
 
     // Update is called once per frame

@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class experience_point_ui_experience_point_text : MonoBehaviour
 {
-    public GameObject GO_experience_point_ui_fill_1;
+    /*public GameObject GO_experience_point_ui_fill_1;
     public int size_fill = 600;
-    // Start is called before the first frame update
     void Start()
     {
         GO_experience_point_ui_fill_1 = GameObject.Find("experience_point_ui_fill_1");
@@ -109,4 +108,5 @@ public class experience_point_ui_experience_point_text : MonoBehaviour
         }
         
     }
+    */
 }

@@ -36,7 +36,7 @@ public class ProductionBuilding : MonoBehaviour
     GameObject SlotsLoading; //Слоты с загруженными предметами
     GameObject SlotsShipment; //Слоты с отгруженными предметами
 
-/*
+
     void Start()
     {
       
@@ -87,24 +87,23 @@ public class ProductionBuilding : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет
             }
-            else
+            if (IsCollisionMoveModeOn==false)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.white;//Окрашиваем пекарню в белый цвет
             }
-            if (gameObject.GetComponent<Renderer>().material.color != Color.red)//Эффект мигания здания
+            if (gameObject.GetComponent<Renderer>().material.color != Color.red)//Эффект мигания здания. (красный значит, что объект стоит на красном колайдере)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
             }
 
 
         }
-        else
+        if (IsMoveModeOn==false)
         {
             SlotsPanel.SetActive(false);
             Collider.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
             gameObject.tag = globals.bakery_type_obj;//
-
         }
         if (IsCountOn)
         {
@@ -124,240 +123,22 @@ public class ProductionBuilding : MonoBehaviour
                 IsCountOn = false;
             }
         }
-        ShipmentSubject();//Контоль отгрузк предмета
     }
-    void OffsetArray()//Смещение массива на одну позицию  
-    {
-        //Добавить цикл, для прохода по открытым объектам
-        ArraySlotsLoading[0, 0] = ArraySlotsLoading[1, 0];
-        ArraySlotsLoading[0, 1] = ArraySlotsLoading[1, 1];
-        ArraySlotsLoading[0, 2] = ArraySlotsLoading[1, 2];
-
-        ArraySlotsLoading[1, 0] = ArraySlotsLoading[2, 0];
-        ArraySlotsLoading[1, 1] = ArraySlotsLoading[2, 1];
-        ArraySlotsLoading[1, 2] = ArraySlotsLoading[2, 2];
-
-        ArraySlotsLoading[2, 0] = ArraySlotsLoading[3, 0];
-        ArraySlotsLoading[2, 1] = ArraySlotsLoading[3, 1];
-        ArraySlotsLoading[2, 2] = ArraySlotsLoading[3, 2];
-
-        ArraySlotsLoading[3, 0] = ArraySlotsLoading[4, 0];
-        ArraySlotsLoading[3, 1] = ArraySlotsLoading[4, 1];
-        ArraySlotsLoading[3, 2] = ArraySlotsLoading[4, 2];
-
-        ArraySlotsLoading[4, 0] = ArraySlotsLoading[5, 0];
-        ArraySlotsLoading[4, 1] = ArraySlotsLoading[5, 1];
-        ArraySlotsLoading[4, 2] = ArraySlotsLoading[5, 2];
-
-        ArraySlotsLoading[5, 0] = ArraySlotsLoading[6, 0];
-        ArraySlotsLoading[5, 1] = ArraySlotsLoading[6, 1];
-        ArraySlotsLoading[5, 2] = ArraySlotsLoading[6, 2];
-
-        ArraySlotsLoading[6, 0] = ArraySlotsLoading[7, 0];
-        ArraySlotsLoading[6, 1] = ArraySlotsLoading[7, 1];
-        ArraySlotsLoading[6, 2] = ArraySlotsLoading[7, 2];
-
-        ArraySlotsLoading[7, 0] = ArraySlotsLoading[8, 0];
-        ArraySlotsLoading[7, 1] = ArraySlotsLoading[8, 1];
-        ArraySlotsLoading[7, 2] = ArraySlotsLoading[8, 2];
-
-        ArraySlotsLoading[8, 0] = "";
-        ArraySlotsLoading[8, 1] = "";
-        ArraySlotsLoading[8, 2] = "";
-
-
-
-    }
-    void OffsetArrayShipment()
-    {
-        //Добавить цикл, для прохода по открытым объектам
-        ArraySlotsShipment[0, 0] = ArraySlotsShipment[1, 0];
-        ArraySlotsShipment[0, 1] = ArraySlotsShipment[1, 1];
-        ArraySlotsShipment[0, 2] = ArraySlotsShipment[1, 2];
-
-        ArraySlotsShipment[1, 0] = ArraySlotsShipment[2, 0];
-        ArraySlotsShipment[1, 1] = ArraySlotsShipment[2, 1];
-        ArraySlotsShipment[1, 2] = ArraySlotsShipment[2, 2];
-
-        ArraySlotsShipment[2, 0] = ArraySlotsShipment[3, 0];
-        ArraySlotsShipment[2, 1] = ArraySlotsShipment[3, 1];
-        ArraySlotsShipment[2, 2] = ArraySlotsShipment[3, 2];
-
-        ArraySlotsShipment[3, 0] = ArraySlotsShipment[4, 0];
-        ArraySlotsShipment[3, 1] = ArraySlotsShipment[4, 1];
-        ArraySlotsShipment[3, 2] = ArraySlotsShipment[4, 2];
-
-        ArraySlotsShipment[4, 0] = ArraySlotsShipment[5, 0];
-        ArraySlotsShipment[4, 1] = ArraySlotsShipment[5, 1];
-        ArraySlotsShipment[4, 2] = ArraySlotsShipment[5, 2];
-
-        ArraySlotsShipment[5, 0] = ArraySlotsShipment[6, 0];
-        ArraySlotsShipment[5, 1] = ArraySlotsShipment[6, 1];
-        ArraySlotsShipment[5, 2] = ArraySlotsShipment[6, 2];
-
-        ArraySlotsShipment[6, 0] = ArraySlotsShipment[7, 0];
-        ArraySlotsShipment[6, 1] = ArraySlotsShipment[7, 1];
-        ArraySlotsShipment[6, 2] = ArraySlotsShipment[7, 2];
-
-        ArraySlotsShipment[7, 0] = ArraySlotsShipment[8, 0];
-        ArraySlotsShipment[7, 1] = ArraySlotsShipment[8, 1];
-        ArraySlotsShipment[7, 2] = ArraySlotsShipment[8, 2];
-
-        ArraySlotsShipment[8, 0] = "";
-        ArraySlotsShipment[8, 1] = "";
-        ArraySlotsShipment[8, 2] = "";
-
-    }
-    void ShipmentSubject()
-    {
-        //Добавить цикл прохода, только по откытым слотам
-        var nowtime = DateTime.Now;
-
-        if (ArraySlotsLoading[0, 0] != "")//Если слот_0  не пустой (нужно для оптимизации)
-        {
-            TimeSpan time = Convert.ToDateTime(ArraySlotsLoading[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) - Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
-            //Разница дат            
-            if (Convert.ToDateTime(ArraySlotsLoading[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) < Convert.ToDateTime(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))//Если (дата отгрузки < текущей даты)
-            {
-                if (ArraySlotsShipment[0, 0] == "")//Если слот отгрузки 0, пустой
-                {
-                    ArraySlotsShipment[0, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";//Очищаем слот загрузки с именем предмета
-                    ArraySlotsShipment[0, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";//Очищаем слот загрузки с датой загрузки предмета
-                    ArraySlotsShipment[0, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";//Очищаем слот загрузки с датой отгрузки предмета
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 0 ");
-
-                    return;
-                }
-                if (ArraySlotsShipment[1, 0] == "")
-                {
-                    ArraySlotsShipment[1, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[1, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[1, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 1 ");
-                    return;
-                }
-                if (ArraySlotsShipment[2, 0] == "")
-                {
-                    ArraySlotsShipment[2, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[2, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[2, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 2 ");
-                    return;
-                }
-                if (ArraySlotsShipment[3, 0] == "")
-                {
-                    ArraySlotsShipment[3, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[3, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[3, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 3 ");
-                    return;
-                }
-                if (ArraySlotsShipment[4, 0] == "")
-                {
-                    ArraySlotsShipment[4, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[4, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[4, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 4 ");
-                    return;
-                }
-                if (ArraySlotsShipment[5, 0] == "")
-                {
-                    ArraySlotsShipment[5, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[5, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[5, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 5 ");
-                    return;
-                }
-                if (ArraySlotsShipment[6, 0] == "")
-                {
-                    ArraySlotsShipment[6, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[6, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[6, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 6 ");
-                    return;
-                }
-                if (ArraySlotsShipment[7, 0] == "")
-                {
-                    ArraySlotsShipment[7, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[7, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[7, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 7 ");
-                    return;
-                }
-                if (ArraySlotsShipment[8, 0] == "")
-                {
-                    ArraySlotsShipment[8, 0] = ArraySlotsLoading[0, 0];//Имя предмета
-                    ArraySlotsLoading[0, 0] = "";
-                    ArraySlotsShipment[8, 1] = ArraySlotsLoading[0, 1];//Дата загрузки предмета
-                    ArraySlotsLoading[0, 1] = "";
-                    ArraySlotsShipment[8, 2] = ArraySlotsLoading[0, 2]; //Дата отгрузки предмета
-                    ArraySlotsLoading[0, 2] = "";
-                    OffsetArray();
-                    Debug.Log("Отгрузился в слот отгрузки: 8 ");
-                    return;
-                }
-
-
-            }
-
-
-
-            //Смещение массива
-
-
-
-        }
-    }//Отгрузка предмета из слота загрузки в слот отгрузки
-    //public void Add
+ 
     public void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
     {
 
         //Если все слоты заняты, не загружать
-        if (ArraySlotsLoading[OpenSlots - 1, 0] != "")//Если последний открытый слот пекарни не пустой
-        {
-            Debug.Log("Очередь производства заполнена! Подожди, ускорь или докупи ячейки!");
-            return;
-        }
+
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
         Debug.Log("add: " + subject);
         int building_time = 20;//Время сборки
         GameObject GO = GameObject.Find(subject);//Поиск объекта, например Bread
 
-        string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
+        //string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
         //Поиск объекта из массива
+        /*
         foreach (string ingredient in ingredients)//Перебор найденных ингредиентов
         {
             //Если найденый ингредиент и его количество на складе минус(необходимое количество для производства)>=0, тогда выполняем действие
@@ -373,12 +154,12 @@ public class ProductionBuilding : MonoBehaviour
                 //Предмет
 
                 //Количество, которого нехватает = Количество ингредиентов на складе - Необходимое количество ингредиентов для производства
-                var countMissing = (GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient)) * (-1);//-1 Для получения положительного числа(сколько нехватает ингредиентов)
+                //var countMissing = (GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient)) * (-1);//-1 Для получения положительного числа(сколько нехватает ингредиентов)
                 //Информация для Панели слота инфо с 
                 //Не тут лолжно быть, а на MouseDown SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
             }
         }
-
+        */
         if (subject == "bread")
         {
 
@@ -710,41 +491,8 @@ public class ProductionBuilding : MonoBehaviour
         //Максимальное количество слотов
 
     }
-    void sort_slots()//Сортиовка слотов загрузки
-    {
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = i + 1; j < 9; j++)
-            {
-                if (Convert.ToDateTime(globals.bakery_array_slots_zagruzki[i, 1], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat) > Convert.ToDateTime(globals.bakery_array_slots_zagruzki[j, 1], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat))
-                {
-                    Temp = globals.bakery_array_slots_zagruzki[i, 1];//Второй столбик
-                    globals.bakery_array_slots_zagruzki[i, 1] = globals.bakery_array_slots_zagruzki[j, 1];
-                    globals.bakery_array_slots_zagruzki[j, 1] = Temp;
-
-                    Temp = globals.bakery_array_slots_zagruzki[i, 0];//Первый столбик
-                    globals.bakery_array_slots_zagruzki[i, 0] = globals.bakery_array_slots_zagruzki[j, 0];
-                    globals.bakery_array_slots_zagruzki[j, 0] = Temp;
-
-                    Temp = globals.bakery_array_slots_zagruzki[i, 2];//Третий столбик
-                    globals.bakery_array_slots_zagruzki[i, 2] = globals.bakery_array_slots_zagruzki[j, 2];
-                    globals.bakery_array_slots_zagruzki[j, 2] = Temp;
-                }
-            }
-        }
 
 
-    }//Сортировка слотов по возрастанию
-    void control_slots()//Вывод массива
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                Debug.Log("globals.bakery_array_slots_zagruzki[" + i + "," + j + "]=" + globals.bakery_array_slots_zagruzki[i, j]);
-            }
-        }
-    }
 
     void OnMouseUp()//Когда отпускаешь кнопку
     {
@@ -798,9 +546,6 @@ public class ProductionBuilding : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-
-
-                OffsetArrayShipment();
                 return;
             }
             if (globals.bakery_array_slots_otgruzki[0, 0] == "corn_bread")
@@ -813,7 +558,6 @@ public class ProductionBuilding : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                OffsetArrayShipment();
                 return;
             }
             if (globals.bakery_array_slots_otgruzki[0, 0] == "cookie")
@@ -826,7 +570,6 @@ public class ProductionBuilding : MonoBehaviour
                 globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
                 globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                OffsetArrayShipment();
                 return;
             }
         }
@@ -853,6 +596,5 @@ public class ProductionBuilding : MonoBehaviour
     {
 
     }
-*/
 
 }

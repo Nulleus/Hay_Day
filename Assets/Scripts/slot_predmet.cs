@@ -10,7 +10,7 @@ public class slot_predmet : MonoBehaviour
     public bool mousedrag_block_on = false;
     public string predmet;
     public Animator anim;
-    // Start is called before the first frame update
+    /*
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -119,4 +119,5 @@ public class slot_predmet : MonoBehaviour
         globals.zoom = false;
         globals.drag = false;
     }
+    */
 }
