@@ -6,5 +6,16 @@ using MySql.Data.MySqlClient;
 
 public class Ingredients : MonoBehaviour
 {
-//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+    //Dictionary<string, int> Ingredient;
+    //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+    private void Start()
+    {
+        //Ingredient.Add("empty", 1);
+    }
+
+    public static Dictionary<string,int> Compositions (string SubjectName)
+    {
+        Dictionary<string, int> openWith = new Dictionary<string, int>();
+        return openWith;
+    }
 }
