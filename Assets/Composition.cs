@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+
+
 public class Composition : SerializedMonoBehaviour
 {
     //Скрипт хранит данные о составе (ингредиентах) объектов, то есть из чего они состоят и в каком количестве\
