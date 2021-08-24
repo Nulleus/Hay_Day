@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System;
 
 public class Ingredients : MonoBehaviour
 {
@@ -11,34 +12,36 @@ public class Ingredients : MonoBehaviour
 
     private void Start()
     {
-        //Ingredient.Add("empty", 1);
+        
     }
 
-    public static Dictionary<string,int> GetCompositions (string SubjectName)
+    
+
+    public static Dictionary<string,int> GetCompositions (string SubjectName) //Получаем ингредиенты, необходимые для создания объекта
     {
         Dictionary<string, int>  Compositions = new Dictionary<string, int>();
         Debug.Log("GetCompositions");
-        Debug.Log(Connections.ConnectionString);
-        gameObject.GetComponent<Connections>().B
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+
+        string connectionString = Connections.GetConnectionString();
+        Debug.Log("connectionString: "+ connectionString);
+        MySqlConnection conn = new MySqlConnection(connectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            //var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id='" + user_id + "' AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT '" + number_slot + "',1";
-            var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id=" + user_id + " AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT " + number_slot + ",1";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            var sqlQuery = "SELECT ingredient_name, count_ingredients FROM ingredients WHERE subject_name=" + SubjectName + "";
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return (string)reader["subject_child"];
+                Compositions.Add((string)reader["ingredient_name"], (int)reader["count_ingredients"]);
             }
             reader.Close();
         }
         catch (Exception ex)
         {
             Debug.Log(ex.ToString());
-            return "Error";
+            return Compositions;
         }
         conn.Close();
         Debug.Log("Done.");
