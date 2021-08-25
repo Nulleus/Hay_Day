@@ -5,13 +5,11 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 
-public class SubjectsSum : MonoBehaviour
+public class OutputQuantity : MonoBehaviour
 {
-    //Скрипт работает с таблицей subjects_sum
-    // Start is called before the first frame update
-    public static int GetSubjectSumCountByName(string subjectName, int userID)
+    public static int GetCount(string subjectName) //Получаем ID первого стоящего на выгрузку объекта
     {
-        Debug.Log("GetSubjectSumCountbyName");
+        Debug.Log("method GetCount");
         string connectionString = Connections.GetConnectionString();
         Debug.Log("connectionString: " + connectionString);
         MySqlConnection conn = new MySqlConnection(connectionString);
@@ -19,12 +17,12 @@ public class SubjectsSum : MonoBehaviour
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var sqlQuery = "SELECT subject_sum_count FROM subjects_sum WHERE subject_name='"+subjectName+"' AND user_id='"+userID+"'";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+            var SQLQuery = "SELECT count FROM output_quantity WHERE subject_name='" + subjectName + "'";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
-            {                
-                return (int)reader["subject_sum_count"];
+            {
+                return (int)reader["count"];
             }
             reader.Close();
         }
@@ -37,5 +35,4 @@ public class SubjectsSum : MonoBehaviour
         Debug.Log("Done.");
         return -2;
     }
-
 }
