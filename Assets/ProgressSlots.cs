@@ -12,7 +12,7 @@ public class ProgressSlots : MonoBehaviour
     {
         
     }
-    public int GetOpenSlotsCount(string subjectName) //ѕолучаем количество продукта на выходе.
+    public int GetOpenSlotsCount(string subjectName, int userID) //ѕолучаем количество открытых слотов у пользовател€.
     {
         
         //GameObject.Find("Data")
@@ -24,7 +24,7 @@ public class ProgressSlots : MonoBehaviour
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var SQLQuery = "SELECT open_slots FROM progress_slots WHERE  subject_name='" + subjectName + "' AND user_id='" + Data.GetComponent<Users>().IDUser + "'";
+            var SQLQuery = "SELECT open_slots FROM progress_slots WHERE  subject_name='" + subjectName + "' AND user_id='" + userID + "'";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

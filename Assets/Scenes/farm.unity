@@ -13434,6 +13434,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 0
+  Data: {fileID: 1866044566}
 --- !u!1001 &353911195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23605,6 +23606,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 1
+  Data: {fileID: 1866044566}
 --- !u!1 &649193584
 GameObject:
   m_ObjectHideFlags: 0
@@ -33176,6 +33178,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 7
+  Data: {fileID: 1866044566}
 --- !u!1 &882623514
 GameObject:
   m_ObjectHideFlags: 0
@@ -37601,6 +37604,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 4
+  Data: {fileID: 1866044566}
 --- !u!1 &1014464726
 GameObject:
   m_ObjectHideFlags: 0
@@ -47698,6 +47702,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 8
+  Data: {fileID: 1866044566}
 --- !u!1 &1345364733
 GameObject:
   m_ObjectHideFlags: 0
@@ -56341,6 +56346,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 6
+  Data: {fileID: 1866044566}
 --- !u!1 &1593843637
 GameObject:
   m_ObjectHideFlags: 0
@@ -63227,6 +63233,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 2
+  Data: {fileID: 1866044566}
 --- !u!1 &1819119385
 GameObject:
   m_ObjectHideFlags: 0
@@ -64525,6 +64532,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 5
+  Data: {fileID: 1866044566}
 --- !u!1 &1859416719
 GameObject:
   m_ObjectHideFlags: 0
@@ -65018,6 +65026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a737635edbea26489372da97083e778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IDUser: 11
   Login: admin
   Pasword: 123
   Nickname: 
@@ -65090,6 +65099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c12726fe9e5f6943b368e756eea0126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -65562,6 +65572,7 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectParent: Bakery
   NumberSlot: 3
+  Data: {fileID: 1866044566}
 --- !u!1 &1882951423
 GameObject:
   m_ObjectHideFlags: 0

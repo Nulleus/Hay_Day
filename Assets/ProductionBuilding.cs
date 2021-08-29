@@ -10,6 +10,7 @@ public class ProductionBuilding : MonoBehaviour
     //==============Свойства здания=======================//
     [SerializeField]
     string NameSystem;//Системное имя объекта
+    public GameObject Data;
     [SerializeField]
     string NameView;//Отображаемое имя объекта
     int OpenLevel;// Уровень, на котором открывается объект
@@ -39,7 +40,7 @@ public class ProductionBuilding : MonoBehaviour
 
     void Start()
     {
-      
+        
         //SlotsPanel = gameObject.transform.Find("SlotsPanel").gameObject;//Find Child gameobject
         Collider = gameObject.transform.Find("Collider").gameObject;
         Arrow = gameObject.transform.Find("Arrow").gameObject;
@@ -125,16 +126,26 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
  
-    public void AddInSlotSubject(string subject)//Метод добавления предмета в слоты
+    public void AddInSlotSubject(string subjectName)//Метод добавления предмета в слоты
     {
+        // Проверяем, нужно ли выгрузить готовые предметы
 
         //Если все слоты заняты, не загружать
+        int count = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName);
+        if (count <= 0)
+        {
+            Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
+        }
+        if (count > 0)
+        {
+
+        }
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;
-        Debug.Log("add: " + subject);
+        Debug.Log("add: " + subjectName);
         int building_time = 20;//Время сборки
-        GameObject GO = GameObject.Find(subject);//Поиск объекта, например Bread
+        GameObject GO = GameObject.Find(subjectName);//Поиск объекта, например Bread
 
         //string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
         //Поиск объекта из массива
@@ -160,7 +171,7 @@ public class ProductionBuilding : MonoBehaviour
             }
         }
         */
-        if (subject == "bread")
+        if (subjectName == "bread")
         {
 
 
@@ -175,7 +186,7 @@ public class ProductionBuilding : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 //GameObject.Find("")
-                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 3) * (-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_1_quantity = 0;
@@ -193,7 +204,7 @@ public class ProductionBuilding : MonoBehaviour
                 return;
             }
         }
-        if (subject == "corn_bread")
+        if (subjectName == "corn_bread")
         {
             building_time = 10;//Время сборки
 
@@ -206,7 +217,7 @@ public class ProductionBuilding : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 Debug.Log("corn:" + globals.corn + "egg:" + globals.egg);
-                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
@@ -283,7 +294,7 @@ public class ProductionBuilding : MonoBehaviour
                 return;
             }
         }
-        if (subject == "cookie")
+        if (subjectName == "cookie")
         {
             building_time = 10;
             //building_time = globals.cookie_building_time;//Время сборки, добавить сюда глобальную переменную
@@ -297,7 +308,7 @@ public class ProductionBuilding : MonoBehaviour
             {
                 Debug.Log("Нехватает ингредиентов!");
                 Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat" + globals.wheat);
-                globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                 if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) && (globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
@@ -368,7 +379,7 @@ public class ProductionBuilding : MonoBehaviour
                 if (globals.wheat - 2 < 0)
                 {
                     Debug.Log("Нехватило только пшеницы");
-                    globals.price_for_diamonds_panel_current_item = subject;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                    globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 2) * (-1);
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";
@@ -392,7 +403,7 @@ public class ProductionBuilding : MonoBehaviour
         var nowtime = DateTime.Now;//Текущее время
         if (globals.bakery_array_slots_zagruzki[0, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[0, 0] = subject; //Загружаемый предмет
+            globals.bakery_array_slots_zagruzki[0, 0] = subjectName; //Загружаемый предмет
             globals.bakery_array_slots_zagruzki[0, 1] = Convert.ToString(nowtime, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
             globals.bakery_array_slots_zagruzki[0, 2] = Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
             Debug.Log("globals.bakery_array_slots_zagruzki[0, 0]" + globals.bakery_array_slots_zagruzki[0, 0]);
@@ -402,7 +413,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[1, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[1, 0] = subject;
+            globals.bakery_array_slots_zagruzki[1, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[1, 1] = globals.bakery_array_slots_zagruzki[0, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[0, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[1, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -413,7 +424,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[2, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[2, 0] = subject;
+            globals.bakery_array_slots_zagruzki[2, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[2, 1] = globals.bakery_array_slots_zagruzki[1, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[1, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[2, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -424,7 +435,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[3, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[3, 0] = subject;
+            globals.bakery_array_slots_zagruzki[3, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[3, 1] = globals.bakery_array_slots_zagruzki[2, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[2, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[3, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -435,7 +446,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[4, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[4, 0] = subject;
+            globals.bakery_array_slots_zagruzki[4, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[4, 1] = globals.bakery_array_slots_zagruzki[3, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[3, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[4, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -446,7 +457,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[5, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[5, 0] = subject;
+            globals.bakery_array_slots_zagruzki[5, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[5, 1] = globals.bakery_array_slots_zagruzki[4, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[4, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[5, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -457,7 +468,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[6, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[6, 0] = subject;
+            globals.bakery_array_slots_zagruzki[6, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[6, 1] = globals.bakery_array_slots_zagruzki[5, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[5, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[6, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -468,7 +479,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[7, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[7, 0] = subject;
+            globals.bakery_array_slots_zagruzki[7, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[7, 1] = globals.bakery_array_slots_zagruzki[6, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[6, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[7, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
@@ -479,7 +490,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (globals.bakery_array_slots_zagruzki[8, 0] == "")
         {
-            globals.bakery_array_slots_zagruzki[8, 0] = subject;
+            globals.bakery_array_slots_zagruzki[8, 0] = subjectName;
             globals.bakery_array_slots_zagruzki[8, 1] = globals.bakery_array_slots_zagruzki[7, 2];
             time_slot = Convert.ToDateTime(globals.bakery_array_slots_zagruzki[7, 2], System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);
             globals.bakery_array_slots_zagruzki[8, 2] = Convert.ToString(time_slot.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat);

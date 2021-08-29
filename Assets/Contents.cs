@@ -169,6 +169,36 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
     }
+    public int GetCountOfOccupiedSlots()
+    {   //Проверяем соединение с БД
+        //Доработать входные данные 
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+
+            string sql = "SELECT COUNT(*) FROM Contents ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            object result = cmd.ExecuteScalar();
+            if (result != null)
+            {
+                int r = Convert.ToInt32(result);
+                Debug.Log("Number of countries in the world database is: " + r);
+                return r;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+            return -1;
+        }
+
+        conn.Close();
+        return -2;
+        Debug.Log("Done.");
+    }
     public void AddContents(string subjectParent, string subjectChild, int userId) //Метод только добавляет в БД полученные значения
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера

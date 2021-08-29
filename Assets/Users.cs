@@ -70,7 +70,7 @@ public class Users : MonoBehaviour
             conn.Open();
 
             SQLQuery = "SELECT id_user, nickname, farm_name" +
-            " from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
+            " FROM users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
 
