@@ -82,7 +82,7 @@ public class ProductionBuilding : MonoBehaviour
             SlotsLoading.SetActive(false);
             SlotsPanel.SetActive(true);
             gameObject.tag = "obj_move_mod";
-
+     
             if (IsCollisionMoveModeOn)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет

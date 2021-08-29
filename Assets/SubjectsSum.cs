@@ -12,9 +12,8 @@ public class SubjectsSum : MonoBehaviour
     public static int GetSubjectSumCountByName(string subjectName, int userID)
     {
         Debug.Log("GetSubjectSumCountbyName");
-        string connectionString = Connections.GetConnectionString();
-        Debug.Log("connectionString: " + connectionString);
-        MySqlConnection conn = new MySqlConnection(connectionString);
+        Debug.Log("connectionString: " + Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

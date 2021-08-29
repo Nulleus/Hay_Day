@@ -13,8 +13,7 @@ public class Contents : MonoBehaviour
 
     public void Start()
     {
-        AddContents("bakery", "bread", gameObject.GetComponent<Users>().IDUser);
-        GetShipmentID("bakery", gameObject.GetComponent<Users>().IDUser);
+
     }
     public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
@@ -110,23 +109,23 @@ public class Contents : MonoBehaviour
     }
     static int GetOutputQuantity(string subjectName) //Получаем количество продукта на выходе
     {
-        int outputQuantity;
+        int count;
         Debug.Log("GetOutputQuantity");
-        Debug.Log(Connections.ConnectionString);
+        Debug.Log(Connections.ConnectionString+"subjectName="+subjectName);
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var SQLQuery = "SELECT output_quantity from output_quantity_subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
+            var SQLQuery = "SELECT count FROM output_quantity WHERE subject_name='" + subjectName + "' LIMIT 0,1 ";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                outputQuantity = (int)reader["output_quantity"];
+                count= (int)reader["count"];
 
-                Debug.Log(outputQuantity);
-                return outputQuantity;
+                Debug.Log(count);
+                return count;
             }
             reader.Close();
         }
@@ -144,7 +143,7 @@ public class Contents : MonoBehaviour
         return convertA.AddSeconds(second).ToString("yyyy-MM-dd HH:mm:ss"); 
     }
     void CheckConnections()
-    {
+    {   //Проверяем соединение с БД
         //Доработать входные данные 
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
@@ -169,7 +168,7 @@ public class Contents : MonoBehaviour
 
         conn.Close();
         Debug.Log("Done.");
-    }//Проверяем соединение с БД
+    }
     public void AddContents(string subjectParent, string subjectChild, int userId) //Метод только добавляет в БД полученные значения
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера

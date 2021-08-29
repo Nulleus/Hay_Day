@@ -7,14 +7,11 @@ public class SlotLoading : MonoBehaviour
     public Animator Anim;//Анимация поля
     public string SubjectParent;
     public int NumberSlot;
-    public GameObject Data;
     // Start is called before the first frame update
     void Start()
     {
         Anim = GetComponent<Animator>();
-        Data = GameObject.Find("Data");
-        Data.GetComponent<Contents>();
-        string subjectChild = Contents.GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Data.GetComponent<Users>().IDUser);
+        string subjectChild = Contents.GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Users.IDUser);
         if (subjectChild == "")
         {
             subjectChild = "empty";

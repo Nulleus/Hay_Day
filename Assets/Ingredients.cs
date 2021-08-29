@@ -21,10 +21,8 @@ public class Ingredients : MonoBehaviour
     {
         Dictionary<string, int>  Compositions = new Dictionary<string, int>();
         Debug.Log("GetCompositions");
-
-        string connectionString = Connections.GetConnectionString();
-        Debug.Log("connectionString: "+ connectionString);
-        MySqlConnection conn = new MySqlConnection(connectionString);
+        Debug.Log("connectionString: "+ Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

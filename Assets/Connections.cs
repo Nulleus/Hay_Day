@@ -13,12 +13,7 @@ public class Connections : MonoBehaviour
     public string UserPassword;
     public string Port;
     public static string ConnectionString;
-
-    public static string GetConnectionString()
-    {
-        
-        return ConnectionString;
-    }
+    
     public static string BuildingConnectionString(string server, string dataBase, string userName, string userPassword, string port)
     {
         string connectionString =
@@ -68,7 +63,8 @@ public class Connections : MonoBehaviour
     }
     void Awake()
     {
-        BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
+        ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
+
     }
 
     // Update is called once per frame

@@ -14,16 +14,16 @@ public class Users : MonoBehaviour
     public string FarmName;
     public string SQLQuery;
     // Start is called before the first frame update
-    public void GetIDUser(string login, string password)
+    public void GetIDUser()
     {
-        if ((login == "")||(password == ""))
+        if ((Login == "")||(Pasword == ""))
         {
             Debug.Log("Логин и (или) пароль не введены");
             
         }
         Debug.Log("GetIDUser()");
         //Получение данных для подключения из единой точки входа
-        var SQLQuery = "SELECT id_user from users WHERE login='" + login + "' AND pasword='" + password + "'";
+        var SQLQuery = "SELECT id_user from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
         // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
@@ -57,16 +57,6 @@ public class Users : MonoBehaviour
         conn.Close();
     }
 
-    void Awake()
-    {
-        Debug.Log("Awake");
-        Debug.Log(Login);
-    }
-    void Start()
-    {
-        //GetInfoUser();
-        GetIDUser(Login, Pasword);
-    }
     public void GetInfoUser()
     {
         Debug.Log("GetInfoUser()");
