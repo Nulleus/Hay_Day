@@ -169,7 +169,7 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
     }
-    public int GetCountOfOccupiedSlots()
+    public int GetCountOfOccupiedSlots(string subjectParentName, string subjectChildName, int userID)
     {   //Проверяем соединение с БД
         //Доработать входные данные 
         MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
@@ -178,7 +178,7 @@ public class Contents : MonoBehaviour
             Debug.Log("Connecting to MySQL...");
             conn.Open();
 
-            string sql = "SELECT COUNT(*) FROM Contents ";
+            string sql = "SELECT COUNT(*) FROM contents WHERE ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             object result = cmd.ExecuteScalar();
             if (result != null)

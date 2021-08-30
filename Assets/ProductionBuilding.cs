@@ -131,14 +131,16 @@ public class ProductionBuilding : MonoBehaviour
         // Проверяем, нужно ли выгрузить готовые предметы
 
         //Если все слоты заняты, не загружать
-        int count = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName);
-        if (count <= 0)
+        //countOpenSlots - отвечает за количество открытых слотов у определенного пользователя по его id
+        int countOpenSlots = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName, Data.GetComponent<Users>().IDUser);
+        int countOfOccupiedSlots = Data.GetComponent<Contents>().GetCountOfOccupiedSlots(subjectName, Data.GetComponent<Users>().IDUser);
+        if (countOpenSlots <= 0)
         {
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
         }
-        if (count > 0)
+        if (countOpenSlots > 0)
         {
-
+            
         }
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
