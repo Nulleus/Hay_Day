@@ -7,11 +7,12 @@ using System;
 
 public class OutputQuantity : MonoBehaviour
 {
-    public static int GetCount(string subjectName) //ѕолучаем количество продукта на выходе.
+    public GameObject Data;
+    public int GetCount(string subjectName) //ѕолучаем количество продукта на выходе.
     {
         Debug.Log("method GetCount");
-        Debug.Log("connectionString: " + Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

@@ -7,22 +7,15 @@ using System;
 
 public class Ingredients : MonoBehaviour
 {
+    public GameObject Data;
     //Dictionary<string, int> Ingredient;
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
-
-    private void Start()
-    {
-        
-    }
-
-    
-
-    public static Dictionary<string,int> GetCompositions (string SubjectName) //Получаем ингредиенты, необходимые для создания объекта
+    public Dictionary<string,int> GetCompositions (string SubjectName) //Получаем ингредиенты, необходимые для создания объекта
     {
         Dictionary<string, int>  Compositions = new Dictionary<string, int>();
         Debug.Log("GetCompositions");
-        Debug.Log("connectionString: "+ Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log("connectionString: "+ Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

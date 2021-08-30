@@ -18,8 +18,9 @@ public class ProgressSlots : MonoBehaviour
         //GameObject.Find("Data")
         //int idUser = Data.GetComponent<Users>().IDUser;
         Debug.Log("GetOpenSlotsCount");
-        Debug.Log("connectionString: " + Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        
+        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

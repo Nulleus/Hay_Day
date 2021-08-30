@@ -8,18 +8,15 @@ using System;
 
 public class Contents : MonoBehaviour
 {
+    public GameObject Data;
     //Класс отвечает за работу с таблицей Contents в БД
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
-    public void Start()
-    {
-
-    }
-    public static string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
+    public string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
         Debug.Log("GetSubjectChildQueue");
-        Debug.Log(Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -43,13 +40,13 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return "Done";
     }
-    static string GetServerDateTime()//Получаем серверное время
+    public string GetServerDateTime()//Получаем серверное время
     {
         DateTime serverDateTime;
         string serverDateTimeTemp;        
         Debug.Log("GetServerDateTime");
-        Debug.Log(Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -77,12 +74,12 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return "Done";
     }
-    static int GetTimeBuilding(string subjectName) //Получаем время сборки предмета
+    public int GetTimeBuilding(string subjectName) //Получаем время сборки предмета
     {
         int buildingTime;
         Debug.Log("GetTimeBuilding");
-        Debug.Log(Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -107,12 +104,12 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return 0;
     }
-    static int GetOutputQuantity(string subjectName) //Получаем количество продукта на выходе
+    public int GetOutputQuantity(string subjectName) //Получаем количество продукта на выходе
     {
         int count;
         Debug.Log("GetOutputQuantity");
-        Debug.Log(Connections.ConnectionString+"subjectName="+subjectName);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString + "subjectName="+subjectName);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -145,7 +142,7 @@ public class Contents : MonoBehaviour
     void CheckConnections()
     {   //Проверяем соединение с БД
         //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -172,7 +169,7 @@ public class Contents : MonoBehaviour
     public int GetCountOfOccupiedSlots(string subjectParentName, string subjectChildName, int userID)
     {   //Проверяем соединение с БД
         //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -196,8 +193,8 @@ public class Contents : MonoBehaviour
         }
 
         conn.Close();
-        return -2;
         Debug.Log("Done.");
+        return -2;     
     }
     public void AddContents(string subjectParent, string subjectChild, int userId) //Метод только добавляет в БД полученные значения
     {
@@ -209,7 +206,7 @@ public class Contents : MonoBehaviour
         //timeShipmentTemp.AddSeconds(GetTimeBuilding(subjectChild));//Прибавляем конвертированной дате секунды производства равную времени производства объъекта
         //timeShipment = timeShipmentTemp.ToString("yyyy-MM-dd HH:mm:ss"); //Конвертируем дату во время определенного формата БД MySQL
         var SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParent+ "','" + subjectChild + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Console.WriteLine("Connecting to MySQL...");
@@ -225,12 +222,12 @@ public class Contents : MonoBehaviour
         conn.Close();
         Console.WriteLine("Done.");
     }
-    static int GetShipmentID(string subjectParent, int userID) //Получаем ID первого стоящего на выгрузку объекта
+    public int GetShipmentID(string subjectParent, int userID) //Получаем ID первого стоящего на выгрузку объекта
     {
         int contentID;
         Debug.Log("method GetShipmentID");
-        Debug.Log(Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

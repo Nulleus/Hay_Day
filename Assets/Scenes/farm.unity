@@ -14107,6 +14107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameSystem: Bakery
+  Data: {fileID: 0}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
 --- !u!1 &366472903
 GameObject:
@@ -64983,6 +64984,7 @@ GameObject:
   - component: {fileID: 1866044572}
   - component: {fileID: 1866044568}
   - component: {fileID: 1866044574}
+  - component: {fileID: 1866044575}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -65002,6 +65004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c826c7dd37e134fb9386efcc8735f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!114 &1866044568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65014,6 +65017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e882bc6845460844a08a225b3e3dd14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!114 &1866044569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65026,6 +65030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a737635edbea26489372da97083e778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
   IDUser: 11
   Login: admin
   Pasword: 123
@@ -65049,6 +65054,7 @@ MonoBehaviour:
   UserName: mailruz6_hayday
   UserPassword: z173500qw
   Port: 3306
+  ConnectionString: Server=mailruz6.beget.tech;DataBase=mailruz6_hayday;USER=mailruz6_hayday;PASSWORD=z173500qw;Port=3306;
 --- !u!114 &1866044571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65061,6 +65067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!114 &1866044572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65073,6 +65080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5498747ba3c8a1645966d39f92cc93b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!4 &1866044573
 Transform:
   m_ObjectHideFlags: 0
@@ -65097,6 +65105,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c12726fe9e5f6943b368e756eea0126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+--- !u!114 &1866044575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc0466cc74b8744ead147cf8fb3cc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}

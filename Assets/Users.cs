@@ -7,6 +7,7 @@ using System;
 
 public class Users : MonoBehaviour
 {
+    public GameObject Data;
     public int IDUser;
     public string Login;
     public string Pasword;
@@ -27,7 +28,7 @@ public class Users : MonoBehaviour
         // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         // устанавливаем соединение с БД
         conn.Open();
         // объект для выполнения SQL-запроса
@@ -62,8 +63,8 @@ public class Users : MonoBehaviour
         Debug.Log("GetInfoUser()");
         //tring connStr = "server=localhost;user=root;database=world;port=3306;password=******";
         //ConnectionString = Data.GetComponent<Connections>().ConnectionString;
-        Debug.Log(Connections.ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Connections.ConnectionString);
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");

@@ -13,7 +13,7 @@ public class SlotLoading : MonoBehaviour
     {
         
         Anim = GetComponent<Animator>();
-        string subjectChild = Contents.GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Data.GetComponent<Users>().IDUser);
+        string subjectChild = Data.GetComponent<Contents>().GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Data.GetComponent<Users>().IDUser);
         if (subjectChild == "")
         {
             subjectChild = "empty";

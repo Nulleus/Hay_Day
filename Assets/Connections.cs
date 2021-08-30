@@ -12,7 +12,7 @@ public class Connections : MonoBehaviour
     public string UserName;
     public string UserPassword;
     public string Port;
-    public static string ConnectionString;
+    public string ConnectionString;
     
     public static string BuildingConnectionString(string server, string dataBase, string userName, string userPassword, string port)
     {
@@ -25,6 +25,7 @@ public class Connections : MonoBehaviour
         ;
         return connectionString;
     }
+
     void CheckConnections()
     {
 
