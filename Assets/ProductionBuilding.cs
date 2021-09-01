@@ -135,8 +135,15 @@ public class ProductionBuilding : MonoBehaviour
         string subjectChildName =Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
         //countOpenSlots - отвечает за количество открытых слотов у определенного пользователя по его id
         int countOpenSlots = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName, Data.GetComponent<Users>().IDUser);
-        //Получаем количество занятых слотов
-        int countOfOccupiedSlots = Data.GetComponent<Contents>().GetCountOfOccupiedSlots(subjectName, subjectChildName, Data.GetComponent<Users>().IDUser);
+        //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)
+        int countOfOccupiedSlots = Data.GetComponent<Contents>().GetCountOfOccupiedSlotsByParentName(subjectName,  Data.GetComponent<Users>().IDUser);
+        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsBySubjectName(subjectChildName);
+        //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
+        if (countOfOccupiedSlots >= openSlotsLoadingDefaults)
+        {
+            Debug.Log("Собери руду, чтобы продолжить добычу");
+            Debug.Log("Собери готовую продукцию, чтобы продолжить изготовление");//Пример заглушки, но нужно будет создать таблицу с данными.
+        }
         if (countOpenSlots <= 0)
         {
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");

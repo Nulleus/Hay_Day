@@ -5,24 +5,24 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 
-public class OutputQuantity : MonoBehaviour
+public class OpenSlotsDefaults : MonoBehaviour
 {
     public GameObject Data;
-    public int GetOutputQuantityBySubjectName(string subjectName) //ѕолучаем количество продукта на выходе.
+    public int GetOpenSlotsBySubjectName(string subjectName)
     {
-        Debug.Log("method GetCount");
+        Debug.Log("method GetOpenSlotsBySubjectName");
         Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var SQLQuery = "SELECT count FROM output_quantity WHERE subject_name='" + subjectName + "' LIMIT 0,1 ";
+            var SQLQuery = "SELECT open_slots_loading_count FROM open_slots_defaults WHERE subject_name='" + subjectName + "' LIMIT 0,1 ";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return (int)reader["count"];
+                return (int)reader["open_slots_loading_count"];
             }
             reader.Close();
         }

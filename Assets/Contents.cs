@@ -12,7 +12,7 @@ public class Contents : MonoBehaviour
     //Класс отвечает за работу с таблицей Contents в БД
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
-    public string GetSubjectChildInTheProcessOfAssembly(string subject_parent, int number_slot, int user_id) //Получаем продукт, находящийся в производстве для каждого слота по номеру
+    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, int userID) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
         Debug.Log("GetSubjectChildQueue");
         Debug.Log(Data.GetComponent<Connections>().ConnectionString);
@@ -22,8 +22,8 @@ public class Contents : MonoBehaviour
             Debug.Log("Connecting to MySQL...");
             conn.Open();
             //var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id='" + user_id + "' AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT '" + number_slot + "',1";
-            var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id=" + user_id + " AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT " + number_slot + ",1";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            var sqlQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id=" + userID + " AND subject_parent='" + subjectParentName + "' ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -104,36 +104,7 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return 0;
     }
-    public int GetOutputQuantity(string subjectName) //Получаем количество продукта на выходе
-    {
-        int count;
-        Debug.Log("GetOutputQuantity");
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString + "subjectName="+subjectName);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var SQLQuery = "SELECT count FROM output_quantity WHERE subject_name='" + subjectName + "' LIMIT 0,1 ";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                count= (int)reader["count"];
 
-                Debug.Log(count);
-                return count;
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return 0;
-    }
     static string GetSummDateTimeAndSeconds(string time, int second) //Прибавляем дате определенное количество секунд
     {
         var convertA = DateTime.Parse(time);//Конвертируем строку в дату
@@ -166,7 +137,7 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
     }
-    public int GetCountOfOccupiedSlots(string subjectParentName, string subjectChildName, int userID)
+    public int GetCountOfOccupiedSlotsByParentName(string subjectParentName, int userID)
     {   //Проверяем соединение с БД
         //Доработать входные данные 
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
@@ -175,7 +146,7 @@ public class Contents : MonoBehaviour
             Debug.Log("Connecting to MySQL...");
             conn.Open();
 
-            string sql = "SELECT COUNT(*) FROM contents WHERE ";
+            string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             object result = cmd.ExecuteScalar();
             if (result != null)
@@ -196,16 +167,16 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return -2;     
     }
-    public void AddContents(string subjectParent, string subjectChild, int userId) //Метод только добавляет в БД полученные значения
+    public void AddContents(string subjectParentName, string subjectChildName, int userId) //Метод только добавляет в БД полученные значения
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
-        string timeShipment = GetSummDateTimeAndSeconds(timeLoading, GetTimeBuilding(subjectChild));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
-        int outputQuantity = GetOutputQuantity(subjectChild);//Количество на выходе равно, значению из таблицы output_quantity
+        string timeShipment = GetSummDateTimeAndSeconds(timeLoading, GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
+        int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
 
         //var timeShipmentTemp = DateTime.Parse(timeShipment);//Конвертируем строку в дату
         //timeShipmentTemp.AddSeconds(GetTimeBuilding(subjectChild));//Прибавляем конвертированной дате секунды производства равную времени производства объъекта
         //timeShipment = timeShipmentTemp.ToString("yyyy-MM-dd HH:mm:ss"); //Конвертируем дату во время определенного формата БД MySQL
-        var SQLQuery = "INSERT contents (subject_parent, subject_child, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParent+ "','" + subjectChild + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";
+        var SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
         try
         {
@@ -222,7 +193,7 @@ public class Contents : MonoBehaviour
         conn.Close();
         Console.WriteLine("Done.");
     }
-    public int GetShipmentID(string subjectParent, int userID) //Получаем ID первого стоящего на выгрузку объекта
+    public int GetShipmentID(string subjectParentName, int userID) //Получаем ID первого стоящего на выгрузку объекта
     {
         int contentID;
         Debug.Log("method GetShipmentID");
@@ -233,7 +204,7 @@ public class Contents : MonoBehaviour
             Debug.Log("Connecting to MySQL...");
             conn.Open();
             //var SQLQuery = "SELECT output_quantity from output_quantity_subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
-            var SQLQuery = "SELECT id_content FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent = '" + subjectParent + "' ORDER BY id_content ASC LIMIT 0,1";
+            var SQLQuery = "SELECT id_content FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content ASC LIMIT 0,1";
             MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
