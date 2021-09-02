@@ -14107,7 +14107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameSystem: Bakery
-  Data: {fileID: 0}
+  Data: {fileID: 1866044566}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
 --- !u!1 &366472903
 GameObject:

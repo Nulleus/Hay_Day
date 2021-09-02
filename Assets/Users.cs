@@ -15,7 +15,11 @@ public class Users : MonoBehaviour
     public string FarmName;
     public string SQLQuery;
     // Start is called before the first frame update
-    public void GetIDUser()
+    public int GetIDUser()
+    {
+        return IDUser;
+    }
+    public void GetIDUserByLoginAndPassword()
     {
         if ((Login == "")||(Pasword == ""))
         {

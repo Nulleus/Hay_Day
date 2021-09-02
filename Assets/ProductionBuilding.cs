@@ -133,25 +133,52 @@ public class ProductionBuilding : MonoBehaviour
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
         string subjectChildName =Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
-        //countOpenSlots - отвечает за количество открытых слотов у определенного пользователя по его id
-        int countOpenSlots = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName, Data.GetComponent<Users>().IDUser);
-        //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)
-        int countOfOccupiedSlots = Data.GetComponent<Contents>().GetCountOfOccupiedSlotsByParentName(subjectName,  Data.GetComponent<Users>().IDUser);
-        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsBySubjectName(subjectChildName);
+        //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
+        int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName, Data.GetComponent<Users>().IDUser);
+        //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
+        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName,  Data.GetComponent<Users>().IDUser);
+        //Получаем дефолтное значение открытых слотов по имени объекта
+        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectChildName);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
-        if (countOfOccupiedSlots >= openSlotsLoadingDefaults)
+        //Проверяем,сколько слотов занято производством
+        int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName, Data.GetComponent<Users>().IDUser);
+        //Если количество отгруженных товаров, превышает число дефолтных значений слотов отгрузки
+        if (countOfOccupiedShipmentSlots >= openSlotsLoadingDefaults)
         {
             Debug.Log("Собери руду, чтобы продолжить добычу");
             Debug.Log("Собери готовую продукцию, чтобы продолжить изготовление");//Пример заглушки, но нужно будет создать таблицу с данными.
+            return;
         }
-        if (countOpenSlots <= 0)
+        //Если количество загруженных в производство объектов>=открытых у пользователя 
+        if (countOfOccupiedLoadingSlots>=countOpenSlotsUser)
         {
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
+            return;
         }
-        if (countOpenSlots > 0)
+        if (countOfOccupiedLoadingSlots < countOpenSlotsUser)
         {
-            
+            //Полуаем список ингредиентов (ингредиент, количество)
+            Dictionary<string, int> compositions = new Dictionary<string, int>();
+            compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
+            foreach (KeyValuePair<string, int> composition in compositions)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}", composition.Key, composition.Value);
+                //Получаем идентификатор пользователя
+                int userID = Data.GetComponent<Users>().GetIDUser();
+                //Получаем количество ингредиентов на складе
+                int subjectSum = Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(composition.Key, userID);
+                //Проверяем, хватает ли ресурсов
+                //Если ингредиентов на складе меньше, чем нужно для изготовления
+                if (subjectSum < composition.Value)
+                {
+                    //Рассчитываем каких и сколько нехватает ингредиентов и предлагаем их купить за алмазы.
+
+                }
+            }
+            //Если ресурсов нехватает, показываем список
+            //Загружаем новый объект в производство
         }
+
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         DateTime time_slot;

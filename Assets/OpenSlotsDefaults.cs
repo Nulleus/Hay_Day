@@ -8,7 +8,7 @@ using System;
 public class OpenSlotsDefaults : MonoBehaviour
 {
     public GameObject Data;
-    public int GetOpenSlotsBySubjectName(string subjectName)
+    public int GetOpenSlotsLoadingBySubjectName(string subjectName)
     {
         Debug.Log("method GetOpenSlotsBySubjectName");
         Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
