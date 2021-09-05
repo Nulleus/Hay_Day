@@ -11,6 +11,7 @@ public class ProductionBuilding : MonoBehaviour
     [SerializeField]
     string NameSystem;//Системное имя объекта
     public GameObject Data;
+    public GameObject PanelSlots; //
     [SerializeField]
     string NameView;//Отображаемое имя объекта
     int OpenLevel;// Уровень, на котором открывается объект
@@ -36,6 +37,7 @@ public class ProductionBuilding : MonoBehaviour
     GameObject SlotsPredmets; //Слоты с предметами
     GameObject SlotsLoading; //Слоты с загруженными предметами
     GameObject SlotsShipment; //Слоты с отгруженными предметами
+
 
 
     void Start()
@@ -160,6 +162,7 @@ public class ProductionBuilding : MonoBehaviour
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
             compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
+
             foreach (KeyValuePair<string, int> composition in compositions)
             {
                 Console.WriteLine("Key = {0}, Value = {1}", composition.Key, composition.Value);
@@ -171,6 +174,7 @@ public class ProductionBuilding : MonoBehaviour
                 //Если ингредиентов на складе меньше, чем нужно для изготовления
                 if (subjectSum < composition.Value)
                 {
+                    
                     //Рассчитываем каких и сколько нехватает ингредиентов и предлагаем их купить за алмазы.
                     //Для этого лучше создать класс?
                 }
