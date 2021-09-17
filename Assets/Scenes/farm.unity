@@ -6277,7 +6277,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &174019862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6300,7 +6300,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &174019863
 Canvas:
   m_ObjectHideFlags: 0
@@ -33559,6 +33559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectFromGetWidth: {fileID: 1545260471}
+  ParentObject: {fileID: 905928200}
+  offsetX: 1
 --- !u!1001 &909024455
 PrefabInstance:
   m_ObjectHideFlags: 0
