@@ -26488,7 +26488,7 @@ GameObject:
   - component: {fileID: 744491839}
   - component: {fileID: 744491838}
   m_Layer: 0
-  m_Name: Info
+  m_Name: InfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

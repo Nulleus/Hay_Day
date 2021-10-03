@@ -131,7 +131,7 @@ public class ProductionBuilding : MonoBehaviour
     public void AddInSlotSubject(string subjectName)//Метод добавления предмета в слоты
     {
         // Проверяем, нужно ли выгрузить готовые предметы
-
+        Debug.Log("AddInSlotSubject: " + subjectName);
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
         string subjectChildName =Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
