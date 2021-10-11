@@ -106,7 +106,7 @@ public class ProductionBuilding : MonoBehaviour
             SlotsPanel.SetActive(false);
             Collider.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
-            gameObject.tag = globals.bakery_type_obj;//
+            //gameObject.tag = globals.bakery_type_obj;//Закомментировал, потому что вызывало ошибку
         }
         if (IsCountOn)
         {

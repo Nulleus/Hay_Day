@@ -26887,7 +26887,7 @@ RectTransform:
   - {fileID: 360852768}
   - {fileID: 1284615881}
   m_Father: {fileID: 775015348}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27896,11 +27896,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1283257540}
-  - {fileID: 754866955}
   - {fileID: 1325348935}
+  - {fileID: 1283257540}
   - {fileID: 782392698}
   - {fileID: 905928201}
+  - {fileID: 754866955}
   m_Father: {fileID: 882889951}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28389,7 +28389,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 775015348}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30101,7 +30101,7 @@ GameObject:
   - component: {fileID: 827200382}
   - component: {fileID: 827200384}
   m_Layer: 0
-  m_Name: PredmetName
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33539,7 +33539,7 @@ RectTransform:
   m_Children:
   - {fileID: 1545260472}
   m_Father: {fileID: 775015348}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -44194,7 +44194,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 775015348}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -46159,7 +46159,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 775015348}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -52898,9 +52898,9 @@ GameObject:
   - component: {fileID: 1545260475}
   - component: {fileID: 1545260474}
   - component: {fileID: 1545260473}
-  - component: {fileID: 1545260476}
   - component: {fileID: 1545260478}
   - component: {fileID: 1545260477}
+  - component: {fileID: 1545260479}
   m_Layer: 0
   m_Name: PanelSlot
   m_TagString: Untagged
@@ -52986,19 +52986,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1545260476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545260471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f8863db50317444bfcc81b63024256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!50 &1545260477
 Rigidbody2D:
   serializedVersion: 4
@@ -53046,6 +53033,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 200, y: 200}
   m_EdgeRadius: 0
+--- !u!114 &1545260479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545260471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed73e071002184644a315aa404eb4814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InfoPanel: {fileID: 744491836}
+  Anim: {fileID: 0}
 --- !u!1 &1545403221
 GameObject:
   m_ObjectHideFlags: 0
@@ -63851,7 +63852,7 @@ GameObject:
   - component: {fileID: 1861453864}
   - component: {fileID: 1861453866}
   m_Layer: 0
-  m_Name: PredmetInfo
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
