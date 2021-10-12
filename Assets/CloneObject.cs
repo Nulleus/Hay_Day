@@ -11,6 +11,9 @@ public class CloneObject : MonoBehaviour
     void Start()
     {
         TestClone();
+        TestClone();
+        TestClone();
+        TestClone();
     }
 
     // Update is called once per frame
@@ -21,20 +24,28 @@ public class CloneObject : MonoBehaviour
     }
     public void DeleteClones() //Удаление клонов
     {
-        //Переписать метод, он не годится, так как при отключении скрипта, работает ли?
-        Debug.Log(gameObject.transform.childCount);
         
-        for (int i = 0; i <= gameObject.transform.childCount; i++) //
+        int childCount = gameObject.transform.childCount;
+        Debug.Log(childCount);
+        GameObject clone;
+        for (int i = 0; i <= childCount; i++) //
         {
-            Debug.Log(gameObject.transform.Find("PanelSlot(Clone)"));
-            if (gameObject.transform.Find("PanelSlot(Clone)") == null)
+            Debug.Log(i);
+            clone = null;
+            clone = gameObject.transform.Find("PanelSlot(Clone)").gameObject;
+            Debug.Log("cloneID: "+clone.GetInstanceID());
+            Debug.Log("clone: " + clone);
+            if (clone == null)
             {
                 Debug.Log("Он равен нулю");
             }
-            if (gameObject.transform.Find("PanelSlot(Clone)")!=null)
+            //if ((clone)!=null)
+            else
             {
-                GameObject clone = gameObject.transform.Find("PanelSlot(Clone)").gameObject;
+                Debug.Log("Удаление");
+                
                 Destroy(clone);
+                clone = null;
             }
 
         }
