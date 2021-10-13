@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class CloneObject : MonoBehaviour
 {
-    public GameObject ObjectFromGetWidth;
-    public GameObject ParentObject;
-    public int offsetX;
+    public GameObject ObjectFromGetWidth; //Объект, с которого нужно сделать клон
+    public Vector3 PositionCloneEnd; //Расположение последнего клонированного объекта
+
+    public GameObject ParentObject; //Родительский объект
+    public int offsetX; //Смещение по Х
+
+
     // Start is called before the first frame update
     void Start()
     {
+        PositionCloneEnd = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
+        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
         TestClone();
         TestClone();
         TestClone();
@@ -19,8 +25,14 @@ public class CloneObject : MonoBehaviour
     // Update is called once per frame
     void TestClone()
     {
-        Instantiate(ObjectFromGetWidth, new Vector3((ObjectFromGetWidth.transform.position.x + (ObjectFromGetWidth.GetComponent<RectTransform>().localPosition.x + offsetX))
+        //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
+        Debug.Log(PositionCloneEnd);
+        Debug.Log("ObjectFromGetWidth.GetComponent<Rect>().width=" + ObjectFromGetWidth.GetComponent<RectTransform>().rect.width);
+        GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width + offsetX))
         , ObjectFromGetWidth.transform.position.y, ObjectFromGetWidth.transform.position.z), Quaternion.identity, ParentObject.transform);
+        //Добавим клону свойства 
+        PositionCloneEnd = clone.transform.position;//Расположение созданного клона
+
     }
     public void DeleteClones() //Удаление клонов
     {
@@ -30,40 +42,19 @@ public class CloneObject : MonoBehaviour
         GameObject clone;
         for (int i = 0; i <= childCount; i++) //
         {
-            Debug.Log(i);
-            clone = null;
-            clone = gameObject.transform.Find("PanelSlot(Clone)").gameObject;
-            Debug.Log("cloneID: "+clone.GetInstanceID());
-            Debug.Log("clone: " + clone);
-            if (clone == null)
+            try
             {
-                Debug.Log("Он равен нулю");
-            }
-            //if ((clone)!=null)
-            else
-            {
+                clone = gameObject.transform.Find("PanelSlot(Clone)").gameObject;
+                Debug.Log("cloneID: " + clone.GetInstanceID());
+                Debug.Log("clone: " + clone);
                 Debug.Log("Удаление");
-                
-                Destroy(clone);
-                clone = null;
+                DestroyImmediate(clone);
             }
-
+            catch 
+            {
+                Debug.Log("Нет такого объекта");
+            }
         }
-        //Удалять, пока поиск не равен null
-        //while (gameObject.transform.Find("PanelSlot(Clone)") != null) 
-        //{
-        //GameObject clone = gameObject.transform.Find("PanelSlot(Clone)").gameObject;
-        //if (clone != null)
-        //{//
-        //Debug.Log(gameObject.transform.Find("PanelSlot(Clone)"));
-        //Destroy(clone);
-        // }
-        //else
-        //{
-        //break;
-        //}
-
-        //}
     }
     void OnDisable()
     {

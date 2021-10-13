@@ -33559,6 +33559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectFromGetWidth: {fileID: 1545260471}
+  PositionCloneEnd: {x: 0, y: 0, z: 0}
   ParentObject: {fileID: 905928200}
   offsetX: 1
 --- !u!1001 &909024455
@@ -64115,6 +64116,7 @@ GameObject:
   - component: {fileID: 1866044574}
   - component: {fileID: 1866044575}
   - component: {fileID: 1866044576}
+  - component: {fileID: 1866044577}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -64264,6 +64266,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
+--- !u!114 &1866044577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5bde6350cb6aa42a2c2fd046072bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
