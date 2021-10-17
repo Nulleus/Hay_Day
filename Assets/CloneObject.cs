@@ -16,14 +16,12 @@ public class CloneObject : MonoBehaviour
     {
         PositionCloneEnd = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
         Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
-        TestClone();
-        TestClone();
-        TestClone();
-        TestClone();
+        Clone();
+
     }
 
     // Update is called once per frame
-    void TestClone()
+    void Clone()
     {
         //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
         Debug.Log(PositionCloneEnd);
