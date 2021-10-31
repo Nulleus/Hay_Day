@@ -27,7 +27,7 @@ public class Contents : MonoBehaviour
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return (string)reader["subject_child"]; 
+                return (string)reader["subject_child_name"]; 
             }
             reader.Close();
         }

@@ -58,7 +58,7 @@ public class Connections : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
         //BuildingConnectionString();//Сборка строки подключения 
         CheckConnections();//Провека подключения, таблицы, данных 
     }

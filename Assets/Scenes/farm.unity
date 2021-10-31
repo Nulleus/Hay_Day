@@ -64181,12 +64181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2050c79876eac742bb77dd88cd31521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: mailruz6.beget.tech
-  DataBase: mailruz6_hayday
-  UserName: mailruz6_hayday
-  UserPassword: z173500qw
+  Server: mysql.rabeev2.myjino.ru
+  DataBase: rabeev2_hayday
+  UserName: rabeev2
+  UserPassword: z173500QW
   Port: 3306
-  ConnectionString: Server=mailruz6.beget.tech;DataBase=mailruz6_hayday;USER=mailruz6_hayday;PASSWORD=z173500qw;Port=3306;
+  ConnectionString: 
 --- !u!114 &1866044571
 MonoBehaviour:
   m_ObjectHideFlags: 0
