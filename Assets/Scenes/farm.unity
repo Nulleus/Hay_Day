@@ -26487,6 +26487,7 @@ GameObject:
   - component: {fileID: 744491837}
   - component: {fileID: 744491839}
   - component: {fileID: 744491838}
+  - component: {fileID: 744491840}
   m_Layer: 0
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -26554,6 +26555,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744491836}
   m_CullTransparentMesh: 0
+--- !u!114 &744491840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744491836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad31e6f56d44ee147a09a2377e3a7ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 827200380}
+  Info: {fileID: 1861453862}
+  BuildingTime: {fileID: 2136789765}
+  SubjectName: 
+  Data: {fileID: 1866044566}
 --- !u!1 &745622069
 GameObject:
   m_ObjectHideFlags: 0
@@ -53048,6 +53066,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoPanel: {fileID: 744491836}
   Anim: {fileID: 0}
+  SubjectName: wheat
+  Quantity: {fileID: 0}
 --- !u!1 &1545403221
 GameObject:
   m_ObjectHideFlags: 0

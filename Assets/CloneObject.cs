@@ -10,7 +10,6 @@ public class CloneObject : MonoBehaviour
     public GameObject ParentObject; //Родительский объект
     public int offsetX; //Смещение по Х
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +28,9 @@ public class CloneObject : MonoBehaviour
         GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width + offsetX))
         , ObjectFromGetWidth.transform.position.y, ObjectFromGetWidth.transform.position.z), Quaternion.identity, ParentObject.transform);
         //Добавим клону свойства 
+        clone.GetComponent<PanelSlot>().SubjectName = "corn";
+        clone.GetComponent<PanelSlot>().SetAnimaion("corn");
+        clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = "corn";
         PositionCloneEnd = clone.transform.position;//Расположение созданного клона
 
     }

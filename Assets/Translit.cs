@@ -71,4 +71,32 @@ public class Translit : MonoBehaviour
         Debug.Log("Done.");
         return "0";
     }
+    public string GetTimeBuildingRUSByNameObject(string subjectName)
+    {
+        Debug.Log("method GetTimeBuildingRUSByNameObject");
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+            var SQLQuery = "SELECT time_building_rus FROM translit WHERE subject_name='" + subjectName + "'";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string descriptionRUS = (string)reader["time_building_rus"];
+                Debug.Log(descriptionRUS);
+                return descriptionRUS;
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+        conn.Close();
+        Debug.Log("Done.");
+        return "0";
+    }
 }

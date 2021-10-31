@@ -6,11 +6,18 @@ public class PanelSlot : MonoBehaviour
 {
     public GameObject InfoPanel;
     public Animator Anim;
+    public string SubjectName;
+    public GameObject Quantity;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         Anim = GetComponent<Animator>();
+        Debug.Log("Anim = GetComponent<Animator>();");
+    }
+    void Start()
+    {
+
     }
 
     public void SetAnimaion(string subjectName) 
