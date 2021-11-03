@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelSlot : MonoBehaviour
 {
     public GameObject InfoPanel;
     public Animator Anim;
     public string SubjectName;
-    public GameObject Quantity;
+    [SerializeField]
+    int Quantity;
 
+    public int GetQuantity()
+    {
+        return Quantity;
+    }
     // Start is called before the first frame update
     private void Awake()
     {

@@ -22,7 +22,7 @@ public class Contents : MonoBehaviour
             Debug.Log("Connecting to MySQL...");
             conn.Open();
             //var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id='" + user_id + "' AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT '" + number_slot + "',1";
-            var sqlQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id=" + userID + " AND subject_parent='" + subjectParentName + "' ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+            var sqlQuery = "SELECT subject_child_name FROM contents WHERE time_shipment > NOW() AND user_id=" + userID + " AND subject_parent_name='" + subjectParentName + "' ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
             MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
