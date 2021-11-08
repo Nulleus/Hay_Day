@@ -31,6 +31,7 @@ public class CloneObject : MonoBehaviour
         clone.GetComponent<PanelSlot>().SubjectName = "corn";
         clone.GetComponent<PanelSlot>().SetAnimaion("corn");
         clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = "corn";
+        clone.GetComponent<PanelSlot>().SetQuantity(7);
         PositionCloneEnd = clone.transform.position;//Расположение созданного клона
 
     }

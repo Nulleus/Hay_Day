@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PanelSlot : MonoBehaviour
 {
     public GameObject InfoPanel;
     public Animator Anim;
     public string SubjectName;
+    public GameObject Quantity;
     [SerializeField]
-    int Quantity;
+    //int Quantity;
 
     public int GetQuantity()
     {
-        return Quantity;
+        return Convert.ToInt32(Quantity.GetComponent<Text>().text);
     }
+
+
     // Start is called before the first frame update
     private void Awake()
     {
         Anim = GetComponent<Animator>();
         Debug.Log("Anim = GetComponent<Animator>();");
+    }
+    public void SetQuantity(int number)
+    {
+        Quantity.GetComponent<Text>().text = number.ToString();
     }
     void Start()
     {

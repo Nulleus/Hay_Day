@@ -53068,7 +53068,7 @@ MonoBehaviour:
   InfoPanel: {fileID: 744491836}
   Anim: {fileID: 0}
   SubjectName: wheat
-  Quantity: 4
+  Quantity: {fileID: 886965418}
 --- !u!1 &1545403221
 GameObject:
   m_ObjectHideFlags: 0
