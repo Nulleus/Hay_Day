@@ -9,7 +9,7 @@ public class CloneObject : MonoBehaviour
 
     public GameObject ParentObject; //Родительский объект
     public int offsetX; //Смещение по Х
-
+    
     // Start is called before the first frame update
     void Start()
     {
