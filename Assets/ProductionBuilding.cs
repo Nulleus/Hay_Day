@@ -9,6 +9,7 @@ public class ProductionBuilding : MonoBehaviour
 {
     //==============Свойства здания=======================//
     [SerializeField]
+    public GameObject PanelFewResources;
     string NameSystem;//Системное имя объекта
     public GameObject Data;
     public GameObject PanelSlots; //
@@ -50,6 +51,8 @@ public class ProductionBuilding : MonoBehaviour
         SlotsPredmets = gameObject.transform.Find("SlotsPredmets").gameObject;
         SlotsLoading = gameObject.transform.Find("SlotsLoading").gameObject;
         SlotsShipment = gameObject.transform.Find("SlotsShipment").gameObject;
+        
+        AddInSlotSubject("bread");
 
     }
 
@@ -135,15 +138,25 @@ public class ProductionBuilding : MonoBehaviour
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
         string subjectChildName =Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        Debug.Log("AddInSlotSubject(subjectChildName)"+subjectChildName);
         //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
-        int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectName, Data.GetComponent<Users>().IDUser);
+        //Получаем имя производственного здания по имени ребнка
+        string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        Debug.Log("AddInSlotSubject(subjectNameChild)" + subjectNameChild);
+        //Количество открытых слотов у пользователя.
+        int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectNameChild, Data.GetComponent<Users>().IDUser);
+        Debug.Log("AddInSlotSubject(IDUser)" + Data.GetComponent<Users>().IDUser);
+        Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
         int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName,  Data.GetComponent<Users>().IDUser);
+        Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
         //Получаем дефолтное значение открытых слотов по имени объекта
         int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectChildName);
+        Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlotsLoadingDefaults);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
         //Проверяем,сколько слотов занято производством
         int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName, Data.GetComponent<Users>().IDUser);
+        Debug.Log("AddInSlotSubject(countOfOccupiedLoadingSlots)" + countOfOccupiedLoadingSlots);
         //Если количество отгруженных товаров, превышает число дефолтных значений слотов отгрузки
         if (countOfOccupiedShipmentSlots >= openSlotsLoadingDefaults)
         {
@@ -157,8 +170,10 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
             return;
         }
+        //Если количество загруженных в производство объектов<открытых у пользователя 
         if (countOfOccupiedLoadingSlots < countOpenSlotsUser)
         {
+            Debug.Log("countOfOccupiedLoadingSlots < countOpenSlotsUser");
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
             compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
@@ -174,12 +189,19 @@ public class ProductionBuilding : MonoBehaviour
                 //Если ингредиентов на складе меньше, чем нужно для изготовления
                 if (subjectSum < composition.Value)
                 {
-                    
-                    //Рассчитываем каких и сколько нехватает ингредиентов и предлагаем их купить за алмазы.
+                    int missSubjectCount = ((subjectSum - composition.Value) * -1);
+                    //PanelFewResources.GetComponent<PanelFewResources>().ClearPanel();
+                    PanelFewResources.SetActive(true);
+                    PanelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(composition.Key, missSubjectCount);
+
+                    //PanelFewResources.GetComponent<PanelFewResources>().
+                    //Считаем сколько именно не хватает ингредиентов.
+                    Debug.Log("Не хватает:"+((subjectSum - composition.Value)*-1).ToString());
+                    //Рассчитываем каких и сколько не хватает ингредиентов и предлагаем их купить за алмазы.
                     //Для этого лучше создать класс?
                 }
             }
-            //Если ресурсов нехватает, показываем список
+            //Если ресурсов не хватает, показываем список
             //Загружаем новый объект в производство
         }
 
@@ -203,11 +225,11 @@ public class ProductionBuilding : MonoBehaviour
             }
             else
             {
-                Debug.Log("Нехватает ингредиентов!");
-                //Добавляем в SlotInfo, ингредиенты, которых нехватает и их количество
+                Debug.Log("Не хватает ингредиентов!");
+                //Добавляем в SlotInfo, ингредиенты, которых не хватает и их количество
                 //Предмет
 
-                //Количество, которого нехватает = Количество ингредиентов на складе - Необходимое количество ингредиентов для производства
+                //Количество, которого не хватает = Количество ингредиентов на складе - Необходимое количество ингредиентов для производства
                 //var countMissing = (GameObject.Find(ingredient).GetComponent<Subject>().GetCount() - GO.GetComponent<Ingredients>().GetCountByName(ingredient)) * (-1);//-1 Для получения положительного числа(сколько нехватает ингредиентов)
                 //Информация для Панели слота инфо с 
                 //Не тут лолжно быть, а на MouseDown SlotInfo.GetComponent<SlotInfo>().AddMissingIngredient(GameObject.Find(ingredient), GO.GetComponent<Ingredients>().GetCountByName(ingredient).ToString());
@@ -220,16 +242,16 @@ public class ProductionBuilding : MonoBehaviour
 
 
             //Проверка наличия всех ингридиентов
-            if (GameObject.Find("Wheat").GetComponent<Subject>().GetCount() - 3 >= 0)
+            if (1>2)
             {
-                GameObject.Find("Wheat").GetComponent<Subject>().SetCount(-3);
+                
                 //globals.wheat = globals.wheat - 3;
             }
             else
             {
-                Debug.Log("Нехватает ингредиентов!");
+                Debug.Log("Не хватает ингредиентов!");
                 //GameObject.Find("")
-                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого не хватает ингредиентов
                 globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 3) * (-1);
                 globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                 globals.price_for_diamonds_panel_slot_1_quantity = 0;
@@ -258,10 +280,10 @@ public class ProductionBuilding : MonoBehaviour
             }
             else
             {
-                Debug.Log("Нехватает ингредиентов!");
+                Debug.Log("Не хватает ингредиентов!");
                 Debug.Log("corn:" + globals.corn + "egg:" + globals.egg);
-                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
-                if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если нехватает и кукурузы и яиц
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого не хватает ингредиентов
+                if ((globals.corn - 2 < 0) && (globals.egg - 2 < 0))//Если не хватает и кукурузы и яиц
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "corn";
@@ -283,14 +305,14 @@ public class ProductionBuilding : MonoBehaviour
                     Debug.Log("globals.price_for_diamonds_panel_slot_0_quantity=" + globals.price_for_diamonds_panel_slot_0_quantity);
                     Debug.Log("globals.egg_price_for_diamonds=" + globals.egg_price_for_diamonds);
                     Debug.Log("globals.price_for_diamonds_panel_slot_1_quantity=" + globals.price_for_diamonds_panel_slot_1_quantity);
-                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму нехватки ресурсов
+                    GameObject_Enable_Controller.price_for_diamonds_panel.SetActive(true);//Открываем форму не хватки ресурсов
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_0.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_1.SetActive(true);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_2.SetActive(false);
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
                     return;
                 }
-                if (globals.corn - 2 < 0)//Если нехватило только кукурузы
+                if (globals.corn - 2 < 0)//Если не хватило только кукурузы
                 {
 
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.corn - 2) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
@@ -310,9 +332,9 @@ public class ProductionBuilding : MonoBehaviour
                     GameObject_Enable_Controller.price_for_diamonds_panel_slot_3.SetActive(false);
                     return;
                 }
-                if (globals.egg - 2 < 0)//Если нехватило только яиц
+                if (globals.egg - 2 < 0)//Если не хватило только яиц
                 {
-                    Debug.Log("Нехватило только яиц");
+                    Debug.Log("Не хватило только яиц");
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.egg - 2) * -1;//Считаем, количество продуктов, которых нехватает
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "egg";
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";
@@ -349,10 +371,10 @@ public class ProductionBuilding : MonoBehaviour
             }
             else
             {
-                Debug.Log("Нехватает ингредиентов!");
+                Debug.Log("Не хватает ингредиентов!");
                 Debug.Log("brown_sugar:" + globals.brown_sugar + "egg:" + globals.egg + "globals.wheat" + globals.wheat);
-                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
-                if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) && (globals.wheat - 2 < 0))//Если нехватает коричневого сахара и яиц и пшеницы
+                globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого не хватает ингредиентов
+                if ((globals.brown_sugar - 1 < 0) && (globals.egg - 2 < 0) && (globals.wheat - 2 < 0))//Если не хватает коричневого сахара и яиц и пшеницы
                 {
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.brown_sugar - 1) * -1;//Считаем, количество продуктов, которых нехватает, умножаем на1, чтобы избавится от минуса
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "brown_sugar";
@@ -422,7 +444,7 @@ public class ProductionBuilding : MonoBehaviour
                 if (globals.wheat - 2 < 0)
                 {
                     Debug.Log("Нехватило только пшеницы");
-                    globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого нехватает ингредиентов
+                    globals.price_for_diamonds_panel_current_item = subjectName;//Присваиваем переменной предмет, у которого не хватает ингредиентов
                     globals.price_for_diamonds_panel_slot_0_quantity = (globals.wheat - 2) * (-1);
                     globals.price_for_diamonds_panel_slot_0_predmet_name = "wheat";
                     globals.price_for_diamonds_panel_slot_1_predmet_name = "empty";

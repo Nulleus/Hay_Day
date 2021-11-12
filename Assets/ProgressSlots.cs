@@ -8,13 +8,13 @@ using System;
 public class ProgressSlots : MonoBehaviour
 {
     public GameObject Data;
+    public int ProgressSlotsCount; // оличество открытых слотов у пользовател€
     private void Start()
     {
-        
+        //Debug.Log("GetOpenSlotsCount" + GetOpenSlotsCount("bakery", 11));
     }
     public int GetOpenSlotsCount(string subjectName, int userID) //ѕолучаем количество открытых слотов у пользовател€.
     {
-        
         //GameObject.Find("Data")
         //int idUser = Data.GetComponent<Users>().IDUser;
         Debug.Log("GetOpenSlotsCount");
@@ -30,7 +30,8 @@ public class ProgressSlots : MonoBehaviour
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                return (int)reader["count"];
+                ProgressSlotsCount = (int)reader["open_slots"];
+                return ProgressSlotsCount;
             }
             reader.Close();
         }
@@ -41,6 +42,6 @@ public class ProgressSlots : MonoBehaviour
         }
         conn.Close();
         Debug.Log("Done.");
-        return -2;
+        return ProgressSlotsCount;
     }
 }

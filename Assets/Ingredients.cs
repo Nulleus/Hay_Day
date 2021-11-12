@@ -20,7 +20,7 @@ public class Ingredients : MonoBehaviour
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var sqlQuery = "SELECT ingredient_name, count_ingredients FROM ingredients WHERE subject_name=" + subjectName + "";
+            var sqlQuery = "SELECT ingredient_name, count_ingredients FROM ingredients WHERE subject_name='" + subjectName + "'";
             MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

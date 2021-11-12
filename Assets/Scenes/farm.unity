@@ -14014,7 +14014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55715cee3d627e84cba01b656f5cda79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameSystem: Bakery
+  PanelFewResources: {fileID: 775015347}
   Data: {fileID: 1866044566}
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
@@ -27896,6 +27896,7 @@ GameObject:
   - component: {fileID: 775015351}
   - component: {fileID: 775015350}
   - component: {fileID: 775015349}
+  - component: {fileID: 775015352}
   m_Layer: 0
   m_Name: PanelFewResources
   m_TagString: Untagged
@@ -27986,6 +27987,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775015347}
   m_CullTransparentMesh: 0
+--- !u!114 &775015352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775015347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513e25c868ae189458c7f1f103c5f46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanelSlots: {fileID: 905928200}
 --- !u!1 &775661302
 GameObject:
   m_ObjectHideFlags: 0

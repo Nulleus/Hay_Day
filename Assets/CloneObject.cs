@@ -9,18 +9,22 @@ public class CloneObject : MonoBehaviour
 
     public GameObject ParentObject; //Родительский объект
     public int offsetX; //Смещение по Х
-    
+
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         PositionCloneEnd = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
         Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
-        Clone();
+        //Clone("Test", 890);
+    }
+    void Start()
+    {
+
 
     }
 
     // Update is called once per frame
-    void Clone()
+    public void Clone(string subjectName, int subjectCount)
     {
         //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
         Debug.Log(PositionCloneEnd);
@@ -28,10 +32,10 @@ public class CloneObject : MonoBehaviour
         GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width + offsetX))
         , ObjectFromGetWidth.transform.position.y, ObjectFromGetWidth.transform.position.z), Quaternion.identity, ParentObject.transform);
         //Добавим клону свойства 
-        clone.GetComponent<PanelSlot>().SubjectName = "corn";
-        clone.GetComponent<PanelSlot>().SetAnimaion("corn");
-        clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = "corn";
-        clone.GetComponent<PanelSlot>().SetQuantity(7);
+        clone.GetComponent<PanelSlot>().SubjectName = subjectName;
+        clone.GetComponent<PanelSlot>().SetAnimaion(subjectName);
+        clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = subjectName;
+        clone.GetComponent<PanelSlot>().SetQuantity(subjectCount);
         PositionCloneEnd = clone.transform.position;//Расположение созданного клона
 
     }
