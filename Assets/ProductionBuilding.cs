@@ -40,7 +40,11 @@ public class ProductionBuilding : MonoBehaviour
     GameObject SlotsShipment; //Слоты с отгруженными предметами
 
 
-
+    public void FlipObject()
+    {
+        if (gameObject.GetComponent<SpriteRenderer>().flipX) {gameObject.GetComponent<SpriteRenderer>().flipX = false; }
+        if (gameObject.GetComponent<SpriteRenderer>().flipX == false) {gameObject.GetComponent<SpriteRenderer>().flipX = true; }
+    }
     void Start()
     {
         
@@ -191,6 +195,7 @@ public class ProductionBuilding : MonoBehaviour
                 {
                     int missSubjectCount = ((subjectSum - composition.Value) * -1);
                     //PanelFewResources.GetComponent<PanelFewResources>().ClearPanel();
+                    //Display.displays[1].Activate();
                     PanelFewResources.SetActive(true);
                     PanelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(composition.Key, missSubjectCount);
 

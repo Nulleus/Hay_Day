@@ -11,6 +11,10 @@ public class PanelFewResources : MonoBehaviour
     //Необходимы объекты
     // Start is called before the first frame update
     //Очистка панели
+    public void CloseObject()
+    {
+        gameObject.SetActive(false);
+    }
     public void ClearPanel()
     {
         //SubjectAndCount = null; //Clear

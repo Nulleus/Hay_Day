@@ -19,6 +19,7 @@ public class ButtonScript : MonoBehaviour
     }
     private void OnMouseUp()//Когда отпускаеть мышь
     {
+        Debug.Log("OnMouseUp()");
         switch (AppointmentButton)
         {
             case "ObjectFlipX":
@@ -31,6 +32,12 @@ public class ButtonScript : MonoBehaviour
 
                 break;
             case "close":
+                GameObjectOperand.SetActive(false);
+                Debug.Log("pressed close ");
+                break;
+                
+            case "AcivateDisplay1":
+                Display.displays[1].Activate();
                 Debug.Log("pressed close ");
                 break;
             default:
