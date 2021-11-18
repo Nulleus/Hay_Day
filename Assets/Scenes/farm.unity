@@ -27229,7 +27229,7 @@ GameObject:
   - component: {fileID: 754866959}
   - component: {fileID: 754866958}
   m_Layer: 0
-  m_Name: ButtonOK
+  m_Name: ButtonBuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27304,9 +27304,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 754866954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9606b1809526d37489ba3c6c84b7c3cf, type: 3}
+  m_Script: {fileID: 11500000, guid: fea91a08bbed0264d8eac590922d99dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelFewResources: {fileID: 775015347}
+  ButtonText: {fileID: 1890771605}
 --- !u!50 &754866959
 Rigidbody2D:
   serializedVersion: 4
@@ -28335,6 +28337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelSlots: {fileID: 905928200}
+  ButtonBuy: {fileID: 754866954}
+  AllPriceSubjectsSum: 0
 --- !u!1 &775661302
 GameObject:
   m_ObjectHideFlags: 0
@@ -29251,7 +29255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -12, y: -18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &794444374 stripped
@@ -34955,6 +34959,7 @@ GameObject:
   - component: {fileID: 929867823}
   - component: {fileID: 929867822}
   - component: {fileID: 929867821}
+  - component: {fileID: 929867825}
   m_Layer: 0
   m_Name: ButtonGetRewarded
   m_TagString: Untagged
@@ -35067,6 +35072,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929867819}
   m_CullTransparentMesh: 0
+--- !u!114 &929867825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929867819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eee306e561d19747bfe26ea845129df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showAdButton: {fileID: 0}
+  _androidAdUnitId: 4455683
+  _iOsAdUnitId: 4455682
 --- !u!1 &930103544
 GameObject:
   m_ObjectHideFlags: 0
@@ -50814,7 +50834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -843}
+  m_AnchoredPosition: {x: -428, y: 1263}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1481820627
@@ -64706,6 +64726,7 @@ GameObject:
   - component: {fileID: 1866044575}
   - component: {fileID: 1866044576}
   - component: {fileID: 1866044577}
+  - component: {fileID: 1866044578}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -64871,6 +64892,19 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   NameRUS: 
   DescriptionRUS: 
+--- !u!114 &1866044578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7e3999ff0b38e4fb61314dd92c9b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -65353,7 +65387,6 @@ GameObject:
   - component: {fileID: 1890771606}
   - component: {fileID: 1890771609}
   - component: {fileID: 1890771608}
-  - component: {fileID: 1890771607}
   m_Layer: 0
   m_Name: ButtonTextQuantity
   m_TagString: Untagged
@@ -65380,18 +65413,6 @@ RectTransform:
   m_AnchoredPosition: {x: -308, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1890771607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890771605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b3cabf5d7134c4c93a3098c19f6685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1890771608
 MonoBehaviour:
   m_ObjectHideFlags: 0

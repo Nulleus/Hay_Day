@@ -8,9 +8,17 @@ public class PanelFewResources : MonoBehaviour
     [ShowInInspector]
     //public Dictionary<string, int> SubjectAndCount = new Dictionary<string, int>();
     public GameObject PanelSlots;
+    public GameObject ButtonBuy;
+    public int AllPriceSubjectsSum; //Стоимость всех объектов для покупки основного
+    
     //Необходимы объекты
     // Start is called before the first frame update
     //Очистка панели
+    public void SetButtonBuyTextCount(int count)
+    {
+        AllPriceSubjectsSum = count; //
+        ButtonBuy.GetComponent<ButtonBuySubjects>().SetAllPriceSubjectsText(count);
+    }
     public void CloseObject()
     {
         gameObject.SetActive(false);

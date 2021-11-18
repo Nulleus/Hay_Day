@@ -181,20 +181,30 @@ public class ProductionBuilding : MonoBehaviour
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
             compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
-
+            int allPriceSubjects=0; //Общая стоимость необходимых ингредиентов
+            //Запускаем цикл из ключей компонентов, объектов которых нехватает
             foreach (KeyValuePair<string, int> composition in compositions)
             {
+                //Key - название компонента, Value - значение
                 Console.WriteLine("Key = {0}, Value = {1}", composition.Key, composition.Value);
                 //Получаем идентификатор пользователя
                 int userID = Data.GetComponent<Users>().GetIDUser();
                 //Получаем количество ингредиентов на складе
                 int subjectSum = Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(composition.Key, userID);
+
                 //Проверяем, хватает ли ресурсов
                 //Если ингредиентов на складе меньше, чем нужно для изготовления
                 if (subjectSum < composition.Value)
                 {
+                    //Количество недостающих объектов
                     int missSubjectCount = ((subjectSum - composition.Value) * -1);
                     //PanelFewResources.GetComponent<PanelFewResources>().ClearPanel();
+                    //Узнаем стоимость объекта в алмазах
+                    int priceSubject = (Data.GetComponent<PriceSubjects>().GetPriceDiamondsByNameSubject(composition.Key) * missSubjectCount);
+                    //Прибавляем стоимость
+                    allPriceSubjects += priceSubject;
+                    Debug.Log("Стоимость предмета в сумме=" + priceSubject);
+                    Debug.Log("Стоимость всех предметов=" + allPriceSubjects);
                     //Display.displays[1].Activate();
                     PanelFewResources.SetActive(true);
                     PanelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(composition.Key, missSubjectCount);
@@ -206,7 +216,10 @@ public class ProductionBuilding : MonoBehaviour
                     //Для этого лучше создать класс?
                 }
             }
-            //Если ресурсов не хватает, показываем список
+            //Если ресурсов не хватает, передаем информацию в панель покупки ресурсов, чтобы там посчитать стоимость
+            PanelFewResources.GetComponent<PanelFewResources>().SetButtonBuyTextCount(allPriceSubjects);
+            //Узнаем и указываем стоимость компонентов
+
             //Загружаем новый объект в производство
         }
 
