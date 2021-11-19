@@ -13341,7 +13341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 0
   Data: {fileID: 1866044566}
 --- !u!1001 &353911195
@@ -14016,6 +14016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelFewResources: {fileID: 775015347}
+  NameSystem: bakery
   Data: {fileID: 1866044566}
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
@@ -23307,7 +23308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 1
   Data: {fileID: 1866044566}
 --- !u!1 &649193584
@@ -29255,7 +29256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -18}
+  m_AnchoredPosition: {x: -12, y: -687}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &794444374 stripped
@@ -33083,7 +33084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 7
   Data: {fileID: 1866044566}
 --- !u!1 &878455995
@@ -37715,7 +37716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 4
   Data: {fileID: 1866044566}
 --- !u!1 &1014464726
@@ -47555,7 +47556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 8
   Data: {fileID: 1866044566}
 --- !u!1 &1345364733
@@ -56400,7 +56401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 6
   Data: {fileID: 1866044566}
 --- !u!1 &1593843637
@@ -62831,7 +62832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 2
   Data: {fileID: 1866044566}
 --- !u!1 &1819119385
@@ -64270,7 +64271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 5
   Data: {fileID: 1866044566}
 --- !u!1 &1859416719
@@ -65283,7 +65284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: Bakery
+  SubjectParent: bakery
   NumberSlot: 3
   Data: {fileID: 1866044566}
 --- !u!1 &1882951423
@@ -72623,7 +72624,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   screenPoint: {x: 0, y: 0, z: 0}
   mousedrag_block_on: 0
-  predmet: 
+  predmet: bakery
   anim: {fileID: 0}
 --- !u!61 &2083094957
 BoxCollider2D:

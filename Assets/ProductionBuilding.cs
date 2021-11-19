@@ -10,7 +10,7 @@ public class ProductionBuilding : MonoBehaviour
     //==============Свойства здания=======================//
     [SerializeField]
     public GameObject PanelFewResources;
-    string NameSystem;//Системное имя объекта
+    public string NameSystem;//Системное имя объекта
     public GameObject Data;
     public GameObject PanelSlots; //
     [SerializeField]
