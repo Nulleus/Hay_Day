@@ -36,11 +36,11 @@ public class refresh_backery_0 : MonoBehaviour
             visible_point_2_on.SetActive(false);
             visible_point_2_off.SetActive(true);*/
             //========================================//
-            GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
-            GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
-            GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
-            GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
-            GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
+            //GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
+            //GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
+            //GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "bread";
             //visible_bread.SetActive(true);
             //visible_corn_bread.SetActive(true);
             //visible_cookie.SetActive(true);
@@ -55,11 +55,11 @@ public class refresh_backery_0 : MonoBehaviour
             GameObject.Find("point_1_bakery").GetComponent<Animator>().CrossFade("point_on", 0);
             GameObject.Find("point_2_bakery").GetComponent<Animator>().CrossFade("point_off", 0);
 
-            GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
-            GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
-            GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
-            GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
-            GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
+            //GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "corn_bread";
             //=========================================//
             return;
             }
@@ -70,11 +70,11 @@ public class refresh_backery_0 : MonoBehaviour
             GameObject.Find("point_1_bakery").GetComponent<Animator>().CrossFade("point_off", 0);
             GameObject.Find("point_2_bakery").GetComponent<Animator>().CrossFade("point_on", 0);
 
-            GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
-            GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
-            GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
-            GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
-            GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_0_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_1_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_2_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_3_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
+            //GameObject.Find("slot_4_p_bakery").GetComponent<slot_predmet>().predmet = "cookie";
             //==============================================//
             return;
 

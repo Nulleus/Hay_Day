@@ -29,11 +29,11 @@ public class refresh_dairy : MonoBehaviour
             GameObject.Find("point_1_dairy").GetComponent<Animator>().CrossFade("point_off", 0);
             GameObject.Find("point_2_dairy").GetComponent<Animator>().CrossFade("point_off", 0);
             //========================================//
-            GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
-            GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
-            GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
-            GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
-            GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
+            //GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
+            //GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
+            //GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "cream";
             //=========================================//
             return;
         }
@@ -45,11 +45,11 @@ public class refresh_dairy : MonoBehaviour
             GameObject.Find("point_1_dairy").GetComponent<Animator>().CrossFade("point_on", 0);
             GameObject.Find("point_2_dairy").GetComponent<Animator>().CrossFade("point_off", 0);
 
-            GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
-            GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
-            GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
-            GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
-            GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
+            //GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "butter";
             //=========================================//
             return;
         }
@@ -60,11 +60,11 @@ public class refresh_dairy : MonoBehaviour
             GameObject.Find("point_1_dairy").GetComponent<Animator>().CrossFade("point_off", 0);
             GameObject.Find("point_2_dairy").GetComponent<Animator>().CrossFade("point_on", 0);
 
-            GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
-            GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
-            GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
-            GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
-            GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_0_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_1_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_2_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_3_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
+            //GameObject.Find("slot_4_p_dairy").GetComponent<slot_predmet>().predmet = "cheese";
             //==============================================//
             return;
 

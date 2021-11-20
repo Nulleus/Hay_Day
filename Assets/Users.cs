@@ -14,11 +14,19 @@ public class Users : MonoBehaviour
     public string Nickname;
     public string FarmName;
     public string SQLQuery;
+    public int ExperiencePoints;
+    public int LevelUserNumber;
     // Start is called before the first frame update
+    //Получаем уровень пользователя
+    public int GetLevelUserNumber()
+    {
+        return GetExperienceLevelByIDUser(ExperiencePoints);
+    }
     public int GetIDUser()
     {
         return IDUser;
     }
+    //Получаем ID пользователя по логину и паролю
     public void GetIDUserByLoginAndPassword()
     {
         if ((Login == "")||(Pasword == ""))
@@ -60,6 +68,46 @@ public class Users : MonoBehaviour
         reader.Close(); // закрываем reader
         // закрываем соединение с БД
         conn.Close();
+    }
+    //Получение номера уровня по очкам пользователя
+    public int GetExperienceLevelByIDUser(int experiencePoints)
+    {
+        //Получаем количество очков у пользователя
+        int idUser = GetIDUser();
+        GetExperiencePointsByIDUser(idUser);
+        //Переводим количество очков в уровень
+        return LevelUserNumber = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(ExperiencePoints);
+    }
+    //Получаем количество очков у пользователя
+    public void GetExperiencePointsByIDUser(int id_user)
+    {
+        Debug.Log("GetExperiencePointsByIDUser()");
+        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
+        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+        try
+        {
+            Debug.Log("Connecting to MySQL...");
+            conn.Open();
+
+            SQLQuery = "SELECT experience_points FROM users WHERE id_user='" + id_user + "'";
+            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Debug.Log("while (reader.Read())");
+                ExperiencePoints = (int)reader["experience_points"];
+                Debug.Log("experience_points="+ExperiencePoints);
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.ToString());
+        }
+
+        conn.Close();
+        Debug.Log("Done.");
     }
 
     public void GetInfoUser()

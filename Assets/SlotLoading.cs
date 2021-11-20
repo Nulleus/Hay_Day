@@ -11,8 +11,14 @@ public class SlotLoading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DisplayContents();//Тест вывода загруженных объектов
+
+    }
+    //Отобразить содержимое загруженного содержимого в слотах
+    public void DisplayContents()
+    {
         Anim = GetComponent<Animator>();
+        //Получаем загруженный объект в слоте по номеру слота(NumberSlot), (в порядке очереди) по имени производственного здания(SubjectParent) выбирая по IDUser(id пользователя)
         string subjectChild = Data.GetComponent<Contents>().GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Data.GetComponent<Users>().IDUser);
         if (subjectChild == "")
         {
@@ -28,4 +34,5 @@ public class SlotLoading : MonoBehaviour
     {
         
     }
+    
 }
