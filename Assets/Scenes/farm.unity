@@ -64832,6 +64832,7 @@ MonoBehaviour:
   FarmName: 
   SQLQuery: 
   ExperiencePoints: 0
+  LevelUserNumber: 0
 --- !u!114 &1866044570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72679,7 +72680,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   ScreenPoint: {x: 0, y: 0, z: 0}
   MousedragBlockOn: 0
-  Predmet: 
+  Predmet: bread
   Anim: {fileID: 0}
   NumberSlotPredmet: 0
 --- !u!95 &2083094955
