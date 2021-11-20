@@ -9,20 +9,20 @@ public class Slot : MonoBehaviour
     public Vector3 Offset; //Смещение
     public Vector3 ScreenPoint;
     public bool MousedragBlockOn = false;
-    public string Predmet;
     public Animator Anim;
+    public string Predmet;
     public int NumberSlotPredmet; //Номер слота предмета для интеграцией с таблицей 
+    public string SubjectParentName; //Родитель данного объекта(например: bakery)
+    public GameObject ProductionBuildingParent;
     //Загружаем все доступные (открытые по уровню пользователя предметы) по номеру слота
     public void GetOpenSubjectsThisSlot()
     {
-        //Получаем уровень пользователя
-        int LevelUser = Data.GetComponent<Users>().GetLevelUserNumber();
         //Получаем все открытые пользователю объекты
         List<string> allSubjectsOpenLevel = Data.GetComponent<OpenLevel>().GetAllSubjectNameByOpenLevel();
-        //Получить родителя по имени ребенка
-        string parentName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(Predmet);
+        //Получаем имя родителя
+        SubjectParentName = ProductionBuildingParent.GetComponent<ProductionBuilding>().NameSystem;
         //Получаем всех детей subject_child_name, из таблицы по имени родителя 
-        List<string> childsAndParentsGettingSubjectParentName = Data.GetComponent<ParentsAndChilds>().GetAllSubjectChildNameBySubjectParentName(parentName);
+        List<string> childsAndParentsGettingSubjectParentName = Data.GetComponent<ParentsAndChilds>().GetAllSubjectChildNameBySubjectParentName(SubjectParentName);
         //Сравниваем. Получаем всех детей( по имени родителя), отсеивая по номеру слота, делая запрос
         //Получаем все SubjectName
         //Получаем все child_name полученные из таблицы parent_and_childs
@@ -52,6 +52,12 @@ public class Slot : MonoBehaviour
         {
             //Добавить проверку на добавление повторяющихся объектов
             Predmet = openChildsForSlot[NumberSlotPredmet];
+            //Анимируем предмет
+            Animator anim ;
+            anim = GetComponent<Animator>();
+            anim.CrossFade(Predmet, 0);
+            //Запоминаем первоначальную позицию объекта
+            PrimaryPosition = gameObject.transform.position;
         }
 
 
@@ -61,39 +67,9 @@ public class Slot : MonoBehaviour
         GetOpenSubjectsThisSlot();
     }
     /*
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-        //=====Пекарня==================================================//
-        if (gameObject.name == "slot_0_p_bakery") { predmet = "bread"; }
-        if (gameObject.name == "slot_1_p_bakery") { predmet = "corn_bread"; }
-        if (gameObject.name == "slot_2_p_bakery") { predmet = "cookie"; }
-        if (gameObject.name == "slot_3_p_bakery") { predmet = "corn_bread"; }
-        if (gameObject.name == "slot_4_p_bakery") { predmet = "corn_bread"; }
-        //=====Молокозавод==================================================//
-        if (gameObject.name == "slot_0_p_dairy") { predmet = "cream"; }
-        if (gameObject.name == "slot_1_p_dairy") { predmet = "butter"; }
-        if (gameObject.name == "slot_2_p_dairy") { predmet = "cheese"; }
-        if (gameObject.name == "slot_3_p_dairy") { predmet = "cheese"; }
-        if (gameObject.name == "slot_4_p_dairy") { predmet = "cheese"; }
-        //====Попкорница======================================================//
-        if (gameObject.name == "slot_0_p_popcorn_pot") { predmet = "popcorn"; }
-    }
 
     // Update is called once per frame
-    void Update()
-    {
-        //====bakery=================================================//
-        if (predmet == "bread") { anim.CrossFade("bread", 0); }
-        if (predmet == "corn_bread") { anim.CrossFade("corn_bread", 0); }
-        if (predmet == "cookie") { anim.CrossFade("cookie", 0); }
-        //======================================Dairy==============================//
-        if (predmet == "cream") { anim.CrossFade("cream", 0); }
-        if (predmet == "butter") { anim.CrossFade("butter", 0); }
-        if (predmet == "cheese") { anim.CrossFade("cheese", 0); }
-        //=======================popcorn_pot========================================//
-        if (predmet == "popcorn") { anim.CrossFade("popcorn", 0); }
-    }
+
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {
         //Debug.Log("other:" + other.gameObject.name);//Кто столкнулся
@@ -138,30 +114,27 @@ public class Slot : MonoBehaviour
         }
 
     }
+    */
     void OnMouseUp()//Когда отпускаешь кнопку
     {
-        gameObject.transform.position = primary_position;//Загружаем первоначальную позицию объекта
-        GameObject_Enable_Controller.slot_info.SetActive(false);
+        gameObject.transform.position = PrimaryPosition;//Загружаем первоначальную позицию объекта
+        //GameObject_Enable_Controller.slot_info.SetActive(false);
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        mousedrag_block_on = false;
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-        primary_position = gameObject.transform.position;
-        GameObject_Enable_Controller.slot_info.SetActive(true);
-        GameObject.Find("SlotInfo").GetComponent<SlotInfo>().AddIngredientsByNameSubject(gameObject.name);
-        if (gameObject.name == "bread")
-        {
-
-        }
+        MousedragBlockOn = false;
+        Offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenPoint.z));
+        PrimaryPosition = gameObject.transform.position;
+        //GameObject_Enable_Controller.slot_info.SetActive(true);
+        //GameObject.Find("SlotInfo").GetComponent<SlotInfo>().AddIngredientsByNameSubject(gameObject.name);
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
-        if (mousedrag_block_on == false)
+        if (MousedragBlockOn == false)
         {
-            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenPoint.z);
             //Debug.Log("curScreenPoint" + curScreenPoint);
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + Offset;
             //Debug.Log("curPosition" + curPosition);
             transform.position = curPosition;
         }
@@ -169,5 +142,19 @@ public class Slot : MonoBehaviour
         globals.zoom = false;
         globals.drag = false;
     }
-    */
-}
+    void OnCollisionEnter2D(Collision2D other)//При столкновении
+    {
+        Debug.Log("other:" + other.gameObject.name);//Кто столкнулся
+        Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
+        if (other.gameObject.GetComponent<SlotLoading>().SubjectParent == SubjectParentName) 
+        {
+            MousedragBlockOn = true;
+            gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
+            //Запускаем производство
+            ProductionBuildingParent.GetComponent<ProductionBuilding>().AddInSlotSubject(Predmet);
+        }
+
+            //bakery.add_in_slot_predmet("bread");
+       
+    }
+    }

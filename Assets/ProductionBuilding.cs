@@ -10,6 +10,7 @@ public class ProductionBuilding : MonoBehaviour
     //==============Свойства здания=======================//
     [SerializeField]
     public GameObject PanelFewResources;
+    public GameObject PanelFewResourcesBox;
     public string NameSystem;//Системное имя объекта
     public GameObject Data;
     public GameObject PanelSlots; //
@@ -134,15 +135,15 @@ public class ProductionBuilding : MonoBehaviour
             }
         }
     }
- 
+
     public void AddInSlotSubject(string subjectName)//Метод добавления предмета в слоты
     {
         // Проверяем, нужно ли выгрузить готовые предметы
         Debug.Log("AddInSlotSubject: " + subjectName);
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
-        string subjectChildName =Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
-        Debug.Log("AddInSlotSubject(subjectChildName)"+subjectChildName);
+        string subjectChildName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        Debug.Log("AddInSlotSubject(subjectChildName)" + subjectChildName);
         //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
         //Получаем имя производственного здания по имени ребнка
         string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
@@ -152,7 +153,7 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("AddInSlotSubject(IDUser)" + Data.GetComponent<Users>().IDUser);
         Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
-        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName,  Data.GetComponent<Users>().IDUser);
+        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName, Data.GetComponent<Users>().IDUser);
         Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
         //Получаем дефолтное значение открытых слотов по имени объекта
         int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectChildName);
@@ -169,7 +170,7 @@ public class ProductionBuilding : MonoBehaviour
             return;
         }
         //Если количество загруженных в производство объектов>=открытых у пользователя 
-        if (countOfOccupiedLoadingSlots>=countOpenSlotsUser)
+        if (countOfOccupiedLoadingSlots >= countOpenSlotsUser)
         {
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
             return;
@@ -181,7 +182,7 @@ public class ProductionBuilding : MonoBehaviour
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
             compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
-            int allPriceSubjects=0; //Общая стоимость необходимых ингредиентов
+            int allPriceSubjects = 0; //Общая стоимость необходимых ингредиентов
             //Запускаем цикл из ключей компонентов, объектов которых нехватает
             foreach (KeyValuePair<string, int> composition in compositions)
             {
@@ -211,24 +212,28 @@ public class ProductionBuilding : MonoBehaviour
 
                     //PanelFewResources.GetComponent<PanelFewResources>().
                     //Считаем сколько именно не хватает ингредиентов.
-                    Debug.Log("Не хватает:"+((subjectSum - composition.Value)*-1).ToString());
+                    Debug.Log("Не хватает:" + ((subjectSum - composition.Value) * -1).ToString());
                     //Рассчитываем каких и сколько не хватает ингредиентов и предлагаем их купить за алмазы.
                     //Для этого лучше создать класс?
                 }
             }
             //Если ресурсов не хватает, передаем информацию в панель покупки ресурсов, чтобы там посчитать стоимость
             PanelFewResources.GetComponent<PanelFewResources>().SetButtonBuyTextCount(allPriceSubjects);
+            //Предварительно очищаем панель ресурсов
+            PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
+            PanelFewResourcesBox.SetActive(true);
+            //Напрямую не удалятьPanelFewResourcesBox.SetActive(true);
             //Узнаем и указываем стоимость компонентов
 
             //Загружаем новый объект в производство
         }
-
+    }
 
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
-        DateTime time_slot;
-        Debug.Log("add: " + subjectName);
-        int building_time = 20;//Время сборки
-        GameObject GO = GameObject.Find(subjectName);//Поиск объекта, например Bread
+        //DateTime time_slot;
+       // Debug.Log("add: " + subjectName);
+        //int building_time = 20;//Время сборки
+        //GameObject GO = GameObject.Find(subjectName);//Поиск объекта, например Bread
 
         //string[] ingredients = GO.GetComponent<Ingredients>().GetAllKeysSubjects();//Получаем список ингредиентов
         //Поиск объекта из массива
@@ -254,7 +259,7 @@ public class ProductionBuilding : MonoBehaviour
             }
         }
         */
-        if (subjectName == "bread")
+        /*if (subjectName == "bread")
         {
 
 
@@ -586,7 +591,7 @@ public class ProductionBuilding : MonoBehaviour
 
     }
 
-
+*/
 
     void OnMouseUp()//Когда отпускаешь кнопку
     {

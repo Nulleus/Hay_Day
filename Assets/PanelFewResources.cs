@@ -19,20 +19,20 @@ public class PanelFewResources : MonoBehaviour
         AllPriceSubjectsSum = count; //
         ButtonBuy.GetComponent<ButtonBuySubjects>().SetAllPriceSubjectsText(count);
     }
+    public void CleanerPanel()
+    {
+        PanelSlots.GetComponent<CloneObject>().DeleteClones();
+    }
     public void CloseObject()
     {
+        CleanerPanel();
         gameObject.SetActive(false);
-    }
-    public void ClearPanel()
-    {
-        //SubjectAndCount = null; //Clear
     }
     public void AddSubjectAndCount(string subjectName, int subjectCount)
     {
         //SubjectAndCount.Add(subjecName, subjectCount);
         PanelSlots.GetComponent<CloneObject>().Clone(subjectName, subjectCount);
     }
-
     void Start()
     {
         //Перенести это в метод, который будет вызывать панель

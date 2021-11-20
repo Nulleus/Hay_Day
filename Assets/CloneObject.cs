@@ -5,6 +5,7 @@ using UnityEngine;
 public class CloneObject : MonoBehaviour
 {
     public GameObject ObjectFromGetWidth; //Объект, с которого нужно сделать клон
+    public Vector3 PositionBeginner; //Первоначальное значние объекта
     public Vector3 PositionCloneEnd; //Расположение последнего клонированного объекта
 
     public GameObject ParentObject; //Родительский объект
@@ -13,7 +14,8 @@ public class CloneObject : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        PositionCloneEnd = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
+        PositionBeginner = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
+        PositionCloneEnd = PositionBeginner;
         Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
         //Clone("Test", 890);
     }
@@ -26,12 +28,14 @@ public class CloneObject : MonoBehaviour
     // Update is called once per frame
     public void Clone(string subjectName, int subjectCount)
     {
+        
         //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
         Debug.Log(PositionCloneEnd);
         Debug.Log("ObjectFromGetWidth.GetComponent<Rect>().width=" + ObjectFromGetWidth.GetComponent<RectTransform>().rect.width);
         GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width + offsetX))
         , ObjectFromGetWidth.transform.position.y, ObjectFromGetWidth.transform.position.z), Quaternion.identity, ParentObject.transform);
         //Добавим клону свойства 
+        clone.SetActive(true);
         clone.GetComponent<PanelSlot>().SubjectName = subjectName;
         clone.GetComponent<PanelSlot>().SetAnimaion(subjectName);
         clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = subjectName;
@@ -41,8 +45,9 @@ public class CloneObject : MonoBehaviour
     }
     public void DeleteClones() //Удаление клонов
     {
-        
+        PositionCloneEnd = PositionBeginner;
         int childCount = gameObject.transform.childCount;
+        
         Debug.Log(childCount);
         GameObject clone;
         for (int i = 0; i <= childCount; i++) //
