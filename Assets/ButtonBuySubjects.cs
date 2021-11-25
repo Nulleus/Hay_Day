@@ -17,7 +17,8 @@ public class ButtonBuySubjects : MonoBehaviour
     //Покупка необходимых компонентов
     public void BuyCompositions()
     {
-
+        //1-Проверяем хватает ли у пользователя ресурсов
+        //2-Вычитаем, если хватает
     }
     void Start()
     {

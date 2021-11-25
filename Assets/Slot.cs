@@ -146,6 +146,7 @@ public class Slot : MonoBehaviour
     {
         Debug.Log("other:" + other.gameObject.name);//Кто столкнулся
         Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
+        //Тут написать проверку на существование объекта
         if (other.gameObject.GetComponent<SlotLoading>().SubjectParent == SubjectParentName) 
         {
             MousedragBlockOn = true;

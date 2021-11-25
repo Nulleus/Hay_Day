@@ -222,7 +222,6 @@ public class ProductionBuilding : MonoBehaviour
             //Предварительно очищаем панель ресурсов
             PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
             PanelFewResourcesBox.SetActive(true);
-            
             //Напрямую не удалятьPanelFewResourcesBox.SetActive(true);
             //Узнаем и указываем стоимость компонентов
 

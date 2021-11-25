@@ -79,7 +79,6 @@ public class Users : MonoBehaviour
         return LevelUserNumber = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(ExperiencePoints);
     }
     //Получаем количество очков у пользователя
-    
     public void GetExperiencePointsByIDUser(int id_user)
     {
         Debug.Log("GetExperiencePointsByIDUser()");
@@ -152,10 +151,5 @@ public class Users : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
 }
-    //Получаем доступное количество алмазов у пользователя
-    public int GetCountSubjectsByName(string subjectName)
-    {
-        return Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(subjectName, IDUser);
-    }
 
 }
