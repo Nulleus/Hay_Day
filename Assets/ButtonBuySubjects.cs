@@ -8,23 +8,24 @@ public class ButtonBuySubjects : MonoBehaviour
 {
     public GameObject PanelFewResources;
     public GameObject ButtonText;
+    public string ButtonActionSelectionName;
     //public int AllPriceSubjects;
     // Start is called before the first frame update
     public void SetAllPriceSubjectsText(int count)
     {
         ButtonText.GetComponent<Text>().text = count.ToString();
     }
-    //Покупка необходимых компонентов
-    public void BuyCompositions()
-    {
-        //1-Проверяем хватает ли у пользователя ресурсов
-        //2-Вычитаем, если хватает
-    }
+
     void Start()
     {
         
     }
-
+    public void OnMouseUp()
+    {
+        PanelFewResources.GetComponent<PanelFewResources>().SetUserActionSelection(ButtonActionSelectionName);
+        //Выбор пользователя был сделан
+        Debug.Log("Выбор пользователя: " + ButtonActionSelectionName);
+    }
     // Update is called once per frame
     void Update()
     {

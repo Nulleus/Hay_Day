@@ -24,13 +24,14 @@ public class ProductionBuilding : MonoBehaviour
     int OpenSlots; //Открытых слотов
     Vector3 PrimaryPosition;
     string Temp;
-
+    public Coroutine UserWaitingCoroutine; //Ожидание пользователя
     private bool IsMoveModeOn = false;
     private bool IsCollisionMoveModeOn = false;
     private int Count = 0;
     private bool IsCountOn = false;
     private string[,] ArraySlotsLoading;//Массив слотов загрузки 
     private string[,] ArraySlotsShipment;//Массив слотов отгрузки
+    
 
     //=======Дочерние и другие объекты================//
     GameObject Collider; //Коллайдер для здания
@@ -57,7 +58,7 @@ public class ProductionBuilding : MonoBehaviour
         SlotsLoading = gameObject.transform.Find("SlotsLoading").gameObject;
         SlotsShipment = gameObject.transform.Find("SlotsShipment").gameObject;
         
-        AddInSlotSubject("bread");
+        //AddInSlotSubject("bread");
 
     }
 
@@ -198,7 +199,7 @@ public class ProductionBuilding : MonoBehaviour
                 if (subjectSum < composition.Value)
                 {
                     //Количество недостающих объектов
-                    int missSubjectCount = ((subjectSum - composition.Value) * -1);
+                    int missSubjectCount = (composition.Value-subjectSum);
                     //PanelFewResources.GetComponent<PanelFewResources>().ClearPanel();
                     //Узнаем стоимость объекта в алмазах
                     int priceSubject = (Data.GetComponent<PriceSubjects>().GetPriceDiamondsByNameSubject(composition.Key) * missSubjectCount);
@@ -212,7 +213,7 @@ public class ProductionBuilding : MonoBehaviour
 
                     //PanelFewResources.GetComponent<PanelFewResources>().
                     //Считаем сколько именно не хватает ингредиентов.
-                    Debug.Log("Не хватает:" + ((subjectSum - composition.Value) * -1).ToString());
+                    Debug.Log("Не хватает:" + (composition.Value - subjectSum).ToString());
                     //Рассчитываем каких и сколько не хватает ингредиентов и предлагаем их купить за алмазы.
                     //Для этого лучше создать класс?
                 }
@@ -222,16 +223,51 @@ public class ProductionBuilding : MonoBehaviour
             //Предварительно очищаем панель ресурсов
             PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
             PanelFewResourcesBox.SetActive(true);
+            //Тут ожидаем решение от пользователя
+            UserWaitingCoroutine = StartCoroutine(DoCheck());
+            //Если пользователь выбрал покупку за алмазы
+            //Процесс покупки за алмазы и проверка хватает ли ему алмазов.
+            //Если всего хватает, запускаем выбранный предмет в производство
+            //Закрываем панель
+            PanelFewResourcesBox.SetActive(false);
             //Напрямую не удалятьPanelFewResourcesBox.SetActive(true);
             //Узнаем и указываем стоимость компонентов
 
             //Загружаем новый объект в производство
         }
     }
+    
+    //Ожидание выбора действия от пользователя
+    bool UserActionSelectionCheck()
+    {
+        //Если пользователь выбрал покупку за алмазы
+        if (PanelFewResources.GetComponent<PanelFewResources>().UserActionSelection=="buyForDaemonds")
+        {
+                Debug.Log("Пользователь выбрал покупку за алмазы");
+                StopCoroutine(UserWaitingCoroutine);
+                return false;
+        }
+        return true;
 
+        
+    }
+    //Ожидание действия от пользователя
+    IEnumerator DoCheck()
+    {
+        for (; ; )
+        {
+            if (UserActionSelectionCheck())
+            {
+                //Если пользователь произвел действие, останавливаем корутину
+                StopCoroutine(UserWaitingCoroutine);
+            }
+            
+            //yield return new WaitForSeconds(.1f);
+        }
+    }
         //Вычитать ресурсы со склада, а если это последняя культура, предупредить
         //DateTime time_slot;
-       // Debug.Log("add: " + subjectName);
+        // Debug.Log("add: " + subjectName);
         //int building_time = 20;//Время сборки
         //GameObject GO = GameObject.Find(subjectName);//Поиск объекта, например Bread
 
@@ -267,7 +303,7 @@ public class ProductionBuilding : MonoBehaviour
             //Проверка наличия всех ингридиентов
             if (1>2)
             {
-                
+
                 //globals.wheat = globals.wheat - 3;
             }
             else
@@ -591,9 +627,9 @@ public class ProductionBuilding : MonoBehaviour
 
     }
 
-*/
+    */
 
-    void OnMouseUp()//Когда отпускаешь кнопку
+        void OnMouseUp()//Когда отпускаешь кнопку
     {
         Count = 0;
         IsCountOn = false;

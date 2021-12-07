@@ -10,9 +10,15 @@ public class PanelFewResources : MonoBehaviour
     public GameObject PanelSlots;
     public GameObject ButtonBuy;
     public int AllPriceSubjectsSum; //Стоимость всех объектов для покупки основного
-    
+    public string UserActionSelection; //Выбор действия пользователем, например покупка, отмена
+
     //Необходимы объекты
     // Start is called before the first frame update
+    //Выбор пользователя
+    public void SetUserActionSelection(string actionSelectionName)
+    {
+        UserActionSelection = actionSelectionName;
+    }
     //Очистка панели
     public void SetButtonBuyTextCount(int count)
     {
