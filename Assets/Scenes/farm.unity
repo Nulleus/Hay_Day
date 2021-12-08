@@ -3011,6 +3011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
+  ButtonText: {fileID: 0}
 --- !u!1 &90275374
 GameObject:
   m_ObjectHideFlags: 0
@@ -26305,6 +26306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppointmentButton: close
   GameObjectOperand: {fileID: 1480700592}
+  ButtonText: {fileID: 0}
 --- !u!50 &717748018
 Rigidbody2D:
   serializedVersion: 4
@@ -27616,12 +27618,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 754866954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fea91a08bbed0264d8eac590922d99dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelFewResources: {fileID: 775015347}
+  AppointmentButton: buyForDaemonds
+  GameObjectOperand: {fileID: 775015347}
   ButtonText: {fileID: 1890771605}
-  ButtonActionSelectionName: buyForDaemonds
 --- !u!50 &754866959
 Rigidbody2D:
   serializedVersion: 4
@@ -45240,6 +45242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppointmentButton: close
   GameObjectOperand: {fileID: 788940115}
+  ButtonText: {fileID: 0}
 --- !u!50 &1283257544
 Rigidbody2D:
   serializedVersion: 4
@@ -73809,6 +73812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
+  ButtonText: {fileID: 0}
 --- !u!1 &2112364800
 GameObject:
   m_ObjectHideFlags: 0

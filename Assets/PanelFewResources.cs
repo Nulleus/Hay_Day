@@ -23,7 +23,7 @@ public class PanelFewResources : MonoBehaviour
     public void SetButtonBuyTextCount(int count)
     {
         AllPriceSubjectsSum = count; //
-        ButtonBuy.GetComponent<ButtonBuySubjects>().SetAllPriceSubjectsText(count);
+        ButtonBuy.GetComponent<ButtonScript>().SetAllPriceSubjectsText(count);
     }
     public void CleanerPanel()
     {
