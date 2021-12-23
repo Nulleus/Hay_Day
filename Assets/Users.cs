@@ -18,6 +18,10 @@ public class Users : MonoBehaviour
     public int LevelUserNumber;
     // Start is called before the first frame update
     //Получаем уровень пользователя
+    private void Start()
+    {
+        
+    }
     public int GetLevelUserNumber()
     {
         return GetExperienceLevelByIDUser(ExperiencePoints);
@@ -31,8 +35,7 @@ public class Users : MonoBehaviour
     {
         if ((Login == "")||(Pasword == ""))
         {
-            Debug.Log("Логин и (или) пароль не введены");
-            
+            Debug.Log("Логин и (или) пароль не введены");            
         }
         Debug.Log("GetIDUser()");
         //Получение данных для подключения из единой точки входа

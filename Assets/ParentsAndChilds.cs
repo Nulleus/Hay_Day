@@ -10,7 +10,10 @@ public class ParentsAndChilds : MonoBehaviour
 {
     public GameObject Data;
     //Получаем Родителя объекта по имени ребенка
-    
+    private void Start()
+    {
+
+    }
     public string GetSubjectParentNameBySubjectChildName(string subjectName)
     {
         Debug.Log("GetSubjectParentNameBySubjectChildName");

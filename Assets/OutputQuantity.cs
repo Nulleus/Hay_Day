@@ -8,6 +8,10 @@ using System;
 public class OutputQuantity : MonoBehaviour
 {
     public GameObject Data;
+    private void Start()
+    {
+
+    }
     public int GetOutputQuantityBySubjectName(string subjectName) //ѕолучаем количество продукта на выходе.
     {
         Debug.Log("method GetCount");

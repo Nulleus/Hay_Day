@@ -7,6 +7,10 @@ using System;
 
 public class OpenSlotsDefaults : MonoBehaviour
 {
+    private void Start()
+    {
+
+    }
     public GameObject Data;
     public int GetOpenSlotsLoadingBySubjectName(string subjectName)
     {

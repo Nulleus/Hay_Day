@@ -10,6 +10,10 @@ public class SubjectsSum : MonoBehaviour
     public GameObject Data;
     //Скрипт работает с таблицей subjects_sum
     // Start is called before the first frame update
+    private void Start()
+    {
+
+    }
     public int GetSubjectSumCountByName(string subjectName, int userID)
     {
         Debug.Log("GetSubjectSumCountbyName");

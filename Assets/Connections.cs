@@ -4,6 +4,7 @@ using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using System.Threading;
 
 public class Connections : MonoBehaviour
 {
@@ -25,35 +26,38 @@ public class Connections : MonoBehaviour
         ;
         return connectionString;
     }
-
+    //Проверка подключения к базе данных
     void CheckConnections()
     {
-
-        //Доработать входные данные 
-        //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
-        MySqlConnection conn = new MySqlConnection(ConnectionString);
-        try
+        new Thread(() =>
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-
-            string sql = "SELECT COUNT(*) FROM users";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            if (result != null)
+            //Доработать входные данные 
+            //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
+            MySqlConnection conn = new MySqlConnection(ConnectionString);
+            try
             {
-                int r = Convert.ToInt32(result);
-                Debug.Log("Number of countries in the world database is: " + r);
+                Debug.Log("Connecting to MySQL...");
+                conn.Open();
+
+                string sql = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'rabeev2_hayday';";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    int countTable =  Convert.ToInt32(result);
+                    Debug.Log("Количество таблиц: " + countTable);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.ToString());
+                Debug.Log("Подключиться к базе данных не удалось");
             }
 
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-        }
-
-        conn.Close();
-        Debug.Log("Done.");
+            conn.Close();
+            Debug.Log("Done.");
+        }).Start(); // Start the Thread
     }
     // Start is called before the first frame update
     void Start()
@@ -65,7 +69,7 @@ public class Connections : MonoBehaviour
     void Awake()
     {
         ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
-
+        CheckConnections();//Провека подключения, таблицы, данных 
     }
 
     // Update is called once per frame

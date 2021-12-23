@@ -12,6 +12,10 @@ public class Contents : MonoBehaviour
     //Класс отвечает за работу с таблицей Contents в БД
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
 
+    private void Start()
+    {
+
+    }
     public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, int userID) //Получаем продукт, находящийся в производстве для каждого слота по номеру
     {
         Debug.Log("GetSubjectChildQueue");

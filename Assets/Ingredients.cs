@@ -7,6 +7,10 @@ using System;
 
 public class Ingredients : MonoBehaviour
 {
+    private void Start()
+    {
+
+    }
     public GameObject Data;
     //Dictionary<string, int> Ingredient;
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
