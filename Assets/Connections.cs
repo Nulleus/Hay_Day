@@ -31,9 +31,10 @@ public class Connections : MonoBehaviour
     {
         new Thread(() =>
         {
-            //Доработать входные данные 
-            //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
-            MySqlConnection conn = new MySqlConnection(ConnectionString);
+         // Start the Thread
+                    //Доработать входные данные 
+                    //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
+        MySqlConnection conn = new MySqlConnection(ConnectionString);
             try
             {
                 Debug.Log("Connecting to MySQL...");
@@ -57,7 +58,8 @@ public class Connections : MonoBehaviour
 
             conn.Close();
             Debug.Log("Done.");
-        }).Start(); // Start the Thread
+        }).Start();
+
     }
     // Start is called before the first frame update
     void Start()

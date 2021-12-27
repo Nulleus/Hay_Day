@@ -4,6 +4,7 @@ using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using System.Threading;
 
 public class Ingredients : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class Ingredients : MonoBehaviour
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
     public Dictionary<string,int> GetCompositions (string subjectName) //Получаем ингредиенты, необходимые для создания объекта
     {
-        Dictionary<string, int>  Compositions = new Dictionary<string, int>();
+        new Thread(() =>
+        {
+           Dictionary<string, int>  Compositions = new Dictionary<string, int>();
         Debug.Log("GetCompositions");
         Debug.Log("connectionString: "+ Data.GetComponent<Connections>().ConnectionString);
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
@@ -41,6 +44,7 @@ public class Ingredients : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
         return Compositions;
+        }).Start(return Compositions;); // Start the Thread
     }
 
 

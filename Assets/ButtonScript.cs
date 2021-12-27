@@ -52,6 +52,10 @@ public class ButtonScript : MonoBehaviour
                 Display.displays[1].Activate();
                 Debug.Log("pressed close ");
                 break;
+            case "repeatConnection":
+                
+                Debug.Log("repeatConnection");
+                break;
             default:
                 Debug.Log("default case");
                 break;
