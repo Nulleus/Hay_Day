@@ -4,6 +4,7 @@ using Models;
 using Proyecto26;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using System;
 
 public class MainScript : MonoBehaviour {
 
@@ -142,4 +143,16 @@ public class MainScript : MonoBehaviour {
 			this.LogMessage("Error", err.Message);
 		});
 	}
+	public void PostLogin()
+	{
+
+		RestClient.Post<ServerResponse>("http://farmpass.beget.tech/api/login.php", new Post
+		{
+			email = "vasya2@coder.com",
+			password = "888"
+		}).Then(response => {
+			EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+			EditorUtility.DisplayDialog("Date: ", response.jwt, "Ok");
+		});
+	}v
 }
