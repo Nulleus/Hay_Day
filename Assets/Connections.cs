@@ -5,6 +5,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 using System.Threading;
+using System.Linq;
 
 public class Connections : MonoBehaviour
 {
@@ -29,8 +30,6 @@ public class Connections : MonoBehaviour
     //Проверка подключения к базе данных
     void CheckConnections()
     {
-        new Thread(() =>
-        {
          // Start the Thread
                     //Доработать входные данные 
                     //string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
@@ -58,20 +57,22 @@ public class Connections : MonoBehaviour
 
             conn.Close();
             Debug.Log("Done.");
-        }).Start();
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
+        //ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
         //BuildingConnectionString();//Сборка строки подключения 
-        CheckConnections();//Провека подключения, таблицы, данных 
+        //CheckConnections();//Провека подключения, таблицы, данных 
     }
     void Awake()
     {
+
         ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
-        CheckConnections();//Провека подключения, таблицы, данных 
+        Thread myThread = new Thread(new ThreadStart(CheckConnections));
+        myThread.Start(); // запускаем поток
+        //CheckConnections();//Провека подключения, таблицы, данных 
     }
 
     // Update is called once per frame

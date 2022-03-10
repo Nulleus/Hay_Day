@@ -21,7 +21,7 @@ public class Users : MonoBehaviour
     //Получаем уровень пользователя
     private void Start()
     {
-        
+        GetInfoUser();
     }
     public int GetLevelUserNumber()
     {
@@ -119,8 +119,7 @@ public class Users : MonoBehaviour
 
     public void GetInfoUser()
     {
-        new Thread(() =>
-        {
+
             Debug.Log("GetInfoUser()");
             //tring connStr = "server=localhost;user=root;database=world;port=3306;password=******";
             //ConnectionString = Data.GetComponent<Connections>().ConnectionString;
@@ -157,7 +156,6 @@ public class Users : MonoBehaviour
 
             conn.Close();
             Debug.Log("Done.");
-     }).Start(); // Start the Thread
     }
 
 }

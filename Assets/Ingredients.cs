@@ -17,12 +17,12 @@ public class Ingredients : MonoBehaviour
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
     public Dictionary<string,int> GetCompositions (string subjectName) //Получаем ингредиенты, необходимые для создания объекта
     {
-        new Thread(() =>
-        {
-           Dictionary<string, int>  Compositions = new Dictionary<string, int>();
+
+        Dictionary<string, int>  Compositions = new Dictionary<string, int>();
         Debug.Log("GetCompositions");
         Debug.Log("connectionString: "+ Data.GetComponent<Connections>().ConnectionString);
         MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
+
         try
         {
             Debug.Log("Connecting to MySQL...");
@@ -41,10 +41,10 @@ public class Ingredients : MonoBehaviour
             Debug.Log(ex.ToString());
             return Compositions;
         }
+
         conn.Close();
         Debug.Log("Done.");
         return Compositions;
-        }).Start(return Compositions;); // Start the Thread
     }
 
 
