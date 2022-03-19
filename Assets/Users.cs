@@ -5,11 +5,30 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 using System.Threading;
+using UnityEditor;
+using Models;
+using Proyecto26;
+using UnityEngine.Networking;
 
 public class Users : MonoBehaviour
 {
+    public class Info
+    {
+        public string email;
+        public string password;
+        public string message;
+        public string jwt;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public GameObject Data;
+    //Токен с данными пользователя после авторизации
+    public string JWTToken;
+    //Уникальный идентификатор пользователя
     public int IDUser;
+
     public string Login;
     public string Pasword;
     public string Nickname;
@@ -19,9 +38,23 @@ public class Users : MonoBehaviour
     public int LevelUserNumber;
     // Start is called before the first frame update
     //Получаем уровень пользователя
+    public void PostLogin()
+    {
+
+        RestClient.Post<Info>("http://farmpass.beget.tech/api/login.php", new PostLogin
+        {
+            email = Login,
+            password = Pasword
+        }).Then(response => {
+            EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+            JWTToken = response.jwt;
+            EditorUtility.DisplayDialog("JWT: ", response.jwt, "Ok");
+
+        });
+    }
     private void Start()
     {
-        GetInfoUser();
+        PostLogin();
     }
     public int GetLevelUserNumber()
     {

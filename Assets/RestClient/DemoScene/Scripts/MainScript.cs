@@ -151,8 +151,8 @@ public class MainScript : MonoBehaviour {
 			email = "vasya2@coder.com",
 			password = "888"
 		}).Then(response => {
-			EditorUtility.DisplayDialog("Email: ", response.message, "Ok");
-			EditorUtility.DisplayDialog("Password: ", response.jwt, "Ok");
+			EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+			EditorUtility.DisplayDialog("JWT token: ", response.jwt, "Ok");
 		});
 	}
 }
