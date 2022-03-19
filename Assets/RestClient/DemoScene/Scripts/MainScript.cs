@@ -146,13 +146,13 @@ public class MainScript : MonoBehaviour {
 	public void PostLogin()
 	{
 
-		RestClient.Post<ServerResponse>("http://farmpass.beget.tech/api/login.php", new Post
+		RestClient.Post<PostLogin>("http://farmpass.beget.tech/api/login.php", new PostLogin
 		{
 			email = "vasya2@coder.com",
 			password = "888"
 		}).Then(response => {
-			EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
-			EditorUtility.DisplayDialog("Date: ", response.jwt, "Ok");
+			EditorUtility.DisplayDialog("Email: ", response.message, "Ok");
+			EditorUtility.DisplayDialog("Password: ", response.jwt, "Ok");
 		});
-	}v
+	}
 }

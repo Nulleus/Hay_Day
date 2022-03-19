@@ -3,10 +3,12 @@ using System;
 namespace Models
 {
 	[Serializable]
-	public class Post
+	public class PostLogin
 	{
 		public string email;
 		public string password;
+		public string message;
+		public string jwt;
 
 		public override string ToString()
 		{

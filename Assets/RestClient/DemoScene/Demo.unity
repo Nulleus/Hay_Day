@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 189516205}
   - component: {fileID: 189516204}
   m_Layer: 5
-  m_Name: Login
+  m_Name: POSTLogin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2093631981}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Post
+        m_TargetAssemblyTypeName: MainScript, Assembly-CSharp
+        m_MethodName: PostLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -539,7 +539,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Login
+  m_Text: POSTLogin
 --- !u!222 &518537442
 CanvasRenderer:
   m_ObjectHideFlags: 0
