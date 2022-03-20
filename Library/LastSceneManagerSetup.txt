@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/RestClient/DemoScene/Demo.unity
+- path: Assets/Scenes/farm.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

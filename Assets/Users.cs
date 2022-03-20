@@ -37,7 +37,8 @@ public class Users : MonoBehaviour
     public int ExperiencePoints;
     public int LevelUserNumber;
     // Start is called before the first frame update
-    //Получаем уровень пользователя
+
+    //Отправляем логин и пароль, получает jwt токен
     public void PostLogin()
     {
 
@@ -52,10 +53,15 @@ public class Users : MonoBehaviour
 
         });
     }
+    public void GetInfoUserAPI()
+    {
+
+    }
     private void Start()
     {
         PostLogin();
     }
+    //Получаем уровень пользователя
     public int GetLevelUserNumber()
     {
         return GetExperienceLevelByIDUser(ExperiencePoints);
