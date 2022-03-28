@@ -148,7 +148,7 @@ public class MainScript : MonoBehaviour {
 
 		RestClient.Post<PostLogin>("http://farmpass.beget.tech/api/login.php", new PostLogin
 		{
-			email = "vasya2@coder.com",
+			login = "vasya2@coder.com",
 			password = "888"
 		}).Then(response => {
 			EditorUtility.DisplayDialog("Message: ", response.message, "Ok");

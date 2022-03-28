@@ -12,12 +12,38 @@ using UnityEngine.Networking;
 
 public class Users : MonoBehaviour
 {
+    //Данные которые получаем в ответ
     public class Info
     {
-        public string email;
+        public string login;
         public string password;
         public string message;
         public string jwt;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    //Данные которые получаем в ответ
+    public class UserInfoExperiencePoints
+    {
+        //public string jwt;
+        public string message;
+        public int experience_points;
+        
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    //Данные которые получаем в ответ
+    public class UserInfoName
+    {
+        //public string jwt;
+        public string message;
+        public string farm_name;
+        public string nickname;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -30,7 +56,7 @@ public class Users : MonoBehaviour
     public int IDUser;
 
     public string Login;
-    public string Pasword;
+    public string Password;
     public string Nickname;
     public string FarmName;
     public string SQLQuery;
@@ -44,27 +70,42 @@ public class Users : MonoBehaviour
 
         RestClient.Post<Info>("http://farmpass.beget.tech/api/login.php", new PostLogin
         {
-            email = Login,
-            password = Pasword
+            login = Login,
+            password = Password
         }).Then(response => {
             EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
             JWTToken = response.jwt;
             EditorUtility.DisplayDialog("JWT: ", response.jwt, "Ok");
 
+
         });
     }
-    public void GetInfoUserAPI()
+    public void GetUserInfoAPIExperiencePoints()
     {
+        Debug.Log("GetInfoUserAPIExperiencePoints()");
+        RestClient.Post<UserInfoExperiencePoints>("http://farmpass.beget.tech/api/user_experience_points.php", new User
+        {
+            jwt = JWTToken
+            
+        }).Then(response => {
+            EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("ExperiencePoints: ", response.experience_points.ToString(), "Ok");
+            ExperiencePoints = response.experience_points;
 
+        });
     }
-    private void Start()
+
+
+    public void Start()
     {
-        PostLogin();
+        GetUserInfoAPIExperiencePoints();
+        //PostLogin();
     }
     //Получаем уровень пользователя
     public int GetLevelUserNumber()
     {
-        return GetExperienceLevelByIDUser(ExperiencePoints);
+        //return GetExperienceLevelByIDUser(ExperiencePoints);
+        return 1;
     }
     public int GetIDUser()
     {
@@ -75,14 +116,14 @@ public class Users : MonoBehaviour
     {
         new Thread(() =>
         {
-            if ((Login == "")||(Pasword == ""))
+            if ((Login == "")||(Password == ""))
         {
             Debug.Log("Логин и (или) пароль не введены");
             return;
         }
         Debug.Log("GetIDUser()");
         //Получение данных для подключения из единой точки входа
-        var SQLQuery = "SELECT id_user from users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
+        var SQLQuery = "SELECT id_user from users WHERE login='" + Login + "' AND pasword='" + Password + "'";
         // Debug.Log(Data.GetComponent<Connections>().ConnectionString);
         Debug.Log(SQLQuery);
         // создаём объект для подключения к БД
@@ -120,12 +161,12 @@ public class Users : MonoBehaviour
     {
         //Получаем количество очков у пользователя
         int idUser = GetIDUser();
-        GetExperiencePointsByIDUser(idUser);
+        //GetExperiencePointsByIDUser(idUser);
         //Переводим количество очков в уровень
-        return LevelUserNumber = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(ExperiencePoints);
+        return LevelUserNumber = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(2);
     }
     //Получаем количество очков у пользователя
-    public void GetExperiencePointsByIDUser(int id_user)
+ /*   public void GetExperiencePointsByIDUser(int id_user)
     {
         new Thread(() =>
         {
@@ -155,7 +196,7 @@ public class Users : MonoBehaviour
                 Debug.Log("Done.");
         }).Start(); // Start the Thread
 }
-
+*/
     public void GetInfoUser()
     {
 
@@ -169,7 +210,7 @@ public class Users : MonoBehaviour
                     Debug.Log("Connecting to MySQL...");
                     conn.Open();
                     SQLQuery = "SELECT id_user, nickname, farm_name" +
-                    " FROM users WHERE login='" + Login + "' AND pasword='" + Pasword + "'";
+                    " FROM users WHERE login='" + Login + "' AND pasword='" + Password + "'";
                     MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -182,7 +223,7 @@ public class Users : MonoBehaviour
                         Debug.Log("Authorization OK");
                         Debug.Log("id_user=" + IDUser);
                         Debug.Log("Login=" + Login);
-                        Debug.Log("Pasword=" + Pasword);
+                        Debug.Log("Pasword=" + Password);
                         Debug.Log("Nickname=" + Nickname);
                         Debug.Log("FarmName=" + FarmName);
                     }
