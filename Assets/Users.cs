@@ -13,7 +13,7 @@ using UnityEngine.Networking;
 public class Users : MonoBehaviour
 {
     //Данные которые получаем в ответ
-    public class Info
+    public class ResponseInfo
     {
         public string login;
         public string password;
@@ -25,7 +25,7 @@ public class Users : MonoBehaviour
         }
     }
     //Данные которые получаем в ответ
-    public class UserInfoExperiencePoints
+    public class ResponseUserInfoExperiencePoints
     {
         //public string jwt;
         public string message;
@@ -68,7 +68,7 @@ public class Users : MonoBehaviour
     public void PostLogin()
     {
 
-        RestClient.Post<Info>("http://farmpass.beget.tech/api/login.php", new PostLogin
+        RestClient.Post<ResponseInfo>("http://farmpass.beget.tech/api/login.php", new POSTLogin
         {
             login = Login,
             password = Password
@@ -83,10 +83,11 @@ public class Users : MonoBehaviour
     public void GetUserInfoAPIExperiencePoints()
     {
         Debug.Log("GetInfoUserAPIExperiencePoints()");
-        RestClient.Post<UserInfoExperiencePoints>("http://farmpass.beget.tech/api/user_experience_points.php", new User
+        RestClient.Post<ResponseUserInfoExperiencePoints>("http://farmpass.beget.tech/api/user_execute_methods.php", new POSTUser
         {
-            jwt = JWTToken
-            
+            jwt = JWTToken,
+            methodName = "getExperiencePoints"
+
         }).Then(response => {
             EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("ExperiencePoints: ", response.experience_points.ToString(), "Ok");
@@ -94,12 +95,21 @@ public class Users : MonoBehaviour
 
         });
     }
-
-
+    
+    public void OnEnable()
+    {
+        //Тестирование
+        //Debug.Log("Start");
+        //PostLogin();
+        //GetUserInfoAPIExperiencePoints();
+        Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(125);
+        //int i = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(125);
+        //Debug.Log(i);
+    }
     public void Start()
     {
-        GetUserInfoAPIExperiencePoints();
-        //PostLogin();
+
+        
     }
     //Получаем уровень пользователя
     public int GetLevelUserNumber()
@@ -157,7 +167,8 @@ public class Users : MonoBehaviour
         }).Start(); // Start the Thread
     }
     //Получение номера уровня по очкам пользователя
-    public int GetExperienceLevelByIDUser(int experiencePoints)
+    
+    /*public int GetExperienceLevelByIDUser(int experiencePoints)
     {
         //Получаем количество очков у пользователя
         int idUser = GetIDUser();
@@ -165,6 +176,7 @@ public class Users : MonoBehaviour
         //Переводим количество очков в уровень
         return LevelUserNumber = Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(2);
     }
+    */
     //Получаем количество очков у пользователя
  /*   public void GetExperiencePointsByIDUser(int id_user)
     {
