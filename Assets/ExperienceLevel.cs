@@ -19,23 +19,23 @@ public class ExperienceLevel : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    public GameObject Data;
-    // Start is called before the first frame update
-    /*public void GetLevelByExperiencePoints()
+    [Serializable]
+    public class POSTExperienceLevel
     {
-        Debug.Log("method GetLevelByExperiencePoints");
-        RestClient.Post<ResponseExperienceLevel>("http://farmpass.beget.tech/api/user_execute_methods.php", new POSTExperienceLevel
+        //POST данные отправляемые серверу
+        public string jwt;
+        public string methodName;
+        public int experiencePoints;
+
+
+        public override string ToString()
         {
-            jwt = Data.GetComponent<Users>().JWTToken,
-            methodName = "getLevelByExperiencePoints",
-            experiencePoints = 125
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
 
-        }).Then(response => {
-            EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("NumberLevel: ", response.numberLevel.ToString(), "Ok");
-
-        });
-    }*/
+    public GameObject Data;
+    //Получение номера уровня по очкам пользователя
     public int GetLevelByExperiencePoints(int experiencePoints) //Номер уровня по очкам
     {
         Debug.Log("method GetLevelByExperiencePoints");
@@ -53,16 +53,5 @@ public class ExperienceLevel : MonoBehaviour
 
         });
         return 0;
-    }
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

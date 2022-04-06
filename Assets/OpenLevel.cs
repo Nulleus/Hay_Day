@@ -9,9 +9,10 @@ public class OpenLevel : MonoBehaviour
 {
     public GameObject Data;
     //Получаем все объекты, которые открываются с определенным уровням, на текущий уровеь и все предыдущие тоже <=
-    public List<string> GetAllSubjectNameByOpenLevel() 
+ /*   public List<string> GetAllSubjectNameByOpenLevel() 
     {
-        int openLevel = Data.GetComponent<Users>().GetLevelUserNumber();
+        //Получаем уровень пользователя
+        int openLevel = Data.GetComponent<Users>().GetExperienceLevelUser();
         Debug.Log("openLevel=" + openLevel);
         List<string> allSubjectNameOpenLevel = new List<string>();
         Debug.Log("GetAllSubjectNameByOpenLevel");
@@ -39,6 +40,7 @@ public class OpenLevel : MonoBehaviour
         Debug.Log("Done.");
         return allSubjectNameOpenLevel;
     }
+ */
 
     // Start is called before the first frame update
     void Start()
