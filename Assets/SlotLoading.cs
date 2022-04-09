@@ -19,7 +19,7 @@ public class SlotLoading : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         //Получаем загруженный объект в слоте по номеру слота(NumberSlot), (в порядке очереди) по имени производственного здания(SubjectParent) выбирая по IDUser(id пользователя)
-        string subjectChild = Data.GetComponent<Contents>().GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot, Data.GetComponent<Users>().IDUser);
+        string subjectChild = Data.GetComponent<Contents>().GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot/*Data.GetComponent<Users>().IDUser*/);
         if (subjectChild == "")
         {
             subjectChild = "empty";

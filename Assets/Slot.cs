@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour
     public void GetOpenSubjectsThisSlot()
     {
         //Получаем все открытые пользователю объекты
-        List<string> allSubjectsOpenLevel = Data.GetComponent<OpenLevel>().GetAllSubjectNameByOpenLevel();
+        List<string> allSubjectsOpenLevel= new List<string>(); /*= Data.GetComponent<OpenLevel>().GetAllSubjectNameByOpenLevel();*/
         //Получаем имя родителя
         SubjectParentName = ProductionBuildingParent.GetComponent<ProductionBuilding>().NameSystem;
         //Получаем всех детей subject_child_name, из таблицы по имени родителя 

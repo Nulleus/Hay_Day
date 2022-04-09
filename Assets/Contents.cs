@@ -4,10 +4,36 @@ using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using Proyecto26;
+using UnityEditor;
 
 
 public class Contents : MonoBehaviour
 {
+    [Serializable]
+    public class ResponseSubjectChildInTheProcessOfAssembly
+    {
+        public string message;
+        public string subjectChildName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+
+    [Serializable]
+    public class POSTSubjectChildInTheProcessOfAssembly
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int numberSlot;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public GameObject Data;
     //Класс отвечает за работу с таблицей Contents в БД
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
@@ -16,7 +42,31 @@ public class Contents : MonoBehaviour
     {
 
     }
-    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, int userID) //Получаем продукт, находящийся в производстве для каждого слота по номеру
+    //Получаем продукт, находящийся в производстве для каждого слота по номеру
+    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
+    {
+        //Debug.Log("GetAllSubjectNameByOpenLevel");
+        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetSubjectChildInTheProcessOfAssembly",
+            subjectParentName = subjectParentName,
+            numberSlot = numberSlot
+            
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("message: ", response.ToString(), "Ok");
+            EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
+            return response.subjectChildName;
+        });
+        return "empty";
+    }
+    private void OnEnable()
+    {
+        GetSubjectChildInTheProcessOfAssembly("bakery", 1);
+    }
+    /*public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, int userID) 
     {
         Debug.Log("GetSubjectChildQueue");
         Debug.Log(Data.GetComponent<Connections>().ConnectionString);
@@ -43,7 +93,7 @@ public class Contents : MonoBehaviour
         conn.Close();
         Debug.Log("Done.");
         return "Done";
-    }
+    }*/
     public string GetServerDateTime()//Получаем серверное время
     {
         DateTime serverDateTime;
@@ -172,6 +222,7 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return -2;     
     }
+    //Получаем количество занятых слотов загрузки по имени родителя
     public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, int userID)
     {   //Проверяем соединение с БД
         //Доработать входные данные 
@@ -202,7 +253,8 @@ public class Contents : MonoBehaviour
         Debug.Log("Done.");
         return -2;
     }
-    public void AddContents(string subjectParentName, string subjectChildName, int userId) //Метод только добавляет в БД полученные значения
+    //Метод только добавляет в БД полученные значения
+    public void AddContents(string subjectParentName, string subjectChildName, int userId) 
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
         string timeShipment = GetSummDateTimeAndSeconds(timeLoading, GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
@@ -228,7 +280,8 @@ public class Contents : MonoBehaviour
         conn.Close();
         Console.WriteLine("Done.");
     }
-    public int GetShipmentID(string subjectParentName, int userID) //Получаем ID первого стоящего на выгрузку объекта
+    //Получаем ID первого стоящего на выгрузку объекта
+    public int GetShipmentID(string subjectParentName, int userID) 
     {
         int contentID;
         Debug.Log("method GetShipmentID");

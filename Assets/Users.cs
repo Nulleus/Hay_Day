@@ -128,6 +128,11 @@ public class Users : MonoBehaviour
         //GetUserInfoAPIExperiencePoints();
         Data.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(125);
     }
+    //Получение токена пользователя, временно, после необходимо запрашивать токен
+    public string GetJWTToken()
+    {
+        return JWTToken;
+    }
     public void Start()
     {
 

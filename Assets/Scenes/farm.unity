@@ -65788,14 +65788,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   JWTToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU
-  IDUser: 0
   Login: AdminFarm
   Password: 123
   Nickname: 
   FarmName: 
-  SQLQuery: 
-  ExperiencePoints: 0
-  LevelUserNumber: 0
 --- !u!114 &1866044570
 MonoBehaviour:
   m_ObjectHideFlags: 0

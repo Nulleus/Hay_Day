@@ -68,11 +68,12 @@ public class Connections : MonoBehaviour
     }
     void Awake()
     {
-
+        /*
         ConnectionString = BuildingConnectionString(Server, DataBase, UserName, UserPassword, Port);//Должна запуститься первой
         Thread myThread = new Thread(new ThreadStart(CheckConnections));
         myThread.Start(); // запускаем поток
         //CheckConnections();//Провека подключения, таблицы, данных 
+        */
     }
 
     // Update is called once per frame
