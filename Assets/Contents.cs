@@ -34,9 +34,71 @@ public class Contents : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class ResponseGetServerDateTime
+    {
+        public string message;
+        public string serverDateTime;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+
+    [Serializable]
+    public class POSTGetServerDateTime
+    {
+        public string jwt;
+        public string methodName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTGetCountOfOccupiedShipmentSlotsByParentName
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetCountOfOccupiedShipmentSlotsByParentName
+    {
+        public string message;
+        public int countShipmentSlots;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    public class POSTGetCountOfOccupiedLoadingSlotsByParentName
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetCountOfOccupiedLoadingSlotsByParentName
+    {
+        public string message;
+        public int countLoadingSlots;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    //GetCountOfOccupiedShipmentSlotsByParentName
     public GameObject Data;
-    //Класс отвечает за работу с таблицей Contents в БД
-    //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+ 
 
     private void Start()
     {
@@ -62,202 +124,72 @@ public class Contents : MonoBehaviour
         });
         return "empty";
     }
-    private void OnEnable()
-    {
-        GetSubjectChildInTheProcessOfAssembly("bakery", 1);
-    }
-    /*public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, int userID) 
-    {
-        Debug.Log("GetSubjectChildQueue");
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            //var SQLQuery = "SELECT subject_child FROM contents WHERE time_shipment > NOW() AND user_id='" + user_id + "' AND subject_parent='" + subject_parent + "' ORDER BY id_content ASC LIMIT '" + number_slot + "',1";
-            var sqlQuery = "SELECT subject_child_name FROM contents WHERE time_shipment > NOW() AND user_id=" + userID + " AND subject_parent_name='" + subjectParentName + "' ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                return (string)reader["subject_child_name"]; 
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return "Error";
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return "Done";
-    }*/
+
+    //Класс отвечает за работу с таблицей Contents в БД
+    //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
     public string GetServerDateTime()//Получаем серверное время
     {
-        DateTime serverDateTime;
-        string serverDateTimeTemp;        
-        Debug.Log("GetServerDateTime");
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+        //Debug.Log("GetServerDateTime");
+        RestClient.Post<ResponseGetServerDateTime>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTGetServerDateTime
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var SQLQuery = "SELECT NOW()";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                serverDateTime = (DateTime)reader["NOW()"];//Получаем текущую дату серверного времени
-                //ServerDateTimeTemp.AddSeconds(GetTimeBuilding("Wheat")); //Прибавляем секунды к дате
-                //serverDateTimeTemp = serverDateTime.ToString("u");//u: 2008-06-15 21:15:07Z
-                serverDateTimeTemp = serverDateTime.ToString("yyyy-MM-dd HH:mm:ss");//
-                Debug.Log("NOW()=" + serverDateTimeTemp);
-                return serverDateTimeTemp;               
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {            
-            Debug.Log(ex.ToString());
-            return "Error";
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return "Done";
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetServerDateTime"
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("serverDateTime: ", response.serverDateTime, "Ok");
+            return response.serverDateTime;
+        });
+        return "empty";
     }
-    public int GetTimeBuilding(string subjectName) //Получаем время сборки предмета
-    {
-        int buildingTime;
-        Debug.Log("GetTimeBuilding");
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var SQLQuery = "SELECT building_time from subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                buildingTime = (int)reader["building_time"];
-                
-                Debug.Log(buildingTime);
-                return buildingTime;
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return 0;
-    }
+
 
     static string GetSummDateTimeAndSeconds(string time, int second) //Прибавляем дате определенное количество секунд
     {
         var convertA = DateTime.Parse(time);//Конвертируем строку в дату
         return convertA.AddSeconds(second).ToString("yyyy-MM-dd HH:mm:ss"); 
     }
-    void CheckConnections()
-    {   //Проверяем соединение с БД
-        //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+    //Получить количество готовых продуктово, находящиеся в зоне отгрузки(shipment)
+    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName)
+    {
+        //Debug.Log("GetCountOfOccupiedShipmentSlotsByParentName");
+        RestClient.Post<ResponseGetCountOfOccupiedShipmentSlotsByParentName>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTGetCountOfOccupiedShipmentSlotsByParentName
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetCountOfOccupiedShipmentSlotsByParentName",
+            subjectParentName = subjectParentName
 
-            string sql = "SELECT COUNT(*) FROM users";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            if (result != null)
-            {
-                int r = Convert.ToInt32(result);
-                Debug.Log("Number of countries in the world database is: " + r);
-            }
 
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-        }
-
-        conn.Close();
-        Debug.Log("Done.");
-    }
-    //Количество занятых слотов(shipment)
-    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName, int userID)
-    {   //Проверяем соединение с БД
-        //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-
-            string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            if (result != null)
-            {
-                int r = Convert.ToInt32(result);
-                Debug.Log("Number of countries in the world database is: " + r);
-                return r;
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return -1;
-        }
-
-        conn.Close();
-        Debug.Log("Done.");
-        return -2;     
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("countShipmentSlots: ", response.countShipmentSlots.ToString(), "Ok");
+            return response.countShipmentSlots;
+        });
+        return 0;
     }
     //Получаем количество занятых слотов загрузки по имени родителя
-    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, int userID)
-    {   //Проверяем соединение с БД
-        //Доработать входные данные 
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName)
+    {
+        //Debug.Log("GetCountOfOccupiedLoadingSlotsByParentName");
+        RestClient.Post<ResponseGetCountOfOccupiedLoadingSlotsByParentName>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTGetCountOfOccupiedLoadingSlotsByParentName
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetCountOfOccupiedLoadingSlotsByParentName",
+            subjectParentName = subjectParentName
 
-            string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment>NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            if (result != null)
-            {
-                int r = Convert.ToInt32(result);
-                Debug.Log("Number of countries in the world database is: " + r);
-                return r;
-            }
 
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return -1;
-        }
-
-        conn.Close();
-        Debug.Log("Done.");
-        return -2;
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("countLoadingSlots: ", response.countLoadingSlots.ToString(), "Ok");
+            return response.countLoadingSlots;
+        });
+        return 0;
     }
     //Метод только добавляет в БД полученные значения
     public void AddContents(string subjectParentName, string subjectChildName, int userId) 
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
-        string timeShipment = GetSummDateTimeAndSeconds(timeLoading, GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
+        string timeShipment = GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
         int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
 
         //var timeShipmentTemp = DateTime.Parse(timeShipment);//Конвертируем строку в дату
@@ -317,5 +249,11 @@ public class Contents : MonoBehaviour
     //Получаем первый готовый продукт в очереди
     //Освобождение слота отгрузки(В нем вызываем метод, увеличивающий количество выгруженного предмета на складе)
     //archive_contents
-
+    private void OnEnable()
+    {
+        //GetSubjectChildInTheProcessOfAssembly("bakery", 1);
+        //GetServerDateTime();
+        //GetCountOfOccupiedShipmentSlotsByParentName("bakery");
+        //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
+    }
 }

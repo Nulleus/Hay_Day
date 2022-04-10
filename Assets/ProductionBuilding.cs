@@ -154,14 +154,14 @@ public class ProductionBuilding : MonoBehaviour
         //Debug.Log("AddInSlotSubject(IDUser)" + Data.GetComponent<Users>().IDUser);
         Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
-        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName, 1/*Data.GetComponent<Users>().IDUser*/);
+        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
         //Получаем дефолтное значение открытых слотов по имени объекта
         int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectChildName);
         Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlotsLoadingDefaults);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
         //Проверяем,сколько слотов занято производством
-        int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName, 1/*Data.GetComponent<Users>().IDUser*/);
+        int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedLoadingSlots)" + countOfOccupiedLoadingSlots);
         //Если количество отгруженных товаров, превышает число дефолтных значений слотов отгрузки
         if (countOfOccupiedShipmentSlots >= openSlotsLoadingDefaults)

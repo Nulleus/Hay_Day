@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class ExperienceLevel : MonoBehaviour
 {
-    
+    [Serializable]
     public class ResponseExperienceLevel
     {
         public string message;
@@ -53,5 +53,9 @@ public class ExperienceLevel : MonoBehaviour
 
         });
         return 0;
+    }
+    private void OnEnable()
+    {
+        
     }
 }
