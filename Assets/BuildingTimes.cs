@@ -8,7 +8,7 @@ using UnityEditor;
 public class BuildingTimes : MonoBehaviour
 {
     public GameObject Data;
-    public string test;
+    private int test;
     [Serializable]
     public class POSTGetTimeBuilding
     {
@@ -43,10 +43,11 @@ public class BuildingTimes : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-            return response.buildingTimeSeconds;
+            //return response.buildingTimeSeconds;
+            test = response.buildingTimeSeconds;
         });
         
-        return 0;
+        return test;
     }
     //Для тестов
     private void OnEnable()

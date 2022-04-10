@@ -218,11 +218,12 @@ public class Contents : MonoBehaviour
     {
         string timeLoading = Data.GetComponent<Contents>().GetServerDateTime();//Дата загрузки равна текущему времени сервера
         Debug.Log("timeLoading=" + timeLoading);
-        BuildingTimes BT = new BuildingTimes();
-        //int addSeconds = BT.GetTimeBuilding(subjectChildName);
-        Debug.Log("addSeconds"+ addSeconds);
-        string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
+        int timeBuilding = Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName);
+        Debug.Log("timeBuilding" + timeBuilding);
+        //Время отгрузки равно текущему времени сервера плюс время изготовления объекта
+        string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));
         Debug.Log("timeShipment=" + timeShipment);
+        Debug.Log("TESTtimeShipment=" + test);
         //int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
         //Для тестирования, необходимо переделать класс Output Quantity
         int outputQuantity = 1;
