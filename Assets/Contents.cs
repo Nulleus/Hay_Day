@@ -96,8 +96,33 @@ public class Contents : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    public class POSTAddContents
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public string subjectChildName;
+        public string timeLoading;
+        public string timeShipment;
+        public int outputQuantity;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseAddContents
+    {
+        public string message;
+        public bool result;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     //GetCountOfOccupiedShipmentSlotsByParentName
     public GameObject Data;
+    public string test;
  
 
     private void Start()
@@ -138,13 +163,16 @@ public class Contents : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("serverDateTime: ", response.serverDateTime, "Ok");
-            return response.serverDateTime;
+            test = response.serverDateTime;
+            Debug.Log("test" + test);
+            return test;
         });
-        return "empty";
+        Debug.Log("serverDateTime1" + test);
+        return test;
     }
 
-
-    static string GetSummDateTimeAndSeconds(string time, int second) //Прибавляем дате определенное количество секунд
+    //Прибавляем дате определенное количество секунд
+    public string GetSummDateTimeAndSeconds(string time, int second) 
     {
         var convertA = DateTime.Parse(time);//Конвертируем строку в дату
         return convertA.AddSeconds(second).ToString("yyyy-MM-dd HH:mm:ss"); 
@@ -186,6 +214,37 @@ public class Contents : MonoBehaviour
         return 0;
     }
     //Метод только добавляет в БД полученные значения
+    public void AddContents(string subjectParentName, string subjectChildName)
+    {
+        string timeLoading = Data.GetComponent<Contents>().GetServerDateTime();//Дата загрузки равна текущему времени сервера
+        Debug.Log("timeLoading=" + timeLoading);
+        BuildingTimes BT = new BuildingTimes();
+        //int addSeconds = BT.GetTimeBuilding(subjectChildName);
+        Debug.Log("addSeconds"+ addSeconds);
+        string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
+        Debug.Log("timeShipment=" + timeShipment);
+        //int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
+        //Для тестирования, необходимо переделать класс Output Quantity
+        int outputQuantity = 1;
+        RestClient.Post<ResponseAddContents>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTAddContents
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "AddContents",
+            subjectParentName = subjectParentName,
+            subjectChildName = subjectChildName,
+            timeLoading = timeLoading,
+            timeShipment = timeShipment,
+            outputQuantity = outputQuantity
+
+            //($subjectParentName, $subjectChildName, $timeLoading, $timeShipment, $outputQuantity, $userID)
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("result: ", response.result.ToString(), "Ok");
+            return response.result;
+        });
+    }
+    /*
     public void AddContents(string subjectParentName, string subjectChildName, int userId) 
     {
         string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
@@ -212,6 +271,7 @@ public class Contents : MonoBehaviour
         conn.Close();
         Console.WriteLine("Done.");
     }
+    */
     //Получаем ID первого стоящего на выгрузку объекта
     public int GetShipmentID(string subjectParentName, int userID) 
     {
@@ -255,5 +315,7 @@ public class Contents : MonoBehaviour
         //GetServerDateTime();
         //GetCountOfOccupiedShipmentSlotsByParentName("bakery");
         //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
+
+        AddContents("bakery", "bread");
     }
 }

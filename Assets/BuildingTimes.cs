@@ -8,6 +8,7 @@ using UnityEditor;
 public class BuildingTimes : MonoBehaviour
 {
     public GameObject Data;
+    public string test;
     [Serializable]
     public class POSTGetTimeBuilding
     {
@@ -44,12 +45,13 @@ public class BuildingTimes : MonoBehaviour
             EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
             return response.buildingTimeSeconds;
         });
+        
         return 0;
     }
     //Для тестов
     private void OnEnable()
     {
-        GetTimeBuilding("Wheat");
+        //GetTimeBuilding("wheat");
     }
     // Start is called before the first frame update
     void Start()
