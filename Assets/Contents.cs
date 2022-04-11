@@ -122,6 +122,7 @@ public class Contents : MonoBehaviour
     }
     //GetCountOfOccupiedShipmentSlotsByParentName
     public GameObject Data;
+    public int testTime;
     public string test;
  
 
@@ -316,7 +317,7 @@ public class Contents : MonoBehaviour
         //GetServerDateTime();
         //GetCountOfOccupiedShipmentSlotsByParentName("bakery");
         //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
-
-        AddContents("bakery", "bread");
+        testTime = Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
+        //AddContents("bakery", "bread");
     }
 }

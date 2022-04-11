@@ -8,7 +8,7 @@ using UnityEditor;
 public class BuildingTimes : MonoBehaviour
 {
     public GameObject Data;
-    private int test;
+    //private int test;
     [Serializable]
     public class POSTGetTimeBuilding
     {
@@ -31,28 +31,65 @@ public class BuildingTimes : MonoBehaviour
         }
     }
     //Получаем время сборки предмета
+    /* 
+     public int GetTimeBuilding(string subjectName)
+     {
+         int test=99;
+         //Debug.Log("GetTimeBuilding");
+         RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
+         {
+             jwt = Data.GetComponent<Users>().GetJWTToken(),
+             methodName = "GetTimeBuilding",
+             subjectName = subjectName
+
+         }).Then(response => {
+             //Debug.Log("GetTimeBuilding test=" + test);
+             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+             EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
+             //return response.buildingTimeSeconds;
+             test = response.buildingTimeSeconds;
+             Debug.Log("GetTimeBuilding test="+test);
+             return test;
+         });
+         Debug.Log("GetTimeBuilding return test=" + test);
+         //return responce.
+     }
+    */
     public int GetTimeBuilding(string subjectName)
     {
-        //Debug.Log("GetTimeBuilding");
-        RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
+        int test =999;
+        //
+        try
         {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetTimeBuilding",
-            subjectName = subjectName
+            
+            RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
+            {
+                jwt = Data.GetComponent<Users>().GetJWTToken(),
+                methodName = "GetTimeBuilding",
+                subjectName = subjectName
 
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-            //return response.buildingTimeSeconds;
-            test = response.buildingTimeSeconds;
-        });
-        
-        return test;
+            }).Then(response => {
+                //Debug.Log("GetTimeBuilding test=" + test);
+                EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+                EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
+                //return response.buildingTimeSeconds;
+                test = response.buildingTimeSeconds;
+                Debug.Log("GetTimeBuilding test=" + test);
+                return test;
+            });
+            Debug.Log("GetTimeBuilding return test=" + test);
+        }
+        catch
+        {
+            return -1;
+        }
+        throw new Exception("Вот сейчас очень неожиданно было");
+
     }
     //Для тестов
     private void OnEnable()
     {
-        //GetTimeBuilding("wheat");
+        //GetTimeBuilding("bread");
     }
     // Start is called before the first frame update
     void Start()
