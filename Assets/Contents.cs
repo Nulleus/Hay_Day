@@ -122,8 +122,8 @@ public class Contents : MonoBehaviour
     }
     //GetCountOfOccupiedShipmentSlotsByParentName
     public GameObject Data;
-    public int testTime;
-    public string test;
+    [SerializeField]
+    private string ServerDateTime;
  
 
     private void Start()
@@ -164,12 +164,9 @@ public class Contents : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("serverDateTime: ", response.serverDateTime, "Ok");
-            test = response.serverDateTime;
-            Debug.Log("test" + test);
-            return test;
+            ServerDateTime = response.serverDateTime;
         });
-        Debug.Log("serverDateTime1" + test);
-        return test;
+        return ServerDateTime;
     }
 
     //Прибавляем дате определенное количество секунд
@@ -224,7 +221,6 @@ public class Contents : MonoBehaviour
         //Время отгрузки равно текущему времени сервера плюс время изготовления объекта
         string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));
         Debug.Log("timeShipment=" + timeShipment);
-        Debug.Log("TESTtimeShipment=" + test);
         //int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
         //Для тестирования, необходимо переделать класс Output Quantity
         int outputQuantity = 1;
@@ -317,7 +313,11 @@ public class Contents : MonoBehaviour
         //GetServerDateTime();
         //GetCountOfOccupiedShipmentSlotsByParentName("bakery");
         //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
-        testTime = Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
+
+        //Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
         //AddContents("bakery", "bread");
+        BuildingTimes BT = new BuildingTimes();
+        int s = BT.GetTimeBuilding("wheat");
+        Debug.Log(s);
     }
 }
