@@ -10,6 +10,31 @@ using UnityEditor;
 
 public class Contents : MonoBehaviour
 {
+
+    [Serializable]
+    public class POSTGetShipmentID
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetShipmentID
+    {
+        public string message;
+        public int idContent;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+
+
     [Serializable]
     public class ResponseSubjectChildInTheProcessOfAssembly
     {
@@ -124,7 +149,14 @@ public class Contents : MonoBehaviour
     public GameObject Data;
     [SerializeField]
     private string ServerDateTime;
- 
+    [SerializeField]
+    private int CountShipmentSlots;
+    [SerializeField]
+    private int CountLoadingSlots;
+    [SerializeField]
+    private int IdContent;
+
+
 
     private void Start()
     {
@@ -153,7 +185,8 @@ public class Contents : MonoBehaviour
 
     //Класс отвечает за работу с таблицей Contents в БД
     //string formatForMySql = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
-    public string GetServerDateTime()//Получаем серверное время
+    //Получаем серверное время
+    public string GetServerDateTime()
     {
         //Debug.Log("GetServerDateTime");
         RestClient.Post<ResponseGetServerDateTime>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTGetServerDateTime
@@ -189,9 +222,9 @@ public class Contents : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("countShipmentSlots: ", response.countShipmentSlots.ToString(), "Ok");
-            return response.countShipmentSlots;
+            CountShipmentSlots = response.countShipmentSlots;
         });
-        return 0;
+        return CountShipmentSlots;
     }
     //Получаем количество занятых слотов загрузки по имени родителя
     public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName)
@@ -207,24 +240,22 @@ public class Contents : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("countLoadingSlots: ", response.countLoadingSlots.ToString(), "Ok");
-            return response.countLoadingSlots;
+            CountLoadingSlots = response.countLoadingSlots;
         });
-        return 0;
+        return CountLoadingSlots;
     }
     //Метод только добавляет в БД полученные значения
     public void AddContents(string subjectParentName, string subjectChildName)
     {
         string timeLoading = Data.GetComponent<Contents>().GetServerDateTime();//Дата загрузки равна текущему времени сервера
         Debug.Log("timeLoading=" + timeLoading);
-        // int timeBuilding = Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName);
-        int timeBuilding = 300;
+        int timeBuilding = Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName);
         Debug.Log("timeBuilding" + timeBuilding);
         //Время отгрузки равно текущему времени сервера плюс время изготовления объекта
         string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, /*Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName)*/timeBuilding);
         Debug.Log("timeShipment=" + timeShipment);
-        //int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
-        //Для тестирования, необходимо переделать класс Output Quantity
-        int outputQuantity = 1;
+        //Количество на выходе равно, значению из таблицы output_quantity
+        int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);
         RestClient.Post<ResponseAddContents>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTAddContents
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
@@ -234,74 +265,29 @@ public class Contents : MonoBehaviour
             timeLoading = timeLoading,
             timeShipment = timeShipment,
             outputQuantity = outputQuantity
-
-            //($subjectParentName, $subjectChildName, $timeLoading, $timeShipment, $outputQuantity, $userID)
-
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("result: ", response.result.ToString(), "Ok");
             return response.result;
         });
     }
-    /*
-    public void AddContents(string subjectParentName, string subjectChildName, int userId) 
-    {
-        string timeLoading = GetServerDateTime();//Дата загрузки равна текущему времени сервера
-        string timeShipment = GetSummDateTimeAndSeconds(timeLoading, Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName));//Время отгрузки равно текущему времени сервера плюс время изготовления объекта
-        int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);//Количество на выходе равно, значению из таблицы output_quantity
-
-        //var timeShipmentTemp = DateTime.Parse(timeShipment);//Конвертируем строку в дату
-        //timeShipmentTemp.AddSeconds(GetTimeBuilding(subjectChild));//Прибавляем конвертированной дате секунды производства равную времени производства объъекта
-        //timeShipment = timeShipmentTemp.ToString("yyyy-MM-dd HH:mm:ss"); //Конвертируем дату во время определенного формата БД MySQL
-        var SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Console.WriteLine("Connecting to MySQL...");
-            conn.Open();          
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-
-        conn.Close();
-        Console.WriteLine("Done.");
-    }
-    */
     //Получаем ID первого стоящего на выгрузку объекта
-    public int GetShipmentID(string subjectParentName, int userID) 
+    public int GetShipmentID(string subjectParentName)
     {
-        int contentID;
-        Debug.Log("method GetShipmentID");
-        Debug.Log(Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+        //Debug.Log("GetShipmentID");
+        RestClient.Post<ResponseGetShipmentID>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTGetShipmentID
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            //var SQLQuery = "SELECT output_quantity from output_quantity_subjects WHERE name_subject='" + subjectName + "' LIMIT 0,1 ";
-            var SQLQuery = "SELECT id_content FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content ASC LIMIT 0,1";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                contentID = (int)reader["id_content"];
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetShipmentID",
+            subjectParentName = subjectParentName
 
-                Debug.Log(contentID);
-                return contentID;
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return 0;
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("idShipment: ", response.idContent.ToString(), "Ok");
+            IdContent = response.idContent;
+        });
+        return IdContent;
     }
     //static string GetShipment
     //Получаем готовый продукт,для каждого слота по номеру(нужно ли это для механики?)
@@ -315,7 +301,7 @@ public class Contents : MonoBehaviour
         //GetCountOfOccupiedShipmentSlotsByParentName("bakery");
         //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
 
-        //Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
-        //AddContents("bakery", "bread");
+        //int test = Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
+        AddContents("bakery", "bread");
     }
 }

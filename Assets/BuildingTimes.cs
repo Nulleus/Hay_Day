@@ -35,141 +35,28 @@ public class BuildingTimes : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    /*
-    static async Task<int> GetTimeBuilding(GameObject data)
-    {
-        RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
-        {
-            jwt = data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetTimeBuilding",
-            subjectName = "wheat"
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-            return response.buildingTimeSeconds;
-        });
-        return 99;
-    }
-    */
     //Получаем время сборки предмета
-    /*
     public int GetTimeBuilding(string subjectName)
-    {       
-            RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
-            {
-                jwt = Data.GetComponent<Users>().GetJWTToken(),
-                methodName = "GetTimeBuilding",
-                subjectName = subjectName
+    {
+        RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetTimeBuilding",
+            subjectName = subjectName
 
-            }).Then(response => {
-                EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-                EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-                BuildingTimeSeconds = response.buildingTimeSeconds;
-            });
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
+            Debug.Log(response.buildingTimeSeconds);
+            BuildingTimeSeconds = response.buildingTimeSeconds;
+            return BuildingTimeSeconds;
+        });
         return BuildingTimeSeconds;
-
-    }
-    */
-    /*
-    static async Task<int> GetTimeBuilding(string subjectName, string jwt, GameObject data)
-    {
-        var tcs = new TaskCompletionSource<object>();
-        RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
-        {
-            //jwt = Data.GetComponent<Users>().GetJWTToken(),
-            jwt = jwt,
-            methodName = "GetTimeBuilding",
-            subjectName = subjectName
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-            Debug.Log(response.buildingTimeSeconds);
-            //работает, но это костыль//data.GetComponent<BuildingTimes>().BuildingTimeSeconds = response.buildingTimeSeconds;
-            //TEST = response.buildingTimeSeconds;
-            //return response.buildingTimeSeconds;
-            tcs.SetResult(null);
-            //return response.buildingTimeSeconds;
-            //BuildingTimeSeconds = response.buildingTimeSeconds;
-        });
-        
-        //return result;
-        //return tcs.Task;
-    }
-    */
-    internal class SyncToAsyncDemo
-    {
-        public int SomeAction()
-        {
-            Thread.Sleep(500);
-            return 5;
-        }
-
-        public Task<int> SomeActionAsync()
-        {
-            return Task.Run(() => SomeAction());
-        }
-    }
-    public Task<int> GetTimeBuilding(string subjectName, string jwt, GameObject data)
-    {
-        var tcs = new TaskCompletionSource<int>();
-        RestClient.Post<ResponseGetTimeBuilding>("http://farmpass.beget.tech/api/building_time_execute_methods.php", new POSTGetTimeBuilding
-        {
-            //jwt = Data.GetComponent<Users>().GetJWTToken(),
-            jwt = jwt,
-            methodName = "GetTimeBuilding",
-            subjectName = subjectName
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
-            Debug.Log(response.buildingTimeSeconds);
-            //работает, но это костыль//data.GetComponent<BuildingTimes>().BuildingTimeSeconds = response.buildingTimeSeconds;
-            //TEST = response.buildingTimeSeconds;
-            //return response.buildingTimeSeconds;
-            
-            tcs.SetResult(response.buildingTimeSeconds);
-            //return response.buildingTimeSeconds;
-            //BuildingTimeSeconds = response.buildingTimeSeconds;
-        });
-        return tcs.Task;
     }
 
-        //Для тестов
-        /*
-    public async Task Test()
-    {
-        var responce = GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data);
-        return responce;
-    }
-        */
     public void OnEnable()
     {
-        var demo = new SyncToAsyncDemo();
-        var task = GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data);
-        // ожидаем выполнение таски
-        task.Wait();
-        // получаем результат
-        var urlContents = task.Result;
-        Debug.Log(urlContents);
-        //int result = await demo.SomeActionAsync();
-        //int result = GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data);
-        //var value = Task.Run(async () => await GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data)).Result; 
-        //var a = await GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data);
-        //Task task = GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data);
-        //var firstTask = new Task (() => GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data));
-        //firstTask.Start();
-        //firstTask.Res
-        //Debug.Log(firstTask);
-        //task.Task;
-        //await Task.Run(async () => await GetTimeBuilding("wheat", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU", Data));
-
-        //другой код
-        //await task;
-        //int a = Test().Result;
-        //var a = Test();
-        //Debug.Log(a.ToString());
-        //GetTimeBuilding("wheat");
+        //int test = GetTimeBuilding("wheat");
     }
     // Start is called before the first frame update
     void Start()
