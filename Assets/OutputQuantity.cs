@@ -56,7 +56,7 @@ public class OutputQuantity : MonoBehaviour
             return Count;
         });
         return Count;
-    }
+        }
     private void OnEnable()
     {
         //GetOutputQuantityBySubjectName("wheat"); 

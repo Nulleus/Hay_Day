@@ -1,20 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System;
+using UnityEngine;
+using Proyecto26;
+using UnityEditor;
+using UnityEngine.Networking;
+using System.Threading.Tasks;
 using System.Threading;
 
 public class Ingredients : MonoBehaviour
 {
+    [Serializable]
+    public class POSTGetCountAllIngredients
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetCountAllIngredients
+    {
+        public string message;
+        public int count;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     private void Start()
     {
 
     }
     public GameObject Data;
+    [SerializeField]
+    private int Count;
+
     //Dictionary<string, int> Ingredient;
+    //Имя ингредиента, количество ингредиента
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+    public int GetCountAllIngredients(string subjectName)
+    {
+        RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/output_quantity_execute_methods.php", new POSTGetCountAllIngredients
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetCountAllIngredients",
+            subjectName = subjectName
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
+            Debug.Log(response.count);
+            Count = response.count;
+            Debug.Log("Count=" + Count);
+            return Count;
+        });
+        return Count;
+    }
+    /*
     public Dictionary<string,int> GetCompositions (string subjectName) //Получаем ингредиенты, необходимые для создания объекта
     {
 
@@ -46,6 +93,9 @@ public class Ingredients : MonoBehaviour
         Debug.Log("Done.");
         return Compositions;
     }
-
-
+    */
+    private void OnEnable()
+    {
+        GetCountAllIngredients("cowFeed");
+    }
 }
