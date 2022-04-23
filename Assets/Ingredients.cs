@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
 using System.Threading;
+using Sirenix.OdinInspector;
 
 public class Ingredients : MonoBehaviour
 {
@@ -32,20 +33,72 @@ public class Ingredients : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class POSTGetIngredientName
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public int number;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetIngredientName
+    {
+        public string message;
+        public string ingredientName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTGetCountIngredient
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public int number;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetCountIngredient
+    {
+        public string message;
+        public int count;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     private void Start()
     {
 
     }
     public GameObject Data;
     [SerializeField]
-    private int Count;
+    private int CountAllIngredients;
+    [SerializeField]
+    private string IngredientName;
+    [SerializeField]
+    private int CountIngredient;
+    [ShowInInspector]
+    public Dictionary<string, int> Compositions = new Dictionary<string, int>();
 
-    //Dictionary<string, int> Ingredient;
-    //Имя ингредиента, количество ингредиента
-    //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
-    public int GetCountAllIngredients(string subjectName)
+//Dictionary<string, int> Ingredient;
+//Имя ингредиента, количество ингредиента
+//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+public int GetCountAllIngredients(string subjectName)
     {
-        RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/output_quantity_execute_methods.php", new POSTGetCountAllIngredients
+        RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountAllIngredients
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
             methodName = "GetCountAllIngredients",
@@ -55,14 +108,68 @@ public class Ingredients : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
             Debug.Log(response.count);
-            Count = response.count;
-            Debug.Log("Count=" + Count);
-            return Count;
+            CountAllIngredients = response.count;
+            Debug.Log("Count=" + CountAllIngredients);
+            return CountAllIngredients;
         });
-        return Count;
+        return CountAllIngredients;
+    }
+    public string GetIngredientName(string subjectName, int number)
+    {
+        RestClient.Post<ResponseGetIngredientName>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetIngredientName
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetIngredientName",
+            subjectName = subjectName,
+            number = number
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("ingredientsName: ", response.ingredientName, "Ok");
+            IngredientName = response.ingredientName;
+            Debug.Log("IngredientName=" + IngredientName);
+            return IngredientName;
+        });
+        return IngredientName;
+    }
+    public int GetCountIngredient(string subjectName, int number)
+    {
+        RestClient.Post<ResponseGetCountIngredient>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountIngredient
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetCountIngredient",
+            subjectName = subjectName,
+            number = number
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
+            Debug.Log(response.count);
+            CountIngredient = response.count;
+            Debug.Log("CountIngredient=" + CountIngredient);
+            return CountIngredient;
+        });
+        return CountIngredient;
+    }
+    //Получаем ингредиенты, необходимые для создания объекта
+    public Dictionary<string, int> GetCompositions(string subjectName)
+    {
+        //Dictionary<string, int> compositions = new Dictionary<string, int>();
+        int countAllIngredients = GetCountAllIngredients(subjectName);
+        Debug.Log("Dictionary countAllIngredients=" + countAllIngredients);
+        for (int i = 0; i <countAllIngredients; i++)
+        {
+            string ingredientName = GetIngredientName(subjectName, i);
+            Debug.Log("Dictionary ingredientName=" + ingredientName);
+            int countIngredient = GetCountIngredient(subjectName, i);
+            Debug.Log("Dictionary countIngredient=" + countIngredient);
+            Compositions.Add(ingredientName, countIngredient);
+        }
+        return Compositions;
     }
     /*
-    public Dictionary<string,int> GetCompositions (string subjectName) //Получаем ингредиенты, необходимые для создания объекта
+     //Получаем ингредиенты, необходимые для создания объекта
+    public Dictionary<string,int> GetCompositions (string subjectName) 
     {
 
         Dictionary<string, int>  Compositions = new Dictionary<string, int>();
@@ -96,6 +203,12 @@ public class Ingredients : MonoBehaviour
     */
     private void OnEnable()
     {
-        GetCountAllIngredients("cowFeed");
+        //GetCountAllIngredients("cowFeed");
+        //GetIngredientName("cowFeed",0);
+        //GetCountIngredient("cowFeed", 0);
+        Compositions = GetCompositions("cowFeed");
+        //Dictionary<string, int> compositions = new Dictionary<string, int>();
+        //compositions.Add("wheat", 2);
+        //Compositions = compositions; 
     }
 }
