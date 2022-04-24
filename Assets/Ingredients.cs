@@ -8,6 +8,9 @@ using UnityEngine.Networking;
 using System.Threading.Tasks;
 using System.Threading;
 using Sirenix.OdinInspector;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class Ingredients : MonoBehaviour
 {
@@ -92,12 +95,27 @@ public class Ingredients : MonoBehaviour
     private int CountIngredient;
     [ShowInInspector]
     public Dictionary<string, int> Compositions = new Dictionary<string, int>();
+    public string TestS;
 
-//Dictionary<string, int> Ingredient;
-//Имя ингредиента, количество ингредиента
-//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
-public int GetCountAllIngredients(string subjectName)
+    
+    public void Test()
     {
+        string jsonString= TestS;
+        //Compositions = JObject.Parse(jsonString);
+
+    }
+    public string Test1()
+    {
+        var jsonString = JsonConvert.SerializeObject(Compositions);
+        Debug.Log(jsonString);
+        return jsonString;
+    }
+    //Dictionary<string, int> Ingredient;
+    //Имя ингредиента, количество ингредиента
+    //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+    public int GetCountAllIngredients(string subjectName)
+    {
+        
         RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountAllIngredients
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
@@ -126,8 +144,10 @@ public int GetCountAllIngredients(string subjectName)
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("ingredientsName: ", response.ingredientName, "Ok");
+            
             IngredientName = response.ingredientName;
             Debug.Log("IngredientName=" + IngredientName);
+
             return IngredientName;
         });
         return IngredientName;
@@ -155,6 +175,7 @@ public int GetCountAllIngredients(string subjectName)
     public Dictionary<string, int> GetCompositions(string subjectName)
     {
         //Dictionary<string, int> compositions = new Dictionary<string, int>();
+        //yield return GetCountAllIngredients(subjectName);
         int countAllIngredients = GetCountAllIngredients(subjectName);
         Debug.Log("Dictionary countAllIngredients=" + countAllIngredients);
         for (int i = 0; i <countAllIngredients; i++)
@@ -203,10 +224,12 @@ public int GetCountAllIngredients(string subjectName)
     */
     private void OnEnable()
     {
+        TestS = Test1();
         //GetCountAllIngredients("cowFeed");
         //GetIngredientName("cowFeed",0);
         //GetCountIngredient("cowFeed", 0);
-        Compositions = GetCompositions("cowFeed");
+        //StartCoroutine(GetCompositions("cowFeed"));
+        //Compositions = GetCompositions("cowFeed");
         //Dictionary<string, int> compositions = new Dictionary<string, int>();
         //compositions.Add("wheat", 2);
         //Compositions = compositions; 
