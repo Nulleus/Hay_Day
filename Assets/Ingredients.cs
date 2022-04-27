@@ -82,6 +82,30 @@ public class Ingredients : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class POSTGetIngredientsAndCount
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public int number;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetIngredientsAndCount
+    {
+        public string message;
+        public string ingredientName;
+        public int ingredientCount;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     private void Start()
     {
 
@@ -94,22 +118,9 @@ public class Ingredients : MonoBehaviour
     [SerializeField]
     private int CountIngredient;
     [ShowInInspector]
-    public Dictionary<string, int> Compositions = new Dictionary<string, int>();
-    public string TestS;
+    public Dictionary<string, int> IngredientsAndCount = new Dictionary<string, int>();
+    public string SubjectName;
 
-    
-    public void Test()
-    {
-        string jsonString= TestS;
-        //Compositions = JObject.Parse(jsonString);
-
-    }
-    public string Test1()
-    {
-        var jsonString = JsonConvert.SerializeObject(Compositions);
-        Debug.Log(jsonString);
-        return jsonString;
-    }
     //Dictionary<string, int> Ingredient;
     //Имя ингредиента, количество ингредиента
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
@@ -172,6 +183,25 @@ public class Ingredients : MonoBehaviour
         return CountIngredient;
     }
     //Получаем ингредиенты, необходимые для создания объекта
+    public void GetIngredientsAndCount(string subjectName, int number)
+    {
+
+        RestClient.Post<ResponseGetIngredientsAndCount>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetIngredientsAndCount
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetIngredientsAndCount",
+            subjectName = subjectName,
+            number = number
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("ingredientName: ", response.ingredientName, "Ok");
+            EditorUtility.DisplayDialog("ingredientCount: ", response.ingredientCount.ToString(), "Ok");
+            IngredientsAndCount.Add(response.ingredientName, response.ingredientCount);
+            //IngredientsAndCount = JsonConvert.DeserializeObject<Dictionary<string, int>>(response.ingredientsAndCount);
+        });
+    }
+    /*
     public Dictionary<string, int> GetCompositions(string subjectName)
     {
         //Dictionary<string, int> compositions = new Dictionary<string, int>();
@@ -188,6 +218,7 @@ public class Ingredients : MonoBehaviour
         }
         return Compositions;
     }
+    */
     /*
      //Получаем ингредиенты, необходимые для создания объекта
     public Dictionary<string,int> GetCompositions (string subjectName) 
@@ -224,7 +255,8 @@ public class Ingredients : MonoBehaviour
     */
     private void OnEnable()
     {
-        TestS = Test1();
+        GetIngredientsAndCount("cowFeed",1);
+        GetIngredientsAndCount("cowFeed", 0);
         //GetCountAllIngredients("cowFeed");
         //GetIngredientName("cowFeed",0);
         //GetCountIngredient("cowFeed", 0);

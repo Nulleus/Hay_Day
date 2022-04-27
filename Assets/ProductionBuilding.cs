@@ -182,7 +182,7 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log("countOfOccupiedLoadingSlots < countOpenSlotsUser");
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
-            compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
+            //compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
             int allPriceSubjects = 0; //Общая стоимость необходимых ингредиентов
             //Запускаем цикл из ключей компонентов, объектов которых нехватает
             foreach (KeyValuePair<string, int> composition in compositions)
