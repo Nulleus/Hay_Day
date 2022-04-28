@@ -143,14 +143,17 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("AddInSlotSubject: " + subjectName);
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
-        string subjectChildName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        //string subjectChildName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        string subjectChildName ="";
         Debug.Log("AddInSlotSubject(subjectChildName)" + subjectChildName);
         //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
         //Получаем имя производственного здания по имени ребнка
-        string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        //string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
+        string subjectNameChild = "";
         Debug.Log("AddInSlotSubject(subjectNameChild)" + subjectNameChild);
         //Количество открытых слотов у пользователя.
-        int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectNameChild,1 /*Data.GetComponent<Users>().*/);
+        //int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectNameChild,1 /*Data.GetComponent<Users>().*/);
+        int countOpenSlotsUser = 1;
         //Debug.Log("AddInSlotSubject(IDUser)" + Data.GetComponent<Users>().IDUser);
         Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
@@ -192,7 +195,8 @@ public class ProductionBuilding : MonoBehaviour
                 //Получаем идентификатор пользователя
                 int userID = 1; //Data.GetComponent<Users>().GetIDUser();
                 //Получаем количество ингредиентов на складе
-                int subjectSum = Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(composition.Key, userID);
+                //int subjectSum = Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(composition.Key, userID);
+                int subjectSum = 3;
 
                 //Проверяем, хватает ли ресурсов
                 //Если ингредиентов на складе меньше, чем нужно для изготовления

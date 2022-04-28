@@ -4,42 +4,60 @@ using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using Proyecto26;
+using UnityEditor;
 
 public class SubjectsSum : MonoBehaviour
 {
+    [Serializable]
+    public class POSTGetSubjectSumCount
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetSubjectSumCount
+    {
+        public string message;
+        public int sumCount;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public GameObject Data;
+    public int SumCount;
     //Скрипт работает с таблицей subjects_sum
     // Start is called before the first frame update
     private void Start()
     {
 
     }
-    public int GetSubjectSumCountByName(string subjectName, int userID)
+    private void OnEnable()
     {
-        Debug.Log("GetSubjectSumCountbyName");
-        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+        GetSubjectSumCount("cowFeed");
+    }
+    public void GetSubjectSumCount(string subjectName)
+    {
+        RestClient.Post<ResponseGetSubjectSumCount>("http://farmpass.beget.tech/api/subject_sum_execute_methods.php", new POSTGetSubjectSumCount
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var sqlQuery = "SELECT subject_sum_count FROM subjects_sum WHERE subject_name='"+subjectName+"' AND user_id='"+userID+"'";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {                
-                return (int)reader["subject_sum_count"];
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return -1;
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return -2;
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetSubjectSumCount",
+            subjectName = subjectName
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("sumCount: ", response.sumCount.ToString(), "Ok");
+            Debug.Log(response.sumCount);
+            SumCount = response.sumCount;
+            Debug.Log("sumCount=" + SumCount);
+        });
     }
 
 }

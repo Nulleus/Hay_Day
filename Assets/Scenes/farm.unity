@@ -65823,7 +65823,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
@@ -65846,6 +65846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
+  SumCount: 0
 --- !u!4 &1866044573
 Transform:
   m_ObjectHideFlags: 0
@@ -65873,7 +65874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
-  ProgressSlotsCount: 0
+  OpenSlots: 0
 --- !u!114 &1866044575
 MonoBehaviour:
   m_ObjectHideFlags: 0

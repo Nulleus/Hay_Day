@@ -5,16 +5,21 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 
-
+//Класс нужен для производственных зданий, чтобы показывать что они производят
 public class ParentsAndChilds : MonoBehaviour
 {
     public GameObject Data;
-    //Получаем Родителя объекта по имени ребенка
+    
     private void Start()
     {
 
     }
-    public string GetSubjectParentNameBySubjectChildName(string subjectName)
+    public void GetCountSubjectsParent(string subjectParentName)
+    {
+
+    }
+    //Получаем Родителя объекта по имени ребенка
+    public string GetSubjectParentName(string subjectChildName)
     {
         Debug.Log("GetSubjectParentNameBySubjectChildName");
         Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
@@ -43,7 +48,7 @@ public class ParentsAndChilds : MonoBehaviour
     }
     //Получаем всех детей по родителю
     //Переделать метод, ключ должен быть уникален
-    public List<string> GetAllSubjectChildNameBySubjectParentName(string subjectParentName)
+    public List<string> GetAllSubjectChildName(string subjectParentName, int number)
     {
         List<string> subjectParentNameAndSubjectChildName = new List<string>();
         Debug.Log("GetAllSubjectChildNameBySubjectParentName");

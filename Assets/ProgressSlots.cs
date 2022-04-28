@@ -4,44 +4,57 @@ using UnityEngine;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
+using Proyecto26;
+using UnityEditor;
 
 public class ProgressSlots : MonoBehaviour
 {
+    [Serializable]
+    public class POSTGetOpenSlotsCount
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetOpenSlotsCount
+    {
+        public string message;
+        public int openSlots;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public GameObject Data;
-    public int ProgressSlotsCount; // оличество открытых слотов у пользовател€
+    public int OpenSlots; // оличество открытых слотов у пользовател€
     private void Start()
     {
         //Debug.Log("GetOpenSlotsCount" + GetOpenSlotsCount("bakery", 11));
     }
-    public int GetOpenSlotsCount(string subjectName, int userID) //ѕолучаем количество открытых слотов у пользовател€.
+    private void OnEnable()
     {
-        //GameObject.Find("Data")
-        //int idUser = Data.GetComponent<Users>().IDUser;
-        Debug.Log("GetOpenSlotsCount");
-        
-        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+        GetOpenSlotsCount("bakery");
+    }
+    public void GetOpenSlotsCount(string subjectName)
+    {
+        RestClient.Post<ResponseGetOpenSlotsCount>("http://farmpass.beget.tech/api/progres_slot_execute_methods.php", new POSTGetOpenSlotsCount
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var SQLQuery = "SELECT open_slots FROM progress_slots WHERE  subject_name='" + subjectName + "' AND user_id='" + userID + "'";
-            MySqlCommand cmd = new MySqlCommand(SQLQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                ProgressSlotsCount = (int)reader["open_slots"];
-                return ProgressSlotsCount;
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return -1;
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return ProgressSlotsCount;
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetOpenSlotsCount",
+            subjectName = subjectName
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("openSlots: ", response.openSlots.ToString(), "Ok");
+            Debug.Log(response.openSlots);
+            OpenSlots = response.openSlots;
+            Debug.Log("openSlots=" + OpenSlots);
+        });
     }
 }
