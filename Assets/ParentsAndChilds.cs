@@ -28,7 +28,7 @@ public class ParentsAndChilds : MonoBehaviour
         {
             Debug.Log("Connecting to MySQL...");
             conn.Open();
-            var sqlQuery = "SELECT subject_parent_name FROM parents_and_childs WHERE subject_child_name= '" + subjectName + "'";
+            var sqlQuery = "SELECT subject_parent_name FROM parents_and_childs WHERE subject_child_name= '" + subjectChildName + "'";
             MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

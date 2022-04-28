@@ -22,7 +22,8 @@ public class Slot : MonoBehaviour
         //Получаем имя родителя
         SubjectParentName = ProductionBuildingParent.GetComponent<ProductionBuilding>().NameSystem;
         //Получаем всех детей subject_child_name, из таблицы по имени родителя 
-        List<string> childsAndParentsGettingSubjectParentName = Data.GetComponent<ParentsAndChilds>().GetAllSubjectChildNameBySubjectParentName(SubjectParentName);
+        //List<string> childsAndParentsGettingSubjectParentName = Data.GetComponent<ParentsAndChilds>().GetAllSubjectChildNameBySubjectParentName(SubjectParentName);
+        List<string> childsAndParentsGettingSubjectParentName = new List<string>();
         //Сравниваем. Получаем всех детей( по имени родителя), отсеивая по номеру слота, делая запрос
         //Получаем все SubjectName
         //Получаем все child_name полученные из таблицы parent_and_childs
