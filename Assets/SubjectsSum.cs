@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System;
 using Proyecto26;
 using UnityEditor;
@@ -41,7 +39,7 @@ public class SubjectsSum : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetSubjectSumCount("cowFeed");
+        GetSubjectSumCount(gameObject.name);
     }
     public void GetSubjectSumCount(string subjectName)
     {

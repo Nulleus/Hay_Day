@@ -108,7 +108,7 @@ public class Ingredients : MonoBehaviour
     }
     private void Start()
     {
-
+        
     }
     public GameObject Data;
     [SerializeField]
@@ -116,17 +116,18 @@ public class Ingredients : MonoBehaviour
     [SerializeField]
     private string IngredientName;
     [SerializeField]
+    private string SubjectName;
+    [SerializeField]
     private int CountIngredient;
     [ShowInInspector]
     public Dictionary<string, int> IngredientsAndCount = new Dictionary<string, int>();
-    public string SubjectName;
 
     //Dictionary<string, int> Ingredient;
     //Имя ингредиента, количество ингредиента
     //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
-    public int GetCountAllIngredients(string subjectName)
+    public void GetCountAllIngredients(string subjectName)
     {
-        
+
         RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountAllIngredients
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
@@ -138,10 +139,9 @@ public class Ingredients : MonoBehaviour
             EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
             Debug.Log(response.count);
             CountAllIngredients = response.count;
+            
             Debug.Log("Count=" + CountAllIngredients);
-            return CountAllIngredients;
         });
-        return CountAllIngredients;
     }
     public string GetIngredientName(string subjectName, int number)
     {
@@ -197,66 +197,23 @@ public class Ingredients : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("ingredientName: ", response.ingredientName, "Ok");
             EditorUtility.DisplayDialog("ingredientCount: ", response.ingredientCount.ToString(), "Ok");
-            IngredientsAndCount.Add(response.ingredientName, response.ingredientCount);
-            //IngredientsAndCount = JsonConvert.DeserializeObject<Dictionary<string, int>>(response.ingredientsAndCount);
+            if (response.ingredientCount != 0)
+            {
+                IngredientsAndCount.Add(response.ingredientName, response.ingredientCount);
+            }
+            
         });
     }
-    /*
-    public Dictionary<string, int> GetCompositions(string subjectName)
-    {
-        //Dictionary<string, int> compositions = new Dictionary<string, int>();
-        //yield return GetCountAllIngredients(subjectName);
-        int countAllIngredients = GetCountAllIngredients(subjectName);
-        Debug.Log("Dictionary countAllIngredients=" + countAllIngredients);
-        for (int i = 0; i <countAllIngredients; i++)
-        {
-            string ingredientName = GetIngredientName(subjectName, i);
-            Debug.Log("Dictionary ingredientName=" + ingredientName);
-            int countIngredient = GetCountIngredient(subjectName, i);
-            Debug.Log("Dictionary countIngredient=" + countIngredient);
-            Compositions.Add(ingredientName, countIngredient);
-        }
-        return Compositions;
-    }
-    */
-    /*
-     //Получаем ингредиенты, необходимые для создания объекта
-    public Dictionary<string,int> GetCompositions (string subjectName) 
-    {
 
-        Dictionary<string, int>  Compositions = new Dictionary<string, int>();
-        Debug.Log("GetCompositions");
-        Debug.Log("connectionString: "+ Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var sqlQuery = "SELECT ingredient_name, count_ingredients FROM ingredients WHERE subject_name='" + subjectName + "'";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                Compositions.Add((string)reader["ingredient_name"], (int)reader["count_ingredients"]);
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return Compositions;
-        }
-
-        conn.Close();
-        Debug.Log("Done.");
-        return Compositions;
-    }
-    */
     private void OnEnable()
     {
-        GetIngredientsAndCount("cowFeed",1);
-        GetIngredientsAndCount("cowFeed", 0);
+        SubjectName = gameObject.name;
+        for (int i = 0;i<5 ; i++)
+        {
+            GetIngredientsAndCount(SubjectName, i);
+        }
+            
+        //GetIngredientsAndCount("cowFeed", 0);
         //GetCountAllIngredients("cowFeed");
         //GetIngredientName("cowFeed",0);
         //GetCountIngredient("cowFeed", 0);

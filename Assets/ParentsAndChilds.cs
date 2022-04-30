@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using System;
 using Proyecto26;
 using UnityEditor;
+using Sirenix.OdinInspector;
 
 //Класс нужен для производственных зданий, чтобы показывать что они производят
 public class ParentsAndChilds : MonoBehaviour
@@ -56,9 +57,34 @@ public class ParentsAndChilds : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class POSTGetSubjectChildName
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int number;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetSubjectChildName
+    {
+        public string message;
+        public string subjectChildName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public GameObject Data;
     public int CountSubjectsParent;
     public string SubjectParentName;
+    [SerializeField]
+    public string SubjectChildName;
 
 
     private void Start()
@@ -67,7 +93,9 @@ public class ParentsAndChilds : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetCountSubjectsParent("bakery");
+        //GetCountSubjectsParent("bakery");
+        //GetSubjectParentName("wheat");
+        GetSubjectChildName("field",0);
     }
     public void GetCountSubjectsParent(string subjectChildName)
     {
@@ -101,63 +129,20 @@ public class ParentsAndChilds : MonoBehaviour
             Debug.Log("SubjectParentName=" + SubjectParentName);
         });
     }
-    //Получаем Родителя объекта по имени ребенка
-    /*
-    public string GetSubjectParentName(string subjectChildName)
+    //Получаем имя ребенка по имени родителя
+    public void GetSubjectChildName(string subjectParentName, int number)
     {
-        Debug.Log("GetSubjectParentNameBySubjectChildName");
-        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
+        RestClient.Post<ResponseGetSubjectChildName>("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", new POSTGetSubjectChildName
         {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var sqlQuery = "SELECT subject_parent_name FROM parents_and_childs WHERE subject_child_name= '" + subjectChildName + "'";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                return (string)reader["subject_parent_name"];
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return "Exception";
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return "Done";
-    */
-    //Получаем всех детей по родителю
-    //Переделать метод, ключ должен быть уникален
-    public List<string> GetAllSubjectChildName(string subjectParentName, int number)
-    {
-        List<string> subjectParentNameAndSubjectChildName = new List<string>();
-        Debug.Log("GetAllSubjectChildNameBySubjectParentName");
-        Debug.Log("connectionString: " + Data.GetComponent<Connections>().ConnectionString);
-        MySqlConnection conn = new MySqlConnection(Data.GetComponent<Connections>().ConnectionString);
-        try
-        {
-            Debug.Log("Connecting to MySQL...");
-            conn.Open();
-            var sqlQuery = "SELECT subject_parent_name, subject_child_name FROM parents_and_childs WHERE subject_parent_name= '" + subjectParentName + "'";
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                subjectParentNameAndSubjectChildName.Add((string)reader["subject_child_name"]);
-            }
-            reader.Close();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.ToString());
-            return subjectParentNameAndSubjectChildName;
-        }
-        conn.Close();
-        Debug.Log("Done.");
-        return subjectParentNameAndSubjectChildName;
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetSubjectChildName",
+            subjectParentName = subjectParentName,
+            number = number
+
+        }).Then(response => {
+            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
+            SubjectChildName = response.subjectChildName;
+        });
     }
 }
