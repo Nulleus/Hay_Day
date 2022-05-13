@@ -8,6 +8,8 @@ using Proyecto26;
 using UnityEditor;
 using Sirenix.OdinInspector;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 //Класс нужен для производственных зданий, чтобы показывать что они производят
 public class ParentsAndChilds : MonoBehaviour
@@ -72,6 +74,18 @@ public class ParentsAndChilds : MonoBehaviour
         }
     }
     [Serializable]
+    public class POSTGetSubjectChildAllName
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
     public class ResponseGetSubjectChildName
     {
         public string message;
@@ -81,16 +95,55 @@ public class ParentsAndChilds : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+
+
+    
+    public class Root
+    {
+        public string subject_child_name { get; set; }
+    }
+
+
     public GameObject Data;
+    //[SerializeField]
+    [ShowInInspector]
+    public List<Root> Childs;
+    //public Dictionary<>
     public int CountSubjectsParent;
     public string SubjectParentName;
     [SerializeField]
-    public string SubjectChildName;
+    //public string SubjectChildName;
 
 
     private void Start()
     {
 
+    }
+    IEnumerator postRequestSubjectChildAllName(string url, string json)
+    {
+        var uwr = new UnityWebRequest(url, "POST");
+        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        uwr.SetRequestHeader("Content-Type", "application/json");
+
+        //Send the request then wait here until it returns
+        yield return uwr.SendWebRequest();
+
+        if (uwr.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + uwr.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + uwr.downloadHandler.text);
+            List<Root> products = JsonConvert.DeserializeObject<List<Root>>(uwr.downloadHandler.text);
+            Debug.Log(products.Count);
+
+            Root p1 = products[0];
+
+            Debug.Log(p1.subject_child_name);
+        }
     }
     IEnumerator postRequest(string url, string json)
     {
@@ -112,19 +165,26 @@ public class ParentsAndChilds : MonoBehaviour
             Debug.Log("Received: " + uwr.downloadHandler.text);
             var b = new ResponseGetSubjectChildName();
             b = JsonUtility.FromJson<ResponseGetSubjectChildName>(uwr.downloadHandler.text);
-            Debug.Log(b.subjectChildName);
+            //Childs = b;
         }
     }
 
     private void OnEnable()
     {
+        //var a = new POSTGetSubjectChildName();
+        //a.jwt = Data.GetComponent<Users>().GetJWTToken();
+        //a.methodName = "GetSubjectChildName";
+        //a.subjectParentName = "field";
+        //a.number = 2;
         var a = new POSTGetSubjectChildName();
         a.jwt = Data.GetComponent<Users>().GetJWTToken();
-        a.methodName = "GetSubjectChildName";
+        a.methodName = "GetSubjectChildAllName";
         a.subjectParentName = "field";
-        a.number = 2;
-        
-        StartCoroutine(postRequest("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php",a.ToString()));
+        //postRequestSubjectChildAllName
+
+
+
+        StartCoroutine(postRequestSubjectChildAllName("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php",a.ToString()));
         //GetCountSubjectsParent("bakery");
         //GetSubjectParentName("wheat");
         //GetSubjectChildName("field",0);
@@ -145,6 +205,7 @@ public class ParentsAndChilds : MonoBehaviour
             Debug.Log("CountSubjectsParent=" + CountSubjectsParent);
         });
     }
+    //Получаем имя родителя по ребенку
     public void GetSubjectParentName(string subjectChildName)
     {
         RestClient.Post<ResponseGetSubjectParentName>("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", new POSTGetSubjectParentName
@@ -174,7 +235,7 @@ public class ParentsAndChilds : MonoBehaviour
         }).Then(response => {
             EditorUtility.DisplayDialog("message: ", response.message, "Ok");
             EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
-            SubjectChildName = response.subjectChildName;
+            //SubjectChildName = response.subjectChildName;
         });
     }
 }
