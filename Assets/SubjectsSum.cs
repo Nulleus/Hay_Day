@@ -30,6 +30,7 @@ public class SubjectsSum : MonoBehaviour
         }
     }
     public GameObject Data;
+    public string SubjectName;
     public int SumCount;
     //Скрипт работает с таблицей subjects_sum
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class SubjectsSum : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetSubjectSumCount(gameObject.name);
+        GetSubjectSumCount(SubjectName);
     }
     public void GetSubjectSumCount(string subjectName)
     {

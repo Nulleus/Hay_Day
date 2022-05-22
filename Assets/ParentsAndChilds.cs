@@ -98,22 +98,20 @@ public class ParentsAndChilds : MonoBehaviour
 
 
     
-    public class Root
+    public class Subject
     {
         public string subject_child_name { get; set; }
     }
 
 
     public GameObject Data;
-    //[SerializeField]
     [ShowInInspector]
-    public List<Root> Childs;
-    //public Dictionary<>
-    public int CountSubjectsParent;
+    //Все дети
+    public List<string> Childs;
+    //Количество родителей у объекта
+    public int CountSubjectsChilds;
+    //Имя родителя
     public string SubjectParentName;
-    [SerializeField]
-    //public string SubjectChildName;
-
 
     private void Start()
     {
@@ -130,22 +128,26 @@ public class ParentsAndChilds : MonoBehaviour
         //Send the request then wait here until it returns
         yield return uwr.SendWebRequest();
 
-        if (uwr.isNetworkError)
+        if (uwr.isDone)
         {
-            Debug.Log("Error While Sending: " + uwr.error);
+            Childs.Clear();
+            Debug.Log("Received: " + uwr.downloadHandler.text);
+            List<Subject> products = JsonConvert.DeserializeObject<List<Subject>>(uwr.downloadHandler.text);
+            Debug.Log(products.Count);
+            CountSubjectsChilds = products.Count;
+            for (int i = 0; i < products.Count; i++)
+            {
+                Subject p1 = products[i];
+                Childs.Add(p1.subject_child_name);
+            }
         }
         else
         {
-            Debug.Log("Received: " + uwr.downloadHandler.text);
-            List<Root> products = JsonConvert.DeserializeObject<List<Root>>(uwr.downloadHandler.text);
-            Debug.Log(products.Count);
-
-            Root p1 = products[0];
-
-            Debug.Log(p1.subject_child_name);
+            Debug.Log("Error While Sending: " + uwr.error);
         }
     }
-    IEnumerator postRequest(string url, string json)
+    //Получаем имя родителя по имени ребенка
+    IEnumerator postRequestSubjectParentName(string url, string json)
     {
         var uwr = new UnityWebRequest(url, "POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
@@ -156,55 +158,34 @@ public class ParentsAndChilds : MonoBehaviour
         //Send the request then wait here until it returns
         yield return uwr.SendWebRequest();
 
-        if (uwr.isNetworkError)
+        if (uwr.isDone)
         {
-            Debug.Log("Error While Sending: " + uwr.error);
+            Childs.Clear();
+            Debug.Log("Received: " + uwr.downloadHandler.text);
+            List<Subject> products = JsonConvert.DeserializeObject<List<Subject>>(uwr.downloadHandler.text);
+            Debug.Log(products.Count);
+            CountSubjectsChilds = products.Count;
+            for (int i = 0; i < products.Count; i++)
+            {
+                Subject p1 = products[i];
+                Childs.Add(p1.subject_child_name);
+            }
         }
         else
         {
-            Debug.Log("Received: " + uwr.downloadHandler.text);
-            var b = new ResponseGetSubjectChildName();
-            b = JsonUtility.FromJson<ResponseGetSubjectChildName>(uwr.downloadHandler.text);
-            //Childs = b;
+            Debug.Log("Error While Sending: " + uwr.error);
         }
     }
 
     private void OnEnable()
     {
-        //var a = new POSTGetSubjectChildName();
-        //a.jwt = Data.GetComponent<Users>().GetJWTToken();
-        //a.methodName = "GetSubjectChildName";
-        //a.subjectParentName = "field";
-        //a.number = 2;
-        var a = new POSTGetSubjectChildName();
-        a.jwt = Data.GetComponent<Users>().GetJWTToken();
-        a.methodName = "GetSubjectChildAllName";
-        a.subjectParentName = "field";
-        //postRequestSubjectChildAllName
-
-
-
-        StartCoroutine(postRequestSubjectChildAllName("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php",a.ToString()));
-        //GetCountSubjectsParent("bakery");
-        //GetSubjectParentName("wheat");
-        //GetSubjectChildName("field",0);
+        var postrequest = new POSTGetSubjectChildName();
+        postrequest.jwt = Data.GetComponent<Users>().GetJWTToken();
+        postrequest.methodName = "GetSubjectChildAllName";
+        postrequest.subjectParentName = SubjectParentName;
+        StartCoroutine(postRequestSubjectChildAllName("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", postrequest.ToString()));
     }
-    public void GetCountSubjectsParent(string subjectChildName)
-    {
-        RestClient.Post<ResponseGetCountSubjectsParent>("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", new POSTGetCountSubjectsParent
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetCountSubjectsParent",
-            subjectChildName = subjectChildName
 
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("countSubjectsParent: ", response.countSubjectsParent.ToString(), "Ok");
-            Debug.Log(response.countSubjectsParent);
-            CountSubjectsParent = response.countSubjectsParent;
-            Debug.Log("CountSubjectsParent=" + CountSubjectsParent);
-        });
-    }
     //Получаем имя родителя по ребенку
     public void GetSubjectParentName(string subjectChildName)
     {
@@ -220,22 +201,6 @@ public class ParentsAndChilds : MonoBehaviour
             Debug.Log(response.subjectParentName);
             SubjectParentName = response.subjectParentName;
             Debug.Log("SubjectParentName=" + SubjectParentName);
-        });
-    }
-    //Получаем имя ребенка по имени родителя
-    public void GetSubjectChildName(string subjectParentName, int number)
-    {
-        RestClient.Post<ResponseGetSubjectChildName>("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", new POSTGetSubjectChildName
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetSubjectChildName",
-            subjectParentName = subjectParentName,
-            number = number
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
-            //SubjectChildName = response.subjectChildName;
         });
     }
 }

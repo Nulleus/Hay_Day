@@ -12200,7 +12200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
-  CountSubjectsParent: 0
+  Childs: []
+  CountSubjectsChilds: 0
   SubjectParentName: 
 --- !u!1 &311541735
 GameObject:
@@ -65941,6 +65942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
+  SubjectName: 
   SumCount: 0
 --- !u!4 &1866044573
 Transform:
@@ -65977,14 +65979,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bc0466cc74b8744ead147cf8fb3cc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
-  CountSubjectsParent: 0
-  SubjectParentName: 
+  Childs: []
+  CountSubjectsChilds: 0
+  SubjectParentName: field
 --- !u!114 &1866044576
 MonoBehaviour:
   m_ObjectHideFlags: 0
