@@ -11,7 +11,7 @@ using UnityEditor;
 public class OpenLevel : MonoBehaviour
 {
     public GameObject Data;
-
+    public int OpenLevelNumber;
     //Отправляемые данные
     [Serializable]
     public class POSTOpenLevel

@@ -12165,6 +12165,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309673572}
+  - component: {fileID: 309673581}
+  - component: {fileID: 309673580}
+  - component: {fileID: 309673579}
+  - component: {fileID: 309673578}
+  - component: {fileID: 309673577}
+  - component: {fileID: 309673576}
+  - component: {fileID: 309673575}
+  - component: {fileID: 309673574}
   - component: {fileID: 309673573}
   m_Layer: 0
   m_Name: wheat
@@ -12194,15 +12202,131 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309673571}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc0466cc74b8744ead147cf8fb3cc27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0df324116bc428d47b04cce578a6505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  Childs: []
-  CountSubjectsChilds: 0
-  SubjectParentName: 
+  Data: {fileID: 0}
+  OpenLevelNumber: 1
+--- !u!114 &309673574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5bde6350cb6aa42a2c2fd046072bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  NameRUS: "\u041F\u0448\u0435\u043D\u0438\u0446\u0430 "
+  DescriptionRUS: "\u0421\u0431\u043E\u0440 \u0443\u0440\u043E\u0436\u0430\u044F
+    \u0447\u0435\u0440\u0435\u0437  "
+  TimeBuildingRUS: "2 \u043C. "
+--- !u!114 &309673575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8846c98c22bd11c47a24f83d93a2e6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  BuildingTimeSeconds: 120
+--- !u!114 &309673576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c61a7a6f993eb4f80af99caba65caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: wheat
+  Action: 'ingathering '
+  CountExperiencePoints: 1
+--- !u!114 &309673577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7e3999ff0b38e4fb61314dd92c9b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+--- !u!114 &309673578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5498747ba3c8a1645966d39f92cc93b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  SubjectName: wheat
+  SumCount: 0
+--- !u!114 &309673579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e882bc6845460844a08a225b3e3dd14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  Count: 2
+--- !u!114 &309673580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  CountAllIngredients: 0
+  IngredientName: 
+  SubjectName: wheat
+  CountIngredient: 0
+--- !u!114 &309673581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309673571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecaa6c6afa40c9e4ab084b4ceec62bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectStorageName: silo
 --- !u!1 &311541735
 GameObject:
   m_ObjectHideFlags: 0
@@ -20001,13 +20125,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563933242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2000.1982, y: -193.66504, z: -9.161366}
-  m_LocalScale: {x: 200, y: 200, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 309673572}
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 1591081037}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &563933246
 BoxCollider2D:
@@ -57510,6 +57634,37 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 6
   Data: {fileID: 1866044566}
+--- !u!1 &1591081036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591081037}
+  m_Layer: 0
+  m_Name: Storage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1591081037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591081036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2000.1982, y: -193.66504, z: -9.161366}
+  m_LocalScale: {x: 200, y: 200, z: 1}
+  m_Children:
+  - {fileID: 563933245}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593843637
 GameObject:
   m_ObjectHideFlags: 0
@@ -66016,6 +66171,7 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   NameRUS: 
   DescriptionRUS: 
+  TimeBuildingRUS: 
 --- !u!114 &1866044578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66055,6 +66211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
+  OpenLevelNumber: 0
 --- !u!114 &1866044581
 MonoBehaviour:
   m_ObjectHideFlags: 0

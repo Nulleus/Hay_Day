@@ -7,9 +7,11 @@ using System;
 
 public class Translit : MonoBehaviour
 {
+    
     public GameObject Data;
     public string NameRUS;
     public string DescriptionRUS;
+    public string TimeBuildingRUS;
     private void Start()
     {
         NameRUS = GetNameRUSByNameObject("wheat");
