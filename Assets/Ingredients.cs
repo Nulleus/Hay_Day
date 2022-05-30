@@ -11,7 +11,7 @@ using Sirenix.OdinInspector;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
 public class Ingredients : MonoBehaviour
 {
     [Serializable]
@@ -112,76 +112,10 @@ public class Ingredients : MonoBehaviour
     }
     public GameObject Data;
     [SerializeField]
-    private int CountAllIngredients;
-    [SerializeField]
-    private string IngredientName;
-    [SerializeField]
     private string SubjectName;
-    [SerializeField]
-    private int CountIngredient;
     [ShowInInspector]
-    public Dictionary<string, int> IngredientsAndCount = new Dictionary<string, int>();
-
-    //Dictionary<string, int> Ingredient;
     //Имя ингредиента, количество ингредиента
-    //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
-    public void GetCountAllIngredients(string subjectName)
-    {
-
-        RestClient.Post<ResponseGetCountAllIngredients>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountAllIngredients
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetCountAllIngredients",
-            subjectName = subjectName
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
-            Debug.Log(response.count);
-            CountAllIngredients = response.count;
-            
-            Debug.Log("Count=" + CountAllIngredients);
-        });
-    }
-    public string GetIngredientName(string subjectName, int number)
-    {
-        RestClient.Post<ResponseGetIngredientName>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetIngredientName
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetIngredientName",
-            subjectName = subjectName,
-            number = number
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("ingredientsName: ", response.ingredientName, "Ok");
-            
-            IngredientName = response.ingredientName;
-            Debug.Log("IngredientName=" + IngredientName);
-
-            return IngredientName;
-        });
-        return IngredientName;
-    }
-    public int GetCountIngredient(string subjectName, int number)
-    {
-        RestClient.Post<ResponseGetCountIngredient>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetCountIngredient
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetCountIngredient",
-            subjectName = subjectName,
-            number = number
-
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
-            Debug.Log(response.count);
-            CountIngredient = response.count;
-            Debug.Log("CountIngredient=" + CountIngredient);
-            return CountIngredient;
-        });
-        return CountIngredient;
-    }
+    public Dictionary<string, int> IngredientsAndCount = new Dictionary<string, int>();
     //Получаем ингредиенты, необходимые для создания объекта
     public void GetIngredientsAndCount(string subjectName, int number)
     {

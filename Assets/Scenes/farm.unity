@@ -168,10 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
-  CountAllIngredients: 0
-  IngredientName: 
   SubjectName: 
-  CountIngredient: 0
 --- !u!1001 &7986470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6961,6 +6958,7 @@ GameObject:
   - component: {fileID: 182435980}
   - component: {fileID: 182435985}
   - component: {fileID: 182435986}
+  - component: {fileID: 182435987}
   m_Layer: 0
   m_Name: Bakery
   m_TagString: production_building
@@ -7130,6 +7128,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e2a694373e5f040ba8b8be1b7fba43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &182435987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182435979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55715cee3d627e84cba01b656f5cda79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanelFewResources: {fileID: 0}
+  PanelFewResourcesBox: {fileID: 0}
+  NameSystem: 
+  Data: {fileID: 0}
+  PanelSlots: {fileID: 0}
+  NameView: 
 --- !u!1 &182686241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12310,10 +12326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 0}
-  CountAllIngredients: 0
-  IngredientName: 
   SubjectName: wheat
-  CountIngredient: 0
 --- !u!114 &309673581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66081,10 +66094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
-  CountAllIngredients: 0
-  IngredientName: 
   SubjectName: 
-  CountIngredient: 0
 --- !u!114 &1866044572
 MonoBehaviour:
   m_ObjectHideFlags: 0
