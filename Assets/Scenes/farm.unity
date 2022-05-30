@@ -12282,7 +12282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 0}
   SubjectName: wheat
-  SumCount: 0
+  SumCount: 10
 --- !u!114 &309673579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20205,6 +20205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Capacity: 0
+  StorageName: Silo
 --- !u!1 &568128030
 GameObject:
   m_ObjectHideFlags: 0
