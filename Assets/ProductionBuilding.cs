@@ -144,8 +144,8 @@ public class ProductionBuilding : MonoBehaviour
         //Если все слоты заняты, не загружать
         //Получаем Родителя объекта по имени ребенка
         //string subjectChildName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
-        string subjectChildName ="";
-        Debug.Log("AddInSlotSubject(subjectChildName)" + subjectChildName);
+        string subjectParentName ="";
+        Debug.Log("AddInSlotSubject(subjectChildName)" + subjectParentName);
         //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
         //Получаем имя производственного здания по имени ребнка
         //string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
@@ -160,7 +160,7 @@ public class ProductionBuilding : MonoBehaviour
         int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
         //Получаем дефолтное значение открытых слотов по имени объекта
-        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectChildName);
+        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectParentName);
         Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlotsLoadingDefaults);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
         //Проверяем,сколько слотов занято производством
