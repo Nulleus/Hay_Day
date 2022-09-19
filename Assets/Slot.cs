@@ -20,7 +20,7 @@ public class Slot : MonoBehaviour
         //Получаем все открытые пользователю объекты
         List<string> allSubjectsOpenLevel= new List<string>(); /*= Data.GetComponent<OpenLevel>().GetAllSubjectNameByOpenLevel();*/
         //Получаем имя родителя
-        SubjectParentName = ProductionBuildingParent.GetComponent<ProductionBuilding>().NameSystem;
+        SubjectParentName = ProductionBuildingParent.GetComponent<ProductionBuildingUI>().NameSystem;
         //Получаем всех детей subject_child_name, из таблицы по имени родителя 
         //List<string> childsAndParentsGettingSubjectParentName = Data.GetComponent<ParentsAndChilds>().GetAllSubjectChildNameBySubjectParentName(SubjectParentName);
         List<string> childsAndParentsGettingSubjectParentName = new List<string>();
@@ -153,7 +153,7 @@ public class Slot : MonoBehaviour
             MousedragBlockOn = true;
             gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
             //Запускаем производство
-            ProductionBuildingParent.GetComponent<ProductionBuilding>().AddInSlotSubject(Predmet);
+            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet);
         }
 
             //bakery.add_in_slot_predmet("bread");
