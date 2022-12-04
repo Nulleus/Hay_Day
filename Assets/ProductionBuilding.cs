@@ -19,7 +19,7 @@ public class ProductionBuilding : MonoBehaviour
     private string SubjectName;
 
     [Serializable]
-    public class POSTBuySubjectForDiamond
+    public class POSTBuySubjectForDiamonds
     {
         public string jwt;
         public string methodName;
@@ -31,7 +31,7 @@ public class ProductionBuilding : MonoBehaviour
     }
     
     [Serializable]
-    public class ResponseBuySubjectForDiamond
+    public class ResponseBuySubjectForDiamonds
     {
         public string code;
         public string message;
@@ -42,31 +42,42 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void BuySubjectForDiamond(string subjectName)
     {
-        EditorUtility.DisplayDialog("code: ", "123", "Ok");
-        RestClient.Post<ResponseBuySubjectForDiamond>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamond
+        RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "BuySubjectForDiamond",
+            methodName = "BuySubjectForDiamonds",
             subjectName = subjectName
-
         }).Then(response => {
             EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
-        // Start is called before the first frame update
-    void Start()
+    public void AddInSlotSubject(string subjectName)
     {
-        
+        RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "BuySubjectForDiamonds",
+            subjectName = subjectName
+        }).Then(response => {
+            EditorUtility.DisplayDialog("code: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+        });
     }
+
     private void OnEnable()
     {
-        BuySubjectForDiamond(SubjectName);
+        BuySubjectForDiamond("cowFeed");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 }
