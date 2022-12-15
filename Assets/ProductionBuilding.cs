@@ -24,6 +24,8 @@ public class ProductionBuilding : MonoBehaviour
 		Debug.Log(message);
 #endif
     }
+    [ShowInInspector]
+    public List<MissingIngredient> TestStr;
     public GameObject Data;
     [SerializeField]
     private string SubjectName;
@@ -85,13 +87,13 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
-    
+    [Serializable]
     public class MissingIngredient
     {
         public string ingredient_name { get; set; }
         public int count_ingredients { get; set; }
     }
-
+    [Serializable]
     public class Root
     {
         public List<MissingIngredient> MissingIngredients { get; set; }
@@ -99,7 +101,8 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        //BuySubjectForDiamond("cowFeed");
+        Post();
+        /*//BuySubjectForDiamond("cowFeed");
         //Post();
         string googleSearchText = @"{'MissingIngredients': [{'ingredient_name': 'corn','count_ingredients': 1},{'ingredient_name': 'soybean','count_ingredients': 2}]}";
         JObject googleSearch = JObject.Parse(googleSearchText);
@@ -115,7 +118,7 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log(searchResult);
             //Debug.Log(searchResults[1]);
             Debug.Log("Success");
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -127,6 +130,19 @@ public class ProductionBuilding : MonoBehaviour
     void Start()
     {
         
+    }
+    void Test1()
+    {
+        RestClient.Post<Root>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTTest1
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "Test1"
+        }).Then(response => {
+            TestStr = response.MissingIngredients;
+            //EditorUtility.DisplayDialog("code: ", response.MissingIngredients, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+        })
+        .Catch(err => this.LogMessage("Error", err.Message));
     }
     public class SearchResult
     {
@@ -157,15 +173,17 @@ public class ProductionBuilding : MonoBehaviour
             },
             EnableDebug = true
         };
-        RestClient.Post<POSTTest1>(currentRequest)
+        RestClient.Post<Root>(currentRequest)
         .Then(res => {
 
             // And later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();
-
-            this.LogMessage("Success", JsonUtility.ToJson(res, true));
+            TestStr = res.MissingIngredients;
+            //TestStr = JsonUtility.ToJson(res, true);
+            //this.LogMessage("Success", JsonUtility.ToJson(res, true));
+            //this.LogMessage("Success", res.ToString());
             //string googleSearchText = JsonUtility.ToJson(res, true);
-            
+
             //Dictionary<string, string> htmlAttributes = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             //Debug.Log(htmlAttributes["corn"]);
             //var values = JsonSerializer.Deserialize<Dictionary<string, string>>(JsonUtility.ToJson(res, true));

@@ -60077,6 +60077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TestStr: []
   Data: {fileID: 1866044566}
   SubjectName: cowFeed
 --- !u!1 &1872474460
