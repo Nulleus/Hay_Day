@@ -25,7 +25,7 @@ public class ProductionBuilding : MonoBehaviour
 #endif
     }
     [ShowInInspector]
-    public List<MissingIngredient> TestStr;
+    public List<MissingIngredient> MissingIngredients;
     public GameObject Data;
     [SerializeField]
     private string SubjectName;
@@ -90,35 +90,26 @@ public class ProductionBuilding : MonoBehaviour
     [Serializable]
     public class MissingIngredient
     {
-        public string ingredient_name { get; set; }
-        public int count_ingredients { get; set; }
+        public string ingredient_name;
+        public int count_ingredients;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
     }
     [Serializable]
     public class Root
     {
-        public List<MissingIngredient> MissingIngredients { get; set; }
+        public List<MissingIngredient> MissingIngredients;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
     }
 
     private void OnEnable()
     {
         Post();
-        /*//BuySubjectForDiamond("cowFeed");
-        //Post();
-        string googleSearchText = @"{'MissingIngredients': [{'ingredient_name': 'corn','count_ingredients': 1},{'ingredient_name': 'soybean','count_ingredients': 2}]}";
-        JObject googleSearch = JObject.Parse(googleSearchText);
-        // get JSON result objects into a list
-        IList<JToken> results = googleSearch["MissingIngredients"].Children().ToList();
-        // serialize JSON results into .NET objects
-        IList<SearchResult> searchResults = new List<SearchResult>();
-        foreach (JToken result in results)
-        {
-            // JToken.ToObject is a helper method that uses JsonSerializer internally
-            SearchResult searchResult = result.ToObject<SearchResult>();
-            searchResults.Add(searchResult);
-            Debug.Log(searchResult);
-            //Debug.Log(searchResults[1]);
-            Debug.Log("Success");
-        }*/
     }
 
     // Update is called once per frame
@@ -131,40 +122,14 @@ public class ProductionBuilding : MonoBehaviour
     {
         
     }
-    void Test1()
-    {
-        RestClient.Post<Root>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTTest1
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "Test1"
-        }).Then(response => {
-            TestStr = response.MissingIngredients;
-            //EditorUtility.DisplayDialog("code: ", response.MissingIngredients, "Ok");
-            //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
-        })
-        .Catch(err => this.LogMessage("Error", err.Message));
-    }
-    public class SearchResult
-    {
-        public string ingredient_name { get; set; }
-        public string count_ingredients { get; set; }
-    }
+
     public void Post()
     {
-
         string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
         RequestHelper currentRequest;
-        // We can add default query string params for all requests
-        //RestClient.DefaultRequestParams["param1"] = "My first param";
-        //RestClient.DefaultRequestParams["param3"] = "My other param";
-
         currentRequest = new RequestHelper
         {
             Uri = basePath,
-            Params = new Dictionary<string, string> {
-                //{ "param1", "value 1" },
-                //{ "param2", "value 2" }
-            },
             Body = new POSTTest1
             {
                 jwt = Data.GetComponent<Users>().GetJWTToken(),
@@ -175,20 +140,9 @@ public class ProductionBuilding : MonoBehaviour
         };
         RestClient.Post<Root>(currentRequest)
         .Then(res => {
-
-            // And later we can clear the default query string params for all requests
+            // later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();
-            TestStr = res.MissingIngredients;
-            //TestStr = JsonUtility.ToJson(res, true);
-            //this.LogMessage("Success", JsonUtility.ToJson(res, true));
-            //this.LogMessage("Success", res.ToString());
-            //string googleSearchText = JsonUtility.ToJson(res, true);
-
-            //Dictionary<string, string> htmlAttributes = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            //Debug.Log(htmlAttributes["corn"]);
-            //var values = JsonSerializer.Deserialize<Dictionary<string, string>>(JsonUtility.ToJson(res, true));
-            //Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(JsonUtility.ToJson(res, true));
-            //myDeserializedClass.
+            MissingIngredients = res.MissingIngredients;
         })
         .Catch(err => this.LogMessage("Error", err.Message));
     }
