@@ -53,7 +53,28 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
     [Serializable]
-    public class POSTTest1
+    public class ResponseAddInSlotSubject
+    {
+        public string code;
+        public string message;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTAddInSlotSubject
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTGetMissingIngredients
     {
         public string jwt;
         public string methodName;
@@ -77,10 +98,10 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void AddInSlotSubject(string subjectName)
     {
-        RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
+        RestClient.Post<ResponseAddInSlotSubject>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTAddInSlotSubject
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "BuySubjectForDiamonds",
+            methodName = "AddInSlotSubject",
             subjectName = subjectName
         }).Then(response => {
             EditorUtility.DisplayDialog("code: ", response.message, "Ok");
@@ -98,7 +119,7 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
     [Serializable]
-    public class Root
+    public class RootMissingIngredient
     {
         public List<MissingIngredient> MissingIngredients;
         public override string ToString()
@@ -109,7 +130,8 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        Post();
+        AddInSlotSubject("cowFeed");
+        GetMissingIngredients("cowFeed");
     }
 
     // Update is called once per frame
@@ -123,22 +145,22 @@ public class ProductionBuilding : MonoBehaviour
         
     }
 
-    public void Post()
+    public void GetMissingIngredients(string subjectName)
     {
         string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
         RequestHelper currentRequest;
         currentRequest = new RequestHelper
         {
             Uri = basePath,
-            Body = new POSTTest1
+            Body = new POSTGetMissingIngredients
             {
                 jwt = Data.GetComponent<Users>().GetJWTToken(),
-                methodName = "Test1",
-                subjectName = "cowFeed"
+                methodName = "GetMissingIngredients",
+                subjectName = subjectName
             },
             EnableDebug = true
         };
-        RestClient.Post<Root>(currentRequest)
+        RestClient.Post<RootMissingIngredient>(currentRequest)
         .Then(res => {
             // later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();

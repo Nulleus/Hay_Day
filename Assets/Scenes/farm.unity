@@ -13021,6 +13021,7 @@ GameObject:
   - component: {fileID: 364160151}
   - component: {fileID: 364160150}
   - component: {fileID: 364160156}
+  - component: {fileID: 364160157}
   m_Layer: 0
   m_Name: ProductionBuilding
   m_TagString: production_building
@@ -13196,6 +13197,21 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
+--- !u!114 &364160157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364160149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissingIngredients: []
+  Data: {fileID: 1866044566}
+  SubjectName: 
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -49014,7 +49030,7 @@ GameObject:
   - component: {fileID: 1534460462}
   - component: {fileID: 1534460464}
   m_Layer: 0
-  m_Name: FarnMapBoxColliders
+  m_Name: FarmMapBoxColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
