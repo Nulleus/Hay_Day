@@ -63,11 +63,22 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
     [Serializable]
+    public class ResponseShipment
+    {
+        public string code;
+        public string message;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
     public class POSTAddInSlotSubject
     {
         public string jwt;
         public string methodName;
         public string subjectName;
+        public string productionBuildingName;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -79,6 +90,17 @@ public class ProductionBuilding : MonoBehaviour
         public string jwt;
         public string methodName;
         public string subjectName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTShipment
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -96,13 +118,14 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
-    public void AddInSlotSubject(string subjectName)
+    public void AddInSlotSubject(string subjectName, string productionBuildingName)
     {
         RestClient.Post<ResponseAddInSlotSubject>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTAddInSlotSubject
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
             methodName = "AddInSlotSubject",
-            subjectName = subjectName
+            subjectName = subjectName,
+            productionBuildingName = productionBuildingName
         }).Then(response => {
             EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
@@ -130,8 +153,9 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        AddInSlotSubject("cowFeed");
-        GetMissingIngredients("cowFeed");
+        //AddInSlotSubject("cowFeed", "feedMill1");
+        //GetMissingIngredients("cowFeed");
+        //Shipment("bakery");
     }
 
     // Update is called once per frame
@@ -167,5 +191,17 @@ public class ProductionBuilding : MonoBehaviour
             MissingIngredients = res.MissingIngredients;
         })
         .Catch(err => this.LogMessage("Error", err.Message));
+    }
+    public void Shipment(string subjectParentName)
+    {
+        RestClient.Post<ResponseShipment>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTShipment
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "Shipment",
+            subjectParentName = subjectParentName
+        }).Then(response => {
+            EditorUtility.DisplayDialog("code: ", response.message, "Ok");
+            EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+        });
     }
 }

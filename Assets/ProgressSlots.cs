@@ -39,7 +39,7 @@ public class ProgressSlots : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetOpenSlotsCount("bakery");
+        //GetOpenSlotsCount("bakery");
     }
     public void GetOpenSlotsCount(string subjectName)
     {

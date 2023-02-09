@@ -137,30 +137,22 @@ public class ProductionBuildingUI : MonoBehaviour
         }
     }
 
-    public void AddInSlotSubject(string subjectName)//Метод добавления предмета в слоты
+    public void AddInSlotSubject(string subjectName, string productionBuildingName)//Метод добавления предмета в слоты
     {
-        // Проверяем, нужно ли выгрузить готовые предметы
+        // Проверяем, нужно ли выгрузить готовые предметы(Проверяется на сервере)
         Debug.Log("AddInSlotSubject: " + subjectName);
-        //Если все слоты заняты, не загружать
-        //Получаем Родителя объекта по имени ребенка
-        //string subjectChildName = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
-        string subjectParentName ="";
-        Debug.Log("AddInSlotSubject(subjectChildName)" + subjectParentName);
-        //countOpenSlotsUser - отвечает за количество открытых слотов у определенного пользователя по его id
-        //Получаем имя производственного здания по имени ребнка
-        //string subjectNameChild = Data.GetComponent<ParentsAndChilds>().GetSubjectParentNameBySubjectChildName(subjectName);
-        string subjectNameChild = "";
-        Debug.Log("AddInSlotSubject(subjectNameChild)" + subjectNameChild);
+        Debug.Log("AddInSlotSubject(subjectName)" + subjectName);
+        Debug.Log("AddInSlotSubject(productionBuildingName)" + productionBuildingName);
+
         //Количество открытых слотов у пользователя.
-        //int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(subjectNameChild,1 /*Data.GetComponent<Users>().*/);
+        //int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(productionBuildingName);
         int countOpenSlotsUser = 1;
-        //Debug.Log("AddInSlotSubject(IDUser)" + Data.GetComponent<Users>().IDUser);
         Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
         int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
-        //Получаем дефолтное значение открытых слотов по имени объекта
-        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(subjectParentName);
+        //Получаем значение открытых слотов пользователя по имени объекта
+        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(productionBuildingName);
         Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlotsLoadingDefaults);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
         //Проверяем,сколько слотов занято производством
