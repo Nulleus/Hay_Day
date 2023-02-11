@@ -145,7 +145,8 @@ public class Slot : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {
-        Debug.Log("other:" + other.gameObject.name);//Кто столкнулся
+        string productionBuilding = other.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+        Debug.Log("other:" + productionBuilding);//Кто столкнулся
         Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
         //Тут написать проверку на существование объекта
         if (other.gameObject.GetComponent<SlotLoading>().SubjectParent == SubjectParentName) 
@@ -153,7 +154,7 @@ public class Slot : MonoBehaviour
             MousedragBlockOn = true;
             gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
             //Запускаем производство
-            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet);
+            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, productionBuilding);
         }
 
             //bakery.add_in_slot_predmet("bread");

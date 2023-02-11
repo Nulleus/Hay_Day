@@ -20,7 +20,7 @@ public class ProductionBuildingUI : MonoBehaviour
     int PriceCoins;//Цена здания в монетах
     int BuildingTimeSec;//Время постройки здания в секундах
     int PriceDiamondsForMaxTimes;//Стоимость ускорения постройки здания в алмазах
-    int OpenSlotsDefault;//Открытых слотов по умолчанию
+    int OpenSlotsDefault;//Открытых слотов по умолчанию(думаю это не пригодится)
     int OpenSlots; //Открытых слотов
     Vector3 PrimaryPosition;
     string Temp;
@@ -31,15 +31,28 @@ public class ProductionBuildingUI : MonoBehaviour
     private bool IsCountOn = false;
     private string[,] ArraySlotsLoading;//Массив слотов загрузки 
     private string[,] ArraySlotsShipment;//Массив слотов отгрузки
-    
+
 
     //=======Дочерние и другие объекты================//
-    GameObject Collider; //Коллайдер для здания
-    GameObject Arrow;//Стрелка загрузки, используемая как временная шкала
-    GameObject SlotsPanel;//Слоты с панелями кнопок
-    GameObject SlotsPredmets; //Слоты с предметами
-    GameObject SlotsLoading; //Слоты с загруженными предметами
-    GameObject SlotsShipment; //Слоты с отгруженными предметами
+
+    //Коллайдер для здания
+    [SerializeField]
+    GameObject Collider;
+    //Стрелка загрузки, используемая как временная шкала
+    [SerializeField]
+    GameObject Arrow;
+    //Слоты с панелями кнопок
+    [SerializeField]
+    GameObject SlotsPanel;
+    //Слоты с предметами загрузки
+    [SerializeField]
+    GameObject SlotsPredmets;
+    //Слоты с загруженными предметами
+    [SerializeField]
+    GameObject SlotsLoading;
+    //Слоты с отгруженными предметами
+    [SerializeField]
+    GameObject SlotsShipment; 
 
 
     public void FlipObject()
@@ -49,16 +62,6 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     void Start()
     {
-        
-        //SlotsPanel = gameObject.transform.Find("SlotsPanel").gameObject;//Find Child gameobject
-        Collider = gameObject.transform.Find("Collider").gameObject;
-        Arrow = gameObject.transform.Find("Arrow").gameObject;
-        SlotsPanel = gameObject.transform.Find("SlotsPanel").gameObject;
-        SlotsPredmets = gameObject.transform.Find("SlotsPredmets").gameObject;
-        SlotsLoading = gameObject.transform.Find("SlotsLoading").gameObject;
-        SlotsShipment = gameObject.transform.Find("SlotsShipment").gameObject;
-        
-        //AddInSlotSubject("bread");
 
     }
 
@@ -146,35 +149,35 @@ public class ProductionBuildingUI : MonoBehaviour
 
         //Количество открытых слотов у пользователя.
         //int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(productionBuildingName);
-        int countOpenSlotsUser = 1;
-        Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + countOpenSlotsUser);
+        int openSlots = OpenSlots;
+        Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + OpenSlots);
         //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
         int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
         //Получаем значение открытых слотов пользователя по имени объекта
-        int openSlotsLoadingDefaults = Data.GetComponent<OpenSlotsDefaults>().GetOpenSlotsLoadingBySubjectName(productionBuildingName);
-        Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlotsLoadingDefaults);
+        //int openSlots = Data.GetComponent<ProgressSlots>().GetOpenSlotsLoadingBySubjectName(productionBuildingName);
+        Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlots);
         //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
         //Проверяем,сколько слотов занято производством
         int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName);
         Debug.Log("AddInSlotSubject(countOfOccupiedLoadingSlots)" + countOfOccupiedLoadingSlots);
         //Если количество отгруженных товаров, превышает число дефолтных значений слотов отгрузки
-        if (countOfOccupiedShipmentSlots >= openSlotsLoadingDefaults)
+        if (countOfOccupiedShipmentSlots >= openSlots)
         {
             Debug.Log("Собери руду, чтобы продолжить добычу");
             Debug.Log("Собери готовую продукцию, чтобы продолжить изготовление");//Пример заглушки, но нужно будет создать таблицу с данными.
             return;
         }
         //Если количество загруженных в производство объектов>=открытых у пользователя 
-        if (countOfOccupiedLoadingSlots >= countOpenSlotsUser)
+        if (countOfOccupiedLoadingSlots >= OpenSlots)
         {
             Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
             return;
         }
         //Если количество загруженных в производство объектов<открытых у пользователя 
-        if (countOfOccupiedLoadingSlots < countOpenSlotsUser)
+        if (countOfOccupiedLoadingSlots < OpenSlots)
         {
-            Debug.Log("countOfOccupiedLoadingSlots < countOpenSlotsUser");
+            Debug.Log("countOfOccupiedLoadingSlots < OpenSlots");
             //Полуаем список ингредиентов (ингредиент, количество)
             Dictionary<string, int> compositions = new Dictionary<string, int>();
             //compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
@@ -357,6 +360,10 @@ public class ProductionBuildingUI : MonoBehaviour
         }
     }
     void OnMouseDrag()//Когда перемещение мыши
+    {
+
+    }
+    void GetOpenSlots()
     {
 
     }

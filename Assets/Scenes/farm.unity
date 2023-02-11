@@ -13357,6 +13357,12 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
+  Collider: {fileID: 1663979554}
+  Arrow: {fileID: 369674368}
+  SlotsPanel: {fileID: 930103544}
+  SlotsPredmets: {fileID: 1730528424}
+  SlotsLoading: {fileID: 1335565085}
+  SlotsShipment: {fileID: 1518171247}
 --- !u!114 &364160157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13651,7 +13657,7 @@ GameObject:
   - component: {fileID: 369674369}
   - component: {fileID: 369674370}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: Arrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
