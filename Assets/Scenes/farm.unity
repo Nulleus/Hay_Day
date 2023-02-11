@@ -12502,6 +12502,7 @@ GameObject:
   - component: {fileID: 352746992}
   - component: {fileID: 352746994}
   - component: {fileID: 352746993}
+  - component: {fileID: 352746995}
   m_Layer: 0
   m_Name: SlotLoading
   m_TagString: Untagged
@@ -12625,6 +12626,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 0
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!50 &352746993
 Rigidbody2D:
   serializedVersion: 4
@@ -12672,6 +12674,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &352746995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352746987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissingIngredients: []
+  Data: {fileID: 1866044566}
+  SubjectName: bakery
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1001 &353911195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13378,6 +13396,7 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: 
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -22220,6 +22239,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 1
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &650161977
 GameObject:
   m_ObjectHideFlags: 0
@@ -31132,6 +31152,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 7
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &878455995
 GameObject:
   m_ObjectHideFlags: 0
@@ -35304,6 +35325,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 4
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1014464726
 GameObject:
   m_ObjectHideFlags: 0
@@ -37927,6 +37949,7 @@ GameObject:
   - component: {fileID: 1110433560}
   - component: {fileID: 1110433559}
   - component: {fileID: 1110433558}
+  - component: {fileID: 1110433561}
   m_Layer: 5
   m_Name: TimeDoOverText
   m_TagString: Untagged
@@ -37972,7 +37995,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &1110433559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37995,7 +38018,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1110433560
 Canvas:
   m_ObjectHideFlags: 0
@@ -38017,6 +38040,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1110433561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110433556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0a2719d0272674ca5a29cafa5a3d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlotLoadingTime: {fileID: 224370319}
+  SlotLoadingProductionBuilding: {fileID: 709741518}
 --- !u!1001 &1113244924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43908,6 +43945,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335565086}
+  - component: {fileID: 1335565088}
+  - component: {fileID: 1335565087}
+  - component: {fileID: 1335565089}
   m_Layer: 0
   m_Name: SlotsLoading
   m_TagString: Untagged
@@ -43944,6 +43984,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1335565087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335565085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e95d06eaa8e0714c828146e04ac13ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlotLoadingFrame:
+  - {fileID: 1819119385}
+  - {fileID: 973388873}
+  - {fileID: 492830396}
+  - {fileID: 219670542}
+  - {fileID: 1320258745}
+  - {fileID: 872906790}
+  - {fileID: 781763169}
+  - {fileID: 2074711143}
+  - {fileID: 1727834669}
+  OpenSlots: 0
+  MaxCountSlots: 9
+--- !u!114 &1335565088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335565085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c12726fe9e5f6943b368e756eea0126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  OpenSlots: 0
+  ParentSubject: {fileID: 364160149}
+--- !u!114 &1335565089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335565085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissingIngredients: []
+  Data: {fileID: 1866044566}
+  SubjectName: bakery
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -44502,6 +44597,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 8
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1349204883
 GameObject:
   m_ObjectHideFlags: 0
@@ -52772,6 +52868,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 6
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1591081036
 GameObject:
   m_ObjectHideFlags: 0
@@ -58711,6 +58808,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 2
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1819119385
 GameObject:
   m_ObjectHideFlags: 0
@@ -58723,6 +58821,7 @@ GameObject:
   - component: {fileID: 1819119389}
   - component: {fileID: 1819119388}
   - component: {fileID: 1819119387}
+  - component: {fileID: 1819119390}
   m_Layer: 0
   m_Name: SlotLoadingFrame
   m_TagString: Untagged
@@ -58846,6 +58945,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1819119390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819119385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7603fc894d9ed0e4c8d8fdf6e41cbb37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlotLoading: {fileID: 352746987}
+  TimeDoOverText: {fileID: 1110433556}
 --- !u!1001 &1820455136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60168,6 +60281,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 5
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1859416719
 GameObject:
   m_ObjectHideFlags: 0
@@ -60764,6 +60878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   OpenSlots: 0
+  ParentSubject: {fileID: 0}
 --- !u!114 &1866044575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60878,6 +60993,7 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: cowFeed
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -61266,6 +61382,7 @@ MonoBehaviour:
   SubjectParent: bakery
   NumberSlot: 3
   Data: {fileID: 1866044566}
+  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1882951423
 GameObject:
   m_ObjectHideFlags: 0

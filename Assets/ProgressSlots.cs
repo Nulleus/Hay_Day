@@ -33,13 +33,17 @@ public class ProgressSlots : MonoBehaviour
     }
     public GameObject Data;
     public int OpenSlots; // оличество открытых слотов у пользовател€
+    [SerializeField]
+    public GameObject ParentSubject;
     private void Start()
     {
+        string subjectName = ParentSubject.GetComponent<ProductionBuildingUI>().NameSystem;
+        GetOpenSlotsCount(subjectName);
         //Debug.Log("GetOpenSlotsCount" + GetOpenSlotsCount("bakery", 11));
     }
     private void OnEnable()
     {
-        //GetOpenSlotsCount("bakery");
+
     }
     public void GetOpenSlotsCount(string subjectName)
     {

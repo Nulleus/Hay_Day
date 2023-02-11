@@ -8,11 +8,12 @@ public class SlotLoading : MonoBehaviour
     public string SubjectParent;
     public int NumberSlot;
     public GameObject Data;
+    public string[] SubjectsChildInTheProcessOfAssembly;
     // Start is called before the first frame update
     void Start()
     {
         DisplayContents();//Тест вывода загруженных объектов
-
+        GetSlotLoadingSubjectsName();
     }
     //Отобразить содержимое загруженного содержимого в слотах
     public void DisplayContents()
@@ -34,5 +35,11 @@ public class SlotLoading : MonoBehaviour
     {
         
     }
-    
+    //Получаем имя объекта загруженного в производство
+    void GetSlotLoadingSubjectsName()
+    {
+        SubjectsChildInTheProcessOfAssembly = gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly;
+    }
+
+
 }

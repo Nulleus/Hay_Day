@@ -28,7 +28,10 @@ public class ProductionBuilding : MonoBehaviour
     public List<MissingIngredient> MissingIngredients;
     public GameObject Data;
     [SerializeField]
-    private string SubjectName;
+    public string SubjectName;
+    int MaxCountSlots;
+    //Имя находящегося в производстве предмета
+    public string[] SubjectsChildInTheProcessOfAssembly;
 
     [Serializable]
     public class POSTBuySubjectForDiamonds
@@ -106,6 +109,27 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class ResponseSubjectChildInTheProcessOfAssembly
+    {
+        public string subjectChildInTheProcessOfAssembly;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTSubjectChildInTheProcessOfAssembly
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int numberSlot;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public void BuySubjectForDiamond(string subjectName)
     {
         RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
@@ -153,6 +177,13 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("111");
+        GetSubjectChildInTheProcessOfAssembly("bakery", 1);
+        //for (int i = 0; i <=2; i++)
+        //{
+            //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+        //}
+        
         //AddInSlotSubject("cowFeed", "feedMill1");
         //GetMissingIngredients("cowFeed");
         //Shipment("bakery");
@@ -203,5 +234,30 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
+    }
+    //SubjectChildInTheProcessOfAssembly
+    public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
+    {
+        string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
+        RequestHelper currentRequest;
+        currentRequest = new RequestHelper
+        {
+            Uri = basePath,
+            Body = new POSTSubjectChildInTheProcessOfAssembly
+            {
+                jwt = Data.GetComponent<Users>().GetJWTToken(),
+                methodName = "GetSubjectChildInTheProcessOfAssembly",
+                subjectParentName = subjectParentName,
+                numberSlot = numberSlot
+            },
+            EnableDebug = true
+        };
+        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>(currentRequest)
+        .Then(res => {
+            // later we can clear the default query string params for all requests
+            RestClient.ClearDefaultParams();
+            SubjectsChildInTheProcessOfAssembly[1] = res.subjectChildInTheProcessOfAssembly;
+        })
+        .Catch(err => this.LogMessage("Error", err.Message));
     }
 }

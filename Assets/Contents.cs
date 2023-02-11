@@ -202,12 +202,6 @@ public class Contents : MonoBehaviour
         return ServerDateTime;
     }
 
-    //Прибавляем дате определенное количество секунд
-    public string GetSummDateTimeAndSeconds(string time, int second) 
-    {
-        var convertA = DateTime.Parse(time);//Конвертируем строку в дату
-        return convertA.AddSeconds(second).ToString("yyyy-MM-dd HH:mm:ss"); 
-    }
     //Получить количество готовых продуктово, находящиеся в зоне отгрузки(shipment)
     public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName)
     {
@@ -245,32 +239,7 @@ public class Contents : MonoBehaviour
         return CountLoadingSlots;
     }
     //Метод только добавляет в БД полученные значения
-    public void AddContents(string subjectParentName, string subjectChildName)
-    {
-        string timeLoading = Data.GetComponent<Contents>().GetServerDateTime();//Дата загрузки равна текущему времени сервера
-        Debug.Log("timeLoading=" + timeLoading);
-        int timeBuilding = Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName);
-        Debug.Log("timeBuilding" + timeBuilding);
-        //Время отгрузки равно текущему времени сервера плюс время изготовления объекта
-        string timeShipment = Data.GetComponent<Contents>().GetSummDateTimeAndSeconds(timeLoading, /*Data.GetComponent<BuildingTimes>().GetTimeBuilding(subjectChildName)*/timeBuilding);
-        Debug.Log("timeShipment=" + timeShipment);
-        //Количество на выходе равно, значению из таблицы output_quantity
-        int outputQuantity = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName);
-        RestClient.Post<ResponseAddContents>("http://farmpass.beget.tech/api/content_execute_methods.php", new POSTAddContents
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "AddContents",
-            subjectParentName = subjectParentName,
-            subjectChildName = subjectChildName,
-            timeLoading = timeLoading,
-            timeShipment = timeShipment,
-            outputQuantity = outputQuantity
-        }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("result: ", response.result.ToString(), "Ok");
-            return response.result;
-        });
-    }
+
     //Получаем ID первого стоящего на выгрузку объекта
     public int GetShipmentID(string subjectParentName)
     {
@@ -302,6 +271,6 @@ public class Contents : MonoBehaviour
         //GetCountOfOccupiedLoadingSlotsByParentName("bakery");
 
         //int test = Data.GetComponent<BuildingTimes>().GetTimeBuilding("bread");
-        AddContents("bakery", "bread");
+        //AddContents("bakery", "bread");
     }
 }
