@@ -12689,6 +12689,7 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: bakery
+  MaxCountSlots: 0
   SubjectsChildInTheProcessOfAssembly: []
 --- !u!1001 &353911195
 PrefabInstance:
@@ -13395,8 +13396,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissingIngredients: []
   Data: {fileID: 1866044566}
-  SubjectName: 
-  SubjectsChildInTheProcessOfAssembly: []
+  SubjectName: bakery
+  MaxCountSlots: 9
+  SubjectsChildInTheProcessOfAssembly:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -44038,7 +44049,17 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: bakery
-  SubjectsChildInTheProcessOfAssembly: []
+  MaxCountSlots: 8
+  SubjectsChildInTheProcessOfAssembly:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -60993,6 +61014,7 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: cowFeed
+  MaxCountSlots: 0
   SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1872474460
 GameObject:

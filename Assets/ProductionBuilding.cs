@@ -29,9 +29,10 @@ public class ProductionBuilding : MonoBehaviour
     public GameObject Data;
     [SerializeField]
     public string SubjectName;
-    int MaxCountSlots;
+
+    public int MaxCountSlots;
     //Имя находящегося в производстве предмета
-    public string[] SubjectsChildInTheProcessOfAssembly;
+    public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
 
     [Serializable]
     public class POSTBuySubjectForDiamonds
@@ -177,12 +178,12 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("111");
-        GetSubjectChildInTheProcessOfAssembly("bakery", 1);
-        //for (int i = 0; i <=2; i++)
-        //{
-            //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
-        //}
+        //GetSubjectChildInTheProcessOfAssembly("bakery", 1);
+        for (int i = 0; i <=MaxCountSlots; i++)
+        {
+            Debug.Log(i);
+            GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+        }
         
         //AddInSlotSubject("cowFeed", "feedMill1");
         //GetMissingIngredients("cowFeed");
@@ -256,8 +257,9 @@ public class ProductionBuilding : MonoBehaviour
         .Then(res => {
             // later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();
-            SubjectsChildInTheProcessOfAssembly[1] = res.subjectChildInTheProcessOfAssembly;
+            SubjectsChildInTheProcessOfAssembly[numberSlot] = res.subjectChildInTheProcessOfAssembly;
         })
         .Catch(err => this.LogMessage("Error", err.Message));
     }
+
 }

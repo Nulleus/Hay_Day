@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/farm.unity
+- path: "C:/Users/rabee/OneDrive/\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B/EntityComponentSystemSamples-master/EntitiesSamples/JobsTutorial/Assets/Step1_NoJobs.unity"
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -5,29 +5,25 @@ using UnityEngine;
 public class SlotLoading : MonoBehaviour
 {
     public Animator Anim;//Анимация поля
-    public string SubjectParent;
+    public GameObject SubjectParent;
     public int NumberSlot;
     public GameObject Data;
-    public string[] SubjectsChildInTheProcessOfAssembly;
     // Start is called before the first frame update
     void Start()
     {
-        DisplayContents();//Тест вывода загруженных объектов
-        GetSlotLoadingSubjectsName();
+        //DisplayContents();//Тест вывода загруженных объектов
+    }
+    private void OnEnable()
+    {
+        DisplayContents();
     }
     //Отобразить содержимое загруженного содержимого в слотах
     public void DisplayContents()
     {
-        Anim = GetComponent<Animator>();
-        //Получаем загруженный объект в слоте по номеру слота(NumberSlot), (в порядке очереди) по имени производственного здания(SubjectParent) выбирая по IDUser(id пользователя)
-        string subjectChild = Data.GetComponent<Contents>().GetSubjectChildInTheProcessOfAssembly(SubjectParent, NumberSlot/*Data.GetComponent<Users>().IDUser*/);
-        if (subjectChild == "")
-        {
-            subjectChild = "empty";
-        }
-        Debug.Log(subjectChild);
-        //Anim.CrossFade(subjectChild.ToLower(), 0);
-        //Закомментировал потому что неправильно выбрано место для функции, пустая анимация.
+        Animator anim;
+        anim = GetComponent<Animator>();
+        Debug.Log(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
+        anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
     }
 
     // Update is called once per frame
@@ -36,10 +32,7 @@ public class SlotLoading : MonoBehaviour
         
     }
     //Получаем имя объекта загруженного в производство
-    void GetSlotLoadingSubjectsName()
-    {
-        SubjectsChildInTheProcessOfAssembly = gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly;
-    }
+
 
 
 }
