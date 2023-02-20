@@ -65,7 +65,7 @@ public class Slot : MonoBehaviour
         Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
         //Тут написать проверку на существование объекта
         //(тут надо переписать))
-        if (other.gameObject.GetComponent<SlotLoading>().SubjectParent.GetComponent<ProductionBuildingUI>().NameSystem == SubjectParentName) 
+        if (other.gameObject.GetComponent<SlotLoading>().GetComponent<ProductionBuildingUI>().NameSystem == SubjectParentName) 
         {
             MousedragBlockOn = true;
             gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию

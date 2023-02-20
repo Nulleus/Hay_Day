@@ -5,7 +5,6 @@ using UnityEngine;
 public class SlotLoading : MonoBehaviour
 {
     public Animator Anim;//Анимация поля
-    public GameObject SubjectParent;
     public int NumberSlot;
     public GameObject Data;
     // Start is called before the first frame update
@@ -22,8 +21,9 @@ public class SlotLoading : MonoBehaviour
     {
         Animator anim;
         anim = GetComponent<Animator>();
-        Debug.Log(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
-        anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
+        Debug.Log(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
+        //anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
+        anim.CrossFade(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
     }
 
     // Update is called once per frame

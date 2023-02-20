@@ -8071,7 +8071,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224370319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 46.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8080,7 +8080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -474, y: 21}
+  m_AnchoredPosition: {x: -40, y: 2.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224370321
@@ -8104,7 +8104,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
@@ -12499,9 +12499,9 @@ GameObject:
   - component: {fileID: 352746991}
   - component: {fileID: 352746990}
   - component: {fileID: 352746989}
-  - component: {fileID: 352746992}
   - component: {fileID: 352746994}
   - component: {fileID: 352746993}
+  - component: {fileID: 352746992}
   - component: {fileID: 352746995}
   m_Layer: 0
   m_Name: SlotLoading
@@ -12622,11 +12622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim: {fileID: 0}
-  SubjectParent: bakery
+  Anim: {fileID: 352746989}
   NumberSlot: 0
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!50 &352746993
 Rigidbody2D:
   serializedVersion: 4
@@ -12689,8 +12687,17 @@ MonoBehaviour:
   MissingIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: bakery
-  MaxCountSlots: 0
-  SubjectsChildInTheProcessOfAssembly: []
+  MaxCountSlots: 8
+  SubjectsChildInTheProcessOfAssembly:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1001 &353911195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22247,10 +22254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 1
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &650161977
 GameObject:
   m_ObjectHideFlags: 0
@@ -24253,6 +24258,7 @@ GameObject:
   - component: {fileID: 709741519}
   - component: {fileID: 709741521}
   - component: {fileID: 709741520}
+  - component: {fileID: 709741522}
   m_Layer: 5
   m_Name: SlotLoadingProductionBuilding
   m_TagString: Untagged
@@ -24268,7 +24274,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709741518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24277,7 +24283,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -466, y: 62}
+  m_AnchoredPosition: {x: -32, y: 30.1}
   m_SizeDelta: {x: 178.4, y: 35.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709741520
@@ -24301,7 +24307,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
@@ -24322,6 +24328,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709741518}
   m_CullTransparentMesh: 0
+--- !u!114 &709741522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709741518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissingIngredients: []
+  Data: {fileID: 1866044566}
+  SubjectName: 
+  MaxCountSlots: 0
+  SubjectsChildInTheProcessOfAssembly:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1001 &710691647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31160,10 +31193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 7
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &878455995
 GameObject:
   m_ObjectHideFlags: 0
@@ -35333,10 +35364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 4
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1014464726
 GameObject:
   m_ObjectHideFlags: 0
@@ -37976,8 +38005,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110433556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 55.923683}
-  m_LocalScale: {x: 0.025530852, y: 0.026488258, z: 0.7946478}
+  m_LocalPosition: {x: 0, y: 0, z: 51}
+  m_LocalScale: {x: 0.035994943, y: 0.037344743, z: 1.1203427}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224370320}
@@ -37987,8 +38016,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 13.168855, y: 0.9710524}
-  m_SizeDelta: {x: 673, y: 319}
+  m_AnchoredPosition: {x: 2.9, y: 1.4}
+  m_SizeDelta: {x: 640, y: 563}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110433558
 MonoBehaviour:
@@ -38047,7 +38076,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -44615,10 +44644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 8
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1349204883
 GameObject:
   m_ObjectHideFlags: 0
@@ -52886,10 +52913,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 6
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1591081036
 GameObject:
   m_ObjectHideFlags: 0
@@ -58826,10 +58851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 2
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1819119385
 GameObject:
   m_ObjectHideFlags: 0
@@ -60299,10 +60322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 5
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1859416719
 GameObject:
   m_ObjectHideFlags: 0
@@ -61006,7 +61027,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
@@ -61401,10 +61422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 0}
-  SubjectParent: bakery
   NumberSlot: 3
   Data: {fileID: 1866044566}
-  SubjectsChildInTheProcessOfAssembly: []
 --- !u!1 &1882951423
 GameObject:
   m_ObjectHideFlags: 0
