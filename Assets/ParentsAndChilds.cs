@@ -15,6 +15,14 @@ using Newtonsoft.Json.Linq;
 public class ParentsAndChilds : MonoBehaviour
 {
 
+    private void LogMessage(string title, string message)
+    {
+#if UNITY_EDITOR
+        Debug.Log(title + message);
+#else
+		Debug.Log(message);
+#endif
+    }
 
     [Serializable]
     public class POSTGetCountSubjectsParent
@@ -95,9 +103,55 @@ public class ParentsAndChilds : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class POSTGetSubjectChildNameByNumber
+    { 
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int number;
+
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetSubjectChildNameByNumber
+    {
+        public string message;
+        public string subjectChildName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    public void GetSubjectChildNameByNumber(string subjectParentName, int number)
+    {
+        string basePath = "http://farmpass.beget.tech/api/parent_and_child_execute_methods.php";
+        RequestHelper currentRequest;
+        currentRequest = new RequestHelper
+        {
+            Uri = basePath,
+            Body = new POSTGetSubjectChildNameByNumber
+            {
+                jwt = Data.GetComponent<Users>().GetJWTToken(),
+                methodName = "GetSubjectChildNameByNumber",
+                subjectParentName = subjectParentName,
+                number = number
+            },
+            EnableDebug = true
+        };
+        RestClient.Post<ResponseGetSubjectChildNameByNumber>(currentRequest)
+        .Then(res => {
+            // later we can clear the default query string params for all requests
+            RestClient.ClearDefaultParams();
+            Childs[number] = res.subjectChildName;
+        })
+        .Catch(err => this.LogMessage("Error", err.Message));
+    }
 
 
-    
     public class Subject
     {
         public string subject_child_name { get; set; }
@@ -106,53 +160,21 @@ public class ParentsAndChilds : MonoBehaviour
 
     public GameObject Data;
     [ShowInInspector]
-    //Все дети
-    public List<string> Childs;
-    //Количество родителей у объекта
-    public int CountSubjectsChilds;
+    //Дети
+    public string[] Childs = new string[10];
     //Имя родителя
     public string SubjectParentName;
+    //Номер слота по которому будет вестись поиск в БД
+    public int number;
 
     private void Start()
     {
 
     }
-    IEnumerator postRequestSubjectChildAllName(string url, string json)
-    {
-        var uwr = new UnityWebRequest(url, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
 
-        //Send the request then wait here until it returns
-        yield return uwr.SendWebRequest();
-
-        if (uwr.isDone)
-        {
-            Childs.Clear();
-            Debug.Log("Received: " + uwr.downloadHandler.text);
-            List<Subject> products = JsonConvert.DeserializeObject<List<Subject>>(uwr.downloadHandler.text);
-            Debug.Log(products.Count);
-            CountSubjectsChilds = products.Count;
-            for (int i = 0; i < products.Count; i++)
-            {
-                Subject p1 = products[i];
-                Childs.Add(p1.subject_child_name);
-            }
-        }
-        else
-        {
-            Debug.Log("Error While Sending: " + uwr.error);
-        }
-    }
     private void OnEnable()
     {
-        var postrequest = new POSTGetSubjectChildName();
-        postrequest.jwt = Data.GetComponent<Users>().GetJWTToken();
-        postrequest.methodName = "GetSubjectChildAllName";
-        postrequest.subjectParentName = SubjectParentName;
-        StartCoroutine(postRequestSubjectChildAllName("http://farmpass.beget.tech/api/parent_and_child_execute_methods.php", postrequest.ToString()));
+        GetSubjectChildNameByNumber(SubjectParentName, number);
     }
 
 }

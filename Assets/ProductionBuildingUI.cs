@@ -123,11 +123,11 @@ public class ProductionBuildingUI : MonoBehaviour
         if (IsCountOn)
         {
             Count++;
-            if (Count == 6){ Arrow.GetComponent<Arrow>().BrushColor("Arrow0", Color.yellow); }//Закрашена часть стрелки 0
-            if (Count == 12) { Arrow.GetComponent<Arrow>().BrushColor("Arrow1", Color.yellow); }//Закрашена часть стрелки 1
-            if (Count == 18) { Arrow.GetComponent<Arrow>().BrushColor("Arrow2", Color.yellow); }//Закрашена часть стрелки 2
-            if (Count == 24) { Arrow.GetComponent<Arrow>().BrushColor("Arrow3", Color.yellow); }//Закрашена часть стрелки 3
-            if (Count == 30) { Arrow.GetComponent<Arrow>().BrushColor("Arrow4", Color.yellow); }//Закрашена часть стрелки 4
+            if (Count == 6){ Arrow.GetComponent<Arrow>().BrushColor(1, Color.yellow); }//Закрашена часть стрелки 0
+            if (Count == 12) { Arrow.GetComponent<Arrow>().BrushColor(2, Color.yellow); }//Закрашена часть стрелки 1
+            if (Count == 18) { Arrow.GetComponent<Arrow>().BrushColor(3, Color.yellow); }//Закрашена часть стрелки 2
+            if (Count == 24) { Arrow.GetComponent<Arrow>().BrushColor(4, Color.yellow); }//Закрашена часть стрелки 3
+            if (Count == 30) { Arrow.GetComponent<Arrow>().BrushColor(5, Color.yellow); }//Закрашена часть стрелки 4
 
             if (Count > 30)//Активация режима перемещение
             {
@@ -265,14 +265,10 @@ public class ProductionBuildingUI : MonoBehaviour
     {
         Count = 0;
         IsCountOn = false;
-        GameObject_Enable_Controller.bakery_arrow_0.GetComponent<Renderer>().material.color = Color.white;
-        GameObject_Enable_Controller.bakery_arrow_1.GetComponent<Renderer>().material.color = Color.white;
-        GameObject_Enable_Controller.bakery_arrow_2.GetComponent<Renderer>().material.color = Color.white;
-        GameObject_Enable_Controller.bakery_arrow_3.GetComponent<Renderer>().material.color = Color.white;
-        GameObject_Enable_Controller.bakery_arrow_4.GetComponent<Renderer>().material.color = Color.white;
-        GameObject_Enable_Controller.bakery_arrow.SetActive(false);
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер пекарни обратно
-        if (globals.bakery_move_mode_on)
+        Arrow.GetComponent<Arrow>().ClearBrushColorAll();
+        Arrow.SetActive(false);
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
+        if (IsMoveModeOn)
         {
 
             if (gameObject.GetComponent<Renderer>().material.color == Color.red)
@@ -283,63 +279,27 @@ public class ProductionBuildingUI : MonoBehaviour
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)
             {
                 gameObject.transform.position = PrimaryPosition;
-                GameObject.Find("bakery_collider").transform.position = PrimaryPosition;
+                Collider.transform.position = PrimaryPosition;
             }
 
         }
-        else//Если globals.bakery_move_mode_on==false
+        else//Если IsMoveModeOn==false
         {
 
-            if (GameObject_Enable_Controller.bakery_slots_predmets.activeSelf)
+            if (SlotsPredmets.activeSelf)
             {
-                GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(false);
-                GameObject_Enable_Controller.bakery_slots_predmets.SetActive(false);
+                SlotsLoading.SetActive(false);
+                SlotsPredmets.SetActive(false);
             }
             else
             {
-                GameObject_Enable_Controller.bakery_slots_zagruzki.SetActive(true);
-                GameObject_Enable_Controller.bakery_slots_predmets.SetActive(true);
+                SlotsLoading.SetActive(true);
+                SlotsPredmets.SetActive(true);
             }
         }
-        if (globals.bakery_array_slots_otgruzki[0, 0] != "")//Если слоты отгрузки не пустые, переместить этот код в другое место
-        {
-            if (globals.bakery_array_slots_otgruzki[0, 0] == "bread")
-            {
-                Debug.Log("bread mouseup");
-                globals.bread++;//Прибавляем количество хлеба на склад
-                Debug.Log("bread = " + globals.bread);
-                globals.user_experience_point = globals.user_experience_point + globals.bread_experience_point;
-                Debug.Log("globals.user_experience_point=" + globals.user_experience_point);
-                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                return;
-            }
-            if (globals.bakery_array_slots_otgruzki[0, 0] == "corn_bread")
-            {
-                Debug.Log("corn_bread mouseup");
-                globals.corn_bread++;//Прибавляем количество хлеба на склад
-                Debug.Log("corn_bread = " + globals.corn_bread);
-                globals.user_experience_point = globals.user_experience_point + globals.corn_bread_experience_point;
-                Debug.Log("globals.user_experience_point" + globals.user_experience_point);
-                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                return;
-            }
-            if (globals.bakery_array_slots_otgruzki[0, 0] == "cookie")
-            {
-                Debug.Log("cookie mouseup");
-                globals.cookie++;//Прибавляем количество хлеба на склад
-                Debug.Log("cookie = " + globals.cookie);
-                globals.user_experience_point = globals.user_experience_point + globals.cookie_experience_point;
-                Debug.Log("globals.user_experience_point" + globals.user_experience_point);
-                globals.bakery_array_slots_otgruzki[0, 0] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 1] = ""; //Очищаем слот, из которого выгрузили
-                globals.bakery_array_slots_otgruzki[0, 2] = ""; //Очищаем слот, из которого выгрузили
-                return;
-            }
-        }
+        //Метод открузки предметов
+        gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem);
+        
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
@@ -354,16 +314,12 @@ public class ProductionBuildingUI : MonoBehaviour
         {
 
             PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
-            GameObject_Enable_Controller.bakery_arrow.SetActive(true);//Активируем стрелку
+            Arrow.SetActive(true);//Активируем стрелку
             Count = 0;//Обнуляем счетчик
             IsCountOn = true;//Запускаем счетчик 
         }
     }
     void OnMouseDrag()//Когда перемещение мыши
-    {
-
-    }
-    void GetOpenSlots()
     {
 
     }

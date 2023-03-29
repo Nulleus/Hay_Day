@@ -237,6 +237,7 @@ public class ProductionBuilding : MonoBehaviour
         });
     }
     //SubjectChildInTheProcessOfAssembly
+    //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
         string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";

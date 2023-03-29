@@ -13205,6 +13205,7 @@ GameObject:
   - component: {fileID: 364160150}
   - component: {fileID: 364160156}
   - component: {fileID: 364160157}
+  - component: {fileID: 364160158}
   m_Layer: 0
   m_Name: ProductionBuilding
   m_TagString: production_building
@@ -13415,6 +13416,22 @@ MonoBehaviour:
   - 
   - 
   - 
+--- !u!114 &364160158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364160149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc0466cc74b8744ead147cf8fb3cc27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  Childs: []
+  SubjectParentName: bakery
+  number: 0
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -13737,6 +13754,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d5877182684384b8a8881187dec077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arrows:
+  - {fileID: 833089323}
+  - {fileID: 1916079321}
+  - {fileID: 1358149939}
+  - {fileID: 675067791}
+  - {fileID: 849867878}
 --- !u!1 &369995582
 GameObject:
   m_ObjectHideFlags: 0
@@ -60935,8 +60958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   Childs: []
-  CountSubjectsChilds: 0
   SubjectParentName: field
+  number: 0
 --- !u!114 &1866044576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68219,7 +68242,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   ScreenPoint: {x: 0, y: 0, z: 0}
   MousedragBlockOn: 0
-  Anim: {fileID: 0}
+  Anim: {fileID: 2083094955}
   Predmet: bread
   NumberSlotPredmet: 0
   SubjectParentName: bakery

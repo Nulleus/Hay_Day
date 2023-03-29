@@ -15,10 +15,11 @@ public class Slot : MonoBehaviour
     public string SubjectParentName; //Родитель данного объекта(например: bakery)
     public GameObject ProductionBuildingParent;
     //Загружаем все доступные (открытые по уровню пользователя предметы) по номеру слота
-    public void GetOpenSubjectsThisSlot()
+    public void GetOpenSubjectsBySlotNumber()
     {
         Animator anim;
         anim = GetComponent<Animator>();
+        //Неправильно, исправить
         Debug.Log(ProductionBuildingParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlotPredmet]);
         anim.CrossFade(ProductionBuildingParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlotPredmet], 0);
     }
@@ -28,7 +29,7 @@ public class Slot : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetOpenSubjectsThisSlot();
+        GetOpenSubjectsBySlotNumber();
     }
 
     void OnMouseUp()//Когда отпускаешь кнопку
