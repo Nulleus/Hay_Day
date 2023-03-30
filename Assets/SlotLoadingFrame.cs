@@ -8,6 +8,9 @@ public class SlotLoadingFrame : MonoBehaviour
     GameObject SlotLoading;
     [SerializeField]
     GameObject TimeDoOverText;
+    //Главный объект у этого дочернего объекта
+    [SerializeField]  
+    public GameObject ProductionBuildingParent;
     // Start is called before the first frame update
     void Start()
     {

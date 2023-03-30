@@ -83,6 +83,7 @@ public class ProductionBuilding : MonoBehaviour
         public string methodName;
         public string subjectName;
         public string productionBuildingName;
+        public int ignoreQuestion;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -143,14 +144,16 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
-    public void AddInSlotSubject(string subjectName, string productionBuildingName)
+    public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
     {
+        Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
         RestClient.Post<ResponseAddInSlotSubject>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTAddInSlotSubject
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
             methodName = "AddInSlotSubject",
             subjectName = subjectName,
-            productionBuildingName = productionBuildingName
+            productionBuildingName = productionBuildingName,
+            ignoreQuestion = ignoreQuestion
         }).Then(response => {
             EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
@@ -181,10 +184,11 @@ public class ProductionBuilding : MonoBehaviour
         //GetSubjectChildInTheProcessOfAssembly("bakery", 1);
         for (int i = 0; i <=MaxCountSlots; i++)
         {
-            Debug.Log(i);
-            GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+        Debug.Log(i);
+        GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
         }
-        
+        Debug.Log("OnEnable");
+        //AddInSlotSubject("bread","bakery", 0);
         //AddInSlotSubject("cowFeed", "feedMill1");
         //GetMissingIngredients("cowFeed");
         //Shipment("bakery");

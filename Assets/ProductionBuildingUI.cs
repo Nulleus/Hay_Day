@@ -139,103 +139,10 @@ public class ProductionBuildingUI : MonoBehaviour
             }
         }
     }
-
-    public void AddInSlotSubject(string subjectName, string productionBuildingName)//Метод добавления предмета в слоты
+    public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)//Метод добавления предмета в слоты
     {
-        // Проверяем, нужно ли выгрузить готовые предметы(Проверяется на сервере)
-        Debug.Log("AddInSlotSubject: " + subjectName);
-        Debug.Log("AddInSlotSubject(subjectName)" + subjectName);
-        Debug.Log("AddInSlotSubject(productionBuildingName)" + productionBuildingName);
-
-        //Количество открытых слотов у пользователя.
-        //int countOpenSlotsUser = Data.GetComponent<ProgressSlots>().GetOpenSlotsCount(productionBuildingName);
-        int openSlots = OpenSlots;
-        Debug.Log("AddInSlotSubject(countOpenSlotsUser)" + OpenSlots);
-        //Получаем количество занятых слотов по имени Родителя(т.е в данном случае производствнного здания)слоты отгрузки
-        int countOfOccupiedShipmentSlots = Data.GetComponent<Contents>().GetCountOfOccupiedShipmentSlotsByParentName(subjectName);
-        Debug.Log("AddInSlotSubject(countOfOccupiedShipmentSlots)" + countOfOccupiedShipmentSlots);
-        //Получаем значение открытых слотов пользователя по имени объекта
-        //int openSlots = Data.GetComponent<ProgressSlots>().GetOpenSlotsLoadingBySubjectName(productionBuildingName);
-        Debug.Log("AddInSlotSubject(openSlotsLoadingDefaults)" + openSlots);
-        //Если количество занятых слотов, больше,либо равно открытым слотам по дефолту
-        //Проверяем,сколько слотов занято производством
-        int countOfOccupiedLoadingSlots = Data.GetComponent<Contents>().GetCountOfOccupiedLoadingSlotsByParentName(subjectName);
-        Debug.Log("AddInSlotSubject(countOfOccupiedLoadingSlots)" + countOfOccupiedLoadingSlots);
-        //Если количество отгруженных товаров, превышает число дефолтных значений слотов отгрузки
-        if (countOfOccupiedShipmentSlots >= openSlots)
-        {
-            Debug.Log("Собери руду, чтобы продолжить добычу");
-            Debug.Log("Собери готовую продукцию, чтобы продолжить изготовление");//Пример заглушки, но нужно будет создать таблицу с данными.
-            return;
-        }
-        //Если количество загруженных в производство объектов>=открытых у пользователя 
-        if (countOfOccupiedLoadingSlots >= OpenSlots)
-        {
-            Debug.Log("Все слоты заняты! Подожди, ускорь или докупи ячейки!");
-            return;
-        }
-        //Если количество загруженных в производство объектов<открытых у пользователя 
-        if (countOfOccupiedLoadingSlots < OpenSlots)
-        {
-            Debug.Log("countOfOccupiedLoadingSlots < OpenSlots");
-            //Полуаем список ингредиентов (ингредиент, количество)
-            Dictionary<string, int> compositions = new Dictionary<string, int>();
-            //compositions = Data.GetComponent<Ingredients>().GetCompositions(subjectName);
-            int allPriceSubjects = 0; //Общая стоимость необходимых ингредиентов
-            //Запускаем цикл из ключей компонентов, объектов которых нехватает
-            foreach (KeyValuePair<string, int> composition in compositions)
-            {
-                //Key - название компонента, Value - значение
-                Console.WriteLine("Key = {0}, Value = {1}", composition.Key, composition.Value);
-                //Получаем идентификатор пользователя
-                int userID = 1; //Data.GetComponent<Users>().GetIDUser();
-                //Получаем количество ингредиентов на складе
-                //int subjectSum = Data.GetComponent<SubjectsSum>().GetSubjectSumCountByName(composition.Key, userID);
-                int subjectSum = 3;
-
-                //Проверяем, хватает ли ресурсов
-                //Если ингредиентов на складе меньше, чем нужно для изготовления
-                if (subjectSum < composition.Value)
-                {
-                    //Количество недостающих объектов
-                    int missSubjectCount = (composition.Value-subjectSum);
-                    //PanelFewResources.GetComponent<PanelFewResources>().ClearPanel();
-                    //Узнаем стоимость объекта в алмазах
-                    int priceSubject = (Data.GetComponent<PriceSubjects>().GetPriceDiamondsByNameSubject(composition.Key) * missSubjectCount);
-                    //Прибавляем стоимость
-                    allPriceSubjects += priceSubject;
-                    Debug.Log("Стоимость предмета в сумме=" + priceSubject);
-                    Debug.Log("Стоимость всех предметов=" + allPriceSubjects);
-                    //Display.displays[1].Activate();
-                    PanelFewResources.SetActive(true);
-                    PanelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(composition.Key, missSubjectCount);
-
-                    //PanelFewResources.GetComponent<PanelFewResources>().
-                    //Считаем сколько именно не хватает ингредиентов.
-                    Debug.Log("Не хватает:" + (composition.Value - subjectSum).ToString());
-                    //Рассчитываем каких и сколько не хватает ингредиентов и предлагаем их купить за алмазы.
-                    //Для этого лучше создать класс?
-                }
-            }
-            //Если ресурсов не хватает, передаем информацию в панель покупки ресурсов, чтобы там посчитать стоимость
-            PanelFewResources.GetComponent<PanelFewResources>().SetButtonBuyTextCount(allPriceSubjects);
-            //Предварительно очищаем панель ресурсов
-            PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
-            PanelFewResourcesBox.SetActive(true);
-            Debug.Log(" PanelFewResourcesBox.SetActive(true);");
-            //Тут ожидаем решение от пользователя
-            StartCoroutine(Cutscene());
-
-            //Если пользователь выбрал покупку за алмазы
-            //Процесс покупки за алмазы и проверка хватает ли ему алмазов.
-            //Если всего хватает, запускаем выбранный предмет в производство
-            //Закрываем панель
-            //PanelFewResourcesBox.SetActive(false);
-            //Напрямую не удалятьPanelFewResourcesBox.SetActive(false);
-            //Узнаем и указываем стоимость компонентов
-
-            //Загружаем новый объект в производство
-        }
+        ///Метод нужен для визуализации и обновления других участников при добавлении в производство
+        gameObject.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectName, productionBuildingName, ignoreQuestion);
     }
 
     //Ожидание выбора действия от пользователя

@@ -17,11 +17,14 @@ public class Slot : MonoBehaviour
     //Загружаем все доступные (открытые по уровню пользователя предметы) по номеру слота
     public void GetOpenSubjectsBySlotNumber()
     {
+        Predmet = ProductionBuildingParent.GetComponent<ParentsAndChilds>().Childs[NumberSlotPredmet];
+        Debug.Log(Predmet);
+    }
+    void DisplaySubjects()
+    {
         Animator anim;
         anim = GetComponent<Animator>();
-        //Неправильно, исправить
-        Debug.Log(ProductionBuildingParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlotPredmet]);
-        anim.CrossFade(ProductionBuildingParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlotPredmet], 0);
+        anim.CrossFade(Predmet, 0);
     }
     private void Start()
     {
@@ -30,6 +33,7 @@ public class Slot : MonoBehaviour
     private void OnEnable()
     {
         GetOpenSubjectsBySlotNumber();
+        DisplaySubjects();
     }
 
     void OnMouseUp()//Когда отпускаешь кнопку
@@ -61,26 +65,26 @@ public class Slot : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {
-        string productionBuilding = other.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
-        Debug.Log("other:" + productionBuilding);//Кто столкнулся
-        Debug.Log("gameObject:" + gameObject.name);//С кем столкнулся
+        //Проверяем, чтобы родитель был один и тот же
+        //string productionBuilding = other.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+        string parentOther = other.gameObject.GetComponent<SlotLoadingFrame>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+        string parent = gameObject.GetComponent<Slot>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+        int ignoreQuestion = 0;
+        Debug.Log("parentOther:" + parentOther);//Другой
+        Debug.Log("parent:" + parent);//С кем столкнулся
         //Тут написать проверку на существование объекта
         //(тут надо переписать))
-        if (other.gameObject.GetComponent<SlotLoading>().GetComponent<ProductionBuildingUI>().NameSystem == SubjectParentName) 
+        if (parentOther == parent) 
         {
+            Debug.Log("if (parentOther == parent)");
             MousedragBlockOn = true;
             gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
             //Запускаем производство
-            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, productionBuilding);
+            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, parent, ignoreQuestion);
         }
 
             //bakery.add_in_slot_predmet("bread");
        
     }
-    void DisplaySubjects(int numberSlot)
-    {
 
-        string s = ProductionBuildingParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[numberSlot];
-        Debug.Log(s);
-    }
 }

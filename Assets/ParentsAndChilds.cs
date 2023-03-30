@@ -166,6 +166,8 @@ public class ParentsAndChilds : MonoBehaviour
     public string SubjectParentName;
     //Номер слота по которому будет вестись поиск в БД
     public int number;
+    //Должно расчитываться от уровня пользователя
+    public int OpenSubjectChilds;
 
     private void Start()
     {
@@ -174,7 +176,12 @@ public class ParentsAndChilds : MonoBehaviour
 
     private void OnEnable()
     {
-        GetSubjectChildNameByNumber(SubjectParentName, number);
+        //GetSubjectChildNameByNumber(SubjectParentName, number);
+        for (int i = 0; i <= OpenSubjectChilds; i++)
+        {
+            Debug.Log(i);
+            GetSubjectChildNameByNumber(SubjectParentName, i);
+        }
     }
 
 }
