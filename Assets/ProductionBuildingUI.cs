@@ -25,7 +25,7 @@ public class ProductionBuildingUI : MonoBehaviour
     Vector3 PrimaryPosition;
     string Temp;
     public Coroutine UserWaitingCoroutine; //Ожидание пользователя
-    private bool IsMoveModeOn = false;
+    public bool IsMoveModeOn = false;
     private bool IsCollisionMoveModeOn = false;
     private int Count = 0;
     private bool IsCountOn = false;
@@ -57,6 +57,7 @@ public class ProductionBuildingUI : MonoBehaviour
 
     public void FlipObject()
     {
+        Debug.Log("FlipObject()");
         if (gameObject.GetComponent<SpriteRenderer>().flipX) {gameObject.GetComponent<SpriteRenderer>().flipX = false; }
         if (gameObject.GetComponent<SpriteRenderer>().flipX == false) {gameObject.GetComponent<SpriteRenderer>().flipX = true; }
     }

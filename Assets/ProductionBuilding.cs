@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 
 public class ProductionBuilding : MonoBehaviour
 {
+    
     private void LogMessage(string title, string message)
     {
 #if UNITY_EDITOR
@@ -27,13 +28,16 @@ public class ProductionBuilding : MonoBehaviour
     [ShowInInspector]
     public List<MissingIngredient> MissingIngredients;
     public GameObject Data;
-    [SerializeField]
+    [ShowInInspector]
     public string SubjectName;
 
     public int MaxCountSlots;
     //Имя находящегося в производстве предмета
     public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
-
+    [ShowInInspector]
+    public int AllCost;
+    [ShowInInspector]
+    public Dictionary<string, string> ResponseFromRequests = new Dictionary<string, string>();
     [Serializable]
     public class POSTBuySubjectForDiamonds
     {
@@ -155,8 +159,9 @@ public class ProductionBuilding : MonoBehaviour
             productionBuildingName = productionBuildingName,
             ignoreQuestion = ignoreQuestion
         }).Then(response => {
-            EditorUtility.DisplayDialog("code: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+            ResponseFromRequests.Add(response.code, response.message);
+            //EditorUtility.DisplayDialog("code: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
     [Serializable]

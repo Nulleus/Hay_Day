@@ -30,9 +30,13 @@ public class ButtonScript : MonoBehaviour
         switch (AppointmentButton)
         {
             case "ObjectFlipX":
-                Debug.Log("pressed ObjectFlipX ");
-                if (GameObjectOperand.gameObject.GetComponent<SpriteRenderer>().flipX) { GameObjectOperand.gameObject.GetComponent<SpriteRenderer>().flipX = false; }
-                if (GameObjectOperand.gameObject.GetComponent<SpriteRenderer>().flipX==false) { GameObjectOperand.gameObject.GetComponent<SpriteRenderer>().flipX = true; }                 
+                Debug.Log("pressed ObjectFlipX");
+                if (GameObjectOperand.GetComponent<SpriteRenderer>().flipX) { GameObjectOperand.GetComponent<SpriteRenderer>().flipX = false; return; }
+                if (GameObjectOperand.GetComponent<SpriteRenderer>().flipX==false) { GameObjectOperand.GetComponent<SpriteRenderer>().flipX = true; return; }                 
+                break;
+            case "MoveOff":
+                Debug.Log("pressed MoveOff");
+                GameObjectOperand.gameObject.GetComponent<ProductionBuildingUI>().IsMoveModeOn = false;
                 break;
             case "buyForDaemonds":
                 Debug.Log("pressed buyForDaemonds");

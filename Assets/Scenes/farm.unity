@@ -12698,6 +12698,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  AllCost: 0
 --- !u!1001 &353911195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13384,6 +13385,7 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
+  IsMoveModeOn: 0
   Collider: {fileID: 1663979554}
   Arrow: {fileID: 369674368}
   SlotsPanel: {fileID: 930103544}
@@ -13402,7 +13404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissingIngredients: []
+  MissingIngredients:
+  - ingredient_name: 
+    count_ingredients: 0
   Data: {fileID: 1866044566}
   SubjectName: bakery
   MaxCountSlots: 9
@@ -13416,6 +13420,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  AllCost: 0
 --- !u!114 &364160158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24389,6 +24394,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  AllCost: 0
 --- !u!1001 &710691647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44123,6 +44129,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  AllCost: 0
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -55549,6 +55556,7 @@ GameObject:
   - component: {fileID: 1680122851}
   - component: {fileID: 1680122850}
   - component: {fileID: 1680122849}
+  - component: {fileID: 1680122852}
   m_Layer: 0
   m_Name: ButtonMoveOff
   m_TagString: Untagged
@@ -55675,6 +55683,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1680122852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680122847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AppointmentButton: MoveOff
+  GameObjectOperand: {fileID: 364160149}
+  ButtonText: {fileID: 0}
 --- !u!1 &1686072009
 GameObject:
   m_ObjectHideFlags: 0
@@ -61073,6 +61096,7 @@ MonoBehaviour:
   SubjectName: cowFeed
   MaxCountSlots: 0
   SubjectsChildInTheProcessOfAssembly: []
+  AllCost: 0
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -63677,6 +63701,7 @@ GameObject:
   - component: {fileID: 1943750420}
   - component: {fileID: 1943750419}
   - component: {fileID: 1943750422}
+  - component: {fileID: 1943750423}
   m_Layer: 0
   m_Name: ButtonFlip
   m_TagString: Untagged
@@ -63810,7 +63835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943750417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -63859,6 +63884,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1943750423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943750417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AppointmentButton: ObjectFlipX
+  GameObjectOperand: {fileID: 364160149}
+  ButtonText: {fileID: 0}
 --- !u!1 &1945416570
 GameObject:
   m_ObjectHideFlags: 0

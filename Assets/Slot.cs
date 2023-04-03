@@ -79,8 +79,10 @@ public class Slot : MonoBehaviour
             Debug.Log("if (parentOther == parent)");
             MousedragBlockOn = true;
             gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
+            
             //Запускаем производство
             ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, parent, ignoreQuestion);
+
         }
 
             //bakery.add_in_slot_predmet("bread");
