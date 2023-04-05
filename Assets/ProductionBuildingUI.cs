@@ -144,8 +144,8 @@ public class ProductionBuildingUI : MonoBehaviour
     {
         ///Метод нужен для визуализации и обновления других участников при добавлении в производство
         gameObject.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectName, productionBuildingName, ignoreQuestion);
+        
     }
-
     //Ожидание выбора действия от пользователя
     IEnumerator Cutscene()
     {

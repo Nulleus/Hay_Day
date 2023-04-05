@@ -14,9 +14,9 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+
 public class ProductionBuilding : MonoBehaviour
 {
-    
     private void LogMessage(string title, string message)
     {
 #if UNITY_EDITOR
@@ -38,6 +38,8 @@ public class ProductionBuilding : MonoBehaviour
     public int AllCost;
     [ShowInInspector]
     public Dictionary<string, string> ResponseFromRequests = new Dictionary<string, string>();
+    //public ExtendedDictonary<string, string> ResponseFromRequests = new ExtendedDictonary<string, string>();
+
     [Serializable]
     public class POSTBuySubjectForDiamonds
     {
@@ -148,6 +150,18 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
+    public void CheckResponseFromRequests()
+    {
+        foreach (var spisok in ResponseFromRequests)
+        {
+            if (spisok.Key == "0x0000003")
+            {
+                //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources
+                Debug.Log(spisok.Value);
+            }
+            Console.WriteLine($"key: {spisok.Key}  value: {spisok.Value}");
+        }
+    }
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
     {
         Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
@@ -160,6 +174,7 @@ public class ProductionBuilding : MonoBehaviour
             ignoreQuestion = ignoreQuestion
         }).Then(response => {
             ResponseFromRequests.Add(response.code, response.message);
+            CheckResponseFromRequests();
             //EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
@@ -186,6 +201,10 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
+        //ResponseFromRequests.AddItem("p", "w");
+        //ResponseFromRequests.ValueChanged += new EventHandler(DictonaryOnValuedChanged);
+        //DicMemory.AddItem("Hai", "on");
+        //DicMemory.AddItem("Hai1", "on");
         //GetSubjectChildInTheProcessOfAssembly("bakery", 1);
         for (int i = 0; i <=MaxCountSlots; i++)
         {
@@ -198,11 +217,20 @@ public class ProductionBuilding : MonoBehaviour
         //GetMissingIngredients("cowFeed");
         //Shipment("bakery");
     }
+    private void DictonaryOnValuedChanged(System.Object sender, EventArgs e)
+    {
+        //string test = sender.ToString();
+        Debug.Log("В список добавили значение");
+        foreach (var spisok in ResponseFromRequests)
+        {
+            Console.WriteLine($"key: {spisok.Key}  value: {spisok.Value}");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     // Start is called before the first frame update
     void Start()
