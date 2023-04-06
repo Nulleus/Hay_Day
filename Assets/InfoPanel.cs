@@ -19,15 +19,15 @@ public class InfoPanel : MonoBehaviour
     }
     public void SetNameText()
     {
-        Name.GetComponent<Text>().text = Data.GetComponent<Translit>().GetNameRUSByNameObject(SubjectName);
+        //Name.GetComponent<Text>().text = Data.GetComponent<Translit>().GetNameRUSByNameObject(SubjectName);
     }
     public void SetInfoText()
     {
-        Info.GetComponent<Text>().text = Data.GetComponent<Translit>().GetDescriptionRUSByNameObject(SubjectName);
+        //Info.GetComponent<Text>().text = Data.GetComponent<Translit>().GetDescriptionRUSByNameObject(SubjectName);
     }
     public void SetTimeBuildingText()
     {
-        BuildingTime.GetComponent<Text>().text = Data.GetComponent<Translit>().GetTimeBuildingRUSByNameObject(SubjectName); ;
+        //BuildingTime.GetComponent<Text>().text = Data.GetComponent<Translit>().GetTimeBuildingRUSByNameObject(SubjectName); ;
     }
     
     void Start()

@@ -24,6 +24,10 @@ public class CloneObject : MonoBehaviour
 
 
     }
+    private void OnEnable()
+    {
+        
+    }
 
     // Update is called once per frame
     public void Clone(string subjectName, int subjectCount)

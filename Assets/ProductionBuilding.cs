@@ -150,16 +150,30 @@ public class ProductionBuilding : MonoBehaviour
             EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
-    public void CheckResponseFromRequests()
+    public void CheckResponseFromRequests(string subjectNameForBuilding)
     {
-        foreach (var spisok in ResponseFromRequests)
+        foreach (var spisokResponseFromRequests in ResponseFromRequests)
         {
-            if (spisok.Key == "0x0000003")
+            //Если нехватает ингредиентов
+            if (spisokResponseFromRequests.Key == "0x0000003")
             {
-                //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources
-                Debug.Log(spisok.Value);
+                
+                GameObject panelFewResourcesBox = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
+                GameObject panelFewResources = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources;
+                panelFewResourcesBox.SetActive(true);
+                panelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectNameForBuilding;
+                GetMissingIngredients(subjectNameForBuilding);
+                Debug.Log(subjectNameForBuilding);
+                panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
+                var range = MissingIngredients.GetRange(1,1);
+                // копируем в массив первые три элемента
+                MissingIngredient[] partOfPeople = new MissingIngredient[3];
+                MissingIngredients.CopyTo(0, partOfPeople, 0, 3);
+                panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(partOfPeople[0].ingredient_name, partOfPeople[0].count_ingredients);
+                panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount("wheat", 2);
+                Debug.Log(spisokResponseFromRequests.Value);
             }
-            Console.WriteLine($"key: {spisok.Key}  value: {spisok.Value}");
+            Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
         }
     }
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
@@ -174,7 +188,7 @@ public class ProductionBuilding : MonoBehaviour
             ignoreQuestion = ignoreQuestion
         }).Then(response => {
             ResponseFromRequests.Add(response.code, response.message);
-            CheckResponseFromRequests();
+            CheckResponseFromRequests(subjectName);
             //EditorUtility.DisplayDialog("code: ", response.message, "Ok");
             //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
@@ -192,7 +206,7 @@ public class ProductionBuilding : MonoBehaviour
     [Serializable]
     public class RootMissingIngredient
     {
-        public List<MissingIngredient> MissingIngredients;
+        public List<MissingIngredient> missingIngredients;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -216,15 +230,6 @@ public class ProductionBuilding : MonoBehaviour
         //AddInSlotSubject("cowFeed", "feedMill1");
         //GetMissingIngredients("cowFeed");
         //Shipment("bakery");
-    }
-    private void DictonaryOnValuedChanged(System.Object sender, EventArgs e)
-    {
-        //string test = sender.ToString();
-        Debug.Log("В список добавили значение");
-        foreach (var spisok in ResponseFromRequests)
-        {
-            Console.WriteLine($"key: {spisok.Key}  value: {spisok.Value}");
-        }
     }
 
     // Update is called once per frame
@@ -257,7 +262,8 @@ public class ProductionBuilding : MonoBehaviour
         .Then(res => {
             // later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();
-            MissingIngredients = res.MissingIngredients;
+            Debug.Log(res.missingIngredients);
+            MissingIngredients = res.missingIngredients;            
         })
         .Catch(err => this.LogMessage("Error", err.Message));
     }
@@ -299,5 +305,6 @@ public class ProductionBuilding : MonoBehaviour
         })
         .Catch(err => this.LogMessage("Error", err.Message));
     }
+    
 
 }

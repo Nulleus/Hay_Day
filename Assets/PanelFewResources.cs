@@ -11,6 +11,11 @@ public class PanelFewResources : MonoBehaviour
     public GameObject ButtonBuy;
     public int AllPriceSubjectsSum; //Стоимость всех объектов для покупки основного
     public string UserActionSelection; //Выбор действия пользователем, например покупка, отмена
+    //Имя предмета, который мы хотим произвести, но нехватает ингредиентов
+    public string SubjectNameForBuilding;
+    [ShowInInspector]
+    
+    public List<ProductionBuilding.MissingIngredient> MissingIngredients;
 
     //Необходимы объекты
     // Start is called before the first frame update
@@ -42,7 +47,7 @@ public class PanelFewResources : MonoBehaviour
     void Start()
     {
         //Перенести это в метод, который будет вызывать панель
-        //AddSubjectAndCount("wheat", 8);
+        
         //AddSubjectAndCount("corn", 5);
         /*foreach (KeyValuePair<string, int> kvpSubjectAndCount in SubjectAndCount)
         {
@@ -58,5 +63,12 @@ public class PanelFewResources : MonoBehaviour
     void Update()
     {
         
+    }
+    public void OnEnable()
+    {
+        ProductionBuilding.MissingIngredient[] partOfPeople = new ProductionBuilding.MissingIngredient[3];
+        MissingIngredients.CopyTo(0, partOfPeople, 0, 1);
+        AddSubjectAndCount(partOfPeople[0].ingredient_name, partOfPeople[0].count_ingredients);
+        //AddSubjectAndCount("wheat", 8);
     }
 }
