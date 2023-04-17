@@ -13,7 +13,7 @@ using System.Text;
 using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using UnityEngine.UI;
 
 public class ProductionBuilding : MonoBehaviour
 {
@@ -34,12 +34,63 @@ public class ProductionBuilding : MonoBehaviour
     public int MaxCountSlots;
     //Имя находящегося в производстве предмета
     public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
+    //Общая стоимость предметов за алмазы
     [ShowInInspector]
     public int AllCost;
     [ShowInInspector]
     public Dictionary<string, string> ResponseFromRequests = new Dictionary<string, string>();
-    //public ExtendedDictonary<string, string> ResponseFromRequests = new ExtendedDictonary<string, string>();
+    //Имя объекта в переводе
+    public string TranslateName;
+    //Описание объекта в переводе
+    public string TranslateDiscription;
+    //Время производства в переводе
+    public string TranslateTimeBuilding;
 
+    //public ExtendedDictonary<string, string> ResponseFromRequests = new ExtendedDictonary<string, string>();
+    //GetTranslateInfoRUS
+    [Serializable]
+    public class POSTGetTranslateInfoRU
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public string languageName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetTranslateInfoRU
+    {
+        public string nameRU;
+        public string discriptionRU;
+        public string timeBuildingRU;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTGetAllCost
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseGetAllCost
+    {
+        public int allCost;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     [Serializable]
     public class POSTBuySubjectForDiamonds
     {
@@ -146,32 +197,40 @@ public class ProductionBuilding : MonoBehaviour
             methodName = "BuySubjectForDiamonds",
             subjectName = subjectName
         }).Then(response => {
-            EditorUtility.DisplayDialog("code: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+            if (!ResponseFromRequests.ContainsKey(response.code))
+            {
+                ResponseFromRequests.Add(response.code, response.message);
+            }
+            CheckResponseFromRequests(subjectName);
         });
     }
     public void CheckResponseFromRequests(string subjectNameForBuilding)
     {
+        Debug.Log("CheckResponseFromRequests");
         foreach (var spisokResponseFromRequests in ResponseFromRequests)
         {
             //Если нехватает ингредиентов
             if (spisokResponseFromRequests.Key == "0x0000003")
             {
-                
+                GetMissingIngredients(subjectNameForBuilding);
+                GetAllCost(subjectNameForBuilding);
+                GetTranslateInfoRUS(subjectNameForBuilding);
+                Debug.Log("0x0000003");
                 GameObject panelFewResourcesBox = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
                 GameObject panelFewResources = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources;
                 panelFewResourcesBox.SetActive(true);
                 panelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectNameForBuilding;
-                GetMissingIngredients(subjectNameForBuilding);
-                Debug.Log(subjectNameForBuilding);
+                
+                //Debug.Log(subjectNameForBuilding);
                 panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
-                var range = MissingIngredients.GetRange(1,1);
+                //var range = MissingIngredients.GetRange(1,1);
                 // копируем в массив первые три элемента
-                MissingIngredient[] partOfPeople = new MissingIngredient[3];
-                MissingIngredients.CopyTo(0, partOfPeople, 0, 3);
-                panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(partOfPeople[0].ingredient_name, partOfPeople[0].count_ingredients);
-                panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount("wheat", 2);
-                Debug.Log(spisokResponseFromRequests.Value);
+                //MissingIngredient[] partOfPeople = new MissingIngredient[3];
+                //issingIngredients.CopyTo(0, partOfPeople, 0, 3);
+                //panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(partOfPeople[0].ingredient_name, partOfPeople[0].count_ingredients);
+                //panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount("wheat", 2);
+                //Debug.Log(spisokResponseFromRequests.Value);
+                ResponseFromRequests.Remove("0x0000003");
             }
             Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
         }
@@ -187,10 +246,11 @@ public class ProductionBuilding : MonoBehaviour
             productionBuildingName = productionBuildingName,
             ignoreQuestion = ignoreQuestion
         }).Then(response => {
-            ResponseFromRequests.Add(response.code, response.message);
+            if (!ResponseFromRequests.ContainsKey(response.code))
+            {
+                ResponseFromRequests.Add(response.code, response.message);                
+            }
             CheckResponseFromRequests(subjectName);
-            //EditorUtility.DisplayDialog("code: ", response.message, "Ok");
-            //EditorUtility.DisplayDialog("message: ", response.code, "Ok");
         });
     }
     [Serializable]
@@ -215,21 +275,12 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        //ResponseFromRequests.AddItem("p", "w");
-        //ResponseFromRequests.ValueChanged += new EventHandler(DictonaryOnValuedChanged);
-        //DicMemory.AddItem("Hai", "on");
-        //DicMemory.AddItem("Hai1", "on");
-        //GetSubjectChildInTheProcessOfAssembly("bakery", 1);
         for (int i = 0; i <=MaxCountSlots; i++)
         {
         Debug.Log(i);
         GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
         }
         Debug.Log("OnEnable");
-        //AddInSlotSubject("bread","bakery", 0);
-        //AddInSlotSubject("cowFeed", "feedMill1");
-        //GetMissingIngredients("cowFeed");
-        //Shipment("bakery");
     }
 
     // Update is called once per frame
@@ -242,9 +293,37 @@ public class ProductionBuilding : MonoBehaviour
     {
         
     }
+    public void GetAllCost(string subjectName)
+    {
+        RestClient.Post<ResponseGetAllCost>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetAllCost
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetAllCost",
+            subjectName = subjectName
+        }).Then(response => {
+            //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().AllCost = response.allCost;
+            AllCost = response.allCost;
+        });
+    }
+    public void GetTranslateInfoRUS(string subjectName)
+    {
+        RestClient.Post<ResponseGetTranslateInfoRU>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetTranslateInfo",
+            languageName = "RU",
+            subjectName = subjectName
+        }).Then(response => {
+            TranslateName = response.nameRU;
+            TranslateDiscription = response.discriptionRU;
+            TranslateTimeBuilding = response.timeBuildingRU;
+        });
+    }
 
     public void GetMissingIngredients(string subjectName)
     {
+        MissingIngredients.Clear();
+        //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().MissingIngredients.Clear();
         string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
         RequestHelper currentRequest;
         currentRequest = new RequestHelper
@@ -263,7 +342,8 @@ public class ProductionBuilding : MonoBehaviour
             // later we can clear the default query string params for all requests
             RestClient.ClearDefaultParams();
             Debug.Log(res.missingIngredients);
-            MissingIngredients = res.missingIngredients;            
+            //MissingIngredients = res.missingIngredients;
+            MissingIngredients = res.missingIngredients;
         })
         .Catch(err => this.LogMessage("Error", err.Message));
     }
@@ -275,8 +355,11 @@ public class ProductionBuilding : MonoBehaviour
             methodName = "Shipment",
             subjectParentName = subjectParentName
         }).Then(response => {
-            EditorUtility.DisplayDialog("code: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("message: ", response.code, "Ok");
+            if (!ResponseFromRequests.ContainsKey(response.code))
+            {
+                ResponseFromRequests.Add(response.code, response.message);
+            }
+            CheckResponseFromRequests(subjectParentName);
         });
     }
     //SubjectChildInTheProcessOfAssembly
