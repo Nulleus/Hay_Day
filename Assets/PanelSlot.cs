@@ -24,6 +24,8 @@ public class PanelSlot : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         Debug.Log("Anim = GetComponent<Animator>();");
+        InfoPanel = gameObject.transform.Find("InfoPanel").gameObject;
+        Quantity = gameObject.transform.Find("Quantity").gameObject;
     }
     public void SetQuantity(int number)
     {

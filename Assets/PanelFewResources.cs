@@ -36,7 +36,7 @@ public class PanelFewResources : MonoBehaviour
     }
     public void CleanerPanel()
     {
-        PanelSlots.GetComponent<CloneObject>().DeleteClones();
+        PanelSlots.GetComponent<PanelSlots>().DeleteClones();
         SubjectNameForBuilding = "";
         MissingIngredients.Clear();
         CheckResponseMissingIngredients = true;
@@ -50,7 +50,7 @@ public class PanelFewResources : MonoBehaviour
     public void AddSubjectAndCount(string subjectName, int subjectCount)
     {
         //SubjectAndCount.Add(subjecName, subjectCount);
-        PanelSlots.GetComponent<CloneObject>().Clone(subjectName, subjectCount);
+        PanelSlots.GetComponent<PanelSlots>().Clone(subjectName, subjectCount);
     }
     private void OnDisable()
     {
@@ -72,6 +72,11 @@ public class PanelFewResources : MonoBehaviour
     }
 
     // Update is called once per frame
+    public void Show()
+    {
+        gameObject.SetActive(true);
+
+    }
     void Update()
     {
         if (CheckResponseAllCost)

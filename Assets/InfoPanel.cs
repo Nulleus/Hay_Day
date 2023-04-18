@@ -40,5 +40,11 @@ public class InfoPanel : MonoBehaviour
     {
         
     }
+    private void Awake()
+    {
+        Name = gameObject.transform.Find("Name").gameObject;
+        Info = gameObject.transform.Find("Info").gameObject;
+        BuildingTime = gameObject.transform.Find("BuildingTime").gameObject;
+    }
 
 }

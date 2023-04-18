@@ -3010,6 +3010,8 @@ MonoBehaviour:
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!1 &90275374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,6 +3386,8 @@ MonoBehaviour:
   AppointmentButton: close
   GameObjectOperand: {fileID: 376943456}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!50 &96392920
 Rigidbody2D:
   serializedVersion: 4
@@ -24795,6 +24799,8 @@ MonoBehaviour:
   AppointmentButton: close
   GameObjectOperand: {fileID: 1480700592}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!50 &717748018
 Rigidbody2D:
   serializedVersion: 4
@@ -26036,6 +26042,8 @@ MonoBehaviour:
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 775015347}
   ButtonText: {fileID: 1890771605}
+  ButtonImage: {fileID: 360852767}
+  ButtonTextInfo: {fileID: 1284615880}
 --- !u!50 &754866959
 Rigidbody2D:
   serializedVersion: 4
@@ -32223,6 +32231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905928201}
   - component: {fileID: 905928202}
+  - component: {fileID: 905928203}
   m_Layer: 0
   m_Name: PanelSlots
   m_TagString: Untagged
@@ -32268,6 +32277,18 @@ MonoBehaviour:
   PositionCloneEnd: {x: 0, y: 0, z: 0}
   ParentObject: {fileID: 905928200}
   offsetX: 1
+--- !u!114 &905928203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905928200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af05eac19b4797469899d5427cf2810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &909024455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42115,6 +42136,8 @@ MonoBehaviour:
   AppointmentButton: close
   GameObjectOperand: {fileID: 788940115}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!50 &1283257544
 Rigidbody2D:
   serializedVersion: 4
@@ -44017,6 +44040,8 @@ MonoBehaviour:
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 609472589}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!50 &1320730920
 Rigidbody2D:
   serializedVersion: 4
@@ -55873,6 +55898,8 @@ MonoBehaviour:
   AppointmentButton: MoveOff
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!1 &1686072009
 GameObject:
   m_ObjectHideFlags: 0
@@ -61766,7 +61793,7 @@ GameObject:
   - component: {fileID: 1890771609}
   - component: {fileID: 1890771608}
   m_Layer: 0
-  m_Name: ButtonTextQuantity
+  m_Name: ButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64078,6 +64105,8 @@ MonoBehaviour:
   AppointmentButton: ObjectFlipX
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!1 &1945416570
 GameObject:
   m_ObjectHideFlags: 0
@@ -69394,6 +69423,8 @@ MonoBehaviour:
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
 --- !u!1 &2113815192
 GameObject:
   m_ObjectHideFlags: 0
