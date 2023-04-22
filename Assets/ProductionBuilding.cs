@@ -45,6 +45,23 @@ public class ProductionBuilding : MonoBehaviour
     //GetTranslateInfoRUS
     [ShowInInspector]
     public Dictionary<string, Translate> ResponsesTranslateInfoRUS = new Dictionary<string, Translate>();
+    [ShowInInspector]
+    //Дата следующего запуска обновления слотов производства
+    public DateTime DateNowPlusDifferenceDateInSeconds;
+
+
+    [Serializable]
+    public class POSTGetDifferenceDateInSeconds
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int numberSlot;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public class Translate
     {
         public string SubjectName;
@@ -113,7 +130,16 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    
+    [Serializable]
+    public class ResponseGetDifferenceDateInSeconds
+    {
+        
+        public int differenceDateInSeconds;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     [Serializable]
     public class ResponseBuySubjectForDiamonds
     {
@@ -286,14 +312,25 @@ public class ProductionBuilding : MonoBehaviour
     private void OnEnable()
     {
 
+        //Получаем время в секундах до выгрузки объекта 0, который находится в производстве 
+        GetDifferenceDateInSeconds(SubjectName, 0);
+        for (int i = 0; i <= MaxCountSlots; i++)
+        {
+            Debug.Log(i);
+            GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (CheckGetSubjectChildInTheProcessOfAssembly)
+        //Получаем текущую дату 
+        DateTime dateTimeNow = new DateTime();
+        dateTimeNow = DateTime.Now;
+
+        if ((CheckGetSubjectChildInTheProcessOfAssembly) && (dateTimeNow>=DateNowPlusDifferenceDateInSeconds))
         {
+            GetDifferenceDateInSeconds(SubjectName, 0);
             for (int i = 0; i <= MaxCountSlots; i++)
             {
                 Debug.Log(i);
@@ -305,6 +342,33 @@ public class ProductionBuilding : MonoBehaviour
     void Start()
     {
         
+    }
+    public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
+    {
+        Debug.Log("GetDifferenceDateInSeconds");
+        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetDifferenceDateInSeconds",
+            subjectParentName = subjectParentName,
+            numberSlot = numberSlot
+        }).Then(response => {
+
+            
+            //Получаем текущую дату 
+            DateTime dateTimeNow = new DateTime();
+            dateTimeNow = DateTime.Now;
+            DateNowPlusDifferenceDateInSeconds = dateTimeNow.AddSeconds(response.differenceDateInSeconds);
+            Debug.Log("DateNowPlusDifferenceDateInSeconds"+DateNowPlusDifferenceDateInSeconds);
+            if (dateTimeNow<=DateNowPlusDifferenceDateInSeconds)
+            {
+                CheckGetSubjectChildInTheProcessOfAssembly = false;
+            }
+            else
+            {
+                CheckGetSubjectChildInTheProcessOfAssembly = true;
+            }
+        });
     }
     public void GetAllCost(string subjectName)
     {

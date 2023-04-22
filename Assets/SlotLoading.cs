@@ -29,7 +29,8 @@ public class SlotLoading : MonoBehaviour
         anim.CrossFade(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
     }
 
-    // Update is called once per frame
+    // Up
+    // is called once per frame
     void Update()
     {
         if (CheckDisplayContents)
