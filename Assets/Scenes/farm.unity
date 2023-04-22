@@ -3007,6 +3007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}
@@ -3383,6 +3384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 376943456}
   ButtonText: {fileID: 0}
@@ -12505,7 +12507,6 @@ GameObject:
   - component: {fileID: 352746994}
   - component: {fileID: 352746993}
   - component: {fileID: 352746992}
-  - component: {fileID: 352746995}
   m_Layer: 0
   m_Name: SlotLoading
   m_TagString: Untagged
@@ -12625,9 +12626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 352746989}
   NumberSlot: 0
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!50 &352746993
 Rigidbody2D:
   serializedVersion: 4
@@ -12675,36 +12678,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &352746995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352746987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MissingIngredients: []
-  Data: {fileID: 1866044566}
-  SubjectName: bakery
-  MaxCountSlots: 8
-  SubjectsChildInTheProcessOfAssembly:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
 --- !u!1001 &353911195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13213,6 +13186,7 @@ GameObject:
   - component: {fileID: 364160156}
   - component: {fileID: 364160159}
   - component: {fileID: 364160158}
+  - component: {fileID: 364160160}
   m_Layer: 0
   m_Name: ProductionBuilding
   m_TagString: production_building
@@ -13453,9 +13427,19 @@ MonoBehaviour:
   - 
   - 
   AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
+  CheckGetSubjectChildInTheProcessOfAssembly: 0
+--- !u!114 &364160160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364160149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50eb4ecd59c741340991d6e61bcae1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -22338,9 +22322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 1
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &650161977
 GameObject:
   m_ObjectHideFlags: 0
@@ -24441,9 +24427,7 @@ MonoBehaviour:
   - 
   - 
   AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
+  CheckGetSubjectChildInTheProcessOfAssembly: 0
 --- !u!1001 &710691647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24796,6 +24780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 1480700592}
   ButtonText: {fileID: 0}
@@ -26039,6 +26024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 775015347}
   ButtonText: {fileID: 1890771605}
@@ -26979,7 +26965,6 @@ GameObject:
   - component: {fileID: 775015350}
   - component: {fileID: 775015349}
   - component: {fileID: 775015352}
-  - component: {fileID: 775015353}
   m_Layer: 0
   m_Name: PanelFewResources
   m_TagString: Untagged
@@ -27083,6 +27068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513e25c868ae189458c7f1f103c5f46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   PanelSlots: {fileID: 905928200}
   ButtonBuy: {fileID: 754866954}
   AllCost: 0
@@ -27093,37 +27079,6 @@ MonoBehaviour:
   MissingIngredients:
   - ingredient_name: 
     count_ingredients: 0
---- !u!114 &775015353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775015347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MissingIngredients: []
-  Data: {fileID: 1866044566}
-  SubjectName: 
-  MaxCountSlots: 0
-  SubjectsChildInTheProcessOfAssembly:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
 --- !u!1 &775661302
 GameObject:
   m_ObjectHideFlags: 0
@@ -31412,9 +31367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 7
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 0
 --- !u!1 &878455995
 GameObject:
   m_ObjectHideFlags: 0
@@ -32289,6 +32246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af05eac19b4797469899d5427cf2810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelSlot: []
 --- !u!1001 &909024455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35596,9 +35554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 4
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1014464726
 GameObject:
   m_ObjectHideFlags: 0
@@ -42133,6 +42093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   AppointmentButton: close
   GameObjectOperand: {fileID: 788940115}
   ButtonText: {fileID: 0}
@@ -44037,6 +43998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 609472589}
   ButtonText: {fileID: 0}
@@ -44327,9 +44289,7 @@ MonoBehaviour:
   - 
   - 
   AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
+  CheckGetSubjectChildInTheProcessOfAssembly: 0
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -44884,9 +44844,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 8
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 0
 --- !u!1 &1349204883
 GameObject:
   m_ObjectHideFlags: 0
@@ -50872,6 +50834,8 @@ MonoBehaviour:
   Anim: {fileID: 0}
   SubjectName: wheat
   Quantity: {fileID: 886965418}
+  CheckResponseTranslateRUS: 1
+  ProductionBuildingSendRequest: {fileID: 364160149}
 --- !u!1 &1545403221
 GameObject:
   m_ObjectHideFlags: 0
@@ -53153,9 +53117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 6
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 0
 --- !u!1 &1591081036
 GameObject:
   m_ObjectHideFlags: 0
@@ -55895,6 +55861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: MoveOff
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
@@ -59110,9 +59077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 2
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1819119385
 GameObject:
   m_ObjectHideFlags: 0
@@ -60582,9 +60551,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 5
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1859416719
 GameObject:
   m_ObjectHideFlags: 0
@@ -61288,9 +61259,7 @@ MonoBehaviour:
   MaxCountSlots: 0
   SubjectsChildInTheProcessOfAssembly: []
   AllCost: 0
-  TranslateName: 
-  TranslateDiscription: 
-  TranslateTimeBuilding: 
+  CheckGetSubjectChildInTheProcessOfAssembly: 0
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61687,9 +61656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa40a9bc2fbb8478d99a51609f1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
   Anim: {fileID: 0}
   NumberSlot: 3
   Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1882951423
 GameObject:
   m_ObjectHideFlags: 0
@@ -64102,6 +64073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: ObjectFlipX
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
@@ -69420,6 +69392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}

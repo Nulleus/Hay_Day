@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SlotLoading : MonoBehaviour
 {
+    //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
+    public GameObject ProductionBuildingSendRequest;
     public Animator Anim;//Анимация поля
     public int NumberSlot;
     public GameObject Data;
+    public bool CheckDisplayContents;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +24,18 @@ public class SlotLoading : MonoBehaviour
     {
         Animator anim;
         anim = GetComponent<Animator>();
-        Debug.Log(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
+        //Debug.Log(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
         //anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
-        anim.CrossFade(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
+        anim.CrossFade(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (CheckDisplayContents)
+        {
+            DisplayContents();
+        }
     }
     //Получаем имя объекта загруженного в производство
 

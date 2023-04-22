@@ -65,10 +65,10 @@ public class ProductionBuildingUI : MonoBehaviour
     {
 
     }
-
     // Update is called once per frame
     void Update()
     {
+        
         //Проверяем, активена ли панель со слотами
         if (SlotsPanel.activeSelf)
         {

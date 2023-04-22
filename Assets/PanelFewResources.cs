@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class PanelFewResources : MonoBehaviour
 {
-    [ShowInInspector]
+    //ќткуда ожидать ответа(объект, выполн€ющий запрос на сервер)
+    public GameObject ProductionBuildingSendRequest;
     //public Dictionary<string, int> SubjectAndCount = new Dictionary<string, int>();
     public GameObject PanelSlots;
     public GameObject ButtonBuy;
@@ -18,6 +19,7 @@ public class PanelFewResources : MonoBehaviour
     public bool CheckResponseMissingIngredients;
     //ќжидаем ответа на запрос общей стоимости в алмазах дл€ изготовлени€
     public bool CheckResponseAllCost;
+
     [ShowInInspector]
     
     public List<ProductionBuilding.MissingIngredient> MissingIngredients;
@@ -86,35 +88,54 @@ public class PanelFewResources : MonoBehaviour
                 
                 CheckResponseAllCost = false;
             }
+            AllCost = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AllCost;
             ButtonBuy.GetComponent<ButtonScript>().ButtonText.GetComponent<Text>().text = AllCost.ToString();
 
         }
         if (CheckResponseMissingIngredients)
         {
+            Debug.Log("MissingIngredients.Count"+MissingIngredients.Count);
             if (MissingIngredients.Count > 0)
             {
                 CheckResponseMissingIngredients = false;
+                //ѕолучаем количество ингредиентов в списке
+                int countIngredients = MissingIngredients.Count;
+                ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
+                // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
+                MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
+                for (int i = 0; i <= countIngredients; i++)
+                {
+                    Debug.Log("for ingredient_name" + i);
+                    //ќтправл€ем запрос на сервер чтобы получить информацию о недостающих предметах
+                    ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().GetTranslateInfoRUS(missingIngredient[i].ingredient_name);
+                    
+                }                              
             }
-            MissingIngredients = gameObject.GetComponent<ProductionBuilding>().MissingIngredients;
-            //ѕолучаем недостающие ингредиенты
-            //gameObject.GetComponent<ProductionBuilding>().GetMissingIngredients(SubjectNameForBuilding);
-            //ѕереносим список недостающих ингредиентов в этот модуль
-            //MissingIngredients = GOProductionBuilding.GetComponent<ProductionBuilding>().MissingIngredients;
-            //MissingIngredients = gameObject.GetComponent<ProductionBuilding>().MissingIngredients;
-            //ѕолучаем количество ингредиентов в списке
-            int countIngredients = MissingIngredients.Count;
-            //ћассив из недостающих ингредиентов
-            ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
-            // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
-            MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
-            //«аполним описание дл€ ингредиентов
-
-            for (int i = 0; i <= countIngredients; i++)
+            else
             {
-                Debug.Log(i);
-                AddSubjectAndCount(missingIngredient[i].ingredient_name, missingIngredient[i].count_ingredients);
+                MissingIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients;
+                //ѕолучаем недостающие ингредиенты
+                //gameObject.GetComponent<ProductionBuilding>().GetMissingIngredients(SubjectNameForBuilding);
+                //ѕереносим список недостающих ингредиентов в этот модуль
+                //MissingIngredients = GOProductionBuilding.GetComponent<ProductionBuilding>().MissingIngredients;
+                //MissingIngredients = gameObject.GetComponent<ProductionBuilding>().MissingIngredients;
+                //ѕолучаем количество ингредиентов в списке
+                int countIngredients = MissingIngredients.Count;
+                Debug.Log("countIngredients=" + countIngredients);
+                //ћассив из недостающих ингредиентов
+                ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
+                // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
+                MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
+                //«аполним описание дл€ ингредиентов
+
+                for (int i = 0; i <= countIngredients; i++)
+                {
+                    Debug.Log("for countIngredients" + i);
+                    AddSubjectAndCount(missingIngredient[i].ingredient_name, missingIngredient[i].count_ingredients);
+                }
+                //≈сли переменна€ пуста€ и проверка включена, пытаемс€ 
             }
-            //≈сли переменна€ пуста€ и проверка включена, пытаемс€ 
+
 
         }
 

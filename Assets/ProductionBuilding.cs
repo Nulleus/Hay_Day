@@ -39,15 +39,26 @@ public class ProductionBuilding : MonoBehaviour
     public int AllCost;
     [ShowInInspector]
     public Dictionary<string, string> ResponseFromRequests = new Dictionary<string, string>();
-    //Имя объекта в переводе
-    public string TranslateName;
-    //Описание объекта в переводе
-    public string TranslateDiscription;
-    //Время производства в переводе
-    public string TranslateTimeBuilding;
+    public bool CheckGetSubjectChildInTheProcessOfAssembly;
 
     //public ExtendedDictonary<string, string> ResponseFromRequests = new ExtendedDictonary<string, string>();
     //GetTranslateInfoRUS
+    [ShowInInspector]
+    public Dictionary<string, Translate> ResponsesTranslateInfoRUS = new Dictionary<string, Translate>();
+    public class Translate
+    {
+        public string SubjectName;
+        public string Name;
+        public string Discription;
+        public string TimeBuilding;
+        public Translate(string subjectName, string name, string discription, string timeBuilding)
+        {
+            SubjectName = subjectName;
+            Name = name;
+            Discription = discription;
+            TimeBuilding = timeBuilding;
+        }
+    }
     [Serializable]
     public class POSTGetTranslateInfoRU
     {
@@ -204,6 +215,7 @@ public class ProductionBuilding : MonoBehaviour
             CheckResponseFromRequests(subjectName);
         });
     }
+    //Проверяем ответ от сервера
     public void CheckResponseFromRequests(string subjectNameForBuilding)
     {
         Debug.Log("CheckResponseFromRequests");
@@ -212,24 +224,21 @@ public class ProductionBuilding : MonoBehaviour
             //Если нехватает ингредиентов
             if (spisokResponseFromRequests.Key == "0x0000003")
             {
+                //Отправляем запрос на сервер
+
                 GetMissingIngredients(subjectNameForBuilding);
+                //Отправляем запрос на сервер
                 GetAllCost(subjectNameForBuilding);
-                GetTranslateInfoRUS(subjectNameForBuilding);
+
                 Debug.Log("0x0000003");
                 GameObject panelFewResourcesBox = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
                 GameObject panelFewResources = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources;
                 panelFewResourcesBox.SetActive(true);
                 panelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectNameForBuilding;
-                
+
                 //Debug.Log(subjectNameForBuilding);
-                panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
-                //var range = MissingIngredients.GetRange(1,1);
-                // копируем в массив первые три элемента
-                //MissingIngredient[] partOfPeople = new MissingIngredient[3];
-                //issingIngredients.CopyTo(0, partOfPeople, 0, 3);
-                //panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(partOfPeople[0].ingredient_name, partOfPeople[0].count_ingredients);
-                //panelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount("wheat", 2);
-                //Debug.Log(spisokResponseFromRequests.Value);
+                //panelFewResources.GetComponent<PanelFewResources>().CheckResponseMissingIngredients = true;
+                //panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
                 ResponseFromRequests.Remove("0x0000003");
             }
             Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
@@ -253,6 +262,7 @@ public class ProductionBuilding : MonoBehaviour
             CheckResponseFromRequests(subjectName);
         });
     }
+
     [Serializable]
     public class MissingIngredient
     {
@@ -275,18 +285,21 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
-        for (int i = 0; i <=MaxCountSlots; i++)
-        {
-        Debug.Log(i);
-        GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
-        }
-        Debug.Log("OnEnable");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
+        if (CheckGetSubjectChildInTheProcessOfAssembly)
+        {
+            for (int i = 0; i <= MaxCountSlots; i++)
+            {
+                Debug.Log(i);
+                GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -295,6 +308,8 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void GetAllCost(string subjectName)
     {
+        Debug.Log("GetAllCost");
+        AllCost = 0;
         RestClient.Post<ResponseGetAllCost>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetAllCost
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
@@ -303,6 +318,7 @@ public class ProductionBuilding : MonoBehaviour
         }).Then(response => {
             //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().AllCost = response.allCost;
             AllCost = response.allCost;
+            Debug.Log("GetAllCostResponse"+response.allCost);
         });
     }
     public void GetTranslateInfoRUS(string subjectName)
@@ -314,9 +330,10 @@ public class ProductionBuilding : MonoBehaviour
             languageName = "RU",
             subjectName = subjectName
         }).Then(response => {
-            TranslateName = response.nameRU;
-            TranslateDiscription = response.discriptionRU;
-            TranslateTimeBuilding = response.timeBuildingRU;
+            ResponsesTranslateInfoRUS.Add(subjectName, new Translate(subjectName, response.nameRU, response.discriptionRU, response.timeBuildingRU));
+            //TranslateName = response.nameRU;
+            //TranslateDiscription = response.discriptionRU;
+            //TranslateTimeBuilding = response.timeBuildingRU;
         });
     }
 
@@ -366,27 +383,17 @@ public class ProductionBuilding : MonoBehaviour
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
-        string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
-        RequestHelper currentRequest;
-        currentRequest = new RequestHelper
+        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
         {
-            Uri = basePath,
-            Body = new POSTSubjectChildInTheProcessOfAssembly
-            {
-                jwt = Data.GetComponent<Users>().GetJWTToken(),
-                methodName = "GetSubjectChildInTheProcessOfAssembly",
-                subjectParentName = subjectParentName,
-                numberSlot = numberSlot
-            },
-            EnableDebug = true
-        };
-        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>(currentRequest)
-        .Then(res => {
-            // later we can clear the default query string params for all requests
-            RestClient.ClearDefaultParams();
-            SubjectsChildInTheProcessOfAssembly[numberSlot] = res.subjectChildInTheProcessOfAssembly;
-        })
-        .Catch(err => this.LogMessage("Error", err.Message));
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetSubjectChildInTheProcessOfAssembly",
+            subjectParentName = subjectParentName,
+            numberSlot = numberSlot
+        }).Then(response => {
+            SubjectsChildInTheProcessOfAssembly[numberSlot] = response.subjectChildInTheProcessOfAssembly;
+            Debug.Log("response.subjectChildInTheProcessOfAssembly" + response.subjectChildInTheProcessOfAssembly);
+        });
+
     }
     
 

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
+    //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
+    public GameObject ProductionBuildingSendRequest;
     public string AppointmentButton; //Назначение кнопки
     public GameObject GameObjectOperand;//Имя главного родительского объекта
     public GameObject ButtonText; //Текст на кнопке с количеством
@@ -57,10 +59,14 @@ public class ButtonScript : MonoBehaviour
                 break;
             case "buyForDaemonds":
                 Debug.Log("pressed buyForDaemonds");
-                    GameObjectOperand.GetComponent<PanelFewResources>().SetUserActionSelection(AppointmentButton);
-                    //Выбор пользователя был сделан
+                GameObjectOperand.GetComponent<PanelFewResources>().SetUserActionSelection(AppointmentButton);
+                //Выбор пользователя был сделан
+                string subjectNameForBuilding = GameObjectOperand.GetComponent<PanelFewResources>().SubjectNameForBuilding;
+                string productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;
 
-                    Debug.Log("Выбор пользователя: " + AppointmentButton);
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().BuySubjectForDiamond(subjectNameForBuilding);
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding,productionBuildingName,1);
+                Debug.Log("Выбор пользователя: " + AppointmentButton);
 
                 break;
             case "close":

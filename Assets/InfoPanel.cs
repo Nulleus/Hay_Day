@@ -11,28 +11,29 @@ public class InfoPanel : MonoBehaviour
     public string SubjectName;
     public GameObject Data;
     // Start is called before the first frame update
-    public void SetProperties()
+    //Присвоим значение свойствам
+    public void SetProperties(string name, string info, string timeBuilding)
     {
-        SetNameText();
-        SetInfoText();
-        SetTimeBuildingText();
+        SetNameText(name);
+        SetInfoText(info);
+        SetTimeBuildingText(timeBuilding);
     }
-    public void SetNameText()
+    public void SetNameText(string text)
     {
-        //Name.GetComponent<Text>().text = Data.GetComponent<Translit>().GetNameRUSByNameObject(SubjectName);
+        Name.GetComponent<Text>().text = text;
     }
-    public void SetInfoText()
+    public void SetInfoText(string text)
     {
-        //Info.GetComponent<Text>().text = Data.GetComponent<Translit>().GetDescriptionRUSByNameObject(SubjectName);
+        Info.GetComponent<Text>().text = text;
     }
-    public void SetTimeBuildingText()
+    public void SetTimeBuildingText(string text)
     {
-        //BuildingTime.GetComponent<Text>().text = Data.GetComponent<Translit>().GetTimeBuildingRUSByNameObject(SubjectName); ;
+        BuildingTime.GetComponent<Text>().text = text;
     }
     
     void Start()
     {
-        SetProperties();
+        //SetProperties();
     }
 
     // Update is called once per frame

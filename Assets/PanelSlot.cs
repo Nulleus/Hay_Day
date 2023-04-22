@@ -10,9 +10,12 @@ public class PanelSlot : MonoBehaviour
     public Animator Anim;
     public string SubjectName;
     public GameObject Quantity;
+    //Ожидаем ответа на запрос информации о предмете
+    public bool CheckResponseTranslateRUS;
     [SerializeField]
     //int Quantity;
-
+    //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
+    public GameObject ProductionBuildingSendRequest;
     public int GetQuantity()
     {
         return Convert.ToInt32(Quantity.GetComponent<Text>().text);
@@ -35,6 +38,26 @@ public class PanelSlot : MonoBehaviour
     {
 
     }
+    private void OnEnable()
+    {
+        CheckResponseTranslateRUS = true;
+    }
+    void Update()
+    {
+        if (CheckResponseTranslateRUS)
+        {
+            //Проверяем наличие ключа
+            if (ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS.ContainsKey(SubjectName))
+            {
+                var name = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].Name;
+                var discription = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].Discription;
+                var timeBuilding = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].TimeBuilding;
+                //Присваиваем значение
+                InfoPanel.GetComponent<InfoPanel>().SetProperties(name, discription, timeBuilding);
+                CheckResponseTranslateRUS = false;
+            }
+        }
+    }
 
     public void SetAnimaion(string subjectName) 
     {
@@ -55,7 +78,7 @@ public class PanelSlot : MonoBehaviour
     }
     void OnDisable()
     {
-
+        CheckResponseTranslateRUS = false;
         OnClear();
     }
 
