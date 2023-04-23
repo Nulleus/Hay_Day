@@ -13427,7 +13427,9 @@ MonoBehaviour:
   - 
   - 
   AllCost: 0
-  CheckGetSubjectChildInTheProcessOfAssembly: 0
+  CheckGetSubjectChildInTheProcessOfAssembly: 1
+  DateNowPlusDifferenceDateInSeconds: 0
+  CheckInBuilding: 0
 --- !u!114 &364160160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24428,6 +24430,8 @@ MonoBehaviour:
   - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
+  DateNowPlusDifferenceDateInSeconds: 0
+  CheckInBuilding: 0
 --- !u!1001 &710691647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44290,6 +44294,8 @@ MonoBehaviour:
   - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
+  DateNowPlusDifferenceDateInSeconds: 0
+  CheckInBuilding: 0
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -61260,6 +61266,8 @@ MonoBehaviour:
   SubjectsChildInTheProcessOfAssembly: []
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
+  DateNowPlusDifferenceDateInSeconds: 0
+  CheckInBuilding: 0
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0

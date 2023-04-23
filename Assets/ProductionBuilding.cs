@@ -47,8 +47,8 @@ public class ProductionBuilding : MonoBehaviour
     public Dictionary<string, Translate> ResponsesTranslateInfoRUS = new Dictionary<string, Translate>();
     [ShowInInspector]
     //Дата следующего запуска обновления слотов производства
-    public DateTime DateNowPlusDifferenceDateInSeconds;
-
+    public float DateNowPlusDifferenceDateInSeconds;
+    public bool CheckInBuilding;
 
     [Serializable]
     public class POSTGetDifferenceDateInSeconds
@@ -133,8 +133,9 @@ public class ProductionBuilding : MonoBehaviour
     [Serializable]
     public class ResponseGetDifferenceDateInSeconds
     {
-        
-        public int differenceDateInSeconds;
+
+        public string expiredDate;
+        public float differenceDateInSeconds;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -287,6 +288,7 @@ public class ProductionBuilding : MonoBehaviour
             }
             CheckResponseFromRequests(subjectName);
         });
+
     }
 
     [Serializable]
@@ -324,17 +326,33 @@ public class ProductionBuilding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Получаем текущую дату 
-        DateTime dateTimeNow = new DateTime();
-        dateTimeNow = DateTime.Now;
-
-        if ((CheckGetSubjectChildInTheProcessOfAssembly) && (dateTimeNow>=DateNowPlusDifferenceDateInSeconds))
+        //Если таймер не истек
+        if (DateNowPlusDifferenceDateInSeconds>0)
         {
-            GetDifferenceDateInSeconds(SubjectName, 0);
-            for (int i = 0; i <= MaxCountSlots; i++)
+            DateNowPlusDifferenceDateInSeconds -= Time.deltaTime;
+        }
+        //Если таймер истек
+        else
+        {            
+            //Если проверка включена
+            if (CheckGetSubjectChildInTheProcessOfAssembly)
             {
-                Debug.Log(i);
-                GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                if (CheckInBuilding)
+                {
+                    //Если в производстве есть предметы
+                }
+                //Если в производстве нет предметов, проверять не обязательно
+                else
+                {
+                    //Получаем 
+                    GetDifferenceDateInSeconds(SubjectName, 0);
+                    for (int i = 0; i <= MaxCountSlots; i++)
+                    {
+                        Debug.Log(i);
+                        GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                    }
+                }
+
             }
         }
     }
@@ -343,6 +361,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         
     }
+    //Получаем секунды до выгрузки первого объекта из производства
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
         Debug.Log("GetDifferenceDateInSeconds");
@@ -352,21 +371,22 @@ public class ProductionBuilding : MonoBehaviour
             methodName = "GetDifferenceDateInSeconds",
             subjectParentName = subjectParentName,
             numberSlot = numberSlot
-        }).Then(response => {
-
-            
-            //Получаем текущую дату 
-            DateTime dateTimeNow = new DateTime();
-            dateTimeNow = DateTime.Now;
-            DateNowPlusDifferenceDateInSeconds = dateTimeNow.AddSeconds(response.differenceDateInSeconds);
-            Debug.Log("DateNowPlusDifferenceDateInSeconds"+DateNowPlusDifferenceDateInSeconds);
-            if (dateTimeNow<=DateNowPlusDifferenceDateInSeconds)
+        }).Then(response => {           
+            //Если дата не просрочена, значит в производстве есть предметы
+            if (response.expiredDate=="no")
+            {
+                CheckInBuilding = true;
+                //Останавливаем после получения значения
+                CheckGetSubjectChildInTheProcessOfAssembly = false;
+                //Секунд до обновления слотов
+                DateNowPlusDifferenceDateInSeconds = response.differenceDateInSeconds;
+                Debug.Log("DateNowPlusDifferenceDateInSeconds" + DateNowPlusDifferenceDateInSeconds);
+            }
+            //Если дата просрочена, значит в производстве нет предметов по номеру этого слота
+            if (response.expiredDate == "yes")
             {
                 CheckGetSubjectChildInTheProcessOfAssembly = false;
-            }
-            else
-            {
-                CheckGetSubjectChildInTheProcessOfAssembly = true;
+                CheckInBuilding = false;
             }
         });
     }
