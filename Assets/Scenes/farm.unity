@@ -8144,7 +8144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110b6255cf18762429e919390985fbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProductionBuildingParent: {fileID: 0}
+  ProductionBuildingParent: {fileID: 364160149}
+  SecondsToText: 
 --- !u!4 &229391057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6470133935787667593, guid: e2f3dc85a144e0546b41bb4d0d14a902,
