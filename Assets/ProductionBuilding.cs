@@ -47,8 +47,9 @@ public class ProductionBuilding : MonoBehaviour
     public Dictionary<string, Translate> ResponsesTranslateInfoRUS = new Dictionary<string, Translate>();
     [ShowInInspector]
     //Дата следующего запуска обновления слотов производства
-    public float DateNowPlusDifferenceDateInSeconds;
+    public float TimeBeforeStartRequest;
     public bool CheckInBuilding;
+    public bool TimerEnable;
 
     [Serializable]
     public class POSTGetDifferenceDateInSeconds
@@ -282,11 +283,13 @@ public class ProductionBuilding : MonoBehaviour
             productionBuildingName = productionBuildingName,
             ignoreQuestion = ignoreQuestion
         }).Then(response => {
+
             if (!ResponseFromRequests.ContainsKey(response.code))
             {
                 ResponseFromRequests.Add(response.code, response.message);                
             }
             CheckResponseFromRequests(subjectName);
+            GetAllInfoSlots();
         });
 
     }
@@ -313,8 +316,12 @@ public class ProductionBuilding : MonoBehaviour
 
     private void OnEnable()
     {
+        GetAllInfoSlots();
+    }
+    //Получаем всю информацию о слотах, загруженных, отгруженных, находящихся в производстве
+    void GetAllInfoSlots()
+    {
 
-        //Получаем время в секундах до выгрузки объекта 0, который находится в производстве 
         GetDifferenceDateInSeconds(SubjectName, 0);
         for (int i = 0; i <= MaxCountSlots; i++)
         {
@@ -322,39 +329,45 @@ public class ProductionBuilding : MonoBehaviour
             GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
         }
     }
-
     // Update is called once per frame
     void Update()
     {
-        //Если таймер не истек
-        if (DateNowPlusDifferenceDateInSeconds>0)
+        //Если таймер включен
+        if (TimerEnable)
         {
-            DateNowPlusDifferenceDateInSeconds -= Time.deltaTime;
-        }
-        //Если таймер истек
-        else
-        {            
-            //Если проверка включена
-            if (CheckGetSubjectChildInTheProcessOfAssembly)
+            //Если таймер не истек
+            if (TimeBeforeStartRequest > 0)
             {
-                if (CheckInBuilding)
+                TimeBeforeStartRequest -= Time.deltaTime;
+            }
+            //Если таймер истек
+            else
+            {
+                TimerEnable = false;
+                //Если проверка включена
+                if (CheckGetSubjectChildInTheProcessOfAssembly)
                 {
-                    //Если в производстве есть предметы
-                }
-                //Если в производстве нет предметов, проверять не обязательно
-                else
-                {
-                    //Получаем 
-                    GetDifferenceDateInSeconds(SubjectName, 0);
-                    for (int i = 0; i <= MaxCountSlots; i++)
+                    if (CheckInBuilding)
                     {
-                        Debug.Log(i);
-                        GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                        //Если в производстве есть предметы
                     }
-                }
+                    //Если в производстве нет предметов, проверять не обязательно
+                    else
+                    {
+                        //Получаем 
+                        GetDifferenceDateInSeconds(SubjectName, 0);
+                        CheckGetSubjectChildInTheProcessOfAssembly = false;
+                        for (int i = 0; i <= MaxCountSlots; i++)
+                        {
+                            Debug.Log(i);
+                            GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                        }
+                    }
 
+                }
             }
         }
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -375,16 +388,18 @@ public class ProductionBuilding : MonoBehaviour
             //Если дата не просрочена, значит в производстве есть предметы
             if (response.expiredDate=="no")
             {
+                TimerEnable = true;
                 CheckInBuilding = true;
                 //Останавливаем после получения значения
                 CheckGetSubjectChildInTheProcessOfAssembly = false;
                 //Секунд до обновления слотов
-                DateNowPlusDifferenceDateInSeconds = response.differenceDateInSeconds;
-                Debug.Log("DateNowPlusDifferenceDateInSeconds" + DateNowPlusDifferenceDateInSeconds);
+                TimeBeforeStartRequest = response.differenceDateInSeconds;
+                Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
             }
-            //Если дата просрочена, значит в производстве нет предметов по номеру этого слота
+            //Если дата просрочена, значит в производстве нет предметов
             if (response.expiredDate == "yes")
             {
+                TimerEnable = true;
                 CheckGetSubjectChildInTheProcessOfAssembly = false;
                 CheckInBuilding = false;
             }

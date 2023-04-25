@@ -8062,6 +8062,7 @@ GameObject:
   - component: {fileID: 224370320}
   - component: {fileID: 224370322}
   - component: {fileID: 224370321}
+  - component: {fileID: 224370323}
   m_Layer: 5
   m_Name: SlotLoadingTime
   m_TagString: Untagged
@@ -8131,6 +8132,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224370319}
   m_CullTransparentMesh: 0
+--- !u!114 &224370323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224370319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110b6255cf18762429e919390985fbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingParent: {fileID: 0}
 --- !u!4 &229391057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6470133935787667593, guid: e2f3dc85a144e0546b41bb4d0d14a902,
@@ -13428,8 +13442,9 @@ MonoBehaviour:
   - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 1
-  DateNowPlusDifferenceDateInSeconds: 0
+  TimeBeforeStartRequest: 0
   CheckInBuilding: 0
+  TimerEnable: 0
 --- !u!114 &364160160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24331,7 +24346,6 @@ GameObject:
   - component: {fileID: 709741519}
   - component: {fileID: 709741521}
   - component: {fileID: 709741520}
-  - component: {fileID: 709741522}
   m_Layer: 5
   m_Name: SlotLoadingProductionBuilding
   m_TagString: Untagged
@@ -24401,37 +24415,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709741518}
   m_CullTransparentMesh: 0
---- !u!114 &709741522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709741518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MissingIngredients: []
-  Data: {fileID: 1866044566}
-  SubjectName: 
-  MaxCountSlots: 0
-  SubjectsChildInTheProcessOfAssembly:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  AllCost: 0
-  CheckGetSubjectChildInTheProcessOfAssembly: 0
-  DateNowPlusDifferenceDateInSeconds: 0
-  CheckInBuilding: 0
 --- !u!1001 &710691647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44294,8 +44277,9 @@ MonoBehaviour:
   - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
-  DateNowPlusDifferenceDateInSeconds: 0
+  TimeBeforeStartRequest: 0
   CheckInBuilding: 0
+  TimerEnable: 0
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -61266,8 +61250,9 @@ MonoBehaviour:
   SubjectsChildInTheProcessOfAssembly: []
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
-  DateNowPlusDifferenceDateInSeconds: 0
+  TimeBeforeStartRequest: 0
   CheckInBuilding: 0
+  TimerEnable: 0
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0
