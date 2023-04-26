@@ -143,7 +143,7 @@ public class PanelFewResources : MonoBehaviour
 
     public void OnEnable()
     {
-        MissingIngredients.Clear();
+        //MissingIngredients.Clear();
         
         //AddSubjectAndCount("wheat", 8);
     }
