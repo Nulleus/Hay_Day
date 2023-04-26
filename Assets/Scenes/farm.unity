@@ -27969,7 +27969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &788940116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44174,7 +44174,6 @@ GameObject:
   - component: {fileID: 1335565086}
   - component: {fileID: 1335565088}
   - component: {fileID: 1335565087}
-  - component: {fileID: 1335565089}
   m_Layer: 0
   m_Name: SlotsLoading
   m_TagString: Untagged
@@ -44250,37 +44249,6 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   OpenSlots: 0
   ParentSubject: {fileID: 364160149}
---- !u!114 &1335565089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335565085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MissingIngredients: []
-  Data: {fileID: 1866044566}
-  SubjectName: bakery
-  MaxCountSlots: 8
-  SubjectsChildInTheProcessOfAssembly:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  AllCost: 0
-  CheckGetSubjectChildInTheProcessOfAssembly: 0
-  TimeBeforeStartRequest: 0
-  CheckInBuilding: 0
-  TimerEnable: 0
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0

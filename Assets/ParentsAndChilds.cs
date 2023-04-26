@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System;
 using Proyecto26;
 using UnityEditor;
@@ -164,7 +162,7 @@ public class ParentsAndChilds : MonoBehaviour
     public string[] Childs = new string[10];
     //Имя родителя
     public string SubjectParentName;
-    //Номер слота по которому будет вестись поиск в БД
+    //Номер слота по которому будет произведен поиск в БД
     public int number;
     //Должно расчитываться от уровня пользователя
     public int OpenSubjectChilds;
