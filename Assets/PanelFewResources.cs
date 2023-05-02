@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PanelFewResources : MonoBehaviour
 {
+    //Главный объект бокс панели ресурсов
+    public GameObject PanelFewResourceBox;
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
     //public Dictionary<string, int> SubjectAndCount = new Dictionary<string, int>();
@@ -20,9 +22,9 @@ public class PanelFewResources : MonoBehaviour
     //Ожидаем ответа на запрос общей стоимости в алмазах для изготовления
     public bool CheckResponseAllCost;
 
-    [ShowInInspector]
+    //[ShowInInspector]
     
-    public List<ProductionBuilding.MissingIngredient> MissingIngredients;
+    //public List<ProductionBuilding.MissingIngredient> MissingIngredients;
 
     //Необходимы объекты
     // Start is called before the first frame update
@@ -40,7 +42,7 @@ public class PanelFewResources : MonoBehaviour
     {
         PanelSlots.GetComponent<PanelSlots>().DeleteClones();
         SubjectNameForBuilding = "";
-        MissingIngredients.Clear();
+        //MissingIngredients.Clear();
         CheckResponseMissingIngredients = true;
         CheckResponseAllCost = true;
         AllCost = 0;
@@ -94,15 +96,15 @@ public class PanelFewResources : MonoBehaviour
         }
         if (CheckResponseMissingIngredients)
         {
-            Debug.Log("MissingIngredients.Count"+MissingIngredients.Count);
-            if (MissingIngredients.Count > 0)
+            Debug.Log("MissingIngredients.Count"+ ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count);
+            if (ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count > 0)
             {
                 CheckResponseMissingIngredients = false;
                 //Получаем количество ингредиентов в списке
-                int countIngredients = MissingIngredients.Count;
+                int countIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count;
                 ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
                 // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
-                MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
                 for (int i = 0; i <= countIngredients; i++)
                 {
                     Debug.Log("for ingredient_name" + i);
@@ -113,25 +115,21 @@ public class PanelFewResources : MonoBehaviour
             }
             else
             {
-                MissingIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients;
                 //Получаем недостающие ингредиенты
-                //gameObject.GetComponent<ProductionBuilding>().GetMissingIngredients(SubjectNameForBuilding);
-                //Переносим список недостающих ингредиентов в этот модуль
-                //MissingIngredients = GOProductionBuilding.GetComponent<ProductionBuilding>().MissingIngredients;
-                //MissingIngredients = gameObject.GetComponent<ProductionBuilding>().MissingIngredients;
                 //Получаем количество ингредиентов в списке
-                int countIngredients = MissingIngredients.Count;
+                int countIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count;
                 Debug.Log("countIngredients=" + countIngredients);
                 //Массив из недостающих ингредиентов
-                ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
+                //ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
                 // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
-                MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
+                //ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
                 //Заполним описание для ингредиентов
 
                 for (int i = 0; i <= countIngredients; i++)
                 {
                     Debug.Log("for countIngredients" + i);
-                    AddSubjectAndCount(missingIngredient[i].ingredient_name, missingIngredient[i].count_ingredients);
+                    //Клонируем объекты                   
+                    AddSubjectAndCount(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].ingredient_name, ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].count_ingredients);
                 }
                 //Если переменная пустая и проверка включена, пытаемся 
             }

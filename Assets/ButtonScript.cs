@@ -66,8 +66,9 @@ public class ButtonScript : MonoBehaviour
 
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().BuySubjectForDiamond(subjectNameForBuilding);
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding,productionBuildingName,1);
+                
                 Debug.Log("Выбор пользователя: " + AppointmentButton);
-
+                GameObjectOperand.GetComponent<PanelFewResources>().PanelFewResourceBox.SetActive(false);
                 break;
             case "close":
 

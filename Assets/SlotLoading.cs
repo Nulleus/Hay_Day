@@ -26,7 +26,13 @@ public class SlotLoading : MonoBehaviour
         anim = GetComponent<Animator>();
         //Debug.Log(gameObject.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot]);
         //anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
-        anim.CrossFade(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
+        //
+        string subjectsChildInTheProcessOfAssembly = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot];
+        if (subjectsChildInTheProcessOfAssembly != "")
+        {
+            anim.CrossFade(subjectsChildInTheProcessOfAssembly, 0);
+        }
+        
     }
 
     // Up

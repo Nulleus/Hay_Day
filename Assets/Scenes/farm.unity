@@ -27056,6 +27056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513e25c868ae189458c7f1f103c5f46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelFewResourceBox: {fileID: 788940115}
   ProductionBuildingSendRequest: {fileID: 364160149}
   PanelSlots: {fileID: 905928200}
   ButtonBuy: {fileID: 754866954}
