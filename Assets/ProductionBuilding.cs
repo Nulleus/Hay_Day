@@ -20,13 +20,15 @@ public class ProductionBuilding : MonoBehaviour
     private void LogMessage(string title, string message)
     {
 #if UNITY_EDITOR
-        EditorUtility.DisplayDialog(title, message, "Ok");
+        //EditorUtility.DisplayDialog(title, message, "Ok");
 #else
 		Debug.Log(message);
 #endif
     }
     [ShowInInspector]
     public List<MissingIngredient> MissingIngredients;
+    [ShowInInspector]
+    public List<LastIngredient> LastIngredients;
     public GameObject Data;
     [ShowInInspector]
     public string SubjectName;
@@ -197,6 +199,18 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
     [Serializable]
+    public class POSTGetLastIngredients
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectName;
+        public string productionBuildingName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
     public class POSTShipment
     {
         public string jwt;
@@ -270,6 +284,17 @@ public class ProductionBuilding : MonoBehaviour
                 ResponseFromRequests.Remove("0x0000003");
             }
             Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
+            //если предметы культур, которые остались последние на складе, которые нет в производстве
+            if (spisokResponseFromRequests.Key == "0x0000008")
+            {
+                GetCheckIsLastSubject(subjectNameForBuilding, SubjectName);
+                Debug.Log("0x0000008");
+                GameObject panelQuestionBox = gameObject.GetComponent<ProductionBuildingUI>().PanelQuestionBox;
+                GameObject panelQuestion = gameObject.GetComponent<ProductionBuildingUI>().PanelQuestion;
+                panelQuestionBox.SetActive(true);
+                panelQuestion.GetComponent<PanelQuestion>().SubjectNameForBuilding = subjectNameForBuilding;
+                ResponseFromRequests.Remove("0x0000008");
+            }
         }
     }
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
@@ -289,6 +314,7 @@ public class ProductionBuilding : MonoBehaviour
                 ResponseFromRequests.Add(response.code, response.message);                
             }
             CheckResponseFromRequests(subjectName);
+            //Получаем информацию о слотах
             GetAllInfoSlots();
         });
 
@@ -299,6 +325,24 @@ public class ProductionBuilding : MonoBehaviour
     {
         public string ingredient_name;
         public int count_ingredients;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class LastIngredient
+    {
+        public string lastIngredients;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class RootLastIngredient
+    {
+        public List<LastIngredient> lastIngredients;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -322,10 +366,13 @@ public class ProductionBuilding : MonoBehaviour
     void GetAllInfoSlots()
     {
 
+        //
         GetDifferenceDateInSeconds(SubjectName, 0);
+        
         for (int i = 0; i <= MaxCountSlots; i++)
         {
             Debug.Log(i);
+            //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
             GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
         }
     }
@@ -340,28 +387,33 @@ public class ProductionBuilding : MonoBehaviour
             {
                 TimeBeforeStartRequest -= Time.deltaTime;
             }
-            //Если таймер истек
+            //Если таймер истек 
             else
             {
                 TimerEnable = false;
+                Debug.Log("TimerEnable = false;");
+                GetAllInfoSlots();
                 //Если проверка включена
                 if (CheckGetSubjectChildInTheProcessOfAssembly)
                 {
                     if (CheckInBuilding)
                     {
+                        
                         //Если в производстве есть предметы
                     }
                     //Если в производстве нет предметов, проверять не обязательно
                     else
                     {
-                        //Получаем 
-                        GetDifferenceDateInSeconds(SubjectName, 0);
+                        //Получаем секунды до выгрузки первого объекта из производства
+                        //GetDifferenceDateInSeconds(SubjectName, 0);
                         CheckGetSubjectChildInTheProcessOfAssembly = false;
-                        for (int i = 0; i <= MaxCountSlots; i++)
-                        {
-                            Debug.Log(i);
-                            GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
-                        }
+                        //for (int i = 0; i <= MaxCountSlots; i++)
+                        //{
+                        //Debug.Log(i);
+                        //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
+                        //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                        //}
+                        GetAllInfoSlots();
                     }
 
                 }
@@ -399,7 +451,8 @@ public class ProductionBuilding : MonoBehaviour
             //Если дата просрочена, значит в производстве нет предметов
             if (response.expiredDate == "yes")
             {
-                TimerEnable = true;
+                //TimerEnable = false; 03.05.2023 стал false
+                TimerEnable = false;
                 CheckGetSubjectChildInTheProcessOfAssembly = false;
                 CheckInBuilding = false;
             }
@@ -494,6 +547,20 @@ public class ProductionBuilding : MonoBehaviour
         });
 
     }
-    
+    //Получаем предметы культур, которые остались последние на складе, которые нет в производстве
+    public void GetCheckIsLastSubject(string subjectName, string productionBuildingName)
+    {
+        RestClient.Post<RootLastIngredient>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetLastIngredients
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "CheckIsLastSubject",
+            subjectName = subjectName,
+            productionBuildingName = productionBuildingName
+        }).Then(response => {
+            LastIngredients = response.lastIngredients;
+            Debug.Log("response.lastIngredients" + response.lastIngredients);
+        });
+
+    }
 
 }

@@ -13,7 +13,7 @@ public class MainScript : MonoBehaviour {
 
 	private void LogMessage(string title, string message) {
 #if UNITY_EDITOR
-		EditorUtility.DisplayDialog (title, message, "Ok");
+		//EditorUtility.DisplayDialog (title, message, "Ok");
 #else
 		Debug.Log(message);
 #endif
@@ -151,8 +151,8 @@ public class MainScript : MonoBehaviour {
 			login = "vasya2@coder.com",
 			password = "888"
 		}).Then(response => {
-			EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
-			EditorUtility.DisplayDialog("JWT token: ", response.jwt, "Ok");
+			//EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+			//EditorUtility.DisplayDialog("JWT token: ", response.jwt, "Ok");
 		});
 	}
 }

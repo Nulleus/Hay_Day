@@ -84,6 +84,15 @@ public class ButtonScript : MonoBehaviour
                 
                 Debug.Log("repeatConnection");
                 break;
+            case "PanelQuestionButtonOK":
+                //Выбор пользователя был сделан
+                subjectNameForBuilding = GameObjectOperand.GetComponent<PanelQuestion>().SubjectNameForBuilding;
+                productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding, productionBuildingName, 1);
+                Debug.Log("Выбор пользователя: " + AppointmentButton);
+                GameObjectOperand.GetComponent<PanelQuestion>().PanelQuestionBox.SetActive(false);
+                Debug.Log("PanelQuestionButtonOK");
+                break;
             default:
                 Debug.Log("default case");
                 break;

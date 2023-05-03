@@ -103,38 +103,17 @@ public class PanelFewResources : MonoBehaviour
                 //Получаем количество ингредиентов в списке
                 int countIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count;
                 ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
-                // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
+                // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству (зачем???)
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
                 for (int i = 0; i <= countIngredients; i++)
                 {
                     Debug.Log("for ingredient_name" + i);
-                    //Отправляем запрос на сервер чтобы получить информацию о недостающих предметах
+                    //Отправляем запрос на сервер чтобы получить информацию (для панели выше объекта) о недостающих предметах
                     ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().GetTranslateInfoRUS(missingIngredient[i].ingredient_name);
-                    
+                    AddSubjectAndCount(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].ingredient_name, ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].count_ingredients);
+
                 }                              
             }
-            else
-            {
-                //Получаем недостающие ингредиенты
-                //Получаем количество ингредиентов в списке
-                int countIngredients = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count;
-                Debug.Log("countIngredients=" + countIngredients);
-                //Массив из недостающих ингредиентов
-                //ProductionBuilding.MissingIngredient[] missingIngredient = new ProductionBuilding.MissingIngredient[3];
-                // копируем в массив элементы из списка недостающих ингредиентов, согласно их количеству
-                //ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.CopyTo(0, missingIngredient, 0, countIngredients);
-                //Заполним описание для ингредиентов
-
-                for (int i = 0; i <= countIngredients; i++)
-                {
-                    Debug.Log("for countIngredients" + i);
-                    //Клонируем объекты                   
-                    AddSubjectAndCount(ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].ingredient_name, ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients[i].count_ingredients);
-                }
-                //Если переменная пустая и проверка включена, пытаемся 
-            }
-
-
         }
 
     }

@@ -45,8 +45,8 @@ public class BuildingTimes : MonoBehaviour
             subjectName = subjectName
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("buildingTimeSeconds: ", response.buildingTimeSeconds.ToString(), "Ok");
             Debug.Log(response.buildingTimeSeconds);
             BuildingTimeSeconds = response.buildingTimeSeconds;
             return BuildingTimeSeconds;

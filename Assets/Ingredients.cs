@@ -128,9 +128,9 @@ public class Ingredients : MonoBehaviour
             number = number
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("ingredientName: ", response.ingredientName, "Ok");
-            EditorUtility.DisplayDialog("ingredientCount: ", response.ingredientCount.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("ingredientName: ", response.ingredientName, "Ok");
+            //EditorUtility.DisplayDialog("ingredientCount: ", response.ingredientCount.ToString(), "Ok");
             if (response.ingredientCount != 0)
             {
                 IngredientsAndCount.Add(response.ingredientName, response.ingredientCount);

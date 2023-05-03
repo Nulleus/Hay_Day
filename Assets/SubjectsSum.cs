@@ -51,8 +51,8 @@ public class SubjectsSum : MonoBehaviour
             subjectName = subjectName
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("sumCount: ", response.sumCount.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("sumCount: ", response.sumCount.ToString(), "Ok");
             Debug.Log(response.sumCount);
             SumCount = response.sumCount;
             Debug.Log("sumCount=" + SumCount);

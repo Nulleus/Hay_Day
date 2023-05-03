@@ -54,8 +54,8 @@ public class ProgressSlots : MonoBehaviour
             subjectName = subjectName
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("openSlots: ", response.openSlots.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("openSlots: ", response.openSlots.ToString(), "Ok");
             Debug.Log(response.openSlots);
             OpenSlots = response.openSlots;
             Debug.Log("openSlots=" + OpenSlots);

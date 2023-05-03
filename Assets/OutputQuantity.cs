@@ -49,8 +49,8 @@ public class OutputQuantity : MonoBehaviour
             subjectName = subjectName
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("count: ", response.count.ToString(), "Ok");
             Debug.Log(response.count);
             Count = response.count;
             return Count;

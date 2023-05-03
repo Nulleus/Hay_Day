@@ -97,8 +97,8 @@ public class OpenLevel : MonoBehaviour
             openLevelNumber = openLevelNumber
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("countSubjectAll: ", response.countSubjectAll, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("countSubjectAll: ", response.countSubjectAll, "Ok");
             return response.countSubjectAll;
         });
         return 0;
@@ -116,8 +116,8 @@ public class OpenLevel : MonoBehaviour
             openLevelNumberLimit = openLevelNumberLimit
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("subjectName: ", response.subjectName, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("subjectName: ", response.subjectName, "Ok");
             allSubjectNameOpenLevel.Add(response.subjectName);
             return allSubjectNameOpenLevel;
         });
@@ -134,8 +134,8 @@ public class OpenLevel : MonoBehaviour
             subjectName = subjectName
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("openLevelNumber: ", response.openLevelNumber.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("openLevelNumber: ", response.openLevelNumber.ToString(), "Ok");
             return response.openLevelNumber;
         });
         return 0;

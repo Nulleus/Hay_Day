@@ -32,6 +32,10 @@ public class SlotLoading : MonoBehaviour
         {
             anim.CrossFade(subjectsChildInTheProcessOfAssembly, 0);
         }
+        else
+        {
+            anim.CrossFade("empty", 0);
+        }
         
     }
 

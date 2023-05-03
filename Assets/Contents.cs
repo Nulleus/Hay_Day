@@ -175,9 +175,9 @@ public class Contents : MonoBehaviour
             
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("message: ", response.ToString(), "Ok");
-            EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("subjectChildName: ", response.subjectChildName, "Ok");
             return response.subjectChildName;
         });
         return "empty";
@@ -195,8 +195,8 @@ public class Contents : MonoBehaviour
             methodName = "GetServerDateTime"
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("serverDateTime: ", response.serverDateTime, "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("serverDateTime: ", response.serverDateTime, "Ok");
             ServerDateTime = response.serverDateTime;
         });
         return ServerDateTime;
@@ -214,8 +214,8 @@ public class Contents : MonoBehaviour
 
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("countShipmentSlots: ", response.countShipmentSlots.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("countShipmentSlots: ", response.countShipmentSlots.ToString(), "Ok");
             CountShipmentSlots = response.countShipmentSlots;
         });
         return CountShipmentSlots;
@@ -232,8 +232,8 @@ public class Contents : MonoBehaviour
 
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("countLoadingSlots: ", response.countLoadingSlots.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("countLoadingSlots: ", response.countLoadingSlots.ToString(), "Ok");
             CountLoadingSlots = response.countLoadingSlots;
         });
         return CountLoadingSlots;
@@ -252,8 +252,8 @@ public class Contents : MonoBehaviour
 
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("idShipment: ", response.idContent.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("idShipment: ", response.idContent.ToString(), "Ok");
             IdContent = response.idContent;
         });
         return IdContent;

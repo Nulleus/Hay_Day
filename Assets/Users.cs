@@ -96,9 +96,9 @@ public class Users : MonoBehaviour
             login = Login,
             password = Password
         }).Then(response => {
-            EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
             JWTToken = response.jwt;
-            EditorUtility.DisplayDialog("JWT: ", response.jwt, "Ok");
+            //EditorUtility.DisplayDialog("JWT: ", response.jwt, "Ok");
 
 
         });
@@ -113,8 +113,8 @@ public class Users : MonoBehaviour
             methodName = "getExperiencePoints"
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("ExperiencePoints: ", response.experience_points.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("Message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("ExperiencePoints: ", response.experience_points.ToString(), "Ok");
             return response.experience_points;
             
         });

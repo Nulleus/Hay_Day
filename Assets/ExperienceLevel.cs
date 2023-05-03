@@ -46,8 +46,8 @@ public class ExperienceLevel : MonoBehaviour
             experiencePoints = experiencePoints
 
         }).Then(response => {
-            EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            EditorUtility.DisplayDialog("numberLevel: ", response.numberLevel.ToString(), "Ok");
+            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+            //EditorUtility.DisplayDialog("numberLevel: ", response.numberLevel.ToString(), "Ok");
             Debug.Log("NumberLevel=" + response.numberLevel);
             return response.numberLevel;
 

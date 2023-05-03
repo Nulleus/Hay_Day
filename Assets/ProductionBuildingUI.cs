@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 
 public class ProductionBuildingUI : MonoBehaviour
@@ -11,6 +12,8 @@ public class ProductionBuildingUI : MonoBehaviour
     [SerializeField]
     public GameObject PanelFewResources;
     public GameObject PanelFewResourcesBox;
+    public GameObject PanelQuestion;
+    public GameObject PanelQuestionBox;
     public string NameSystem;//Системное имя объекта
     public GameObject Data;
     public GameObject PanelSlots; //
@@ -27,7 +30,8 @@ public class ProductionBuildingUI : MonoBehaviour
     public Coroutine UserWaitingCoroutine; //Ожидание пользователя
     public bool IsMoveModeOn = false;
     private bool IsCollisionMoveModeOn = false;
-    private int Count = 0;
+    [ShowInInspector]
+    public float Count = 0;
     private bool IsCountOn = false;
     private string[,] ArraySlotsLoading;//Массив слотов загрузки 
     private string[,] ArraySlotsShipment;//Массив слотов отгрузки
@@ -123,15 +127,17 @@ public class ProductionBuildingUI : MonoBehaviour
         }
         if (IsCountOn)
         {
-            Count++;
-            if (Count == 6){ Arrow.GetComponent<Arrow>().BrushColor(1, Color.yellow); }//Закрашена часть стрелки 0
-            if (Count == 12) { Arrow.GetComponent<Arrow>().BrushColor(2, Color.yellow); }//Закрашена часть стрелки 1
-            if (Count == 18) { Arrow.GetComponent<Arrow>().BrushColor(3, Color.yellow); }//Закрашена часть стрелки 2
-            if (Count == 24) { Arrow.GetComponent<Arrow>().BrushColor(4, Color.yellow); }//Закрашена часть стрелки 3
-            if (Count == 30) { Arrow.GetComponent<Arrow>().BrushColor(5, Color.yellow); }//Закрашена часть стрелки 4
+            Count += Time.deltaTime;
+            //Debug.Log(Count);
+            if (Count > 0.0f){ Arrow.GetComponent<Arrow>().BrushColor(0, Color.yellow); }//Закрашена часть стрелки 0
+            if (Count > 0.5f) { Arrow.GetComponent<Arrow>().BrushColor(1, Color.yellow); }//Закрашена часть стрелки 1
+            if (Count > 0.7f) { Arrow.GetComponent<Arrow>().BrushColor(2, Color.yellow); }//Закрашена часть стрелки 2
+            if (Count > 0.8f) { Arrow.GetComponent<Arrow>().BrushColor(3, Color.yellow); }//Закрашена часть стрелки 3
+            if (Count > 1.0f) { Arrow.GetComponent<Arrow>().BrushColor(4, Color.yellow); }//Закрашена часть стрелки 4
 
-            if (Count > 30)//Активация режима перемещение
+            if (Count >= 1.0f)//Активация режима перемещение
             {
+                //Debug.Log("if (Count >= 1.0f)");
                 IsMoveModeOn = true;//Активация режима перемещение
                 Arrow.SetActive(false);//Скрытие стрелочки
                 Collider.SetActive(true);//Активация коллайдера

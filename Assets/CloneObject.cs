@@ -32,7 +32,6 @@ public class CloneObject : MonoBehaviour
     // Update is called once per frame
     public void Clone(string subjectName, int subjectCount)
     {
-        
         //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
         Debug.Log(PositionCloneEnd);
         Debug.Log("ObjectFromGetWidth.GetComponent<Rect>().width=" + ObjectFromGetWidth.GetComponent<RectTransform>().rect.width);
