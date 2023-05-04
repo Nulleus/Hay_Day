@@ -89,8 +89,7 @@ public class ProductionBuildingUI : MonoBehaviour
         //Если слоты с предметами активны
         if (SlotsPredmets.activeSelf)
         {
-            //Двигаем камеру к объекту
-            MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
+
             SlotsPredmets.SetActive(true);
             SlotsLoading.SetActive(true);
         }
@@ -220,6 +219,7 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
+        
         if (IsMoveModeOn)//Если режим перемещения активирован
         {
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
@@ -229,7 +229,8 @@ public class ProductionBuildingUI : MonoBehaviour
         }
         if (IsMoveModeOn == false)//Если режим перемещения не активирован
         {
-
+            //Двигаем камеру к объекту
+            MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
             PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
             Arrow.SetActive(true);//Активируем стрелку
             Count = 0;//Обнуляем счетчик
