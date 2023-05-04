@@ -89,6 +89,8 @@ public class ProductionBuildingUI : MonoBehaviour
         //Если слоты с предметами активны
         if (SlotsPredmets.activeSelf)
         {
+            //Двигаем камеру к объекту
+            MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
             SlotsPredmets.SetActive(true);
             SlotsLoading.SetActive(true);
         }

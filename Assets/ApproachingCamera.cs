@@ -33,7 +33,10 @@ public class ApproachingCamera : MonoBehaviour
         {
             Vector2 targetPosition = Target.transform.position;
             Vector2 thisPosition = transform.position;
-            transform.position = Vector2.SmoothDamp(transform.position, targetPosition, ref Velocity, SmoothTime);
+            //ѕреобразуем Vector2 в Vector3, без затирки Z координаты
+            var smooth = Vector2.SmoothDamp(thisPosition, targetPosition, ref Velocity, SmoothTime);
+            transform.position = new Vector3(smooth.x, smooth.y, transform.position.z);
+            //transform.position = Vector2.SmoothDamp(thisPosition, targetPosition, ref Velocity, SmoothTime);
             //Debug.Log("thisPosition=" + thisPosition + ";" + "targetPosition=" + targetPosition + ";");
 
             bool xEqual = MyApproximately(thisPosition.x, targetPosition.x, 1f);
