@@ -13644,6 +13644,8 @@ MonoBehaviour:
   PanelSlots: {fileID: 905928200}
   NameView: "\u041F\u0435\u043A\u0430\u0440\u043D\u044F"
   IsMoveModeOn: 0
+  Count: 0
+  MainCamera: {fileID: 882889948}
   Collider: {fileID: 1663979554}
   Arrow: {fileID: 369674368}
   SlotsPanel: {fileID: 930103544}
@@ -32505,6 +32507,7 @@ GameObject:
   - component: {fileID: 882889950}
   - component: {fileID: 882889949}
   - component: {fileID: 882889952}
+  - component: {fileID: 882889953}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -32612,6 +32615,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyTestString: Hello world!
+--- !u!114 &882889953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882889948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bbd9b4e87a6cf4997bdd23a5635f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 364160149}
+  SmoothTime: 0.3
+  ApproachingStatus: 0
 --- !u!1 &884027877
 GameObject:
   m_ObjectHideFlags: 0

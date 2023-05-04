@@ -35,6 +35,7 @@ public class ProductionBuildingUI : MonoBehaviour
     private bool IsCountOn = false;
     private string[,] ArraySlotsLoading;//Массив слотов загрузки 
     private string[,] ArraySlotsShipment;//Массив слотов отгрузки
+    public GameObject MainCamera;
 
 
     //=======Дочерние и другие объекты================//
