@@ -36,6 +36,8 @@ public class ProductionBuilding : MonoBehaviour
     public int MaxCountSlots;
     //Имя находящегося в производстве предмета
     public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
+    //Имя находящегося в зоне отгрузки предмета
+    public string[] SubjectsChildInTheShipment = new string[10];
     //Общая стоимость предметов за алмазы
     [ShowInInspector]
     public int AllCost;
@@ -242,6 +244,27 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
+    [Serializable]
+    public class ResponseSubjectChildInTheShipment
+    {
+        public string subjectChildInTheShipment;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class POSTSubjectChildInTheShipment
+    {
+        public string jwt;
+        public string methodName;
+        public string subjectParentName;
+        public int numberSlot;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     public void BuySubjectForDiamond(string subjectName)
     {
         RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
@@ -294,6 +317,13 @@ public class ProductionBuilding : MonoBehaviour
                 panelQuestionBox.SetActive(true);
                 panelQuestion.GetComponent<PanelQuestion>().SubjectNameForBuilding = subjectNameForBuilding;
                 ResponseFromRequests.Remove("0x0000008");
+            }
+            //Если предметы успешно перемешены на склад при отгрузке
+            if (spisokResponseFromRequests.Key == "0x0000009")
+            {
+                Debug.Log("0x0000009");
+                //Обновляем слоты отгрузки
+                GetAllInfoSlots();
             }
         }
     }
@@ -369,11 +399,14 @@ public class ProductionBuilding : MonoBehaviour
         //
         GetDifferenceDateInSeconds(SubjectName, 0);
         
+
+
         for (int i = 0; i <= MaxCountSlots; i++)
         {
             Debug.Log(i);
             //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
             GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+            GetSubjectChildInTheShipment(SubjectName, i);
         }
     }
     // Update is called once per frame
@@ -559,6 +592,21 @@ public class ProductionBuilding : MonoBehaviour
         }).Then(response => {
             LastIngredients = response.lastIngredients;
             Debug.Log("response.lastIngredients" + response.lastIngredients);
+        });
+
+    }
+    //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру, идентификатору пользователя
+    public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
+    {
+        RestClient.Post<ResponseSubjectChildInTheShipment>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "GetSubjectChildInTheShipment",
+            subjectParentName = subjectParentName,
+            numberSlot = numberSlot
+        }).Then(response => {
+            SubjectsChildInTheShipment[numberSlot] = response.subjectChildInTheShipment;
+            Debug.Log("response.subjectChildInTheShipment" + response.subjectChildInTheShipment);
         });
 
     }

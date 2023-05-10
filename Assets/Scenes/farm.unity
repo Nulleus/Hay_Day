@@ -13707,6 +13707,17 @@ MonoBehaviour:
   - 
   - 
   - 
+  SubjectsChildInTheShipment:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 1
   TimeBeforeStartRequest: 0
@@ -14560,6 +14571,7 @@ GameObject:
   - component: {fileID: 391524526}
   - component: {fileID: 391524528}
   - component: {fileID: 391524527}
+  - component: {fileID: 391524529}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -14648,17 +14660,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &391524529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391524525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 2
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &392469770
 GameObject:
   m_ObjectHideFlags: 0
@@ -15079,6 +15108,7 @@ GameObject:
   - component: {fileID: 402018791}
   - component: {fileID: 402018793}
   - component: {fileID: 402018792}
+  - component: {fileID: 402018794}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -15167,17 +15197,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &402018794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402018790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 5
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &406186827
 GameObject:
   m_ObjectHideFlags: 0
@@ -18396,6 +18443,7 @@ GameObject:
   - component: {fileID: 528249624}
   - component: {fileID: 528249626}
   - component: {fileID: 528249625}
+  - component: {fileID: 528249627}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -18484,17 +18532,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &528249627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528249623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 3
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1001 &528952093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20641,6 +20706,7 @@ GameObject:
   - component: {fileID: 591873409}
   - component: {fileID: 591873411}
   - component: {fileID: 591873410}
+  - component: {fileID: 591873412}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -20729,17 +20795,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &591873412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591873408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 6
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &593353289
 GameObject:
   m_ObjectHideFlags: 0
@@ -29343,6 +29426,7 @@ GameObject:
   - component: {fileID: 810612383}
   - component: {fileID: 810612385}
   - component: {fileID: 810612384}
+  - component: {fileID: 810612386}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -29431,17 +29515,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &810612386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810612382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 8
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &811614815
 GameObject:
   m_ObjectHideFlags: 0
@@ -38387,6 +38488,7 @@ GameObject:
   - component: {fileID: 1066214654}
   - component: {fileID: 1066214656}
   - component: {fileID: 1066214655}
+  - component: {fileID: 1066214657}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -38475,17 +38577,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1066214657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066214653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 4
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1080728594
 GameObject:
   m_ObjectHideFlags: 0
@@ -46988,6 +47107,7 @@ GameObject:
   - component: {fileID: 1387336407}
   - component: {fileID: 1387336409}
   - component: {fileID: 1387336408}
+  - component: {fileID: 1387336410}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -47076,17 +47196,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1387336410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387336406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 1
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!4 &1396281858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6470133935787667593, guid: e2f3dc85a144e0546b41bb4d0d14a902,
@@ -58280,6 +58417,7 @@ GameObject:
   - component: {fileID: 1737020150}
   - component: {fileID: 1737020152}
   - component: {fileID: 1737020151}
+  - component: {fileID: 1737020153}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -58368,17 +58506,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1737020153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737020149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 0
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1001 &1739011734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62590,6 +62745,17 @@ MonoBehaviour:
   SubjectName: cowFeed
   MaxCountSlots: 0
   SubjectsChildInTheProcessOfAssembly: []
+  SubjectsChildInTheShipment:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   AllCost: 0
   CheckGetSubjectChildInTheProcessOfAssembly: 0
   TimeBeforeStartRequest: 0
@@ -63976,6 +64142,7 @@ GameObject:
   - component: {fileID: 1902995970}
   - component: {fileID: 1902995972}
   - component: {fileID: 1902995971}
+  - component: {fileID: 1902995973}
   m_Layer: 0
   m_Name: SlotShipment
   m_TagString: Untagged
@@ -64064,17 +64231,34 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a439174c22a6ca46bc3bca8dfe959f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.69, y: 1.69}
+  m_Size: {x: 1.78, y: 1.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1902995973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902995969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64daca9a15f39a24197aa81b21035017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 364160149}
+  Anim: {fileID: 0}
+  NumberSlot: 7
+  Data: {fileID: 1866044566}
+  CheckDisplayContents: 1
 --- !u!1 &1903120815
 GameObject:
   m_ObjectHideFlags: 0
