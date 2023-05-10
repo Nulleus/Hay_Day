@@ -92,11 +92,15 @@ public class ProductionBuildingUI : MonoBehaviour
 
             SlotsPredmets.SetActive(true);
             SlotsLoading.SetActive(true);
+            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
         }
         else
         {
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
+            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
         }
         if (IsMoveModeOn)//Если режим перемещения включен
         {
@@ -219,7 +223,6 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        
         if (IsMoveModeOn)//Если режим перемещения активирован
         {
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
