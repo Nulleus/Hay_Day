@@ -8,7 +8,6 @@ public class CameraScript : MonoBehaviour
     protected CameraScript() { }
 
     // Then add whatever code to the class you need as you normally would.
-    public string MyTestString = "Hello world!";
     //=========================================ограничение камеры=====================//
     private float XMargin = 1f; // Distance in the x axis the player can move before the camera follows.
     private float YMargin = 1f; // Distance in the y axis the player can move before the camera follows.

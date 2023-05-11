@@ -8,6 +8,7 @@ public class ButtonScript : MonoBehaviour
 {
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
+    public GameObject MainCamera;
     public string AppointmentButton; //Назначение кнопки
     public GameObject GameObjectOperand;//Имя главного родительского объекта
     public GameObject ButtonText; //Текст на кнопке с количеством
@@ -71,7 +72,8 @@ public class ButtonScript : MonoBehaviour
                 GameObjectOperand.GetComponent<PanelFewResources>().PanelFewResourceBox.SetActive(false);
                 break;
             case "close":
-
+                MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+                MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
                 GameObjectOperand.SetActive(false);
                 Debug.Log("pressed close ");
                 break;

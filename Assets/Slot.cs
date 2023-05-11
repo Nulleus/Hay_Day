@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
+    public GameObject MainCamera;
     public GameObject Data;
     public Vector3 PrimaryPosition;//Сохранение начального положения объкта
     public Vector3 Offset; //Смещение
     public Vector3 ScreenPoint;
+
     public bool MousedragBlockOn = false;
     public Animator Anim;
     public string Predmet;
@@ -60,8 +62,8 @@ public class Slot : MonoBehaviour
             transform.position = curPosition;
         }
 
-        globals.zoom = false;
-        globals.drag = false;
+        MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+        MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
     }
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {

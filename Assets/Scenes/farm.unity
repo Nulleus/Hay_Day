@@ -3175,6 +3175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}
@@ -3552,6 +3553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 376943456}
   ButtonText: {fileID: 0}
@@ -16571,6 +16573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
+  MainCamera: {fileID: 0}
   AppointmentButton: PanelQuestionButtonOK
   GameObjectOperand: {fileID: 400581561}
   ButtonText: {fileID: 0}
@@ -17144,7 +17147,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 8, y: 11.500977}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &489413358
 Canvas:
@@ -17165,7 +17168,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &489413359
 MonoBehaviour:
@@ -18025,6 +18028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f9623767c202241bf50fad44a8bc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 882889948}
   Data: {fileID: 1866044566}
   PrimaryPosition: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
@@ -25659,6 +25663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 1480700592}
   ButtonText: {fileID: 0}
@@ -26903,6 +26908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
+  MainCamera: {fileID: 0}
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 775015347}
   ButtonText: {fileID: 1890771605}
@@ -32651,11 +32657,11 @@ Camera:
   far clip plane: 1000
   field of view: 26
   orthographic: 1
-  orthographic size: 318.41
+  orthographic size: 357.01
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -32715,7 +32721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00858b352a8f51f4b93bd0fb01fb3ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyTestString: Hello world!
 --- !u!114 &882889953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33931,6 +33936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
+  MainCamera: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 2074097713}
   ButtonText: {fileID: 0}
@@ -43411,6 +43417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
+  MainCamera: {fileID: 0}
   AppointmentButton: close
   GameObjectOperand: {fileID: 788940115}
   ButtonText: {fileID: 0}
@@ -45385,6 +45392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 609472589}
   ButtonText: {fileID: 0}
@@ -57330,6 +57338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: MoveOff
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
@@ -65593,6 +65602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: ObjectFlipX
   GameObjectOperand: {fileID: 364160149}
   ButtonText: {fileID: 0}
@@ -66488,7 +66498,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 8, y: 11.500977}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1955839318
 Canvas:
@@ -66509,7 +66519,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &1955839319
 MonoBehaviour:
@@ -69817,7 +69827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2074097714
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70027,6 +70037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f9623767c202241bf50fad44a8bc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 882889948}
   Data: {fileID: 1866044566}
   PrimaryPosition: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
@@ -70950,6 +70961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
   AppointmentButton: 
   GameObjectOperand: {fileID: 0}
   ButtonText: {fileID: 0}
@@ -71808,6 +71820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f9623767c202241bf50fad44a8bc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 882889948}
   Data: {fileID: 1866044566}
   PrimaryPosition: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}

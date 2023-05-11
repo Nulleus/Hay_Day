@@ -92,15 +92,13 @@ public class ProductionBuildingUI : MonoBehaviour
 
             SlotsPredmets.SetActive(true);
             SlotsLoading.SetActive(true);
-            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
-            MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
+
         }
         else
         {
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
-            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
-            MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
+
         }
         if (IsMoveModeOn)//Если режим перемещения включен
         {
