@@ -6,6 +6,8 @@ public class CameraScript : MonoBehaviour
 {
     // (Optional) Prevent non-singleton constructor use.
     protected CameraScript() { }
+    //Сохраненный размер ортографической камеры
+    public float SaveOrthographicSize;
 
     // Then add whatever code to the class you need as you normally would.
     //=========================================ограничение камеры=====================//

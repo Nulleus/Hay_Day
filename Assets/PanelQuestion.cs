@@ -18,6 +18,8 @@ public class PanelQuestion : MonoBehaviour
     public string SubjectNameForBuilding;
     //Ожидаем ответа на запрос нехватающих ингредиентов
     public bool CheckResponseLastIngredients;
+    //Главная камера
+    public GameObject MainCamera;
 
     //Выбор пользователя
     public void SetUserActionSelection(string actionSelectionName)
@@ -33,7 +35,10 @@ public class PanelQuestion : MonoBehaviour
     }
     public void CloseObject()
     {
+        //MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+        //MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
         gameObject.SetActive(false);
+
     }
     public void AddSubjectAndCount(string subjectName, int subjectCount)
     {
@@ -53,6 +58,10 @@ public class PanelQuestion : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        //Примерный размер ортографической камеры 357
+        MainCamera.GetComponent<Camera>().orthographicSize = 357;
+        MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+        MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
 
     }
     void Update()

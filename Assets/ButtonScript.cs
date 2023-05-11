@@ -74,6 +74,7 @@ public class ButtonScript : MonoBehaviour
             case "close":
                 MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
                 MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
+                MainCamera.GetComponent<Camera>().orthographicSize = MainCamera.GetComponent<CameraScript>().SaveOrthographicSize;
                 GameObjectOperand.SetActive(false);
                 Debug.Log("pressed close ");
                 break;

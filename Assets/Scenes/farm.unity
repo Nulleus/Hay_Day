@@ -15099,6 +15099,7 @@ MonoBehaviour:
   UserActionSelection: 
   SubjectNameForBuilding: 
   CheckResponseLastIngredients: 0
+  MainCamera: {fileID: 882889948}
 --- !u!1 &402018790
 GameObject:
   m_ObjectHideFlags: 0
@@ -28863,7 +28864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &788940116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32721,6 +32722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00858b352a8f51f4b93bd0fb01fb3ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveOrthographicSize: 0
 --- !u!114 &882889953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33936,7 +33938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
-  MainCamera: {fileID: 0}
+  MainCamera: {fileID: 882889948}
   AppointmentButton: close
   GameObjectOperand: {fileID: 2074097713}
   ButtonText: {fileID: 0}
@@ -69827,7 +69829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2074097714
 RectTransform:
   m_ObjectHideFlags: 0
