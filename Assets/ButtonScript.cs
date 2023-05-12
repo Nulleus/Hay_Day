@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; // Required when using Event data.
 
-public class ButtonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour, IPointerDownHandler
 {
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
@@ -15,6 +16,10 @@ public class ButtonScript : MonoBehaviour
     public GameObject ButtonImage; //Картинка на кнопке
     public GameObject ButtonTextInfo; //Текст на кнопке с ее назначением
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log(this.gameObject.name + " Was Clicked.");
+    }
     public void SetAllPriceSubjectsText(int count)
     {
         ButtonText.GetComponent<Text>().text = count.ToString();
@@ -44,7 +49,7 @@ public class ButtonScript : MonoBehaviour
     {
         
     }
-    private void OnMouseUp()//Когда отпускаеть мышь
+    public void OnMouseUp()//Когда отпускаеть мышь
     {
         Debug.Log("OnMouseUp()");
         switch (AppointmentButton)

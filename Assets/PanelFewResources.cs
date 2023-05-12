@@ -21,6 +21,8 @@ public class PanelFewResources : MonoBehaviour
     public bool CheckResponseMissingIngredients;
     //Ожидаем ответа на запрос общей стоимости в алмазах для изготовления
     public bool CheckResponseAllCost;
+    public GameObject MainCamera;
+    public bool MainCameraBlock;
 
     //[ShowInInspector]
     
@@ -78,11 +80,23 @@ public class PanelFewResources : MonoBehaviour
     // Update is called once per frame
     public void Show()
     {
+        Debug.Log("Show");
         gameObject.SetActive(true);
+
 
     }
     void Update()
     {
+        if (MainCameraBlock)
+        {
+            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
+        }
+        else
+        {
+            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
+        }
         if (CheckResponseAllCost)
         {
             if (AllCost > 0)
@@ -120,8 +134,12 @@ public class PanelFewResources : MonoBehaviour
 
     public void OnEnable()
     {
+        //Сохраняем положение зума камеры
+        MainCamera.GetComponent<CameraScript>().SaveOrthographicSize = MainCamera.GetComponent<Camera>().orthographicSize;
+        //Примерный размер ортографической камеры 357
+        MainCamera.GetComponent<Camera>().orthographicSize = 357;
         //MissingIngredients.Clear();
-        
+
         //AddSubjectAndCount("wheat", 8);
     }
 }

@@ -58,7 +58,6 @@ public class PanelQuestion : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        //Примерный размер ортографической камеры 357
         MainCamera.GetComponent<Camera>().orthographicSize = 357;
         MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
         MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
