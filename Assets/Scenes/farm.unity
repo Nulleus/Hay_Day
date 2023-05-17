@@ -26927,7 +26927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
-  MainCamera: {fileID: 0}
+  MainCamera: {fileID: 882889948}
   AppointmentButton: buyForDaemonds
   GameObjectOperand: {fileID: 775015347}
   ButtonText: {fileID: 1890771605}
@@ -28822,8 +28822,8 @@ Canvas:
   m_GameObject: {fileID: 788940115}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 882889950}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -28832,7 +28832,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!222 &788940118
 CanvasRenderer:
@@ -66516,7 +66516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.85490197}
+  m_Color: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 0.87058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
