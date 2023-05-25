@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using UnityEngine.EventSystems;
 
 
 public class ProductionBuildingUI : MonoBehaviour
@@ -57,8 +58,7 @@ public class ProductionBuildingUI : MonoBehaviour
     GameObject SlotsLoading;
     //Слоты с отгруженными предметами
     [SerializeField]
-    GameObject SlotsShipment; 
-
+    GameObject SlotsShipment;
 
     public void FlipObject()
     {
@@ -179,8 +179,16 @@ public class ProductionBuildingUI : MonoBehaviour
         //More Cutscene Stuff and End the cutscene
     }
 
-    void OnMouseUp()//Когда отпускаешь кнопку
+    public void OnMouseUp()//Когда отпускаешь кнопку
     {
+        Debug.Log("777");
+        if (!EventSystem.current.IsPointerOverGameObject())
+        //if (!EventSystem.current.currentSelectedGameObject)
+        {
+            Debug.Log("То что нужно");
+            //return;
+            
+        }
         Count = 0;
         IsCountOn = false;
         Arrow.GetComponent<Arrow>().ClearBrushColorAll();
@@ -221,6 +229,7 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
+        
         if (IsMoveModeOn)//Если режим перемещения активирован
         {
             if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
