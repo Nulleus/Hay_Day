@@ -181,71 +181,72 @@ public class ProductionBuildingUI : MonoBehaviour
 
     public void OnMouseUp()//Когда отпускаешь кнопку
     {
-        Debug.Log("777");
+        //Debug.Log("777");
         if (!EventSystem.current.IsPointerOverGameObject())
         //if (!EventSystem.current.currentSelectedGameObject)
         {
-            Debug.Log("То что нужно");
-            //return;
-            
-        }
-        Count = 0;
-        IsCountOn = false;
-        Arrow.GetComponent<Arrow>().ClearBrushColorAll();
-        Arrow.SetActive(false);
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
-        if (IsMoveModeOn)
-        {
+            Count = 0;
+            IsCountOn = false;
+            Arrow.GetComponent<Arrow>().ClearBrushColorAll();
+            Arrow.SetActive(false);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
+            if (IsMoveModeOn)
+            {
 
-            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
-            {
-                gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
-                gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
+                if (gameObject.GetComponent<Renderer>().material.color == Color.red)
+                {
+                    gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
+                    gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
+                }
+                if (gameObject.GetComponent<Renderer>().material.color == Color.white)
+                {
+                    gameObject.transform.position = PrimaryPosition;
+                    Collider.transform.position = PrimaryPosition;
+                }
+
             }
-            if (gameObject.GetComponent<Renderer>().material.color == Color.white)
+            else//Если IsMoveModeOn==false
             {
-                gameObject.transform.position = PrimaryPosition;
-                Collider.transform.position = PrimaryPosition;
+
+                if (SlotsPredmets.activeSelf)
+                {
+                    SlotsLoading.SetActive(false);
+                    SlotsPredmets.SetActive(false);
+                }
+                else
+                {
+                    SlotsLoading.SetActive(true);
+                    SlotsPredmets.SetActive(true);
+                }
             }
+            //Метод открузки предметов
+            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem);
 
         }
-        else//Если IsMoveModeOn==false
-        {
 
-            if (SlotsPredmets.activeSelf)
-            {
-                SlotsLoading.SetActive(false);
-                SlotsPredmets.SetActive(false);
-            }
-            else
-            {
-                SlotsLoading.SetActive(true);
-                SlotsPredmets.SetActive(true);
-            }
-        }
-        //Метод открузки предметов
-        gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem);
-        
     }
     void OnMouseDown()//Когда нажимаешь кнопку
     {
-        
-        if (IsMoveModeOn)//Если режим перемещения активирован
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
+            if (IsMoveModeOn)//Если режим перемещения активирован
             {
-                PrimaryPosition = gameObject.transform.position;//Запоминаем позицию пекарни
+                if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
+                {
+                    PrimaryPosition = gameObject.transform.position;//Запоминаем позицию пекарни
+                }
+            }
+            if (IsMoveModeOn == false)//Если режим перемещения не активирован
+            {
+                //Двигаем камеру к объекту
+                MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
+                PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
+                Arrow.SetActive(true);//Активируем стрелку
+                Count = 0;//Обнуляем счетчик
+                IsCountOn = true;//Запускаем счетчик 
             }
         }
-        if (IsMoveModeOn == false)//Если режим перемещения не активирован
-        {
-            //Двигаем камеру к объекту
-            MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
-            PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
-            Arrow.SetActive(true);//Активируем стрелку
-            Count = 0;//Обнуляем счетчик
-            IsCountOn = true;//Запускаем счетчик 
-        }
+
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
