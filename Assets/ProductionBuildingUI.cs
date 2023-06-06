@@ -225,7 +225,7 @@ public class ProductionBuildingUI : MonoBehaviour
         }
 
     }
-    void OnMouseDown()//Когда нажимаешь кнопку
+    public void OnMouseDown()//Когда нажимаешь кнопку
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
