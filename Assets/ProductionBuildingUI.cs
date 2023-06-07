@@ -71,6 +71,7 @@ public class ProductionBuildingUI : MonoBehaviour
 
     }
     // Update is called once per frame
+    /*
     void Update()
     {
         
@@ -150,6 +151,7 @@ public class ProductionBuildingUI : MonoBehaviour
             }
         }
     }
+    */
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)//Метод добавления предмета в слоты
     {
         ///Метод нужен для визуализации и обновления других участников при добавлении в производство
