@@ -37,7 +37,8 @@ public class ProductionBuildingUI : MonoBehaviour
     private string[,] ArraySlotsLoading;//Массив слотов загрузки 
     private string[,] ArraySlotsShipment;//Массив слотов отгрузки
     public GameObject MainCamera;
-
+    public Vector3 offset; //Смещение
+    public Vector3 screenPoint;
 
     //=======Дочерние и другие объекты================//
 
@@ -70,11 +71,8 @@ public class ProductionBuildingUI : MonoBehaviour
     {
 
     }
-    // Update is called once per frame
-    /*
-    void Update()
+    void SlotPanelSetActiveCheck()
     {
-        
         //Проверяем, активена ли панель со слотами
         if (SlotsPanel.activeSelf)
         {
@@ -86,7 +84,10 @@ public class ProductionBuildingUI : MonoBehaviour
             //Если не активна, активируем ее
             SlotsPanel.SetActive(true);
         }
-
+    }
+    //
+    void SlotPredmetSetActiveCheck()
+    {
         //Если слоты с предметами активны
         if (SlotsPredmets.activeSelf)
         {
@@ -99,20 +100,23 @@ public class ProductionBuildingUI : MonoBehaviour
         {
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
-
         }
+    }
+    //Режим перемещения
+    void MoveModeCheck()
+    {
         if (IsMoveModeOn)//Если режим перемещения включен
         {
+            
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
             SlotsPanel.SetActive(true);
             gameObject.tag = "obj_move_mod";
-     
             if (IsCollisionMoveModeOn)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;//Окрашиваем пекарню в красный цвет
             }
-            if (IsCollisionMoveModeOn==false)
+            if (IsCollisionMoveModeOn == false)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.white;//Окрашиваем пекарню в белый цвет
             }
@@ -120,21 +124,24 @@ public class ProductionBuildingUI : MonoBehaviour
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.black, Mathf.PingPong(Time.time, 1));
             }
-
-
         }
-        if (IsMoveModeOn==false)
+        else
         {
             SlotsPanel.SetActive(false);
             Collider.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
             //gameObject.tag = globals.bakery_type_obj;//Закомментировал, потому что вызывало ошибку
         }
+    }
+    //счетчик удержания клика на объекте
+    void CountModeCheck()
+    {
+        
         if (IsCountOn)
         {
             Count += Time.deltaTime;
             //Debug.Log(Count);
-            if (Count > 0.0f){ Arrow.GetComponent<Arrow>().BrushColor(0, Color.yellow); }//Закрашена часть стрелки 0
+            if (Count > 0.0f) { Arrow.GetComponent<Arrow>().BrushColor(0, Color.yellow); }//Закрашена часть стрелки 0
             if (Count > 0.5f) { Arrow.GetComponent<Arrow>().BrushColor(1, Color.yellow); }//Закрашена часть стрелки 1
             if (Count > 0.7f) { Arrow.GetComponent<Arrow>().BrushColor(2, Color.yellow); }//Закрашена часть стрелки 2
             if (Count > 0.8f) { Arrow.GetComponent<Arrow>().BrushColor(3, Color.yellow); }//Закрашена часть стрелки 3
@@ -151,7 +158,89 @@ public class ProductionBuildingUI : MonoBehaviour
             }
         }
     }
-    */
+    
+    void CheckInput()
+    {
+        // Check if the left mouse button was clicked
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Check if the mouse was clicked over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                MouseDown();
+            }
+            else
+            {
+                Debug.Log("Clicked on the UI");
+            }
+        }
+        //Update the Text on the screen depending on current TouchPhase, and the current direction vector
+        // Check if the left mouse button was clicked
+        if (Input.GetMouseButtonUp(0))
+        {
+            // Check if the mouse was clicked over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                MouseUp();
+            }
+            else
+            {
+                Debug.Log("Clicked on the UI");
+            }
+        }
+        // Track a single touch as a direction control.
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            // Handle finger movements based on TouchPhase
+            switch (touch.phase)
+            {
+                //When a touch has first been detected, change the message and record the starting position
+                case TouchPhase.Began:
+                    // Record initial touch position.
+                    //startPos = touch.position;
+                    MouseDown();
+                    Debug.Log("Began");
+                    break;
+
+                //Determine if the touch is a moving touch
+                case TouchPhase.Moved:
+                    // Determine direction by comparing the current touch position with the initial one
+                    //direction = touch.position - startPos;
+                    //message = "Moving ";
+                    break;
+
+                case TouchPhase.Ended:
+                    // Report that the touch has ended when it ends
+                    MouseUp();
+                    Debug.Log("Ending ");
+                    //message = "Ending ";
+                    break;
+            }
+        }
+    }
+    // Update is called once per frame
+    void OnMouseDrag()
+    {
+        if (IsMoveModeOn)
+        {
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            Collider.transform.position = curPosition;
+            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
+        }
+    }
+    void Update()
+    {
+        CheckInput();
+        SlotPanelSetActiveCheck();
+        SlotPredmetSetActiveCheck();
+        MoveModeCheck();
+        CountModeCheck();
+
+    }
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)//Метод добавления предмета в слоты
     {
         ///Метод нужен для визуализации и обновления других участников при добавлении в производство
@@ -181,7 +270,7 @@ public class ProductionBuildingUI : MonoBehaviour
         //More Cutscene Stuff and End the cutscene
     }
 
-    public void OnMouseUp()//Когда отпускаешь кнопку
+    public void MouseUp()//Когда отпускаешь кнопку
     {
         //Debug.Log("777");
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -194,7 +283,7 @@ public class ProductionBuildingUI : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
             if (IsMoveModeOn)
             {
-
+                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
                 if (gameObject.GetComponent<Renderer>().material.color == Color.red)
                 {
                     gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
@@ -209,7 +298,7 @@ public class ProductionBuildingUI : MonoBehaviour
             }
             else//Если IsMoveModeOn==false
             {
-
+                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
                 if (SlotsPredmets.activeSelf)
                 {
                     SlotsLoading.SetActive(false);
@@ -227,12 +316,13 @@ public class ProductionBuildingUI : MonoBehaviour
         }
 
     }
-    public void OnMouseDown()//Когда нажимаешь кнопку
+    public void MouseDown()//Когда нажимаешь кнопку
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (IsMoveModeOn)//Если режим перемещения активирован
             {
+                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
                 if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
                 {
                     PrimaryPosition = gameObject.transform.position;//Запоминаем позицию пекарни
@@ -246,12 +336,9 @@ public class ProductionBuildingUI : MonoBehaviour
                 Arrow.SetActive(true);//Активируем стрелку
                 Count = 0;//Обнуляем счетчик
                 IsCountOn = true;//Запускаем счетчик 
+                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
             }
         }
-
-    }
-    void OnMouseDrag()//Когда перемещение мыши
-    {
 
     }
 

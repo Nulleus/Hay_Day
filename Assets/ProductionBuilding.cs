@@ -395,8 +395,10 @@ public class ProductionBuilding : MonoBehaviour
     //Получаем всю информацию о слотах, загруженных, отгруженных, находящихся в производстве
     void GetAllInfoSlots()
     {
-
-        //
+        Array.Clear(SubjectsChildInTheProcessOfAssembly, 0, SubjectsChildInTheProcessOfAssembly.Length);
+        Array.Clear(SubjectsChildInTheShipment, 0, SubjectsChildInTheShipment.Length);
+        Debug.Log("GetAllInfoSlots()");
+        //0 - первый элемент в списке
         GetDifferenceDateInSeconds(SubjectName, 0);
         
 
@@ -451,6 +453,10 @@ public class ProductionBuilding : MonoBehaviour
 
                 }
             }
+        }
+        else
+        {
+
         }
         
     }
