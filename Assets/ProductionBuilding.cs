@@ -306,7 +306,15 @@ public class ProductionBuilding : MonoBehaviour
                 //panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
                 ResponseFromRequests.Remove("0x0000003");
             }
-            Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
+            //Если запросы выполнены успешно
+            if (spisokResponseFromRequests.Key == "0x0000004")
+            {
+                Debug.Log("0x0000004");
+                //Обновляем слоты отгрузки
+                GetAllInfoSlots();
+                ResponseFromRequests.Remove("0x0000004");
+            }
+            
             //если предметы культур, которые остались последние на складе, которые нет в производстве
             if (spisokResponseFromRequests.Key == "0x0000008")
             {
@@ -324,7 +332,9 @@ public class ProductionBuilding : MonoBehaviour
                 Debug.Log("0x0000009");
                 //Обновляем слоты отгрузки
                 GetAllInfoSlots();
+                ResponseFromRequests.Remove("0x0000009");
             }
+            Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
         }
     }
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
@@ -393,6 +403,7 @@ public class ProductionBuilding : MonoBehaviour
         GetAllInfoSlots();
     }
     //Получаем всю информацию о слотах, загруженных, отгруженных, находящихся в производстве
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     void GetAllInfoSlots()
     {
         Array.Clear(SubjectsChildInTheProcessOfAssembly, 0, SubjectsChildInTheProcessOfAssembly.Length);
@@ -497,6 +508,7 @@ public class ProductionBuilding : MonoBehaviour
             }
         });
     }
+
     public void GetAllCost(string subjectName)
     {
         Debug.Log("GetAllCost");
@@ -602,6 +614,7 @@ public class ProductionBuilding : MonoBehaviour
 
     }
     //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру, идентификатору пользователя
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
     {
         RestClient.Post<ResponseSubjectChildInTheShipment>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment

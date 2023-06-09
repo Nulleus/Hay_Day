@@ -235,8 +235,9 @@ public class ProductionBuildingUI : MonoBehaviour
     void Update()
     {
         CheckInput();
-        SlotPanelSetActiveCheck();
         SlotPredmetSetActiveCheck();
+        SlotPanelSetActiveCheck();
+        
         MoveModeCheck();
         CountModeCheck();
 
