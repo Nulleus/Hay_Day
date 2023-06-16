@@ -54,6 +54,7 @@ public class ProductionBuilding : MonoBehaviour
     public float TimeBeforeStartRequest;
     public bool CheckInBuilding;
     public bool TimerEnable;
+    public string File;
 
     [Serializable]
     public class POSTGetDifferenceDateInSeconds
@@ -264,6 +265,21 @@ public class ProductionBuilding : MonoBehaviour
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
+    }
+    [Serializable]
+    public class POSTFileDataBase
+    {
+        public string jwt;
+        public string methodName;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
+    [Serializable]
+    public class ResponseFileDataBase
+    {
+        public string file;
     }
     public void BuySubjectForDiamond(string subjectName)
     {
@@ -626,6 +642,20 @@ public class ProductionBuilding : MonoBehaviour
         }).Then(response => {
             SubjectsChildInTheShipment[numberSlot] = response.subjectChildInTheShipment;
             Debug.Log("response.subjectChildInTheShipment" + response.subjectChildInTheShipment);
+        });
+
+    }
+
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void GetFileDataBase(string fileName)
+    {
+        RestClient.Post<ResponseFileDataBase>("http://farmpass.beget.tech/api/dump_sql.php", new POSTFileDataBase
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "Test"
+        }).Then(response => {
+            File = response.file;
+            Debug.Log("File" + response.file);
         });
 
     }
