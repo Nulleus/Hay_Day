@@ -14,6 +14,7 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine.UI;
+using System.IO;
 
 public class ProductionBuilding : MonoBehaviour
 {
@@ -487,11 +488,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     //Получаем секунды до выгрузки первого объекта из производства
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
@@ -659,5 +656,47 @@ public class ProductionBuilding : MonoBehaviour
         });
 
     }
+    void Start()
+    {
+
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    void Test()
+    {
+        var PFDB = new POSTFileDataBase
+        {
+            jwt = Data.GetComponent<Users>().GetJWTToken(),
+            methodName = "Test"
+        };
+
+        var body = JsonUtility.ToJson(PFDB);
+        StartCoroutine(postRequest("http://farmpass.beget.tech/api/dump_sql.php", body));
+    }
+
+    IEnumerator postRequest(string url, string json)
+    {
+        var uwr = new UnityWebRequest(url, "POST");
+        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        uwr.SetRequestHeader("Content-Type", "application/json");
+
+        //Send the request then wait here until it returns
+        yield return uwr.SendWebRequest();
+
+        if (uwr.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + uwr.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + uwr.downloadHandler.data);
+            Debug.Log(Application.persistentDataPath);
+            StreamWriter sw = new StreamWriter(Application.persistentDataPath + @"/PlayerName.txt");
+            sw.Write(uwr.downloadHandler.text);
+            sw.Close();
+        }
+    }
+
 
 }
