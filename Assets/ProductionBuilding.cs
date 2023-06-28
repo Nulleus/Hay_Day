@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine.UI;
 using System.IO;
+using Mono.Data.Sqlite; // 1
+using System.Data; // 1
 
 public class ProductionBuilding : MonoBehaviour
 {
@@ -33,7 +35,7 @@ public class ProductionBuilding : MonoBehaviour
     public GameObject Data;
     [ShowInInspector]
     public string SubjectName;
-
+    
     public int MaxCountSlots;
     //Имя находящегося в производстве предмета
     public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
@@ -56,6 +58,7 @@ public class ProductionBuilding : MonoBehaviour
     public bool CheckInBuilding;
     public bool TimerEnable;
     public string File;
+    public string SQLQueryFull;
 
     [Serializable]
     public class POSTGetDifferenceDateInSeconds
@@ -649,7 +652,7 @@ public class ProductionBuilding : MonoBehaviour
         RestClient.Post<ResponseFileDataBase>("http://farmpass.beget.tech/api/dump_sql.php", new POSTFileDataBase
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "Test"
+            methodName = "GetSQLQueryFull"
         }).Then(response => {
             File = response.file;
             Debug.Log("File" + response.file);
@@ -661,16 +664,47 @@ public class ProductionBuilding : MonoBehaviour
 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    void Test()
+    void GetSQLQueryFull()
     {
         var PFDB = new POSTFileDataBase
         {
             jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "Test"
+            methodName = "GetSQLQueryFull"
         };
 
         var body = JsonUtility.ToJson(PFDB);
         StartCoroutine(postRequest("http://farmpass.beget.tech/api/dump_sql.php", body));
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+
+    private void SetSQLQueryFull()
+    {
+        Debug.Log("SetSQLQueryFull");
+        // Insert hits into the table.
+        IDbConnection dbConnection = CreateAndOpenDatabase(); // 2
+        IDbCommand dbCommandInsertValue = dbConnection.CreateCommand(); // 9
+        //dbCommandInsertValue.CommandText = "INSERT OR REPLACE INTO HitCountTableSimple (id, hits) VALUES (0, " + hitCount + ")"; // 10
+        dbCommandInsertValue.ExecuteNonQuery(); // 11
+
+        // Remember to always close the connection at the end.
+        dbConnection.Close(); // 12
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    private IDbConnection CreateAndOpenDatabase() // 3
+    {
+        Debug.Log("CreateAndOpenDatabase()");
+        // Open a connection to the database.
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        dbConnection.Open(); // 6
+
+        // Create a table for the hit count in the database if it does not exist yet.
+        IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
+        dbCommandCreateTable.CommandText = SQLQueryFull; // 7
+        dbCommandCreateTable.ExecuteReader(); // 8
+        dbConnection.Close(); // 9
+        return dbConnection;
     }
 
     IEnumerator postRequest(string url, string json)
@@ -690,7 +724,9 @@ public class ProductionBuilding : MonoBehaviour
         }
         else
         {
-            Debug.Log("Received: " + uwr.downloadHandler.data);
+            UTF8Encoding utf8 = new UTF8Encoding();
+            SQLQueryFull = utf8.GetString(uwr.downloadHandler.data);
+            Debug.Log("Received: " + SQLQueryFull);
             Debug.Log(Application.persistentDataPath);
             StreamWriter sw = new StreamWriter(Application.persistentDataPath + @"/PlayerName.txt");
             sw.Write(uwr.downloadHandler.text);
