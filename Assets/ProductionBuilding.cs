@@ -664,6 +664,7 @@ public class ProductionBuilding : MonoBehaviour
 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    //Получаем даннные для импорта в базу данных
     void GetSQLQueryFull()
     {
         var PFDB = new POSTFileDataBase
@@ -676,21 +677,24 @@ public class ProductionBuilding : MonoBehaviour
         StartCoroutine(postRequest("http://farmpass.beget.tech/api/dump_sql.php", body));
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-
+    //Импортируем БД с сервера
     private void SetSQLQueryFull()
     {
         Debug.Log("SetSQLQueryFull");
         // Insert hits into the table.
-        IDbConnection dbConnection = CreateAndOpenDatabase(); // 2
+        // Open a connection to the database.
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        dbConnection.Open(); // 6
         IDbCommand dbCommandInsertValue = dbConnection.CreateCommand(); // 9
-        //dbCommandInsertValue.CommandText = "INSERT OR REPLACE INTO HitCountTableSimple (id, hits) VALUES (0, " + hitCount + ")"; // 10
+        dbCommandInsertValue.CommandText = SQLQueryFull; // 10
         dbCommandInsertValue.ExecuteNonQuery(); // 11
-
         // Remember to always close the connection at the end.
         dbConnection.Close(); // 12
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    private IDbConnection CreateAndOpenDatabase() // 3
+    private IDbConnection ClearingDatabase() // 3
     {
         Debug.Log("CreateAndOpenDatabase()");
         // Open a connection to the database.
@@ -698,11 +702,13 @@ public class ProductionBuilding : MonoBehaviour
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
         dbConnection.Open(); // 6
-
         // Create a table for the hit count in the database if it does not exist yet.
         IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
-        dbCommandCreateTable.CommandText = SQLQueryFull; // 7
+        //Очищаем таблицу полностью
+        dbCommandCreateTable.CommandText = "DROP TABLE IF EXISTS users; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS progress_slots; DELETE FROM sqlite_sequence; DROP TABLE IF EXISTS subjects_sum; "; // 7
         dbCommandCreateTable.ExecuteReader(); // 8
+        //dbCommandCreateTable.CommandText = SQLQueryFull; // 7
+        //dbCommandCreateTable.ExecuteReader(); // 8
         dbConnection.Close(); // 9
         return dbConnection;
     }
