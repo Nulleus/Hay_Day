@@ -739,6 +739,64 @@ public class ProductionBuilding : MonoBehaviour
             sw.Close();
         }
     }
+    //Получаем количество объектов, необходимых для изготовления объекта по имени
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public int GetCountAllIngredients(string subjectName)
+    {
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlExpression = "SELECT COUNT(*)FROM ingredients WHERE subject_name ="+"'"+subjectName+"'";
+        int countAllIngredients;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        countAllIngredients = Convert.ToInt32(reader.GetValue(0));
+                        return countAllIngredients;
+                    }
+                    
+                }
+            }
+        }
+        return 0; 
+    }
+
+    //Получить имя ингредиента имени объекта и по номеру
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public string GetIngredientName(string subjectName, int number)
+    {
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        //string sqlExpression = "SELECT COUNT(*)FROM ingredients WHERE subject_name =" + "'" + subjectName + "'";
+        string sqlExpression = "SELECT ingredient_name FROM ingredients WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT " + number.ToString() + ",1";
+        string ingredientName;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        ingredientName = reader.GetValue(0).ToString();
+                        return ingredientName;
+                    }
+
+                }
+            }
+        }
+        return "Error";
+    }
 
 
 }
