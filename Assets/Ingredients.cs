@@ -11,150 +11,123 @@ using Sirenix.OdinInspector;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient"
+using Mono.Data.Sqlite; // 1
+using System.Data; // 1
+
+//Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient" из локальной базы данных
 public class Ingredients : MonoBehaviour
 {
-    [Serializable]
-    public class POSTGetCountAllIngredients
+    //Получаем количество объектов, необходимых для изготовления объекта по имени
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public int GetCountAllIngredients(string subjectName)
     {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlExpression = "SELECT COUNT(*)FROM ingredients WHERE subject_name =" + "'" + subjectName + "'";
+        int countAllIngredients;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
 
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetCountAllIngredients
-    {
-        public string message;
-        public int count;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class POSTGetIngredientName
-    {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
-        public int number;
-
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetIngredientName
-    {
-        public string message;
-        public string ingredientName;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class POSTGetCountIngredient
-    {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
-        public int number;
-
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetCountIngredient
-    {
-        public string message;
-        public int count;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class POSTGetIngredientsAndCount
-    {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
-        public int number;
-
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetIngredientsAndCount
-    {
-        public string message;
-        public string ingredientName;
-        public int ingredientCount;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    private void Start()
-    {
-        
-    }
-    public GameObject Data;
-    [SerializeField]
-    private string SubjectName;
-    [ShowInInspector]
-    //Имя ингредиента, количество ингредиента
-    public Dictionary<string, int> IngredientsAndCount = new Dictionary<string, int>();
-    //Получаем ингредиенты, необходимые для создания объекта
-    public void GetIngredientsAndCount(string subjectName, int number)
-    {
-
-        RestClient.Post<ResponseGetIngredientsAndCount>("http://farmpass.beget.tech/api/ingredient_execute_methods.php", new POSTGetIngredientsAndCount
-        {
-            jwt = Data.GetComponent<Users>().GetJWTToken(),
-            methodName = "GetIngredientsAndCount",
-            subjectName = subjectName,
-            number = number
-
-        }).Then(response => {
-            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            //EditorUtility.DisplayDialog("ingredientName: ", response.ingredientName, "Ok");
-            //EditorUtility.DisplayDialog("ingredientCount: ", response.ingredientCount.ToString(), "Ok");
-            if (response.ingredientCount != 0)
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
             {
-                IngredientsAndCount.Add(response.ingredientName, response.ingredientCount);
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        countAllIngredients = Convert.ToInt32(reader.GetValue(0));
+                        return countAllIngredients;
+                    }
+
+                }
             }
-            
-        });
+        }
+        return 0;
     }
 
-    private void OnEnable()
+    //Получить имя ингредиента имени объекта и по номеру
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public string GetIngredientName(string subjectName, int number)
     {
-        SubjectName = gameObject.name;
-        for (int i = 0;i<5 ; i++)
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        //string sqlExpression = "SELECT COUNT(*)FROM ingredients WHERE subject_name =" + "'" + subjectName + "'";
+        string sqlExpression = "SELECT ingredient_name FROM ingredients WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT " + number.ToString() + ",1";
+        string ingredientName;
+        using (var connection = new SqliteConnection(dbUri))
         {
-            GetIngredientsAndCount(SubjectName, i);
+            connection.Open();
+
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        ingredientName = reader.GetValue(0).ToString();
+                        return ingredientName;
+                    }
+
+                }
+            }
         }
-            
-        //GetIngredientsAndCount("cowFeed", 0);
-        //GetCountAllIngredients("cowFeed");
-        //GetIngredientName("cowFeed",0);
-        //GetCountIngredient("cowFeed", 0);
-        //StartCoroutine(GetCompositions("cowFeed"));
-        //Compositions = GetCompositions("cowFeed");
-        //Dictionary<string, int> compositions = new Dictionary<string, int>();
-        //compositions.Add("wheat", 2);
-        //Compositions = compositions; 
+        return "Error";
+    }
+    //Получить количество необходимого ингредиента имени объекта и по номеру
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public int GetCountIngredient(string subjectName, int number)
+    {
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlExpression = "SELECT count_ingredients FROM ingredients WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT " + number.ToString() + ",1";
+        int countIngredient;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        countIngredient = Convert.ToInt32(reader.GetValue(0));
+                        return countIngredient;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    //Получаем ингредиенты, и их количество необходимые для изготовления предмета
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public IDictionary<string, int> GetAllIngredients(string subjectName)
+    {
+        var allIngredients = new Dictionary<string, int>();
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        //string sqlExpression = "SELECT COUNT(*)FROM ingredients WHERE subject_name =" + "'" + subjectName + "'";
+        string sqlExpression = "SELECT ingredient_name,count_ingredients FROM ingredients WHERE subject_name =" + "'" + subjectName + "'";
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        allIngredients.Add(reader.GetValue(0).ToString(), Convert.ToInt32(reader.GetValue(1)));
+                    }
+                    return allIngredients;
+                }
+            }
+        }
+        return allIngredients;
     }
 }

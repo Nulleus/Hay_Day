@@ -168,8 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  SubjectName: 
 --- !u!1001 &7986470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11646,8 +11644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  SubjectName: wheat
 --- !u!114 &309673581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13666,6 +13662,7 @@ MonoBehaviour:
   CheckInBuilding: 0
   TimerEnable: 0
   File: 
+  SQLQueryFull: 
 --- !u!114 &364160160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13750,6 +13747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0538c5bbe245d499183dc471b288a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SQL: 
   hitCount: 0
 --- !u!1 &366472903
 GameObject:
@@ -30010,8 +30008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  SubjectName: 
 --- !u!114 &820806409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63402,8 +63398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  SubjectName: 
 --- !u!114 &1866044572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63584,6 +63578,7 @@ MonoBehaviour:
   CheckInBuilding: 0
   TimerEnable: 0
   File: 
+  SQLQueryFull: 
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0
