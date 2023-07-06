@@ -15,5 +15,6 @@ public class Contents : MonoBehaviour
     {
         string dateTimeNowForQuery = Convert.ToString(dateTimeNow, System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата загрузки
         //Convert.ToString(nowtime.AddSeconds(building_time), System.Globalization.CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat); //Дата отгрузки
+        return "";
     }
 }

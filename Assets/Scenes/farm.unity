@@ -13661,8 +13661,6 @@ MonoBehaviour:
   TimeBeforeStartRequest: 0
   CheckInBuilding: 0
   TimerEnable: 0
-  File: 
-  SQLQueryFull: 
 --- !u!114 &364160160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63312,6 +63310,7 @@ GameObject:
   - component: {fileID: 1866044581}
   - component: {fileID: 1866044582}
   - component: {fileID: 1866044583}
+  - component: {fileID: 1866044584}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -63331,11 +63330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c826c7dd37e134fb9386efcc8735f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  ServerDateTime: 
-  CountShipmentSlots: 0
-  CountLoadingSlots: 0
-  IdContent: 0
 --- !u!114 &1866044568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63577,8 +63571,6 @@ MonoBehaviour:
   TimeBeforeStartRequest: 0
   CheckInBuilding: 0
   TimerEnable: 0
-  File: 
-  SQLQueryFull: 
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63591,6 +63583,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50eb4ecd59c741340991d6e61bcae1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1866044584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e750c954afba24d919c794cc3ec9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SQLQueryFull: 
+  Data: {fileID: 1866044566}
+  File: 
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
