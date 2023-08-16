@@ -113,6 +113,7 @@ public class Preload : MonoBehaviour
         dbConnection.Close(); // 12
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    //Очищаем БД с которой будем работать
     private IDbConnection ClearingDatabase() // 3
     {
         Debug.Log("CreateAndOpenDatabase()");
@@ -121,6 +122,7 @@ public class Preload : MonoBehaviour
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
         dbConnection.Open(); // 6
+        
         // Create a table for the hit count in the database if it does not exist yet.
         IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
         //Очищаем таблицу полностью
@@ -132,6 +134,7 @@ public class Preload : MonoBehaviour
         return dbConnection;
     }
 
+    //Получаем файл .sql для импорта данных в локальную базу данных
     IEnumerator postRequest(string url, string json)
     {
         var uwr = new UnityWebRequest(url, "POST");
@@ -159,7 +162,7 @@ public class Preload : MonoBehaviour
         }
     }
 
-    //Получаем файл .sql для импорта данных в локальную базу данных
+   //Получаем серверное время
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDateTimeNowServer()
     {
@@ -172,12 +175,14 @@ public class Preload : MonoBehaviour
             Debug.Log("dateTimeNowServer" + response.dateTimeNow);
         });
     }
+    //Получаем время клиента
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDateTimeNowClient()
     {
         ClientTimeNow = DateTime.Now;
         Debug.Log("ClientTimeNow=" + ClientTimeNow);
     }
+    //Получаем разницу времени между клиентом и сервером
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDateDifference()
     {

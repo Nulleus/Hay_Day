@@ -17,6 +17,7 @@ using UnityEngine.UI;
 using System.IO;
 using Mono.Data.Sqlite; // 1
 using System.Data; // 1
+using System.Globalization;
 
 public class ProductionBuilding : MonoBehaviour
 {
@@ -270,7 +271,7 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-
+    //Покупаем предмет за алмазы на стороне сервера
     public void BuySubjectForDiamond(string subjectName)
     {
         RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
@@ -285,6 +286,19 @@ public class ProductionBuilding : MonoBehaviour
             }
             CheckResponseFromRequests(subjectName);
         });
+    }
+    //Покупаем предмет за алмазы на стороне клиента
+    public void BuySubjectForDiamondClient(string subjectName)
+    {
+        //Получаем массив предметов с их количеством, которых нехватает
+        //missingIngredients
+        //Общая стоимость объектов за алмазы
+        //Получаем, сколько у пользователя алмазов
+        //$countsSubject
+        //Если предметов(алмазы) достаточно
+        //if ($countsSubject >= $allCost) {}
+
+        //dbConnection.BeginTransaction().Rollback();
     }
     //Проверяем ответ от сервера
     public void CheckResponseFromRequests(string subjectNameForBuilding)
