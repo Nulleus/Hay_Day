@@ -195,4 +195,138 @@ public class Content : MonoBehaviour
         //var_dump($query);
         return query;
     }
+    //Метод только добавляет в БД полученные значения
+    // SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
+    public void AddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
+    {
+        // Open a connection to the database.
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        dbConnection.Open(); // 6
+        // Create a table for the hit count in the database if it does not exist yet.
+        IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
+        string query = QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantity);
+        dbCommandCreateTable.CommandText = query; // 7
+        dbCommandCreateTable.ExecuteReader(); // 8
+        //dbCommandCreateTable.CommandText = SQLQueryFull; // 7
+        //dbCommandCreateTable.ExecuteReader(); // 8
+        dbConnection.Close(); // 9
+    }
+    //Получаем ID первого стоящего на отгрузку объекта
+    //query = "SELECT id_content FROM content WHERE time_shipment<? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
+    public int GetShipmentID(string subjectParentName, DateTime dateTimeNow)
+    {
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        //string sqlExpression = "SELECT COUNT(*) FROM contents WHERE subject_parent_name=" + "'" + subjectChildName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT id_content FROM content WHERE time_shipment<"+"'"+dateTimeNow+"'"+ "AND subject_parent_name =" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        int shipmentID;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        shipmentID = Convert.ToInt32(reader.GetValue(0));
+                        return shipmentID;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+    //Получение количества объектов на выходе по id_content
+    public int GetCountOutputQuantity(int idContent)
+    {
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        //$query = "SELECT output_quantity FROM " . $this->table_name . "WHERE id_content =? ";
+        string sqlExpression = "SELECT output_quantity FROM contents WHERE id_content=" + idContent + "";
+        int count;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        count = Convert.ToInt32(reader.GetValue(0));
+                        return count;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+    //Получение имени выгружаемого объекта по id_content
+    public string GetSubjectName(int idContent)
+    {
+        //$query = "SELECT subject_child_name FROM " . $this->table_name . "WHERE id_content =? ";
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE id_content= " + "" + idContent + "";
+        string subjectChildName;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        subjectChildName = reader.GetValue(0).ToString();
+                        return subjectChildName;
+                    }
+                }
+            }
+        }
+        return "Error";
+    }
+    //Формирование запроса на удаление записи
+    public string QueryDeleteContent(int idContent)
+    {
+        //$query = "DELETE FROM " . $this->table_name . "WHERE id_content = ".$idContent;
+        string query = "DELETE FROM contents WHERE id_content="+idContent+"";           
+        return query;
+    }
+
+    //Получаем дату выгрузки предмета(который еще находится в производстве) по номеру слота и имени главного объекта
+    public DateTime GetDateShipment(string subjectParentName, int numberSlot, DateTime dateTimeNow)
+    {
+        //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =?ORDER BY id_content ASC LIMIT ?,1"; 
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string subjectChildInTheShipment;
+        using (var connection = new SqliteConnection(dbUri))
+        {
+            connection.Open();
+
+            SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())   // построчно считываем данные
+                    {
+                        subjectChildInTheShipment = reader.GetValue(0).ToString();
+                        return subjectChildInTheShipment;
+                    }
+
+                }
+            }
+        }
+        return "Error";
+    }
+
 }
