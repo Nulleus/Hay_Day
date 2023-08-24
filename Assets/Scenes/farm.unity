@@ -10283,6 +10283,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -13186,6 +13187,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -19753,6 +19755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82238b6e088859b42ab837d2decbba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GO: {fileID: 0}
 --- !u!114 &563933249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32963,7 +32966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &884027878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33615,7 +33618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af05eac19b4797469899d5427cf2810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelSlot: []
+  PanelSlot:
+  - {fileID: 0}
 --- !u!1001 &909024455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35171,6 +35175,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -39648,6 +39653,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -40341,6 +40347,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -41427,7 +41434,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &1175988543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41450,7 +41457,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1175988544
 Canvas:
   m_ObjectHideFlags: 0
@@ -52569,6 +52576,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -56764,6 +56772,8 @@ MonoBehaviour:
   primary_position: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: 0}
   screenPoint: {x: 0, y: 0, z: 0}
+  temp: 
+  open_slots: 0
   bread_visible: {fileID: 0}
   mousedrag_block_on: 0
   event_0: 
@@ -62374,6 +62384,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -63294,10 +63305,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866044588}
-  - component: {fileID: 1866044567}
-  - component: {fileID: 1866044570}
-  - component: {fileID: 1866044569}
-  - component: {fileID: 1866044571}
   - component: {fileID: 1866044572}
   - component: {fileID: 1866044568}
   - component: {fileID: 1866044574}
@@ -63307,13 +63314,14 @@ GameObject:
   - component: {fileID: 1866044578}
   - component: {fileID: 1866044580}
   - component: {fileID: 1866044579}
-  - component: {fileID: 1866044581}
   - component: {fileID: 1866044582}
   - component: {fileID: 1866044583}
   - component: {fileID: 1866044584}
   - component: {fileID: 1866044585}
   - component: {fileID: 1866044586}
   - component: {fileID: 1866044587}
+  - component: {fileID: 1866044590}
+  - component: {fileID: 1866044589}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -63321,18 +63329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1866044567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7c826c7dd37e134fb9386efcc8735f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1866044568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63347,54 +63343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   Count: 0
---- !u!114 &1866044569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a737635edbea26489372da97083e778, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  JWTToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU
-  Login: AdminFarm
-  Password: 123
-  Nickname: 
-  FarmName: 
---- !u!114 &1866044570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2050c79876eac742bb77dd88cd31521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Server: mysql.rabeev2.myjino.ru
-  DataBase: rabeev2_hayday
-  UserName: rabeev2
-  UserPassword: z173500QW
-  Port: 3306
-  ConnectionString: 
---- !u!114 &1866044571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52f1252bf16b0d9459c0b478ba795211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1866044572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63511,20 +63459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   OpenLevelNumber: 0
---- !u!114 &1866044581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8846c98c22bd11c47a24f83d93a2e6a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  BuildingTimeSeconds: 0
 --- !u!114 &1866044582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63610,6 +63544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae42d3172df2674289b240dbf593a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  BuildingTimeSeconds: 0
 --- !u!114 &1866044587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63642,6 +63578,36 @@ RectTransform:
   m_AnchoredPosition: {x: 4588.509, y: 505.49008}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1866044589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed817efeb905b04c934732c61e5a1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  JWTToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJpZF91c2VyIjoxMiwibG9naW4iOiJBZG1pbkZhcm0iLCJuaWNrbmFtZSI6IlN0b3JtIiwiZmFybV9uYW1lIjoiR3JlZW4ifX0.WexHlXBl4CgHHM2V5VY2CaaJPpn-VVR0SQJYVIMMHtU
+  Login: AdminFarm
+  Password: 123
+  Nickname: 
+  FarmName: 
+--- !u!114 &1866044590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dadb24919e9ed5c4b96ae483c585eda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -69404,6 +69370,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
@@ -69614,6 +69581,7 @@ MonoBehaviour:
   transform_object: 
   type_sklad: 
   visible: 0
+  field_anim: {fileID: 0}
   stage: 0
   crop: 
   predmet_sklad:
