@@ -31,9 +31,9 @@ public class MainScript : MonoBehaviour {
 			return RestClient.GetArray<Todo>(basePath + "/todos");
 		}).Then(res => {
 			this.LogMessage("Todos", JsonHelper.ArrayToJsonString<Todo>(res, true));
-			return RestClient.GetArray<User.POSTUser>(basePath + "/users");
+			return RestClient.GetArray<Users.POSTUser>(basePath + "/users");
 		}).Then(res => {
-			this.LogMessage("Users", JsonHelper.ArrayToJsonString<User.POSTUser>(res, true));
+			this.LogMessage("Users", JsonHelper.ArrayToJsonString<Users.POSTUser>(res, true));
 
 			// We can add specific options and override default headers for a request
 			requestOptions = new RequestHelper { 
@@ -146,7 +146,7 @@ public class MainScript : MonoBehaviour {
 	public void PostLogin()
 	{
 
-		RestClient.Post<User.POSTLogin>("http://farmpass.beget.tech/api/login.php", new User.POSTLogin
+		RestClient.Post<Users.POSTLogin>("http://farmpass.beget.tech/api/login.php", new Users.POSTLogin
 		{
 			login = "vasya2@coder.com",
 			password = "888"
