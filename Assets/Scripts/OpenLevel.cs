@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System;
+using UnityEngine;
 using Proyecto26;
 using UnityEditor;
+using UnityEngine.Networking;
+using System.Threading.Tasks;
+using System.Threading;
+using Sirenix.OdinInspector;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Mono.Data.Sqlite; // 1
+using System.Data; // 1
 //System.Text.Json.Serialization.JsonConverter;
 
 public class OpenLevel : MonoBehaviour
@@ -87,23 +94,56 @@ public class OpenLevel : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    public int GetCountAllSubjectNameByOpenLevel(int openLevelNumber)
+    //ѕолучаем количество открытых объектов по номеру уровн€
+    public int GetCountAllSubjectNameByOpenLevel(int openLevelNumber, string locationDataProcessing)
     {
-        //Debug.Log("GetAllSubjectNameByOpenLevel");
-        RestClient.Post<ResponseCountOpenLevel>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTOpenLevel
+        if (locationDataProcessing == "Local")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetCountAllSubjectNameByOpenLevel",
-            openLevelNumber = openLevelNumber
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            //$query = "SELECT COUNT(*) FROM " . $this->table_name . "WHERE open_level_number <=  ? "; 
+            string sqlExpression = "SELECT COUNT(*) FROM open_level WHERE open_level_number <=" + openLevelNumber + "";
+            int timeBuilding;
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
 
-        }).Then(response => {
-            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            //EditorUtility.DisplayDialog("countSubjectAll: ", response.countSubjectAll, "Ok");
-            return response.countSubjectAll;
-        });
-        return 0;
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())   // построчно считываем данные
+                        {
+                            timeBuilding = Convert.ToInt32(reader.GetValue(0));
+                            return timeBuilding;
+                        }
+
+                    }
+                }
+            }
+        }
+        if (locationDataProcessing == "Server")
+        {
+            //Debug.Log("GetAllSubjectNameByOpenLevel");
+            RestClient.Post<ResponseCountOpenLevel>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTOpenLevel
+            {
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "GetCountAllSubjectNameByOpenLevel",
+                openLevelNumber = openLevelNumber
+
+            }).Then(response => {
+                //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+                //EditorUtility.DisplayDialog("countSubjectAll: ", response.countSubjectAll, "Ok");
+                return response.countSubjectAll;
+            });
+            return 0;
+        }
+        return -1;
+
     }
 
+    //    $query = "SELECT subject_name FROM " . $this->table_name . "WHERE open_level_number <=  ? LIMIT?,1"; 
     public List<string> GetAllSubjectNameByOpenLevelWhereNumber(int openLevelNumber, int openLevelNumberLimit)
     {
         List<string> allSubjectNameOpenLevel = new List<string>();
