@@ -34,6 +34,6 @@ public class SlotsLoading : MonoBehaviour
     }
     void GetOpenSlotsCount()
     {
-        OpenSlots = gameObject.GetComponent<ProgressSlot>().OpenSlots;
+        OpenSlots = gameObject.GetComponent<ProgresSlot>().OpenSlots;
     }
 }

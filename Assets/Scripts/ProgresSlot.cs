@@ -15,10 +15,10 @@ using Mono.Data.Sqlite; // 1
 using System.Data; // 1
 
 
-public class SubjectSum : MonoBehaviour
+public class ProgresSlot : MonoBehaviour
 {
     [Serializable]
-    public class POSTGetSubjectSumCount
+    public class POSTGetOpenSlotsCount
     {
         public string jwt;
         public string methodName;
@@ -30,20 +30,19 @@ public class SubjectSum : MonoBehaviour
         }
     }
     [Serializable]
-    public class ResponseGetSubjectSumCount
+    public class ResponseGetOpenSlotsCount
     {
         public string message;
-        public int sumCount;
+        public int openSlots;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
     public GameObject Data;
-    public string SubjectName;
-    public int SumCount;
-    //Скрипт работает с таблицей subjects_sum
-    // Start is called before the first frame update
+    public int OpenSlots; //Количество открытых слотов у пользователя
+    [SerializeField]
+    public GameObject ParentSubject;
     private void Start()
     {
 
@@ -52,17 +51,21 @@ public class SubjectSum : MonoBehaviour
     {
 
     }
-    //Получить количество объектов
-    //$query = "SELECT sum_count FROM " . $this->table_name . "WHERE subject_name =? AND user_id =? LIMIT 0,1";
+    public void GetOpenSlotsCount(string subjectName)
+    {
+
+    }
+    //Получить количество открытых слотов
+    //$query = "SELECT open_slots FROM " . $this->table_name . " WHERE subject_name =? AND user_id =? LIMIT 0,1"; 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetSubjectSumCount(string subjectName, string locationDataProcessing)
+    public int GetOpenSlotsCount(string subjectName, string locationDataProcessing)
     {
         if (locationDataProcessing == "Local")
         {
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-            string sqlExpression = "SELECT sum_count FROM subjects_sum WHERE subject_name ='" + subjectName + "' LIMIT 0,1";
-            int subjectSumCount;
+            string sqlExpression = "SELECT open_slots FROM progress_slots WHERE subject_name ='" + subjectName + "' LIMIT 0,1";
+            int openSlots;
             using (var connection = new SqliteConnection(dbUri))
             {
                 connection.Open();
@@ -73,8 +76,8 @@ public class SubjectSum : MonoBehaviour
                     {
                         while (reader.Read())   // построчно считываем данные
                         {
-                            subjectSumCount = Convert.ToInt32(reader.GetValue(0));
-                            return subjectSumCount;
+                            openSlots = Convert.ToInt32(reader.GetValue(0));
+                            return openSlots;
                         }
                     }
                 }
@@ -82,9 +85,19 @@ public class SubjectSum : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            return -1;
+            RestClient.Post<ResponseGetOpenSlotsCount>("http://farmpass.beget.tech/api/progres_slot_execute_methods.php", new POSTGetOpenSlotsCount
+            {
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "GetOpenSlotsCount",
+                subjectName = subjectName
+            }).Then(response => {
+                //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+                //EditorUtility.DisplayDialog("openSlots: ", response.openSlots.ToString(), "Ok");
+                Debug.Log(response.openSlots);
+                OpenSlots = response.openSlots;
+                Debug.Log("openSlots=" + OpenSlots);
+            });
         }
         return -1;
-}
-
+    }
 }

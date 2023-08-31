@@ -152,6 +152,7 @@ public class Content : MonoBehaviour
         return 0;
     }
     //Получаем количество занятых слотов(которые производят в данный момент) загрузки по имени родителя
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, DateTime dateTimeNow)
     {
         //string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment>NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
@@ -178,6 +179,7 @@ public class Content : MonoBehaviour
         return 0;
     }
     //Получаем количество предметов находящихся в таблице, по имени объекта
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetCountAllSlotsBySubjectName(string subjectChildName)
     {
         //string sql = ""SELECT COUNT(*)FROM " . $this->table_name . "WHERE user_id =? AND subject_child_name =?ORDER BY id_content"; 
@@ -203,6 +205,7 @@ public class Content : MonoBehaviour
         }
         return 0;
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Подготовка запроса
     public string QueryAddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
     {
@@ -213,6 +216,7 @@ public class Content : MonoBehaviour
     }
     //Метод только добавляет в БД полученные значения
     // SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
     {
         // Open a connection to the database.
@@ -231,6 +235,7 @@ public class Content : MonoBehaviour
     }
     //Получаем ID первого стоящего на отгрузку объекта
     //query = "SELECT id_content FROM content WHERE time_shipment<? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetShipmentID(string subjectParentName, DateTime dateTimeNow)
     {
         string dbName = "MyDatabase.sqlite";
@@ -257,6 +262,7 @@ public class Content : MonoBehaviour
         return -1;
     }
     //Получение количества объектов на выходе по id_content
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetCountOutputQuantity(int idContent)
     {
         string dbName = "MyDatabase.sqlite";
@@ -283,6 +289,7 @@ public class Content : MonoBehaviour
         return -1;
     }
     //Получение имени выгружаемого объекта по id_content
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetSubjectName(int idContent)
     {
         //$query = "SELECT subject_child_name FROM " . $this->table_name . "WHERE id_content =? ";
@@ -309,6 +316,7 @@ public class Content : MonoBehaviour
         return "Error";
     }
     //Формирование запроса на удаление записи
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string QueryDeleteContent(int idContent)
     {
         //$query = "DELETE FROM " . $this->table_name . "WHERE id_content = ".$idContent;
@@ -317,6 +325,7 @@ public class Content : MonoBehaviour
     }
 
     //Получаем дату выгрузки предмета(который еще находится в производстве) по номеру слота и имени главного объекта
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetDateShipment(string subjectParentName, int numberSlot, DateTime dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =?ORDER BY id_content ASC LIMIT ?,1"; 
@@ -343,6 +352,7 @@ public class Content : MonoBehaviour
         return "Error";
     }
     //Получаем дату последнего стоящего в очереди объекта
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetTimeShipmentDesc(string subjectParentName, DateTime dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM ". $this->table_name. "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content DESC LIMIT 0,1";
@@ -369,6 +379,7 @@ public class Content : MonoBehaviour
         return "Error";
     }
     //Получаем Дату отгрузки первого объекта, находящегося в производстве
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetTimeShipmentFirst(string subjectParentName, DateTime dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
@@ -395,6 +406,7 @@ public class Content : MonoBehaviour
         return "Error";
     }
     //Получить количество продуктов, находящихся в производстве
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetCountOfOccupiedBuildingSlots(string subjectParentName,DateTime dateTimeNow)
     {
         //echo 'GetCountOfOccupiedShipmentSlotsByParentName($subjectParentName, $userID, $dateTimeNow)';

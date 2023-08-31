@@ -624,37 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &16160982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,37 +988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!61 &19214829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2826,61 +2764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!212 &80305029
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2990,7 +2873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0759aff734b29294e8ae4c42362f9ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_silo_screew_quantity_text: {fileID: 0}
 --- !u!114 &83096912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4273,37 +4155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &120483758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4835,7 +4686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012fe4a6f0f545040ac27c41bac4784f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_silo_text_info: {fileID: 0}
 --- !u!1 &136660704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5791,7 +5641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca27cdc203bacfb4496bc9d5c85c96cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!61 &163362372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6177,7 +6026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &169391409
 Animator:
   serializedVersion: 5
@@ -7051,7 +6899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744fc45e382df1b4a8dd48b41604a500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_coin_quantity: {fileID: 0}
 --- !u!114 &196279397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7657,7 +7504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6542683d4e689b34c9cbecec78ce4ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sostoyanie_points: 0
 --- !u!50 &212161285
 Rigidbody2D:
   serializedVersion: 4
@@ -7988,7 +7834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &214554641
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9347,7 +9192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &263084949
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9786,7 +9630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566bf7ee04058494a966052c18b04a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!1 &264913232
 GameObject:
   m_ObjectHideFlags: 0
@@ -10264,46 +10107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!4 &279435262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6470133935787667593, guid: e2f3dc85a144e0546b41bb4d0d14a902,
@@ -10405,9 +10208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78af49576118224ca7b038bd643f648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_global: {fileID: 0}
-  barn_upgrade: {fileID: 0}
-  barn_button_increase_capacity_text: {fileID: 0}
 --- !u!61 &285740498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10836,7 +10636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a799a9cba306f6f4784fbf71162cda5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProductionBuilding: {fileID: 0}
 --- !u!50 &299520750
 Rigidbody2D:
   serializedVersion: 4
@@ -11573,8 +11372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8846c98c22bd11c47a24f83d93a2e6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  BuildingTimeSeconds: 120
 --- !u!114 &309673576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12164,37 +11961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &330575216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13167,46 +12933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!50 &359395362
 Rigidbody2D:
   serializedVersion: 4
@@ -13820,7 +13546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &366472907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13971,7 +13696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d86f9e31bc74840be31a4a7952e24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_barn_upgrade_info_text: {fileID: 0}
 --- !u!114 &367115045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14126,37 +13850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &369995585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14425,37 +14118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &387507186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16255,7 +15917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744fc45e382df1b4a8dd48b41604a500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_coin_quantity: {fileID: 0}
 --- !u!114 &441837422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16546,7 +16207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &446947132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19055,7 +18715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &553178004
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19201,37 +18860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!1 &556223412
 GameObject:
   m_ObjectHideFlags: 0
@@ -19351,9 +18979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d887c4c616a23409b9c63e015b7dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primary_position: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  screenPoint: {x: 0, y: 0, z: 0}
 --- !u!95 &559704438
 Animator:
   serializedVersion: 5
@@ -19625,7 +19250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d0d66f0b6a9c45b194de01995c69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silo_panel: {fileID: 0}
 --- !u!212 &563933244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20144,37 +19768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &581850658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20415,7 +20008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d9cda45dfe5f546a4bde53b2a95671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!95 &588929082
 Animator:
   serializedVersion: 5
@@ -20581,7 +20173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &589625801
 Animator:
   serializedVersion: 5
@@ -21335,61 +20926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 597021188}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 137231957}
-  visible_sickle: {fileID: 1508751157}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!50 &597021192
 Rigidbody2D:
   serializedVersion: 4
@@ -22292,37 +21828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &627779183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22793,7 +22298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &635866428
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23490,61 +22994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!50 &663881486
 Rigidbody2D:
   serializedVersion: 4
@@ -23696,7 +23145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &664048536
 Animator:
   serializedVersion: 5
@@ -23908,7 +23356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8467725944034c544b8a16da1661d03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_silo_wood_panel_quantity_text: {fileID: 0}
 --- !u!114 &666304191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23963,7 +23410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220e8ebbf1c1ad448b05e41065981a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_barn_plank_quantity_text: {fileID: 0}
 --- !u!1 &669285335
 GameObject:
   m_ObjectHideFlags: 0
@@ -24322,7 +23768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8467725944034c544b8a16da1661d03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_silo_wood_panel_quantity_text: {fileID: 0}
 --- !u!114 &676917325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24930,7 +24375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a815838cbe78f4d80936a7aea8f136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!4 &695969584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6470133935787667593, guid: e2f3dc85a144e0546b41bb4d0d14a902,
@@ -25068,7 +24512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fee48fd8a62bf34caeb6f4e847da56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_panel: {fileID: 0}
 --- !u!50 &704381589
 Rigidbody2D:
   serializedVersion: 4
@@ -26765,7 +26208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdc1dcceddd49b45b09c58cef3f45a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_silo: {fileID: 0}
 --- !u!61 &749368300
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27494,7 +26936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926db7b6050fdf74dada432169a53447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_panel: {fileID: 0}
 --- !u!61 &766097813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28476,61 +27917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!212 &785180365
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28735,61 +28121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!1 &788940115
 GameObject:
   m_ObjectHideFlags: 0
@@ -29104,61 +28435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!212 &799696424
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29797,10 +29073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117f1763c3bf99447acce31cfcad90e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  building_time: 0
 --- !u!212 &818751872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30033,8 +29305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8846c98c22bd11c47a24f83d93a2e6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  BuildingTimeSeconds: 0
 --- !u!114 &820806411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31023,7 +30293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb785569e1b5c64184755827eadd416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!61 &858289373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31469,7 +30738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &870268535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31912,7 +31180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &874950181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32339,7 +31606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &875735726
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32711,7 +31977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &882623518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34617,7 +33882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &929609167
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35152,46 +34416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!1 &944856441
 GameObject:
   m_ObjectHideFlags: 0
@@ -35513,7 +34737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &955160576
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36467,7 +35690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db0d2d0d933d964bb81454d05b18909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_barn_bolt_quantity_text: {fileID: 0}
 --- !u!114 &992465425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37291,7 +36513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eecad87f104dea45a8314c02e84b734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!95 &1028311405
 Animator:
   serializedVersion: 5
@@ -38048,37 +37269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1055342395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38260,9 +37450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9df54d3bbcab34ca2c3b7ebfb3d028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silo_global: {fileID: 0}
-  silo_upgrade: {fileID: 0}
-  silo_button_increase_capacity_text: {fileID: 0}
 --- !u!1001 &1056034050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38388,37 +37575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1058009428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38597,7 +37753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da54cd7d324bc20478ebb350065ef9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_silo_upgrade_info_text: {fileID: 0}
 --- !u!114 &1063075795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38714,7 +37869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1064922737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39008,7 +38162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1080728598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39629,46 +38782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!1 &1108857257
 GameObject:
   m_ObjectHideFlags: 0
@@ -39722,7 +38835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1108857260
 Animator:
   serializedVersion: 5
@@ -40322,46 +39434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &1121877007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41147,7 +40219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1164548206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41689,7 +40760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1180770307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41815,7 +40885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1190955320
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42462,7 +41531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7137c73e01ff4eb2ced9bd58ca708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_barn: {fileID: 0}
 --- !u!61 &1223484643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42757,7 +41825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7520b1fd69e911b4f87294b547a771da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!61 &1228711558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42909,7 +41976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1233156512
 Animator:
   serializedVersion: 5
@@ -43287,37 +42353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1258873891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43411,37 +42446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1264385054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43653,7 +42657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1b2435ecff4b444b39e6df0418b042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_barn_duct_tape_quantity_text: {fileID: 0}
 --- !u!114 &1273073870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44275,7 +43278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1294829068
 Animator:
   serializedVersion: 5
@@ -44399,37 +43401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1297333401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44853,37 +43824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1302447373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45356,19 +44296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ab39216dc4f2246972ed1fa927e656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visible_point_0_on: {fileID: 1198652965}
-  visible_point_0_off: {fileID: 142692826}
-  visible_point_1_on: {fileID: 1457094325}
-  visible_point_1_off: {fileID: 1671803715}
-  visible_point_2_on: {fileID: 2032125957}
-  visible_point_2_off: {fileID: 394903658}
-  sostoyanie_points: 0
-  visible_wheat: {fileID: 787519360}
-  visible_corn: {fileID: 2030567060}
-  visible_soybean: {fileID: 799696419}
-  visible_sugarcane: {fileID: 785180360}
-  visible_carrot: {fileID: 80305024}
-  visible_pumpkin: {fileID: 663881483}
 --- !u!61 &1310148113
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46922,37 +45849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1350160639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48693,7 +47589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501579001d8068f46837cd35657d4434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!61 &1438175919
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50383,7 +49278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1491040347
 Animator:
   serializedVersion: 5
@@ -51080,7 +49974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fbb8ac8a82ea946b612c002a7814bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &1507067428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51255,7 +50148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1509676931
 Animator:
   serializedVersion: 5
@@ -52550,46 +51442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!114 &1539280871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52682,18 +51534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fde4cfc7e427144ab7c8cd03abf3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
-  count_on: 0
-  bakery_slots_panel: {fileID: 0}
-  bakery_arrow: {fileID: 0}
-  bakery_arrow_0: {fileID: 0}
-  bakery_arrow_1: {fileID: 0}
-  bakery_arrow_2: {fileID: 0}
-  bakery_arrow_3: {fileID: 0}
-  bakery_arrow_4: {fileID: 0}
-  farm_box_colliders: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  screenPoint: {x: 0, y: 0, z: 0}
 --- !u!212 &1543369274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53435,7 +52275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8364f52aefd6c48b7eef02e980939a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1549090610
 Animator:
   serializedVersion: 5
@@ -53738,37 +52577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1552599534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54126,37 +52934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!1 &1556432665
 GameObject:
   m_ObjectHideFlags: 0
@@ -54438,7 +53215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2b07b8ff16ccf46993b9a5afae600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sostoyanie_points: 0
 --- !u!50 &1562051640
 Rigidbody2D:
   serializedVersion: 4
@@ -55115,7 +53891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70097073b0a67274287da9b8b94482e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_silo: {fileID: 0}
 --- !u!61 &1587445881
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55514,7 +54289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdc1dcceddd49b45b09c58cef3f45a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_kiosk_silo: {fileID: 0}
 --- !u!1 &1596050563
 GameObject:
   m_ObjectHideFlags: 0
@@ -56293,7 +55067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1627175719
 Animator:
   serializedVersion: 5
@@ -56517,7 +55290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03bd5f5e2a8ec24b9d26094e1cb0fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1632592832
 Animator:
   serializedVersion: 5
@@ -56761,12 +55533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a2fa69073ae6b4190330bee7f851bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primary_position: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  screenPoint: {x: 0, y: 0, z: 0}
-  bread_visible: {fileID: 0}
-  mousedrag_block_on: 0
-  event_0: 
 --- !u!1 &1636162714
 GameObject:
   m_ObjectHideFlags: 0
@@ -56815,7 +55581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04aad6bb107cdc643b7574853a080852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!95 &1636162717
 Animator:
   serializedVersion: 5
@@ -57158,7 +55923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1657352758
 Animator:
   serializedVersion: 5
@@ -58573,7 +57337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99fff9f4e5b6ef44385982d18239f724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_silo_nail_quantity_text: {fileID: 0}
 --- !u!114 &1718525925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59712,7 +58475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1750188571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60545,7 +59307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1784522914
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60691,7 +59452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &1794215291
 Animator:
   serializedVersion: 5
@@ -62355,46 +61115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!1 &1845084310
 GameObject:
   m_ObjectHideFlags: 0
@@ -62598,7 +61318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1858103007
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63149,7 +61868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fe7a06e81485042bdbf41c49041988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!1 &1864634532
 GameObject:
   m_ObjectHideFlags: 0
@@ -63294,13 +62012,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866044588}
-  - component: {fileID: 1866044572}
   - component: {fileID: 1866044568}
-  - component: {fileID: 1866044574}
-  - component: {fileID: 1866044575}
   - component: {fileID: 1866044576}
   - component: {fileID: 1866044577}
-  - component: {fileID: 1866044578}
   - component: {fileID: 1866044580}
   - component: {fileID: 1866044579}
   - component: {fileID: 1866044582}
@@ -63312,6 +62026,11 @@ GameObject:
   - component: {fileID: 1866044589}
   - component: {fileID: 1866044591}
   - component: {fileID: 1866044590}
+  - component: {fileID: 1866044592}
+  - component: {fileID: 1866044575}
+  - component: {fileID: 1866044578}
+  - component: {fileID: 1866044593}
+  - component: {fileID: 1866044572}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -63340,7 +62059,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5498747ba3c8a1645966d39f92cc93b8, type: 3}
   m_Name: 
@@ -63348,21 +62067,6 @@ MonoBehaviour:
   Data: {fileID: 1866044566}
   SubjectName: 
   SumCount: 0
---- !u!114 &1866044574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c12726fe9e5f6943b368e756eea0126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  OpenSlots: 0
-  ParentSubject: {fileID: 0}
 --- !u!114 &1866044575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63392,7 +62096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c4df152886b214894b7babf4f4895d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
 --- !u!114 &1866044577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63502,7 +62205,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e750c954afba24d919c794cc3ec9eb, type: 3}
   m_Name: 
@@ -63517,7 +62220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f402076eb52a84d8d9e6a46109821f, type: 3}
   m_Name: 
@@ -63529,7 +62232,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ae42d3172df2674289b240dbf593a13, type: 3}
   m_Name: 
@@ -63543,7 +62246,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e4ada479e749a44b99134d333ad504c, type: 3}
   m_Name: 
@@ -63575,7 +62278,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fed817efeb905b04c934732c61e5a1d8, type: 3}
   m_Name: 
@@ -63593,7 +62296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0df324116bc428d47b04cce578a6505e, type: 3}
   m_Name: 
@@ -63607,11 +62310,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dadb24919e9ed5c4b96ae483c585eda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1866044592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e882bc6845460844a08a225b3e3dd14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  Count: 0
+--- !u!114 &1866044593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866044566}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c12726fe9e5f6943b368e756eea0126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  OpenSlots: 0
+  ParentSubject: {fileID: 0}
 --- !u!1 &1872474460
 GameObject:
   m_ObjectHideFlags: 0
@@ -64379,9 +63111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528107cccc267254c9515d6ca351fa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
 --- !u!50 &1895115891
 Rigidbody2D:
   serializedVersion: 4
@@ -64562,7 +63291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1895658995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64864,7 +63592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bedd786db52c498bbf4d73cb6b7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!61 &1898085000
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -65855,7 +64582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1928483810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -66166,37 +64892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!1 &1940163984
 GameObject:
   m_ObjectHideFlags: 0
@@ -66730,37 +65425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1948382131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67002,37 +65666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &1951687894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67697,7 +66330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2e672e4a7134740a04e959b412be67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cow_anim: {fileID: 0}
 --- !u!95 &1956648602
 Animator:
   serializedVersion: 5
@@ -68254,7 +66886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1976932681
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -68400,7 +67031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7795bf379c2d1b42be028f5c494fc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO_cow_feed_quantity_text: {fileID: 0}
 --- !u!1 &1984858988
 GameObject:
   m_ObjectHideFlags: 0
@@ -68647,7 +67277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!212 &1985191918
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69355,46 +67984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u0415\u0433\u043E\u0440 \u0423\u043E\u043A\u043A\u043A\u0435\u0440"
-  obj: "\u041A\u043D\u043E\u043F\u043A\u0430 \u041E\u041A"
-  type_object: "\u041C\u0435\u0442\u043E\u0434\u0410"
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!212 &2006163384
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69565,46 +68154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c572901260cf441bb55d01db65949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: 
-  obj: 
-  type_object: 
-  vmestimost_max: 0
-  one_st: 
-  two_st: 
-  three_st: 
-  one_sm: 
-  two_sm: 
-  three_sm: 
-  c_p_max: 0
-  building_time: 0
-  ep: 0
-  open_lvl: 0
-  diamond_price: 0
-  user_id: 0
-  transform_object: 
-  type_sklad: 
-  visible: 0
-  stage: 0
-  crop: 
-  predmet_sklad:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  scrollview: {fileID: 0}
-  scrollrect: {fileID: 0}
 --- !u!1 &2009019068
 GameObject:
   m_ObjectHideFlags: 0
@@ -69927,61 +68476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2fe6db53285b4ab91628cce454d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name_object: "\u041F\u043E\u043B\u0435"
-  obj: field_farm_0
-  type_object: field
-  ep: 1
-  open_lvl: 1
-  diamond_price: 0
-  user_id: 0
-  type_sklad: magazin
-  visible: 0
-  field_anim: {fileID: 0}
-  stage: 0
-  crop: 
-  i: 0
-  j: 0
-  i_a: 0
-  screenPoint: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  primary_position: {x: 0, y: 0, z: 0}
-  visible_slot: {fileID: 0}
-  visible_sickle: {fileID: 0}
-  building_time: 0
-  wheat_quantity: 0
-  corn_quantity: 0
-  soybean_quantity: 0
-  sugarcane_quantity: 0
-  carrot_quantity: 0
-  pumpkin_quantity: 0
-  bread_quantity: 0
-  chicken_feed_quantity: 0
-  egg_quantity: 0
-  cow_feed_quantity: 0
-  milk_quantity: 0
-  cream_quantity: 0
-  popcorn_quantity: 0
-  butter_quantity: 0
-  wheat_silo_quantity_text: {fileID: 0}
-  corn_silo_quantity_text: {fileID: 0}
-  soybean_silo_quantity_text: {fileID: 0}
-  sugarcane_silo_quantity_text: {fileID: 0}
-  carrot_silo_quantity_text: {fileID: 0}
-  pumpkin_silo_quantity_text: {fileID: 0}
-  wheat_field_panel_quantity_text: {fileID: 0}
-  corn_field_panel_quantity_text: {fileID: 0}
-  soybean_field_panel_quantity_text: {fileID: 0}
-  sugarcane_field_panel_quantity_text: {fileID: 0}
-  carrot_field_panel_quantity_text: {fileID: 0}
-  pumpkin_field_panel_quantity_text: {fileID: 0}
-  bread_barn_quantity_text: {fileID: 0}
-  chicken_feed_barn_quantity_text: {fileID: 0}
-  egg_barn_quantity_text: {fileID: 0}
-  cow_feed_barn_quantity_text: {fileID: 0}
-  milk_barn_quantity_text: {fileID: 0}
-  cream_barn_quantity_text: {fileID: 0}
-  popcorn_barn_quantity_text: {fileID: 0}
-  butter_barn_quantity_text: {fileID: 0}
 --- !u!212 &2030567065
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70196,7 +68690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c761500a3380834db0e2de89885ea05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!95 &2035324792
 Animator:
   serializedVersion: 5
@@ -72275,37 +70768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e0a5254b082af4484cc570ee68d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barn_panel_bolt_quantity_text: {fileID: 0}
-  barn_panel_duct_tape_quantity_text: {fileID: 0}
-  barn_panel_plank_quantity_text: {fileID: 0}
-  barn_panel_cow_feed_quantity_text: {fileID: 0}
-  barn_panel_chicken_feed_quantity_text: {fileID: 0}
-  barn_panel_milk_quantity_text: {fileID: 0}
-  barn_panel_bread_quantity_text: {fileID: 0}
-  barn_panel_corn_bread_quantity_text: {fileID: 0}
-  barn_panel_cookie_quantity_text: {fileID: 0}
-  barn_panel_cream_quantity_text: {fileID: 0}
-  barn_panel_butter_quantity_text: {fileID: 0}
-  barn_panel_cheese_quantity_text: {fileID: 0}
-  barn_panel_nail_quantity_text: {fileID: 0}
-  barn_panel_screew_quantity_text: {fileID: 0}
-  barn_panel_wood_panel_quantity_text: {fileID: 0}
-  barn_panel_egg_quantity_text: {fileID: 0}
-  barn_panel_popcorn_quantity_text: {fileID: 0}
-  barn_text_info: {fileID: 0}
-  quantity_field_panel_wheat_text: {fileID: 0}
-  silo_wheat_quantity_text: {fileID: 0}
-  quantity_field_panel_corn_text: {fileID: 0}
-  silo_corn_quantity_text: {fileID: 0}
-  quantity_field_panel_soybean_text: {fileID: 0}
-  silo_soybean_quantity_text: {fileID: 0}
-  quantity_field_panel_sugarcane_text: {fileID: 0}
-  silo_sugarcane_quantity_text: {fileID: 0}
-  quantity_field_panel_carrot_text: {fileID: 0}
-  silo_carrot_quantity_text: {fileID: 0}
-  quantity_field_panel_pumpkin_text: {fileID: 0}
-  silo_pumpkin_quantity_text: {fileID: 0}
-  silo_text_info: {fileID: 0}
 --- !u!114 &2133066304
 MonoBehaviour:
   m_ObjectHideFlags: 0

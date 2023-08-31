@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
     //Загружаем все доступные (открытые по уровню пользователя предметы) по номеру слота
     public void GetOpenSubjectsBySlotNumber()
     {
-        Predmet = ProductionBuildingParent.GetComponent<ParentsAndChilds>().Childs[NumberSlotPredmet];
+        Predmet = ProductionBuildingParent.GetComponent<ParentAndChild>().Childs[NumberSlotPredmet];
         Debug.Log(Predmet);
     }
     void DisplaySubjects()

@@ -95,6 +95,7 @@ public class OpenLevel : MonoBehaviour
         }
     }
     //Получаем количество открытых объектов по номеру уровня
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetCountAllSubjectNameByOpenLevel(int openLevelNumber, string locationDataProcessing)
     {
         if (locationDataProcessing == "Local")
@@ -125,7 +126,7 @@ public class OpenLevel : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            //Debug.Log("GetAllSubjectNameByOpenLevel");
+            Debug.Log("GetAllSubjectNameByOpenLevel");
             RestClient.Post<ResponseCountOpenLevel>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTOpenLevel
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
@@ -143,48 +144,118 @@ public class OpenLevel : MonoBehaviour
 
     }
 
-    //    $query = "SELECT subject_name FROM " . $this->table_name . "WHERE open_level_number <=  ? LIMIT?,1"; 
-    public List<string> GetAllSubjectNameByOpenLevelWhereNumber(int openLevelNumber, int openLevelNumberLimit)
+    //Получаем открытые объекты (по одному, используя лимит) по номеру уровня
+    //$query = "SELECT subject_name FROM " . $this->table_name . "WHERE open_level_number <=  ? LIMIT?,1"; 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public List<string> GetAllSubjectNameByOpenLevelWhereNumber(int openLevelNumber, int openLevelNumberLimit, string locationDataProcessing)
     {
+        List<string> allSubjectName = new List<string>();
         List<string> allSubjectNameOpenLevel = new List<string>();
-        //Debug.Log("GetCountAllSubjectNameByOpenLevelWhereNumber");
-        RestClient.Post<ResponseAllSubjectNameByOpenLevelWhereNumber>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTAllSubjectNameByOpenLevelWhereNumber
+        if (locationDataProcessing == "Local")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetAllSubjectNameByOpenLevelWhereNumber",
-            openLevelNumber = openLevelNumber,
-            openLevelNumberLimit = openLevelNumberLimit
+            //$query = "SELECT subject_name FROM " . $this->table_name . "WHERE open_level_number <=  ? LIMIT ?,1"; 
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            //$query = "SELECT subject_name FROM " . $this->table_name . "WHERE open_level_number <=  ? LIMIT ?,1"; 
+            string sqlExpression = "SELECT subject_name FROM open_level WHERE open_level_number <=" + openLevelNumber + " LIMIT "+openLevelNumberLimit+",1";
+            
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
 
-        }).Then(response => {
-            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            //EditorUtility.DisplayDialog("subjectName: ", response.subjectName, "Ok");
-            allSubjectNameOpenLevel.Add(response.subjectName);
-            return allSubjectNameOpenLevel;
-        });
-        return allSubjectNameOpenLevel;
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())   // построчно считываем данные
+                        {
+                            allSubjectName.Add(reader.GetValue(0).ToString());                            
+                        }
+                        return allSubjectName;
+                    }
+                }
+            }
+        }
+        if (locationDataProcessing == "Server")
+        {
+            //Debug.Log("GetCountAllSubjectNameByOpenLevelWhereNumber");
+            RestClient.Post<ResponseAllSubjectNameByOpenLevelWhereNumber>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTAllSubjectNameByOpenLevelWhereNumber
+            {
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "GetAllSubjectNameByOpenLevelWhereNumber",
+                openLevelNumber = openLevelNumber,
+                openLevelNumberLimit = openLevelNumberLimit
+
+            }).Then(response => {
+                //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+                //EditorUtility.DisplayDialog("subjectName: ", response.subjectName, "Ok");
+                allSubjectNameOpenLevel.Add(response.subjectName);
+                return allSubjectNameOpenLevel;
+            });
+        }
+        return allSubjectName;
     }
     //Получаем уровень открытия объекта по его имени
-    public int GetOpenLevelNumberWhereSubjectName(string subjectName)
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public int GetOpenLevelNumberWhereSubjectName(string subjectName, string locationDataProcessing)
     {
+        //$query = "SELECT open_level_number FROM " . $this->table_name . "WHERE subject_name =  ? "; 
         //Debug.Log("GetOpenLevelNumberWhereSubjectName");
-        RestClient.Post<ResponseOpenLevelNumberWhereSubjectName>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTOpenLevelNumberWhereSubjectName
+        if (locationDataProcessing == "Local")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetOpenLevelNumberWhereSubjectName",
-            subjectName = subjectName
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            string sqlExpression = "SELECT open_level FROM open_level WHERE subject_name ='" + subjectName + "'";
+            int timeBuilding;
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
 
-        }).Then(response => {
-            //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
-            //EditorUtility.DisplayDialog("openLevelNumber: ", response.openLevelNumber.ToString(), "Ok");
-            return response.openLevelNumber;
-        });
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())   // построчно считываем данные
+                        {
+                            timeBuilding = Convert.ToInt32(reader.GetValue(0));
+                            return timeBuilding;
+                        }
+                    }
+                }
+            }
+        }
+        if (locationDataProcessing == "Server")
+        {
+            RestClient.Post<ResponseOpenLevelNumberWhereSubjectName>("http://farmpass.beget.tech/api/open_level_execute_methods.php", new POSTOpenLevelNumberWhereSubjectName
+            {
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "GetOpenLevelNumberWhereSubjectName",
+                subjectName = subjectName
+            }).Then(response => {
+                //EditorUtility.DisplayDialog("message: ", response.message, "Ok");
+                //EditorUtility.DisplayDialog("openLevelNumber: ", response.openLevelNumber.ToString(), "Ok");
+                return response.openLevelNumber;
+            });
+        }
         return 0;
     }
     // Start is called before the first frame update
     private void OnEnable()
     {
-        //GetCountAllSubjectNameByOpenLevel(2);
-        //GetAllSubjectNameByOpenLevelWhereNumber(2, 1);
-        //GetOpenLevelNumberWhereSubjectName("wheat");
+        //GetCountAllSubjectNameByOpenLevel(2, "Local");
+        //List<string> Test1 = new List<string>();
+        //List<string> Test2 = new List<string>();
+        //int Test3;
+        //int Test4;
+        //Test1 = GetAllSubjectNameByOpenLevelWhereNumber(2, 5, "Local");
+        //Debug.Log(Test1);
+        //Test2 = GetAllSubjectNameByOpenLevelWhereNumber(2, 5, "Server");
+        //Debug.Log(Test2);
+        //Test3 = GetOpenLevelNumberWhereSubjectName("corn", "Local");
+        //Debug.Log(Test3);
+        //Test4 = GetOpenLevelNumberWhereSubjectName("corn", "Local");
+        //Debug.Log(Test4);
     }
 }
