@@ -62014,11 +62014,9 @@ GameObject:
   - component: {fileID: 1866044588}
   - component: {fileID: 1866044568}
   - component: {fileID: 1866044576}
-  - component: {fileID: 1866044577}
   - component: {fileID: 1866044580}
   - component: {fileID: 1866044579}
   - component: {fileID: 1866044582}
-  - component: {fileID: 1866044583}
   - component: {fileID: 1866044584}
   - component: {fileID: 1866044585}
   - component: {fileID: 1866044586}
@@ -62031,6 +62029,7 @@ GameObject:
   - component: {fileID: 1866044578}
   - component: {fileID: 1866044593}
   - component: {fileID: 1866044572}
+  - component: {fileID: 1866044583}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -62059,7 +62058,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866044566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5498747ba3c8a1645966d39f92cc93b8, type: 3}
   m_Name: 
@@ -62096,22 +62095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c4df152886b214894b7babf4f4895d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1866044577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866044566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5bde6350cb6aa42a2c2fd046072bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
-  Name: 
-  Description: 
-  TimeBuilding: 
 --- !u!114 &1866044578
 MonoBehaviour:
   m_ObjectHideFlags: 0

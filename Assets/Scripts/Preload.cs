@@ -126,7 +126,7 @@ public class Preload : MonoBehaviour
         // Create a table for the hit count in the database if it does not exist yet.
         IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
         //Очищаем таблицу полностью
-        dbCommandCreateTable.CommandText = "DROP TABLE IF EXISTS users; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS progress_slots; DELETE FROM sqlite_sequence; DROP TABLE IF EXISTS subjects_sum; "; // 7
+        dbCommandCreateTable.CommandText = "DROP TABLE IF EXISTS translate;DROP TABLE IF EXISTS storages;DROP TABLE IF EXISTS price_subjects;DROP TABLE IF EXISTS parents_and_childs;DROP TABLE IF EXISTS output_quantity;DROP TABLE IF EXISTS open_slots_defaults;DROP TABLE IF EXISTS open_level;DROP TABLE IF EXISTS ingredients;DROP TABLE IF EXISTS experience_points;DROP TABLE IF EXISTS experience_level;DROP TABLE IF EXISTS building_times;DROP TABLE IF EXISTS association_subjects;DROP TABLE IF EXISTS users; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS contents; DROP TABLE IF EXISTS progress_slots; DELETE FROM sqlite_sequence; DROP TABLE IF EXISTS subjects_sum; "; // 7
         dbCommandCreateTable.ExecuteReader(); // 8
         //dbCommandCreateTable.CommandText = SQLQueryFull; // 7
         //dbCommandCreateTable.ExecuteReader(); // 8
