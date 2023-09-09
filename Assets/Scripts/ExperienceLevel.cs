@@ -78,7 +78,7 @@ public class ExperienceLevel : MonoBehaviour
         if (locationDataProcessing == "Server")
         {
             Debug.Log("method GetLevelByExperiencePoints");
-            RestClient.Post<ResponseExperienceLevel>("http://farmpass.beget.tech/api/user_execute_methods.php", new POSTExperienceLevel
+            RestClient.Post<ResponseExperienceLevel>("http://45.84.226.98//api/user_execute_methods.php", new POSTExperienceLevel
             {
                 jwt = Data.GetComponent<User>().JWTToken,
                 methodName = "getLevelByExperiencePoints",

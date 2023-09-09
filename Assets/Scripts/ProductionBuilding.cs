@@ -274,7 +274,7 @@ public class ProductionBuilding : MonoBehaviour
     //Покупаем предмет за алмазы на стороне сервера
     public void BuySubjectForDiamond(string subjectName)
     {
-        RestClient.Post<ResponseBuySubjectForDiamonds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
+        RestClient.Post<ResponseBuySubjectForDiamonds>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "BuySubjectForDiamonds",
@@ -360,7 +360,7 @@ public class ProductionBuilding : MonoBehaviour
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
     {
         Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
-        RestClient.Post<ResponseAddInSlotSubject>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTAddInSlotSubject
+        RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTAddInSlotSubject
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "AddInSlotSubject",
@@ -496,7 +496,7 @@ public class ProductionBuilding : MonoBehaviour
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
         Debug.Log("GetDifferenceDateInSeconds");
-        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
+        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetDifferenceDateInSeconds",
@@ -529,7 +529,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         Debug.Log("GetAllCost");
         AllCost = 0;
-        RestClient.Post<ResponseGetAllCost>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetAllCost
+        RestClient.Post<ResponseGetAllCost>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetAllCost
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetAllCost",
@@ -542,7 +542,7 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void GetTranslateInfoRUS(string subjectName)
     {
-        RestClient.Post<ResponseGetTranslateInfoRU>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
+        RestClient.Post<ResponseGetTranslateInfoRU>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetTranslateInfo",
@@ -560,7 +560,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         MissingIngredients.Clear();
         //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().MissingIngredients.Clear();
-        string basePath = "http://farmpass.beget.tech/api/production_building_execute_methods.php";
+        string basePath = "http://45.84.226.98//api/production_building_execute_methods.php";
         RequestHelper currentRequest;
         currentRequest = new RequestHelper
         {
@@ -585,7 +585,7 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void Shipment(string subjectParentName)
     {
-        RestClient.Post<ResponseShipment>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTShipment
+        RestClient.Post<ResponseShipment>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTShipment
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "Shipment",
@@ -602,7 +602,7 @@ public class ProductionBuilding : MonoBehaviour
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
+        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetSubjectChildInTheProcessOfAssembly",
@@ -617,7 +617,7 @@ public class ProductionBuilding : MonoBehaviour
     //Получаем предметы культур, которые остались последние на складе, которые нет в производстве
     public void GetCheckIsLastSubject(string subjectName, string productionBuildingName)
     {
-        RestClient.Post<RootLastIngredient>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTGetLastIngredients
+        RestClient.Post<RootLastIngredient>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetLastIngredients
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "CheckIsLastSubject",
@@ -633,7 +633,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheShipment>("http://farmpass.beget.tech/api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
+        RestClient.Post<ResponseSubjectChildInTheShipment>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetSubjectChildInTheShipment",
