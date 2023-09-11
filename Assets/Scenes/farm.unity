@@ -11356,10 +11356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5bde6350cb6aa42a2c2fd046072bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  Name: 
-  Description: 
-  TimeBuilding: 
 --- !u!114 &309673575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13355,7 +13351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissingIngredients: []
   LastIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: bakery
@@ -13466,7 +13461,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364160149}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce0538c5bbe245d499183dc471b288a3, type: 3}
   m_Name: 
@@ -62147,7 +62142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissingIngredients: []
   LastIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: cowFeed
@@ -62298,6 +62292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadb24919e9ed5c4b96ae483c585eda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!114 &1866044592
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,8 +29,7 @@ public class ProductionBuilding : MonoBehaviour
 		Debug.Log(message);
 #endif
     }
-    [ShowInInspector]
-    public List<MissingIngredient> MissingIngredients;
+
     [ShowInInspector]
     public List<LastIngredient> LastIngredients;
     public GameObject Data;
@@ -271,21 +270,90 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    //Покупаем предмет за алмазы на стороне сервера
-    public void BuySubjectForDiamond(string subjectName)
+
+    //Покупаем предмет за алмазы 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void BuySubjectForDiamond(string subjectName, string locationDataProcessing)
     {
-        RestClient.Post<ResponseBuySubjectForDiamonds>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
+        if (locationDataProcessing == "Server")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "BuySubjectForDiamonds",
-            subjectName = subjectName
-        }).Then(response => {
-            if (!ResponseFromRequests.ContainsKey(response.code))
+            RestClient.Post<ResponseBuySubjectForDiamonds>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
             {
-                ResponseFromRequests.Add(response.code, response.message);
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "BuySubjectForDiamonds",
+                subjectName = subjectName
+            }).Then(response => {
+                if (!ResponseFromRequests.ContainsKey(response.code))
+                {
+                    ResponseFromRequests.Add(response.code, response.message);
+                }
+                CheckResponseFromRequests(subjectName);
+            });
+        }
+        if (locationDataProcessing == "Local")
+        {
+            //Получаем массив предметов с их количеством, которых нехватает
+            var i = Data.GetComponent<Ingredient>();
+            List<Ingredient.MissingIngredient> missingIngredients = i.GetMissingIngredients(subjectName);
+            Debug.Log(missingIngredients);
+            Dictionary<string, int> massive = new Dictionary<string, int>();
+            foreach (var item in missingIngredients)
+            {
+                massive.Add(item.ingredient_name, item.count_ingredients);
             }
-            CheckResponseFromRequests(subjectName);
-        });
+            //Общая стоимость объектов за алмазы
+            var ps = Data.GetComponent<PriceSubject>();
+            int allCost = ps.GetAllCost(ref massive);
+            Debug.Log("allCost="+allCost);
+            //Получаем, сколько у пользователя алмазов
+            var ss = Data.GetComponent<SubjectSum>();
+            int countsSubject = ss.GetSubjectSumCount("diamond", "Local");
+            //Если предметов(алмазы) достаточно
+            if (countsSubject >= allCost)
+            {
+                string dbName = "MyDatabase.sqlite";
+                string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+                using (var connection = new SqliteConnection(dbUri))
+                {
+                    connection.Open();
+                    using (var tra = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            Debug.Log("Try");
+                            //connection.BeginTransaction();
+                            //connection.BeginTransaction();
+                            foreach (var item in missingIngredients)
+                            {
+                                string query = ss.QueryIncreasingSubjectSumCount(item.ingredient_name, item.count_ingredients);
+                                Debug.Log(query);
+                                SqliteCommand command = new SqliteCommand(query, connection, tra);
+                                command.ExecuteNonQuery(); // 11
+                            }
+                            //string queryTwo = ss.QueryReducingSubjectSumCount("diamond", allCost);
+                            //SqliteCommand commandTwo = new SqliteCommand(queryTwo, connection, tra);
+                            
+                            //commandTwo.ExecuteNonQuery();
+                            tra.Commit();
+                            // Remember to always close the connection at the end.
+                            connection.Close(); // 12
+                        }
+                        catch (Exception ex)
+                        {
+                            //Откатываем изменения
+                            tra.Rollback();
+                            Debug.Log("Catch!");
+                            throw;
+                        }
+                    }
+                }
+            }
+            if (countsSubject < allCost) {
+                //Нехватает количества объектов (алмазов) в таблице subjects_sum
+                //Если нехватает
+                Debug.Log("Нехватает количества объектов (алмазов) в таблице subjects_sum");                            
+            }
+        }
     }
     //Покупаем предмет за алмазы на стороне клиента
     public void BuySubjectForDiamondClient(string subjectName)
@@ -306,26 +374,6 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("CheckResponseFromRequests");
         foreach (var spisokResponseFromRequests in ResponseFromRequests)
         {
-            //Если нехватает ингредиентов
-            if (spisokResponseFromRequests.Key == "0x0000003")
-            {
-                //Отправляем запрос на сервер
-
-                GetMissingIngredients(subjectNameForBuilding);
-                //Отправляем запрос на сервер
-                GetAllCost(subjectNameForBuilding);
-
-                Debug.Log("0x0000003");
-                GameObject panelFewResourcesBox = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
-                GameObject panelFewResources = gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources;
-                panelFewResourcesBox.SetActive(true);
-                panelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectNameForBuilding;
-
-                //Debug.Log(subjectNameForBuilding);
-                //panelFewResources.GetComponent<PanelFewResources>().CheckResponseMissingIngredients = true;
-                //panelFewResources.GetComponent<PanelFewResources>().MissingIngredients = MissingIngredients;
-                ResponseFromRequests.Remove("0x0000003");
-            }
             //Если запросы выполнены успешно
             if (spisokResponseFromRequests.Key == "0x0000004")
             {
@@ -360,7 +408,7 @@ public class ProductionBuilding : MonoBehaviour
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
     {
         Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
-        RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTAddInSlotSubject
+        RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "AddInSlotSubject",
@@ -381,16 +429,6 @@ public class ProductionBuilding : MonoBehaviour
     }
 
     [Serializable]
-    public class MissingIngredient
-    {
-        public string ingredient_name;
-        public int count_ingredients;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
     public class LastIngredient
     {
         public string lastIngredients;
@@ -403,15 +441,6 @@ public class ProductionBuilding : MonoBehaviour
     public class RootLastIngredient
     {
         public List<LastIngredient> lastIngredients;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class RootMissingIngredient
-    {
-        public List<MissingIngredient> missingIngredients;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -496,7 +525,7 @@ public class ProductionBuilding : MonoBehaviour
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
         Debug.Log("GetDifferenceDateInSeconds");
-        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
+        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetDifferenceDateInSeconds",
@@ -529,7 +558,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         Debug.Log("GetAllCost");
         AllCost = 0;
-        RestClient.Post<ResponseGetAllCost>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetAllCost
+        RestClient.Post<ResponseGetAllCost>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetAllCost
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetAllCost",
@@ -542,7 +571,7 @@ public class ProductionBuilding : MonoBehaviour
     }
     public void GetTranslateInfoRUS(string subjectName)
     {
-        RestClient.Post<ResponseGetTranslateInfoRU>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
+        RestClient.Post<ResponseGetTranslateInfoRU>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetTranslateInfo",
@@ -556,36 +585,9 @@ public class ProductionBuilding : MonoBehaviour
         });
     }
 
-    public void GetMissingIngredients(string subjectName)
-    {
-        MissingIngredients.Clear();
-        //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().MissingIngredients.Clear();
-        string basePath = "http://45.84.226.98//api/production_building_execute_methods.php";
-        RequestHelper currentRequest;
-        currentRequest = new RequestHelper
-        {
-            Uri = basePath,
-            Body = new POSTGetMissingIngredients
-            {
-                jwt = Data.GetComponent<User>().GetJWTToken(),
-                methodName = "GetMissingIngredients",
-                subjectName = subjectName
-            },
-            EnableDebug = true
-        };
-        RestClient.Post<RootMissingIngredient>(currentRequest)
-        .Then(res => {
-            // later we can clear the default query string params for all requests
-            RestClient.ClearDefaultParams();
-            Debug.Log(res.missingIngredients);
-            //MissingIngredients = res.missingIngredients;
-            MissingIngredients = res.missingIngredients;
-        })
-        .Catch(err => this.LogMessage("Error", err.Message));
-    }
     public void Shipment(string subjectParentName)
     {
-        RestClient.Post<ResponseShipment>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTShipment
+        RestClient.Post<ResponseShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTShipment
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "Shipment",
@@ -602,7 +604,7 @@ public class ProductionBuilding : MonoBehaviour
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
+        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetSubjectChildInTheProcessOfAssembly",
@@ -614,10 +616,10 @@ public class ProductionBuilding : MonoBehaviour
         });
 
     }
-    //Получаем предметы культур, которые остались последние на складе, которые нет в производстве
+    //Получаем предметы культур, которые остались последние на складе, которых нет в производстве
     public void GetCheckIsLastSubject(string subjectName, string productionBuildingName)
     {
-        RestClient.Post<RootLastIngredient>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTGetLastIngredients
+        RestClient.Post<RootLastIngredient>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetLastIngredients
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "CheckIsLastSubject",
@@ -633,7 +635,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheShipment>("http://45.84.226.98//api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
+        RestClient.Post<ResponseSubjectChildInTheShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetSubjectChildInTheShipment",

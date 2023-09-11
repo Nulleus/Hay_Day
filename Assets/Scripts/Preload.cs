@@ -71,7 +71,7 @@ public class Preload : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetFileDataBase(string fileName)
     {
-        RestClient.Post<ResponseFileDataBase>("http://45.84.226.98//api/dump_sql.php", new POSTFileDataBase
+        RestClient.Post<ResponseFileDataBase>("http://45.84.226.98/api/dump_sql.php", new POSTFileDataBase
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetSQLQueryFull"
@@ -93,7 +93,7 @@ public class Preload : MonoBehaviour
         };
 
         var body = JsonUtility.ToJson(PFDB);
-        StartCoroutine(postRequest("http://45.84.226.98//api/dump_sql.php", body));
+        StartCoroutine(postRequest("http://45.84.226.98/api/dump_sql.php", body));
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Импортируем БД с сервера
@@ -166,7 +166,7 @@ public class Preload : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDateTimeNowServer()
     {
-        RestClient.Post<ResponseGetDateTimeNowServer>("http://45.84.226.98//api/preload_execute_methods.php", new POSTGetDateTimeNowServer
+        RestClient.Post<ResponseGetDateTimeNowServer>("http://45.84.226.98/api/preload_execute_methods.php", new POSTGetDateTimeNowServer
         {
             jwt = Data.GetComponent<User>().GetJWTToken(),
             methodName = "GetDateTimeNow"

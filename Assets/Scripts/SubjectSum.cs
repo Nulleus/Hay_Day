@@ -52,6 +52,21 @@ public class SubjectSum : MonoBehaviour
     {
 
     }
+    //Подготовка запроса на уменьшение количества объектов
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public string QueryReducingSubjectSumCount(string subjectName, int count)
+    {
+	    string query = "UPDATE subjects_sum SET sum_count=sum_count - "+count+" WHERE subject_name='"+subjectName+"'";
+        return query;
+    }
+    //Подготовка запроса на увеличение количества объектов
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public string QueryIncreasingSubjectSumCount(string subjectName, int count)
+    {
+	    string query = "UPDATE subjects_sum SET sum_count=sum_count + "+count+" WHERE subject_name='"+subjectName+"'";
+        return query;
+    }
+
     //Получить количество объектов
     //$query = "SELECT sum_count FROM " . $this->table_name . "WHERE subject_name =? AND user_id =? LIMIT 0,1";
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]

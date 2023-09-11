@@ -108,7 +108,7 @@ public class PanelFewResources : MonoBehaviour
             ButtonBuy.GetComponent<ButtonScript>().ButtonText.GetComponent<Text>().text = AllCost.ToString();
 
         }
-        if (CheckResponseMissingIngredients)
+        /*if (CheckResponseMissingIngredients)
         {
             Debug.Log("MissingIngredients.Count"+ ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count);
             if (ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().MissingIngredients.Count > 0)
@@ -129,6 +129,7 @@ public class PanelFewResources : MonoBehaviour
                 }                              
             }
         }
+        */
 
     }
 

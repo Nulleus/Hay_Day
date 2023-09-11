@@ -91,7 +91,7 @@ public class User : MonoBehaviour
     public void PostLogin()
     {
 
-        RestClient.Post<ResponseInfo>("http://45.84.226.98//api/login.php", new POSTLogin
+        RestClient.Post<ResponseInfo>("http://45.84.226.98/api/login.php", new POSTLogin
         {
             login = Login,
             password = Password
@@ -107,7 +107,7 @@ public class User : MonoBehaviour
     public int GetUserInfoAPIExperiencePoints()
     {
         Debug.Log("GetInfoUserAPIExperiencePoints()");
-        RestClient.Post<ResponseUserInfoExperiencePoints>("http://45.84.226.98//api/user_execute_methods.php", new POSTUser
+        RestClient.Post<ResponseUserInfoExperiencePoints>("http://45.84.226.98/api/user_execute_methods.php", new POSTUser
         {
             jwt = JWTToken,
             methodName = "getExperiencePoints"

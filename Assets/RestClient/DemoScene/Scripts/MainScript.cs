@@ -146,7 +146,7 @@ public class MainScript : MonoBehaviour {
 	public void PostLogin()
 	{
 
-		RestClient.Post<User.POSTLogin>("http://45.84.226.98//api/login.php", new User.POSTLogin
+		RestClient.Post<User.POSTLogin>("http://45.84.226.98/api/login.php", new User.POSTLogin
 		{
 			login = "vasya2@coder.com",
 			password = "888"

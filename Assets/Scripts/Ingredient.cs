@@ -17,6 +17,16 @@ using System.Data; // 1
 //Скрипт загружает данные об составе(ингредиентах) в объекты "Ingredient" из локальной базы данных
 public class Ingredient : MonoBehaviour
 {
+    public GameObject Data;
+    public class MissingIngredient
+    {
+        public string ingredient_name;
+        public int count_ingredients;
+        public override string ToString()
+        {
+            return UnityEngine.JsonUtility.ToJson(this, true);
+        }
+    }
     void Start()
     {
 
@@ -26,6 +36,34 @@ public class Ingredient : MonoBehaviour
     void Update()
     {
 
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    //Получить список недостающих ингредиентов у пользователя и их количество
+    public List<MissingIngredient> GetMissingIngredients(string subjectName)
+    {
+        IDictionary<string, int> allIngredients = this.GetAllIngredients(subjectName);
+        List<MissingIngredient> missing = new List<MissingIngredient>();
+        //Запускаем цикл из ключей компонентов, объектов которых нехватает
+        foreach (var item in allIngredients)
+        {
+            
+            string ingredientNameTemp = item.Key;
+            //Получаем количество ингредиента на складе
+            var ss = Data.GetComponent<SubjectSum>();
+            int subjectSum = ss.GetSubjectSumCount(ingredientNameTemp, "Local");
+            //Проверяем, хватает ли ресурсов
+            //Если ингредиентов на складе меньше, чем нужно для изготовления
+            if (subjectSum < item.Value) {					
+                //Количество недостающих объектов
+				int missSubjectCount = item.Value - subjectSum;
+                
+                var mi = new MissingIngredient();
+                mi.ingredient_name = item.Key;
+                mi.count_ingredients = missSubjectCount;
+                missing.Add(mi);
+            }
+        }
+        return missing;
     }
     //Получаем количество объектов, необходимых для изготовления объекта по имени
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
