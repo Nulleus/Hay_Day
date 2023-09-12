@@ -271,7 +271,7 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
 
-    //Покупаем предмет за алмазы 
+    //Покупаем за алмазы предметы, которые необходимы для производства предмета и добавляем их на склад
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void BuySubjectForDiamond(string subjectName, string locationDataProcessing)
     {
@@ -305,9 +305,12 @@ public class ProductionBuilding : MonoBehaviour
             var ps = Data.GetComponent<PriceSubject>();
             int allCost = ps.GetAllCost(ref massive);
             Debug.Log("allCost="+allCost);
+            List<string> allQuery = new List<string>();
+            Debug.Log("allQuery=" + allQuery);
             //Получаем, сколько у пользователя алмазов
             var ss = Data.GetComponent<SubjectSum>();
             int countsSubject = ss.GetSubjectSumCount("diamond", "Local");
+            Debug.Log("countsSubject="+countsSubject);
             //Если предметов(алмазы) достаточно
             if (countsSubject >= allCost)
             {
@@ -321,22 +324,23 @@ public class ProductionBuilding : MonoBehaviour
                         try
                         {
                             Debug.Log("Try");
-                            //connection.BeginTransaction();
-                            //connection.BeginTransaction();
                             foreach (var item in missingIngredients)
                             {
                                 string query = ss.QueryIncreasingSubjectSumCount(item.ingredient_name, item.count_ingredients);
                                 Debug.Log(query);
-                                SqliteCommand command = new SqliteCommand(query, connection, tra);
+                                allQuery.Add(query);
+                            }
+                            string queryTwo = ss.QueryReducingSubjectSumCount("diamond", allCost);
+                            allQuery.Add(queryTwo);
+                            foreach (var item in allQuery)
+                            {
+                                Debug.Log(item);
+                                SqliteCommand command = new SqliteCommand(item, connection, tra);
                                 command.ExecuteNonQuery(); // 11
                             }
-                            //string queryTwo = ss.QueryReducingSubjectSumCount("diamond", allCost);
-                            //SqliteCommand commandTwo = new SqliteCommand(queryTwo, connection, tra);
-                            
-                            //commandTwo.ExecuteNonQuery();
                             tra.Commit();
+                            connection.Close();   
                             // Remember to always close the connection at the end.
-                            connection.Close(); // 12
                         }
                         catch (Exception ex)
                         {
@@ -354,19 +358,6 @@ public class ProductionBuilding : MonoBehaviour
                 Debug.Log("Нехватает количества объектов (алмазов) в таблице subjects_sum");                            
             }
         }
-    }
-    //Покупаем предмет за алмазы на стороне клиента
-    public void BuySubjectForDiamondClient(string subjectName)
-    {
-        //Получаем массив предметов с их количеством, которых нехватает
-        //missingIngredients
-        //Общая стоимость объектов за алмазы
-        //Получаем, сколько у пользователя алмазов
-        //$countsSubject
-        //Если предметов(алмазы) достаточно
-        //if ($countsSubject >= $allCost) {}
-
-        //dbConnection.BeginTransaction().Rollback();
     }
     //Проверяем ответ от сервера
     public void CheckResponseFromRequests(string subjectNameForBuilding)
@@ -405,26 +396,35 @@ public class ProductionBuilding : MonoBehaviour
             Console.WriteLine($"key: {spisokResponseFromRequests.Key}  value: {spisokResponseFromRequests.Value}");
         }
     }
-    public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)
+    //Добавление объекта в слот производства
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion, string locationDataProcessing)
     {
         Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
-        RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
+        if (locationDataProcessing == "Server")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "AddInSlotSubject",
-            subjectName = subjectName,
-            productionBuildingName = productionBuildingName,
-            ignoreQuestion = ignoreQuestion
-        }).Then(response => {
-
-            if (!ResponseFromRequests.ContainsKey(response.code))
+            RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
             {
-                ResponseFromRequests.Add(response.code, response.message);                
-            }
-            CheckResponseFromRequests(subjectName);
-            //Получаем информацию о слотах
-            GetAllInfoSlots();
-        });
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "AddInSlotSubject",
+                subjectName = subjectName,
+                productionBuildingName = productionBuildingName,
+                ignoreQuestion = ignoreQuestion
+            }).Then(response => {
+
+                if (!ResponseFromRequests.ContainsKey(response.code))
+                {
+                    ResponseFromRequests.Add(response.code, response.message);
+                }
+                CheckResponseFromRequests(subjectName);
+                //Получаем информацию о слотах
+                GetAllInfoSlots();
+            });
+        }
+        if (locationDataProcessing == "Local")
+        { 
+
+        }
 
     }
 
