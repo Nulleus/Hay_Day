@@ -245,8 +245,8 @@ public class ProductionBuildingUI : MonoBehaviour
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion)//Метод добавления предмета в слоты
     {
         ///Метод нужен для визуализации и обновления других участников при добавлении в производство
-        gameObject.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectName, productionBuildingName, ignoreQuestion);
-        
+        gameObject.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectName, productionBuildingName, ignoreQuestion, "Local");
+        gameObject.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectName, productionBuildingName, ignoreQuestion, "Server");
     }
     //Ожидание выбора действия от пользователя
     IEnumerator Cutscene()

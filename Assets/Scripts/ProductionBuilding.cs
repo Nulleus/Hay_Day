@@ -422,7 +422,91 @@ public class ProductionBuilding : MonoBehaviour
             });
         }
         if (locationDataProcessing == "Local")
-        { 
+        {
+            IDictionary<string, int> allIngredients = new Dictionary<string, int>();
+            //Получаем текущую дату клиента(дата загрузки объекта)
+            DateTime timeLoading = DateTime.Now;
+            //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
+            AssociationSubject associationSubject = Data.GetComponent<AssociationSubject>();
+            string subjectAssociation = associationSubject.GetAssociation(productionBuildingName);
+            //Количество открытых слотов у пользователя
+            ProgresSlot progresSlot = Data.GetComponent<ProgresSlot>();
+			int countOpenSlotsUser = progresSlot.GetOpenSlotsCount(productionBuildingName, locationDataProcessing);
+            //Требуется имя производственного здания, количество занятых слотов отгрузки
+            Content content = Data.GetComponent<Content>();
+			int countOfOccupiedShipmentSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
+            //Проверяем,сколько слотов занято производством
+			int countOfOccupiedLoadingSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
+            if (subjectAssociation == "field")
+            {
+                //Проверяем, есть ли в данном field уже загруженная культура в производство
+            }
+            //Если количество отгруженных товаров, больше чем открытых слотов у пользователя
+            if (countOfOccupiedShipmentSlots > countOpenSlotsUser) 
+            {
+                Debug.Log("code 0x0000001 message Собери готовую продукцию, чтобы продолжить изготовление(слоты отгрузки полностью заняты)");
+            }
+            //Если количество загруженных в производство объектов>=открытых у пользователя
+            if (countOfOccupiedLoadingSlots >= countOpenSlotsUser) 
+            {
+                Debug.Log("message Все слоты(загрузки) заняты! Подожди, ускорь или докупи ячейки!");
+            }
+            //Если количество загруженных слотов(занятых) в производство объектов<открытых слотов у пользователя
+            if (countOfOccupiedLoadingSlots < countOpenSlotsUser) 
+            {
+                //Пробуем запустить в производство объект
+                //Получаем список ингредиентов (ингредиент, количество)
+                
+                Ingredient ingredient = Data.GetComponent<Ingredient>();
+                allIngredients = ingredient.GetAllIngredients(subjectName);
+                //Выводим список ингредиентов
+                //Получаем массив предметов с их количеством, которых нехватает
+                
+                List<Ingredient.MissingIngredient> missingIngredients = ingredient.GetMissingIngredients(subjectName);
+                if (missingIngredients.Count > 0) 
+                {
+                    Debug.Log("code0x0000003 message Нехватает ингредиентов для производства!");
+                    //Общая стоимость объектов за алмазы
+                    PriceSubject priceSubject = Data.GetComponent<PriceSubject>();
+                    Dictionary<string, int> temp = new Dictionary<string, int>();
+                    foreach (var item in missingIngredients)
+                    {
+                        temp.Add(item.ingredient_name, item.count_ingredients);
+                    }
+                    int allCost = priceSubject.GetAllCost(ref temp);
+                    //Остановить выполнение если нехватает объектов
+                    return;
+                }
+            }
+            //Если условия совпадают, можно пробовать запускать в производство
+            //(/Если количество загруженных слотов(занятых) в производство объектов < число дефолтных значений слотов отгрузки) И (Если количество загруженных слотов в производство объектов < открытых у пользователя )
+            if ((countOfOccupiedShipmentSlots < countOpenSlotsUser) && (countOfOccupiedLoadingSlots < countOpenSlotsUser)) 
+            {
+                //Если это не поле, тогда проверяем, является ли данный ингредиент последним на складе
+                if (subjectAssociation != "field") 
+                {
+                    List<string> lastIngredients = new List<string>();
+                    foreach (var item in allIngredients) 
+                    {
+                    //Проверяем количество ингредиентов, является ли данный ингредиент последним на складе, если является, тогда предупреждаем пользователя, только если это культура для посева
+                    SubjectSum subjectSum = Data.GetComponent<SubjectSum>();
+                    string queryCountCheck = subjectSum.QueryReducingSubjectSumCount(item.Key, item.Value);
+                    //Получаем количество ингредиснентов на складе
+					int countCheck = subjectSum.GetSubjectSumCount(item.Key, "Local");
+					//Получаем количество объектов, находящихся в производстве/отгрузке
+					int countCheckInContent = content.GetCountAllSlotsBySubjectName(item.Key);
+                    //Нужен массив с несколькими предметами для отображения пользователю
+                        if ((countCheck - item.Value == 0) && (ignoreQuestion == 0) && (countCheckInContent == 0)) 
+                        {
+                            //Здесь должен быть массив с ингредиентами которых почти не осталось
+                            lastIngredients.Add(item.Key);
+                            Debug.Log("code 0x0000008 Ты собираешься использовать последние растения. Хочешь продолжить?");
+                            return;
+                        }
+                    }
+                }
+            }
+
 
         }
 
