@@ -312,7 +312,7 @@ public class ProductionBuildingUI : MonoBehaviour
                 }
             }
             //Метод открузки предметов
-            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem);
+            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Local");
 
         }
 

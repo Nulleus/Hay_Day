@@ -456,7 +456,6 @@ public class ProductionBuilding : MonoBehaviour
             {
                 //Пробуем запустить в производство объект
                 //Получаем список ингредиентов (ингредиент, количество)
-                
                 Ingredient ingredient = Data.GetComponent<Ingredient>();
                 allIngredients = ingredient.GetAllIngredients(subjectName);
                 //Выводим список ингредиентов
@@ -506,12 +505,81 @@ public class ProductionBuilding : MonoBehaviour
                     }
                 }
             }
+            //Начало загрузки в производство
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            List<string> allQuery = new List<string>();
+            var ss = Data.GetComponent<SubjectSum>();
+            var bt = Data.GetComponent<BuildingTime>();
+            var ct = Data.GetComponent<Content>();
+            var oq = Data.GetComponent<OutputQuantity>();
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
+                using (var tra = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        Debug.Log("Try");
+                        foreach (var item in allIngredients)
+                        {
+                            string query = ss.QueryReducingSubjectSumCount(item.Key, item.Value);
+                            Debug.Log(query);
+                            allQuery.Add(query);
+                        }
+                        // Remember to always close the connection at the end.
+                        string subjectParentName = productionBuildingName;
+					    string subjectChildName = subjectName;
+                        //Получаем время производства объекта из таблицы building_time
 
+					    int timeBuildingSubject = bt.GetTimeBuilding(subjectChildName, "Local");
+                        //Получаем дату выгрузки, последнего предмета, находящегося в процессе изготовления
+					    string dateShipmentEndBuildingSubject = ct.GetTimeShipmentDesc(productionBuildingName, timeLoading);
+                        if (dateShipmentEndBuildingSubject!=null) 
+                        { 
+                        //Время отгрузки равно: время отгрузки последнего в очереди предмета + время создания предмета
+						string timeShipment = dateShipmentEndBuildingSubject;
+                        Debug.Log("timeShipment" + timeShipment);
+                        //Конвертируем строку в дату и добавляем количество секунд
+                        //DateTime convertTimeShipment = DateTime.ParseExact(timeShipment, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                        DateTime convertTimeShipment = DateTime.ParseExact("31.08.2023 08:41:09", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                        Debug.Log("convertTimeShipment"+convertTimeShipment);
+                        convertTimeShipment.AddSeconds(timeBuildingSubject);
+                        } 
+                        else
+                        {
+                        //Время отгрузки равно: время создания объекта + время загрузки
+                        DateTime timeShipment = timeLoading;
+                        timeShipment.AddSeconds(timeBuildingSubject);
+                        Debug.Log("TimeShipment=" + timeShipment);
+                        //Количество объектов на выходе
+					    int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+					    string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                        Debug.Log(query);
+                        allQuery.Add(query);
+                        }
 
+                        foreach (var item in allQuery)
+                        {
+                            Debug.Log(item);
+                            SqliteCommand command = new SqliteCommand(item, connection, tra);
+                            command.ExecuteNonQuery(); // 11
+                        }
+                        //Выполняем коммит в базу данных
+                        tra.Commit();
+                        connection.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Откатываем изменения
+                        tra.Rollback();
+                        Debug.Log("Catch!");
+                        throw;
+                    }
+                }
+            }
         }
-
     }
-
     [Serializable]
     public class LastIngredient
     {
@@ -544,9 +612,6 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("GetAllInfoSlots()");
         //0 - первый элемент в списке
         GetDifferenceDateInSeconds(SubjectName, 0);
-        
-
-
         for (int i = 0; i <= MaxCountSlots; i++)
         {
             Debug.Log(i);
@@ -594,7 +659,6 @@ public class ProductionBuilding : MonoBehaviour
                         //}
                         GetAllInfoSlots();
                     }
-
                 }
             }
         }
@@ -602,7 +666,6 @@ public class ProductionBuilding : MonoBehaviour
         {
 
         }
-        
     }
 
     //Получаем секунды до выгрузки первого объекта из производства
@@ -668,21 +731,75 @@ public class ProductionBuilding : MonoBehaviour
             //TranslateTimeBuilding = response.timeBuildingRU;
         });
     }
-
-    public void Shipment(string subjectParentName)
+    //Выгрузка объектов
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void Shipment(string subjectParentName, string locationDataProcessing)
     {
-        RestClient.Post<ResponseShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTShipment
+        if (locationDataProcessing == "Server")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "Shipment",
-            subjectParentName = subjectParentName
-        }).Then(response => {
-            if (!ResponseFromRequests.ContainsKey(response.code))
+            RestClient.Post<ResponseShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTShipment
             {
-                ResponseFromRequests.Add(response.code, response.message);
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "Shipment",
+                subjectParentName = subjectParentName
+            }).Then(response => {
+                if (!ResponseFromRequests.ContainsKey(response.code))
+                {
+                    ResponseFromRequests.Add(response.code, response.message);
+                }
+                CheckResponseFromRequests(subjectParentName);
+            });
+        }
+        if (locationDataProcessing == "Local")
+        {
+            DateTime dateTimeNow = DateTime.Now;
+            //Получаем ID первого стоящего на отгрузку объекта
+            var ct = Data.GetComponent<Content>();
+            var ss = Data.GetComponent<SubjectSum>();
+            int idContent = ct.GetShipmentID(subjectParentName, dateTimeNow);
+            //Получение количества объектов на выходе по id_content
+			int countOutputQuantity = ct.GetCountOutputQuantity(idContent);
+            //Получаем имя выгружаемого объекта
+            List<string> allQuery = new List<string>();
+            string subjectChildName = ct.GetSubjectName(idContent);
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
+                using (var tra = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        //удаление строки с указанным id контента
+                        
+				        string queryOne = ct.QueryDeleteContent(idContent);
+                        allQuery.Add(queryOne);
+                        Debug.Log("Try");
+                        //Прибавляем удаленный контент в хранилище(subject_sum)
+				        string queryTwo = ss.QueryIncreasingSubjectSumCount(subjectChildName, countOutputQuantity);
+                        allQuery.Add(queryTwo);
+                        foreach (var item in allQuery)
+                        {
+                            Debug.Log(item);
+                            SqliteCommand command = new SqliteCommand(item, connection, tra);
+                            command.ExecuteNonQuery(); // 11
+                        }
+                        tra.Commit();
+                        Debug.Log("code 0x0000009 Предметы успешно перемещены на склад!");
+                        connection.Close();
+                        // Remember to always close the connection at the end.
+                    }
+                    catch (Exception ex)
+                    {
+                        //Откатываем изменения
+                        tra.Rollback();
+                        Debug.Log("Запросы завершились неудачно!");
+                        throw;
+                    }
+                }
             }
-            CheckResponseFromRequests(subjectParentName);
-        });
+        }
     }
     //SubjectChildInTheProcessOfAssembly
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
@@ -698,7 +815,6 @@ public class ProductionBuilding : MonoBehaviour
             SubjectsChildInTheProcessOfAssembly[numberSlot] = response.subjectChildInTheProcessOfAssembly;
             Debug.Log("response.subjectChildInTheProcessOfAssembly" + response.subjectChildInTheProcessOfAssembly);
         });
-
     }
     //Получаем предметы культур, которые остались последние на складе, которых нет в производстве
     public void GetCheckIsLastSubject(string subjectName, string productionBuildingName)
@@ -713,7 +829,6 @@ public class ProductionBuilding : MonoBehaviour
             LastIngredients = response.lastIngredients;
             Debug.Log("response.lastIngredients" + response.lastIngredients);
         });
-
     }
     //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру, идентификатору пользователя
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -729,9 +844,5 @@ public class ProductionBuilding : MonoBehaviour
             SubjectsChildInTheShipment[numberSlot] = response.subjectChildInTheShipment;
             Debug.Log("response.subjectChildInTheShipment" + response.subjectChildInTheShipment);
         });
-
     }
-
-    
-
 }
