@@ -387,7 +387,7 @@ public class Content : MonoBehaviour
                 }
             }
         }
-        return "Error";
+        return "null";
     }
     //Получаем Дату отгрузки первого объекта, находящегося в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]

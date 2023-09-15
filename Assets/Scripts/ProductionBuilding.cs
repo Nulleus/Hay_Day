@@ -426,6 +426,7 @@ public class ProductionBuilding : MonoBehaviour
             IDictionary<string, int> allIngredients = new Dictionary<string, int>();
             //Получаем текущую дату клиента(дата загрузки объекта)
             DateTime timeLoading = DateTime.Now;
+            Debug.Log("timeLoading="+timeLoading);
             //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
             AssociationSubject associationSubject = Data.GetComponent<AssociationSubject>();
             string subjectAssociation = associationSubject.GetAssociation(productionBuildingName);
@@ -535,28 +536,31 @@ public class ProductionBuilding : MonoBehaviour
 					    int timeBuildingSubject = bt.GetTimeBuilding(subjectChildName, "Local");
                         //Получаем дату выгрузки, последнего предмета, находящегося в процессе изготовления
 					    string dateShipmentEndBuildingSubject = ct.GetTimeShipmentDesc(productionBuildingName, timeLoading);
-                        if (dateShipmentEndBuildingSubject!=null) 
-                        { 
-                        //Время отгрузки равно: время отгрузки последнего в очереди предмета + время создания предмета
-						string timeShipment = dateShipmentEndBuildingSubject;
-                        Debug.Log("timeShipment" + timeShipment);
-                        //Конвертируем строку в дату и добавляем количество секунд
-                        //DateTime convertTimeShipment = DateTime.ParseExact(timeShipment, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-                        DateTime convertTimeShipment = DateTime.ParseExact("31.08.2023 08:41:09", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-                        Debug.Log("convertTimeShipment"+convertTimeShipment);
-                        convertTimeShipment.AddSeconds(timeBuildingSubject);
+                        Debug.Log("dateShipmentEndBuildingSubject=" + dateShipmentEndBuildingSubject);
+                        if (dateShipmentEndBuildingSubject=="null") 
+                        {
+                            //Время отгрузки равно: время отгрузки последнего в очереди предмета + время создания предмета
+                            //Если мы находится в этом if, это значит что время отгрузки последнего предмета равна текущей дате
+                            //Конвертируем строку в дату и добавляем количество секунд
+                            DateTime timeShipment = timeLoading.AddSeconds(timeBuildingSubject);
+                            int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+                            //DateTime convertTimeShipment = DateTime.ParseExact(timeShipment, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                            //DateTime convertTimeShipment = DateTime.ParseExact(dateShipmentEndBuildingSubject, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture.DateTimeFormat);
+                            string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                            allQuery.Add(query);
+                            Debug.Log(query);
                         } 
                         else
                         {
-                        //Время отгрузки равно: время создания объекта + время загрузки
-                        DateTime timeShipment = timeLoading;
-                        timeShipment.AddSeconds(timeBuildingSubject);
-                        Debug.Log("TimeShipment=" + timeShipment);
-                        //Количество объектов на выходе
-					    int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
-					    string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
-                        Debug.Log(query);
-                        allQuery.Add(query);
+                            //Время отгрузки равно: время создания объекта + время загрузки
+                            DateTime timeShipment = timeLoading;
+                            timeShipment.AddSeconds(timeBuildingSubject);
+                            Debug.Log("TimeShipment=" + timeShipment);
+                            //Количество объектов на выходе
+					        int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+					        string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                            Debug.Log(query);
+                            allQuery.Add(query);
                         }
 
                         foreach (var item in allQuery)

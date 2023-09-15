@@ -58,7 +58,7 @@ public class PriceSubject : MonoBehaviour
 		{
             Debug.Log("GetPrice currency=diamond");
 
-            string sqlQuery = "SELECT diamonds_for_one_ingredients FROM price_subjects WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT 0,1";
+            string sqlQuery = "SELECT diamonds_for_one_ingredients FROM price_subjects WHERE subject_name =" + "'" + subjectName + "'" + " LIMIT 0,1";
             Debug.Log("sqlQuery=" + sqlQuery);
             using (var connection = new SqliteConnection(dbUri))
             {
