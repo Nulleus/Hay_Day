@@ -377,7 +377,7 @@ public class ProductionBuilding : MonoBehaviour
             //если предметы культур, которые остались последние на складе, которые нет в производстве
             if (spisokResponseFromRequests.Key == "0x0000008")
             {
-                GetCheckIsLastSubject(subjectNameForBuilding, SubjectName);
+                GetCheckIsLastSubject(subjectNameForBuilding, SubjectName, "Server");
                 Debug.Log("0x0000008");
                 GameObject panelQuestionBox = gameObject.GetComponent<ProductionBuildingUI>().PanelQuestionBox;
                 GameObject panelQuestion = gameObject.GetComponent<ProductionBuildingUI>().PanelQuestion;
@@ -820,20 +820,66 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log("response.subjectChildInTheProcessOfAssembly" + response.subjectChildInTheProcessOfAssembly);
         });
     }
-    //Получаем предметы культур, которые остались последние на складе, которых нет в производстве
-    public void GetCheckIsLastSubject(string subjectName, string productionBuildingName)
+    //Проверяем, последний ли ингредиент, для field собираемся использовавть 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public bool GetCheckIsLastSubject(string subjectName, string productionBuildingName, string locationDataProcessing)
     {
-        RestClient.Post<RootLastIngredient>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetLastIngredients
+        if (locationDataProcessing == "Server")
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "CheckIsLastSubject",
-            subjectName = subjectName,
-            productionBuildingName = productionBuildingName
-        }).Then(response => {
-            LastIngredients = response.lastIngredients;
-            Debug.Log("response.lastIngredients" + response.lastIngredients);
-        });
-    }
+            RestClient.Post<RootLastIngredient>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetLastIngredients
+            {
+                jwt = Data.GetComponent<User>().GetJWTToken(),
+                methodName = "CheckIsLastSubject",
+                subjectName = subjectName,
+                productionBuildingName = productionBuildingName
+            }).Then(response => {
+                LastIngredients = response.lastIngredients;
+                Debug.Log("response.lastIngredients" + response.lastIngredients);
+            });
+        }
+        if (locationDataProcessing == "Local")
+        {
+            //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
+            var aSubject = Data.GetComponent<AssociationSubject>();
+            string subjectAssociation = aSubject.GetAssociation(productionBuildingName);
+            //Получаем список ингредиентов (ингредиент, количество)
+            var ingredient = Data.GetComponent<Ingredient>();
+            var ss = Data.GetComponent<SubjectSum>();
+            var content = Data.GetComponent<Content>();
+            IDictionary<string, int> allIngredients = new Dictionary<string, int>();
+            allIngredients = ingredient.GetAllIngredients(subjectName);
+            Debug.Log(allIngredients);
+            //Если производственное здание не является полем
+            if (subjectAssociation != "field") {
+                foreach (var item in allIngredients) {
+                    //Проверяем количество ингредиентов, является ли данный ингредиент последним на складе, если является, тогда предупреждаем пользователя, только если это культура для посева
+				    string queryCountCheck = ss.QueryReducingSubjectSumCount(item.Key,item.Value);
+                    Debug.Log("queryCountCheck=" + queryCountCheck);
+                    //Получаем количество ингредиентов на складе
+				    int countCheck = ss.GetSubjectSumCount(item.Key, "Local");
+                    Debug.Log("countCheck=" + countCheck);
+                    //Получаем количество объектов, находящихся в производстве/отгрузке
+                    int countCheckInContent = content.GetCountAllSlotsBySubjectName(subjectName);
+                    Debug.Log("countCheckInContent=" + countCheckInContent);
+                    //Нужен массив с несколькими предметами для отображения пользователю
+                    if ((countCheck - item.Value <= 0) && (countCheckInContent <= 0)) {
+                        Debug.Log("if ((countCheck - item.Value == 0) && (countCheckInContent == 0))=");
+                        //Здесь должен быть массив с ингредиентами которых почти не осталось
+                        List<string> lastIngredients = new List<string>();
+				        lastIngredients.Add(item.Key);
+                        if (lastIngredients.Count > 0)
+                        {
+                            Debug.Log(lastIngredients);
+                            return true;
+                        }                       
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+        }
     //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру, идентификатору пользователя
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
