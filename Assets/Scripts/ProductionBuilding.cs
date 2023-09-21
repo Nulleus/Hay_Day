@@ -447,9 +447,9 @@ public class ProductionBuilding : MonoBehaviour
                 if (missingIngredients.Count > 0) 
                 {
                     //Подготовим панель для нехватающих ингредиентов
-                    GameObject panelFewResource = GetComponent<ProductionBuildingUI>().PanelFewResources;
-                    GameObject panelFewResourceBox = GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
-                    panelFewResource.GetComponent<PanelFewResources>().CleanerPanel();
+                    //Show должен быть вначале, иначе не будет работать
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().Show();
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
 
                     Debug.Log("code0x0000003 message Нехватает ингредиентов для производства!");
 
@@ -459,12 +459,14 @@ public class ProductionBuilding : MonoBehaviour
                     foreach (var item in missingIngredients)
                     {
                         temp.Add(item.ingredient_name, item.count_ingredients);
-                        panelFewResource.GetComponent<PanelFewResources>().AddSubjectAndCount(item.ingredient_name, item.count_ingredients);
-                        
+                        gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().AddSubjectAndCount(item.ingredient_name, item.count_ingredients);
+
+
                     }
                     int allCost = priceSubject.GetAllCost(ref temp);
-                    panelFewResource.GetComponent<PanelFewResources>().AllCost = allCost;
-                    panelFewResourceBox.GetComponent<PanelFewResources>().Show();
+                    Debug.Log("allCost=" + allCost);
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SetAllCost(allCost);
+                    
                     //Остановить выполнение если нехватает объектов
                     return;
                 }

@@ -26,11 +26,17 @@ public class PanelFewResources : MonoBehaviour
     public bool MainCameraBlock;
 
     //[ShowInInspector]
-    
+
     //public List<ProductionBuilding.MissingIngredient> MissingIngredients;
 
     //Необходимы объекты
     // Start is called before the first frame update
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetAllCost(int count)
+    {
+        Debug.Log("SetAllCost");
+        AllCost = count;
+    }
     //Выбор пользователя
     public void SetUserActionSelection(string actionSelectionName)
     {
