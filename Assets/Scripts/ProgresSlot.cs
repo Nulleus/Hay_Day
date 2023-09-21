@@ -51,10 +51,7 @@ public class ProgresSlot : MonoBehaviour
     {
 
     }
-    public void GetOpenSlotsCount(string subjectName)
-    {
 
-    }
     //ѕолучить количество открытых слотов
     //$query = "SELECT open_slots FROM " . $this->table_name . " WHERE subject_name =? AND user_id =? LIMIT 0,1"; 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]

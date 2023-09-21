@@ -109,26 +109,7 @@ public class ProductionBuilding : MonoBehaviour
             return UnityEngine.JsonUtility.ToJson(this, true);
         }
     }
-    [Serializable]
-    public class POSTGetAllCost
-    {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetAllCost
-    {
-        public int allCost;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
+
     [Serializable]
     public class POSTBuySubjectForDiamonds
     {
@@ -445,6 +426,7 @@ public class ProductionBuilding : MonoBehaviour
             //Если количество отгруженных товаров, больше чем открытых слотов у пользователя
             if (countOfOccupiedShipmentSlots > countOpenSlotsUser) 
             {
+                
                 Debug.Log("code 0x0000001 message Собери готовую продукцию, чтобы продолжить изготовление(слоты отгрузки полностью заняты)");
             }
             //Если количество загруженных в производство объектов>=открытых у пользователя
@@ -461,19 +443,28 @@ public class ProductionBuilding : MonoBehaviour
                 allIngredients = ingredient.GetAllIngredients(subjectName);
                 //Выводим список ингредиентов
                 //Получаем массив предметов с их количеством, которых нехватает
-                
                 List<Ingredient.MissingIngredient> missingIngredients = ingredient.GetMissingIngredients(subjectName);
                 if (missingIngredients.Count > 0) 
                 {
+                    //Подготовим панель для нехватающих ингредиентов
+                    GameObject panelFewResource = GetComponent<ProductionBuildingUI>().PanelFewResources;
+                    GameObject panelFewResourceBox = GetComponent<ProductionBuildingUI>().PanelFewResourcesBox;
+                    panelFewResource.GetComponent<PanelFewResources>().CleanerPanel();
+
                     Debug.Log("code0x0000003 message Нехватает ингредиентов для производства!");
+
                     //Общая стоимость объектов за алмазы
                     PriceSubject priceSubject = Data.GetComponent<PriceSubject>();
                     Dictionary<string, int> temp = new Dictionary<string, int>();
                     foreach (var item in missingIngredients)
                     {
                         temp.Add(item.ingredient_name, item.count_ingredients);
+                        panelFewResource.GetComponent<PanelFewResources>().AddSubjectAndCount(item.ingredient_name, item.count_ingredients);
+                        
                     }
                     int allCost = priceSubject.GetAllCost(ref temp);
+                    panelFewResource.GetComponent<PanelFewResources>().AllCost = allCost;
+                    panelFewResourceBox.GetComponent<PanelFewResources>().Show();
                     //Остановить выполнение если нехватает объектов
                     return;
                 }
@@ -500,7 +491,12 @@ public class ProductionBuilding : MonoBehaviour
                         {
                             //Здесь должен быть массив с ингредиентами которых почти не осталось
                             lastIngredients.Add(item.Key);
+                            GameObject panelQuestion = GetComponent<ProductionBuildingUI>().PanelQuestion;
+                            panelQuestion.GetComponent<PanelQuestion>().CleanerPanel();
+                            panelQuestion.GetComponent<PanelQuestion>().AddSubjectAndCount(item.Key, item.Value);
+                            panelQuestion.GetComponent<PanelQuestion>().Show();
                             Debug.Log("code 0x0000008 Ты собираешься использовать последние растения. Хочешь продолжить?");
+
                             return;
                         }
                     }
@@ -705,21 +701,6 @@ public class ProductionBuilding : MonoBehaviour
         });
     }
 
-    public void GetAllCost(string subjectName)
-    {
-        Debug.Log("GetAllCost");
-        AllCost = 0;
-        RestClient.Post<ResponseGetAllCost>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetAllCost
-        {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetAllCost",
-            subjectName = subjectName
-        }).Then(response => {
-            //gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().AllCost = response.allCost;
-            AllCost = response.allCost;
-            Debug.Log("GetAllCostResponse"+response.allCost);
-        });
-    }
     public void GetTranslateInfoRUS(string subjectName)
     {
         RestClient.Post<ResponseGetTranslateInfoRU>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetTranslateInfoRU

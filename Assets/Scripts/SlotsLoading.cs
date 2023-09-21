@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class SlotsLoading : MonoBehaviour
 {
+    GameObject Data;
     [SerializeField]
     GameObject[] SlotLoadingFrame;
-    public int OpenSlots;
+    public string SubjectName;
     //Максимальное количество слотов
     public int MaxCountSlots;
 
@@ -17,23 +19,24 @@ public class SlotsLoading : MonoBehaviour
     }
     private void OnEnable()
     {
-        GetOpenSlotsCount();
-        for (int i = 0; i < MaxCountSlots; i++)
-        {
-            SlotLoadingFrame[i].SetActive(false);
-            if (i < OpenSlots)
-            {
-                SlotLoadingFrame[i].SetActive(true);
-            }
-        }
+        OpenSlots();
     }
     // Update is called once per frame
     void Update()
     {
         
     }
-    void GetOpenSlotsCount()
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void OpenSlots()
     {
-        OpenSlots = gameObject.GetComponent<ProgresSlot>().OpenSlots;
+        int openSlotsCpunt = Data.GetComponent<ProgresSlot>().GetOpenSlotsCount(SubjectName, "Local");
+        for (int i = 0; i < MaxCountSlots; i++)
+        {
+            SlotLoadingFrame[i].SetActive(false);
+            if (i < openSlotsCpunt)
+            {
+                SlotLoadingFrame[i].SetActive(true);
+            }
+        }
     }
 }

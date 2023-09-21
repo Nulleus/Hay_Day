@@ -13201,7 +13201,6 @@ GameObject:
   - component: {fileID: 364160160}
   - component: {fileID: 364160161}
   - component: {fileID: 364160163}
-  - component: {fileID: 364160164}
   m_Layer: 0
   m_Name: ProductionBuilding
   m_TagString: production_building
@@ -13454,20 +13453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlue: 0
---- !u!114 &364160164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364160149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0538c5bbe245d499183dc471b288a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SQL: 
-  hitCount: 0
 --- !u!1 &366472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -45110,7 +45095,7 @@ MonoBehaviour:
   - {fileID: 781763169}
   - {fileID: 2074711143}
   - {fileID: 1727834669}
-  OpenSlots: 0
+  SubjectName: bakery
   MaxCountSlots: 9
 --- !u!114 &1335565088
 MonoBehaviour:

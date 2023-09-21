@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class PanelFewResources : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class PanelFewResources : MonoBehaviour
         CheckResponseAllCost = true;
         AllCost = 0;
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void CloseObject()
     {      
         gameObject.SetActive(false);
@@ -78,10 +80,11 @@ public class PanelFewResources : MonoBehaviour
     }
 
     // Update is called once per frame
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void Show()
     {
         Debug.Log("Show");
-        gameObject.SetActive(true);
+        PanelFewResourceBox.SetActive(true);
 
 
     }
