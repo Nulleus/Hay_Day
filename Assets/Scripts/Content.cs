@@ -210,11 +210,7 @@ public class Content : MonoBehaviour
     public string QueryAddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
     {
         // SQLQuery = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
-
-
-        string convertTimeLoading = timeLoading.ToString();
-        string convertTimeShipment = timeShipment.ToString();
-        string query = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity) VALUES("+"'"+subjectParentName+"','"+subjectChildName+"','"+ convertTimeLoading + "','" + convertTimeShipment + "'," +outputQuantity+")";
+        string query = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity) VALUES("+"'"+subjectParentName+"','"+subjectChildName+"','"+ timeLoading + "','" + timeShipment + "'," +outputQuantity+")";
         Debug.Log(query);
         //var_dump($query);
         return query;
@@ -223,10 +219,7 @@ public class Content : MonoBehaviour
     // SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
-    {
-        string timeLoadingConvert = timeLoading.ToString();
-        string timeShipmentConvert = timeShipment.ToString();
-        
+    {     
         // Open a connection to the database.
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
@@ -393,11 +386,16 @@ public class Content : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetTimeShipmentFirst(string subjectParentName, DateTime dateTimeNow)
     {
+        //Для тестов
+        dateTimeNow = DateTime.Now;
+        Debug.Log(dateTimeNow);
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT 0,1";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment >= " + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
         string dateShipmentAsc;
+        DateTime temp;
+        Debug.Log(sqlExpression);
         using (var connection = new SqliteConnection(dbUri))
         {
             connection.Open();
@@ -408,13 +406,15 @@ public class Content : MonoBehaviour
                 {
                     while (reader.Read())   // построчно считываем данные
                     {
-                        dateShipmentAsc = reader.GetValue(0).ToString();
+                        reader.GetDateTime(0).ToString("dd.MM.yyyy HH:mm:ss");
+                        //temp = reader.GetValue(0).T;
+                        dateShipmentAsc = reader.GetDateTime(0).ToString("dd.MM.yyyy HH:mm:ss");
                         return dateShipmentAsc;
                     }
                 }
             }
         }
-        return "Error";
+        return "Not found";
     }
     //Получить количество продуктов, находящихся в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]

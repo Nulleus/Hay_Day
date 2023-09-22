@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class SlotLoading : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class SlotLoading : MonoBehaviour
         DisplayContents();
     }
     //Отобразить содержимое загруженного содержимого в слотах
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void DisplayContents()
     {
         Animator anim;
@@ -28,7 +30,7 @@ public class SlotLoading : MonoBehaviour
         //anim.CrossFade(SubjectParent.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot], 0);
         //
         string subjectsChildInTheProcessOfAssembly = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheProcessOfAssembly[NumberSlot];
-        if (subjectsChildInTheProcessOfAssembly != "")
+        if (subjectsChildInTheProcessOfAssembly != "" && subjectsChildInTheProcessOfAssembly != "Error")
         {
             anim.CrossFade(subjectsChildInTheProcessOfAssembly, 0);
         }

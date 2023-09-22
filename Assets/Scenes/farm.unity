@@ -58150,7 +58150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 364160149}
-  Anim: {fileID: 0}
+  Anim: {fileID: 1902995971}
   NumberSlot: 0
   Data: {fileID: 1866044566}
   CheckDisplayContents: 1

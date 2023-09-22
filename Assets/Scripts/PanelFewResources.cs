@@ -113,7 +113,7 @@ public class PanelFewResources : MonoBehaviour
                 
                 CheckResponseAllCost = false;
             }
-            AllCost = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AllCost;
+            //AllCost = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AllCost;
             ButtonBuy.GetComponent<ButtonScript>().ButtonText.GetComponent<Text>().text = AllCost.ToString();
 
         }

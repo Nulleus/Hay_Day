@@ -381,7 +381,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion, string locationDataProcessing)
     {
-        Debug.Log(subjectName+ productionBuildingName+ ignoreQuestion);
+        Debug.Log("AddInSlotSubject=" + subjectName + productionBuildingName+ ignoreQuestion);
         if (locationDataProcessing == "Server")
         {
             RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
@@ -450,6 +450,9 @@ public class ProductionBuilding : MonoBehaviour
                     //Show должен быть вначале, иначе не будет работать
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().Show();
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectName;
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SetUserActionSelection("buyForDaemonds");
+
 
                     Debug.Log("code0x0000003 message Нехватает ингредиентов для производства!");
 
@@ -670,37 +673,40 @@ public class ProductionBuilding : MonoBehaviour
         }
     }
 
-    //Получаем секунды до выгрузки первого объекта из производства
+    //Получаем разницу в секундах дат: 1) находящего в производстве предмета 2) Текущего времени
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
-        Debug.Log("GetDifferenceDateInSeconds");
-        RestClient.Post<ResponseGetDifferenceDateInSeconds>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetDifferenceDateInSeconds
+        DateTime dateTimeNow = DateTime.Now;
+        Debug.Log("dateTimeNow=" + dateTimeNow);
+        string dateShipment = Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
+        Debug.Log("dateShipment=" + dateShipment);
+        DateTime parsedDateShipment = DateTime.Parse(dateShipment);
+		var diff = ((parsedDateShipment - dateTimeNow).TotalSeconds);
+        Debug.Log(diff);
+
+        //Просрочена ли дата, если дата просрочена, тогда секунды будут увеличиваться
+        bool expiredDate;
+        if ((parsedDateShipment > dateTimeNow)&&(parsedDateShipment != null)){
+            expiredDate = true;
+            //TimerEnable = false; 03.05.2023 стал false
+            TimerEnable = false;
+            CheckGetSubjectChildInTheProcessOfAssembly = false;
+            CheckInBuilding = false;
+        }
+            //В производстве пусто
+        else
         {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetDifferenceDateInSeconds",
-            subjectParentName = subjectParentName,
-            numberSlot = numberSlot
-        }).Then(response => {           
-            //Если дата не просрочена, значит в производстве есть предметы
-            if (response.expiredDate=="no")
-            {
-                TimerEnable = true;
-                CheckInBuilding = true;
-                //Останавливаем после получения значения
-                CheckGetSubjectChildInTheProcessOfAssembly = false;
-                //Секунд до обновления слотов
-                TimeBeforeStartRequest = response.differenceDateInSeconds;
-                Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
-            }
-            //Если дата просрочена, значит в производстве нет предметов
-            if (response.expiredDate == "yes")
-            {
-                //TimerEnable = false; 03.05.2023 стал false
-                TimerEnable = false;
-                CheckGetSubjectChildInTheProcessOfAssembly = false;
-                CheckInBuilding = false;
-            }
-        });
+            expiredDate = false;
+            TimerEnable = true;
+            CheckInBuilding = true;
+            //Останавливаем после получения значения
+            CheckGetSubjectChildInTheProcessOfAssembly = false;
+            //Секунд до обновления слотов
+            TimeBeforeStartRequest = Convert.ToSingle(diff);
+            Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
+        }
+
     }
 
     public void GetTranslateInfoRUS(string subjectName)
@@ -790,18 +796,15 @@ public class ProductionBuilding : MonoBehaviour
     }
     //SubjectChildInTheProcessOfAssembly
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheProcessOfAssembly>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTSubjectChildInTheProcessOfAssembly
-        {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetSubjectChildInTheProcessOfAssembly",
-            subjectParentName = subjectParentName,
-            numberSlot = numberSlot
-        }).Then(response => {
-            SubjectsChildInTheProcessOfAssembly[numberSlot] = response.subjectChildInTheProcessOfAssembly;
-            Debug.Log("response.subjectChildInTheProcessOfAssembly" + response.subjectChildInTheProcessOfAssembly);
-        });
+        Debug.Log("GetSubjectChildInTheProcessOfAssembly(" + subjectParentName + "," + numberSlot+");");
+        DateTime dateTimeNow = DateTime.Now;
+        
+        string subjectChildInTheProcessOfAssembly = Data.GetComponent<Content>().GetSubjectChildInTheProcessOfAssembly(subjectParentName, numberSlot, dateTimeNow);
+        Debug.Log("GetSubjectChildInTheProcessOfAssembly|" + "dateTimeNow=" + dateTimeNow + ",subjectChildInTheProcessOfAssembly=" + subjectChildInTheProcessOfAssembly);
+        SubjectsChildInTheProcessOfAssembly[numberSlot] = subjectChildInTheProcessOfAssembly;
     }
     //Проверяем, последний ли ингредиент, для field собираемся использовавть 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -867,15 +870,8 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
     {
-        RestClient.Post<ResponseSubjectChildInTheShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTSubjectChildInTheShipment
-        {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetSubjectChildInTheShipment",
-            subjectParentName = subjectParentName,
-            numberSlot = numberSlot
-        }).Then(response => {
-            SubjectsChildInTheShipment[numberSlot] = response.subjectChildInTheShipment;
-            Debug.Log("response.subjectChildInTheShipment" + response.subjectChildInTheShipment);
-        });
+        DateTime dateTimeNow = DateTime.Now;
+        string subjectChildInTheShipment = Data.GetComponent<Content>().GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
+        SubjectsChildInTheShipment[numberSlot] = subjectChildInTheShipment;
     }
 }
