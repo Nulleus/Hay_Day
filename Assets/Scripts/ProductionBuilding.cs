@@ -410,23 +410,29 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log("timeLoading="+timeLoading);
             //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
             AssociationSubject associationSubject = Data.GetComponent<AssociationSubject>();
+            Debug.Log("associationSubject=" + associationSubject);
             string subjectAssociation = associationSubject.GetAssociation(productionBuildingName);
+            Debug.Log("subjectAssociation=" + subjectAssociation);
             //Количество открытых слотов у пользователя
             ProgresSlot progresSlot = Data.GetComponent<ProgresSlot>();
+            Debug.Log("progresSlot=" + progresSlot);
 			int countOpenSlotsUser = progresSlot.GetOpenSlotsCount(productionBuildingName, locationDataProcessing);
+            Debug.Log("countOpenSlotsUser=" + countOpenSlotsUser);
             //Требуется имя производственного здания, количество занятых слотов отгрузки
             Content content = Data.GetComponent<Content>();
+
 			int countOfOccupiedShipmentSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
+            Debug.Log("countOfOccupiedShipmentSlots=" + countOfOccupiedShipmentSlots);
             //Проверяем,сколько слотов занято производством
 			int countOfOccupiedLoadingSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
+            Debug.Log("countOfOccupiedLoadingSlots=" + countOfOccupiedLoadingSlots);
             if (subjectAssociation == "field")
             {
                 //Проверяем, есть ли в данном field уже загруженная культура в производство
             }
             //Если количество отгруженных товаров, больше чем открытых слотов у пользователя
             if (countOfOccupiedShipmentSlots > countOpenSlotsUser) 
-            {
-                
+            {   
                 Debug.Log("code 0x0000001 message Собери готовую продукцию, чтобы продолжить изготовление(слоты отгрузки полностью заняты)");
             }
             //Если количество загруженных в производство объектов>=открытых у пользователя
@@ -437,22 +443,27 @@ public class ProductionBuilding : MonoBehaviour
             //Если количество загруженных слотов(занятых) в производство объектов<открытых слотов у пользователя
             if (countOfOccupiedLoadingSlots < countOpenSlotsUser) 
             {
+                Debug.Log("if (countOfOccupiedLoadingSlots < countOpenSlotsUser)");
                 //Пробуем запустить в производство объект
                 //Получаем список ингредиентов (ингредиент, количество)
                 Ingredient ingredient = Data.GetComponent<Ingredient>();
                 allIngredients = ingredient.GetAllIngredients(subjectName);
+                Debug.Log("allIngredients" + allIngredients);
                 //Выводим список ингредиентов
                 //Получаем массив предметов с их количеством, которых нехватает
                 List<Ingredient.MissingIngredient> missingIngredients = ingredient.GetMissingIngredients(subjectName);
-                if (missingIngredients.Count > 0) 
+                Debug.Log("missingIngredients=" + missingIngredients);
+                Debug.Log("missingIngredients.Count=" + missingIngredients.Count);
+                if ((missingIngredients.Count > 0) && (ignoreQuestion == 0))
                 {
+                    Debug.Log("if (missingIngredients.Count > 0) ");
                     //Подготовим панель для нехватающих ингредиентов
                     //Show должен быть вначале, иначе не будет работать
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().Show();
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectName;
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SetUserActionSelection("buyForDaemonds");
-
+                    
 
                     Debug.Log("code0x0000003 message Нехватает ингредиентов для производства!");
 
@@ -478,9 +489,11 @@ public class ProductionBuilding : MonoBehaviour
             //(/Если количество загруженных слотов(занятых) в производство объектов < число дефолтных значений слотов отгрузки) И (Если количество загруженных слотов в производство объектов < открытых у пользователя )
             if ((countOfOccupiedShipmentSlots < countOpenSlotsUser) && (countOfOccupiedLoadingSlots < countOpenSlotsUser)) 
             {
+                Debug.Log("if ((countOfOccupiedShipmentSlots < countOpenSlotsUser) && (countOfOccupiedLoadingSlots < countOpenSlotsUser))");
                 //Если это не поле, тогда проверяем, является ли данный ингредиент последним на складе
                 if (subjectAssociation != "field") 
                 {
+                    Debug.Log("if (subjectAssociation != field) ");
                     List<string> lastIngredients = new List<string>();
                     foreach (var item in allIngredients) 
                     {
@@ -494,13 +507,16 @@ public class ProductionBuilding : MonoBehaviour
                     //Нужен массив с несколькими предметами для отображения пользователю
                         if ((countCheck - item.Value == 0) && (ignoreQuestion == 0) && (countCheckInContent == 0)) 
                         {
+                            Debug.Log("code 0x0000008 Ты собираешься использовать последние растения. Хочешь продолжить?");
                             //Здесь должен быть массив с ингредиентами которых почти не осталось
                             lastIngredients.Add(item.Key);
                             GameObject panelQuestion = GetComponent<ProductionBuildingUI>().PanelQuestion;
+                            panelQuestion.GetComponent<PanelQuestion>().Show();
                             panelQuestion.GetComponent<PanelQuestion>().CleanerPanel();
                             panelQuestion.GetComponent<PanelQuestion>().AddSubjectAndCount(item.Key, item.Value);
-                            panelQuestion.GetComponent<PanelQuestion>().Show();
-                            Debug.Log("code 0x0000008 Ты собираешься использовать последние растения. Хочешь продолжить?");
+                            panelQuestion.GetComponent<PanelQuestion>().SubjectNameForBuilding = subjectName;
+
+
 
                             return;
                         }
@@ -508,6 +524,7 @@ public class ProductionBuilding : MonoBehaviour
                 }
             }
             //Начало загрузки в производство
+            Debug.Log("Начало загрузки в производство");
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
             List<string> allQuery = new List<string>();
@@ -538,13 +555,15 @@ public class ProductionBuilding : MonoBehaviour
                         //Получаем дату выгрузки, последнего предмета, находящегося в процессе изготовления
 					    string dateShipmentEndBuildingSubject = ct.GetTimeShipmentDesc(productionBuildingName, timeLoading);
                         Debug.Log("dateShipmentEndBuildingSubject=" + dateShipmentEndBuildingSubject);
-                        if (dateShipmentEndBuildingSubject=="null") 
+                        if (dateShipmentEndBuildingSubject=="Error" | dateShipmentEndBuildingSubject == "Not Found") 
                         {
                             //Время отгрузки равно: время отгрузки последнего в очереди предмета + время создания предмета
                             //Если мы находится в этом if, это значит что время отгрузки последнего предмета равна текущей дате
                             //Конвертируем строку в дату и добавляем количество секунд
                             DateTime timeShipment = timeLoading.AddSeconds(timeBuildingSubject);
+                            Debug.Log("timeShipment=" + timeShipment);
                             int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+                            Debug.Log("outputQuantityCount=" + outputQuantityCount);
                             //DateTime convertTimeShipment = DateTime.ParseExact(timeShipment, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
                             //DateTime convertTimeShipment = DateTime.ParseExact(dateShipmentEndBuildingSubject, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture.DateTimeFormat);
                             string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
@@ -554,12 +573,14 @@ public class ProductionBuilding : MonoBehaviour
                         else
                         {
                             //Время отгрузки равно: время создания объекта + время загрузки
-                            DateTime timeShipment = timeLoading;
-                            timeShipment.AddSeconds(timeBuildingSubject);
+                            var parsedDateShipmentEndBuildingSubject = DateTime.Parse(dateShipmentEndBuildingSubject);
+                            timeLoading = parsedDateShipmentEndBuildingSubject;
+                            DateTime timeShipment = timeLoading.AddSeconds(timeBuildingSubject);
                             Debug.Log("TimeShipment=" + timeShipment);
                             //Количество объектов на выходе
 					        int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
-					        string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                            Debug.Log("outputQuantityCount=" + outputQuantityCount);
+                            string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
                             Debug.Log(query);
                             allQuery.Add(query);
                         }
@@ -572,6 +593,7 @@ public class ProductionBuilding : MonoBehaviour
                         }
                         //Выполняем коммит в базу данных
                         tra.Commit();
+                        Debug.Log("Запросы выполнены успешно");
                         connection.Close();
                     }
                     catch (Exception ex)
@@ -632,7 +654,7 @@ public class ProductionBuilding : MonoBehaviour
         if (TimerEnable)
         {
             //Если таймер не истек
-            if (TimeBeforeStartRequest > 0)
+            if (TimeBeforeStartRequest >= 0)
             {
                 TimeBeforeStartRequest -= Time.deltaTime;
             }
@@ -647,7 +669,6 @@ public class ProductionBuilding : MonoBehaviour
                 {
                     if (CheckInBuilding)
                     {
-                        
                         //Если в производстве есть предметы
                     }
                     //Если в производстве нет предметов, проверять не обязательно
@@ -669,10 +690,18 @@ public class ProductionBuilding : MonoBehaviour
         }
         else
         {
-
+            if (SubjectsChildInTheProcessOfAssembly[0]!="Error")
+            {
+                GetAllInfoSlots();
+            }
+            
         }
     }
-
+    static bool CheckDate(string date)
+    {
+        DateTime dt;
+        return DateTime.TryParse(date, out dt);
+    }
     //Получаем разницу в секундах дат: 1) находящего в производстве предмета 2) Текущего времени
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
@@ -681,23 +710,20 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("dateTimeNow=" + dateTimeNow);
         string dateShipment = Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
         Debug.Log("dateShipment=" + dateShipment);
+        if (CheckDate(dateShipment)==false) {
+            Debug.Log("Не является датой=" + dateShipment);
+
+            return; 
+        }
+
         DateTime parsedDateShipment = DateTime.Parse(dateShipment);
 		var diff = ((parsedDateShipment - dateTimeNow).TotalSeconds);
         Debug.Log(diff);
 
         //Просрочена ли дата, если дата просрочена, тогда секунды будут увеличиваться
-        bool expiredDate;
         if ((parsedDateShipment > dateTimeNow)&&(parsedDateShipment != null)){
-            expiredDate = true;
-            //TimerEnable = false; 03.05.2023 стал false
-            TimerEnable = false;
-            CheckGetSubjectChildInTheProcessOfAssembly = false;
-            CheckInBuilding = false;
-        }
-            //В производстве пусто
-        else
-        {
-            expiredDate = false;
+            Debug.Log("Дата не просрочена");
+            //Дата не просрочена
             TimerEnable = true;
             CheckInBuilding = true;
             //Останавливаем после получения значения
@@ -705,6 +731,17 @@ public class ProductionBuilding : MonoBehaviour
             //Секунд до обновления слотов
             TimeBeforeStartRequest = Convert.ToSingle(diff);
             Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
+        }
+            //В производстве пусто
+        else
+        {
+            Debug.Log("Дата просрочена");
+            //дата просрочена
+            //TimerEnable = false; 03.05.2023 стал false
+            TimerEnable = false;
+            CheckGetSubjectChildInTheProcessOfAssembly = false;
+            CheckInBuilding = false;
+
         }
 
     }
@@ -872,6 +909,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         DateTime dateTimeNow = DateTime.Now;
         string subjectChildInTheShipment = Data.GetComponent<Content>().GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
+        Debug.Log("subjectChildInTheShipment="+ subjectChildInTheShipment);
         SubjectsChildInTheShipment[numberSlot] = subjectChildInTheShipment;
     }
 }

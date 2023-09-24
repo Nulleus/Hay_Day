@@ -55,9 +55,10 @@ public class PanelQuestion : MonoBehaviour
     }
 
     // Update is called once per frame
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void Show()
     {
-        gameObject.SetActive(true);
+        PanelQuestionBox.SetActive(true);
         MainCamera.GetComponent<Camera>().orthographicSize = 357;
         MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
         MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;

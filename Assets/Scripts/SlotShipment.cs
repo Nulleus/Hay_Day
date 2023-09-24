@@ -25,7 +25,7 @@ public class SlotShipment : MonoBehaviour
         Animator anim;
         anim = GetComponent<Animator>();
         string subjectsChildInTheShipment = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheShipment[NumberSlot];
-        if (subjectsChildInTheShipment != "" && subjectsChildInTheShipment != "Error")
+        if (subjectsChildInTheShipment != "" && subjectsChildInTheShipment != "Not Found")
         {
             anim.CrossFade(subjectsChildInTheShipment, 0);
         }

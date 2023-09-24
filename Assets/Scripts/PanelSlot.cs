@@ -61,7 +61,14 @@ public class PanelSlot : MonoBehaviour
 
     public void SetAnimaion(string subjectName) 
     {
-        Anim.CrossFade(subjectName, 0);
+        if (subjectName != "")
+        {
+            Anim.CrossFade(subjectName, 0);
+        }
+        else
+        {
+            Debug.Log("Пусто");
+        }
     }
     private void OnMouseDown()//Когда нажимаешь кнопку мыши
     {

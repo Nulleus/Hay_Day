@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class SlotsLoading : MonoBehaviour
 {
-    GameObject Data;
+    public GameObject Data;
     [SerializeField]
     GameObject[] SlotLoadingFrame;
     public string SubjectName;
@@ -19,7 +19,7 @@ public class SlotsLoading : MonoBehaviour
     }
     private void OnEnable()
     {
-        OpenSlots();
+        SetOpenSlots();
     }
     // Update is called once per frame
     void Update()
@@ -27,13 +27,13 @@ public class SlotsLoading : MonoBehaviour
         
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void OpenSlots()
+    public void SetOpenSlots()
     {
-        int openSlotsCpunt = Data.GetComponent<ProgresSlot>().GetOpenSlotsCount(SubjectName, "Local");
+        int openSlotsCount = Data.GetComponent<ProgresSlot>().GetOpenSlotsCount(SubjectName, "Local");
         for (int i = 0; i < MaxCountSlots; i++)
         {
             SlotLoadingFrame[i].SetActive(false);
-            if (i < openSlotsCpunt)
+            if (i < openSlotsCount)
             {
                 SlotLoadingFrame[i].SetActive(true);
             }

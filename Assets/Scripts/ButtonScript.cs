@@ -95,7 +95,9 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
             case "PanelQuestionButtonOK":
                 //Выбор пользователя был сделан
                 subjectNameForBuilding = GameObjectOperand.GetComponent<PanelQuestion>().SubjectNameForBuilding;
+                Debug.Log("PanelQuestionButtonOK:subjectNameForBuilding=" + subjectNameForBuilding);
                 productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;
+                Debug.Log("PanelQuestionButtonOK:productionBuildingName=" + productionBuildingName);
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding, productionBuildingName, 1, "Local");
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding, productionBuildingName, 1, "Server");
                 Debug.Log("Выбор пользователя: " + AppointmentButton);

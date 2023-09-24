@@ -21,6 +21,7 @@ using System.Globalization;
 
 public class Preload : MonoBehaviour
 {
+    public bool Check;
     [ShowInInspector]
     public string SQLQueryFull;
     public GameObject Data;
@@ -199,20 +200,48 @@ public class Preload : MonoBehaviour
         DateDifference = start - end;
         Debug.Log("DateDifference=" + DateDifference.TotalSeconds);
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void CreateDatabase() // 3
+    {
+        Debug.Log("CreateAndOpenDatabase()");
+        // Open a connection to the database.
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        dbConnection.Open(); // 6
+    }
     // Start is called before the first frame update
     void Start()
     {
-
+        GetSQLQueryFull();
+        GetDateTimeNowClient();
+        GetDateTimeNowServer();
+        CreateDatabase();
+        ClearingDatabase();
+        
+        
     }
 
     private void OnEnable()
     {
-        GetDateTimeNowClient();
-        GetDateTimeNowServer();
+        
+
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (Check)
+        {
+            if (SQLQueryFull != "")
+            {
+                SetSQLQueryFull();
+                Check = false;
+            }
+
+        }
+    }
+    private void Awake()
+    {
+
     }
 }

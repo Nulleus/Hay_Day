@@ -40,6 +40,7 @@ public class CloneObject : MonoBehaviour
         //Добавим клону свойства 
         clone.SetActive(true);
         clone.GetComponent<PanelSlot>().SubjectName = subjectName;
+        Debug.Log("subjectName="+subjectName);
         clone.GetComponent<PanelSlot>().SetAnimaion(subjectName);
         clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = subjectName;
         clone.GetComponent<PanelSlot>().SetQuantity(subjectCount);

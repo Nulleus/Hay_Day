@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TimeDoOverText : MonoBehaviour
 {
     [SerializeField]
@@ -19,4 +19,6 @@ public class TimeDoOverText : MonoBehaviour
     {
         
     }
+
+
 }
