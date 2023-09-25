@@ -323,6 +323,9 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>Assets\Plugins\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data">
+      <HintPath>Assets\Plugins\Mono.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>
@@ -761,13 +764,13 @@
       <Project>{6BF8741A-FD68-A496-1700-622354F29F69}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{539AA02D-58C6-04F6-ACD0-2618E6F1C65E}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{6F3030E3-A3ED-0A55-DBCF-9364B9FECDF7}</Project>
       <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{539AA02D-58C6-04F6-ACD0-2618E6F1C65E}</Project>
+      <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.TestRunner.csproj">
       <Project>{56091F43-2DE6-C5AA-B241-19EEC5063D50}</Project>

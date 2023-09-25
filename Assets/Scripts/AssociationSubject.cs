@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using SQLite4Unity3d;
 using UnityEngine;
 using Proyecto26;
 using UnityEditor;
@@ -13,6 +14,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Mono.Data.Sqlite; // 1
 using System.Data; // 1
+
 
 public class AssociationSubject : MonoBehaviour
 {

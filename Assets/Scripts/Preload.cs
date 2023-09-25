@@ -105,7 +105,9 @@ public class Preload : MonoBehaviour
         // Open a connection to the database.
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        Debug.Log("dbUri=" + dbUri);
         IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        Debug.Log("dbConnection=" + dbConnection);
         dbConnection.Open(); // 6
         IDbCommand dbCommandInsertValue = dbConnection.CreateCommand(); // 9
         dbCommandInsertValue.CommandText = SQLQueryFull; // 10
@@ -207,8 +209,11 @@ public class Preload : MonoBehaviour
         // Open a connection to the database.
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        Debug.Log("dbUri=" + dbUri);
         IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
+        Debug.Log("dbConnection="+dbConnection);
         dbConnection.Open(); // 6
+        dbConnection.Close();
     }
     // Start is called before the first frame update
     void Start()
