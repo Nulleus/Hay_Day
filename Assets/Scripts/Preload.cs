@@ -240,6 +240,7 @@ public class Preload : MonoBehaviour
             if (SQLQueryFull != "")
             {
                 SetSQLQueryFull();
+                //“ут должно быть действие о завершении загрузки
                 Check = false;
             }
 

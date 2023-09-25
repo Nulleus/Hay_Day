@@ -161,6 +161,46 @@ public class ProductionBuildingUI : MonoBehaviour
     
     void CheckInput()
     {
+        // Check if there is a touch
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            // Check if finger is over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                MouseDown();
+            }
+            else
+            {
+                Debug.Log("Touched the UI");
+            }
+        }
+        // Check if there is a touch
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            // Check if finger is over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                MouseUp();
+            }
+            else
+            {
+                Debug.Log("Touched End the UI");
+            }
+        }
+        // Check if there is a touch
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            // Check if finger is over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                OnMouseDrag();
+            }
+            else
+            {
+                Debug.Log("Touched End the UI");
+            }
+        }
+
         // Check if the left mouse button was clicked
         if (Input.GetMouseButtonDown(0))
         {
@@ -313,6 +353,7 @@ public class ProductionBuildingUI : MonoBehaviour
             }
             //Метод открузки предметов
             gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Local");
+            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Server");
 
         }
 

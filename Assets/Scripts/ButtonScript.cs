@@ -69,9 +69,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
                 //Выбор пользователя был сделан
                 string subjectNameForBuilding = GameObjectOperand.GetComponent<PanelFewResources>().SubjectNameForBuilding;
                 string productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;
-
+                //Покупаем недостающие объекты
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().BuySubjectForDiamond(subjectNameForBuilding, "Local");
-                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding,productionBuildingName,1,"Local");
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().BuySubjectForDiamond(subjectNameForBuilding, "Server");
+                ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding,productionBuildingName,1,"Local");               
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding, productionBuildingName, 1, "Server");
                 Debug.Log("Выбор пользователя: " + AppointmentButton);
                 GameObjectOperand.GetComponent<PanelFewResources>().PanelFewResourceBox.SetActive(false);

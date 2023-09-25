@@ -256,6 +256,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void BuySubjectForDiamond(string subjectName, string locationDataProcessing)
     {
+        Debug.Log("BuySubjectForDiamond(" + subjectName + "," + locationDataProcessing+");");
         if (locationDataProcessing == "Server")
         {
             RestClient.Post<ResponseBuySubjectForDiamonds>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
@@ -381,7 +382,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AddInSlotSubject(string subjectName, string productionBuildingName, int ignoreQuestion, string locationDataProcessing)
     {
-        Debug.Log("AddInSlotSubject=" + subjectName + productionBuildingName+ ignoreQuestion);
+        Debug.Log("AddInSlotSubject=" + subjectName + productionBuildingName+ ignoreQuestion+locationDataProcessing);
         if (locationDataProcessing == "Server")
         {
             RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
