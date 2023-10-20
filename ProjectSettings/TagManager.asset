@@ -15,6 +15,7 @@ TagManager:
   - map_collider_red
   - production_building
   - obj_move_mod
+  - ui_interface
   layers:
   - Default
   - TransparentFX

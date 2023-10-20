@@ -64,8 +64,8 @@ public class ProductionBuildingUI : MonoBehaviour
     public void FlipObject()
     {
         Debug.Log("FlipObject()");
-        if (gameObject.GetComponent<SpriteRenderer>().flipX) {gameObject.GetComponent<SpriteRenderer>().flipX = false; }
-        if (gameObject.GetComponent<SpriteRenderer>().flipX == false) {gameObject.GetComponent<SpriteRenderer>().flipX = true; }
+        if (gameObject.GetComponent<SpriteRenderer>().flipX) { gameObject.GetComponent<SpriteRenderer>().flipX = false; }
+        if (gameObject.GetComponent<SpriteRenderer>().flipX == false) { gameObject.GetComponent<SpriteRenderer>().flipX = true; }
     }
     void Start()
     {
@@ -107,7 +107,7 @@ public class ProductionBuildingUI : MonoBehaviour
     {
         if (IsMoveModeOn)//Если режим перемещения включен
         {
-            
+
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
             SlotsPanel.SetActive(true);
@@ -133,10 +133,11 @@ public class ProductionBuildingUI : MonoBehaviour
             //gameObject.tag = globals.bakery_type_obj;//Закомментировал, потому что вызывало ошибку
         }
     }
+
     //счетчик удержания клика на объекте
     void CountModeCheck()
     {
-        
+
         if (IsCountOn)
         {
             Count += Time.deltaTime;
@@ -158,76 +159,14 @@ public class ProductionBuildingUI : MonoBehaviour
             }
         }
     }
-    
+
+    /// <returns>true if mouse or first touch is over any event system object ( usually gui elements )</returns>
+
+
     void CheckInput()
     {
-        // Check if there is a touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            // Check if finger is over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                MouseDown();
-            }
-            else
-            {
-                Debug.Log("Touched the UI");
-            }
-        }
-        // Check if there is a touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            // Check if finger is over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                MouseUp();
-            }
-            else
-            {
-                Debug.Log("Touched End the UI");
-            }
-        }
-        // Check if there is a touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            // Check if finger is over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                OnMouseDrag();
-            }
-            else
-            {
-                Debug.Log("Touched End the UI");
-            }
-        }
-
-        // Check if the left mouse button was clicked
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Check if the mouse was clicked over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                MouseDown();
-            }
-            else
-            {
-                Debug.Log("Clicked on the UI");
-            }
-        }
-        //Update the Text on the screen depending on current TouchPhase, and the current direction vector
-        // Check if the left mouse button was clicked
-        if (Input.GetMouseButtonUp(0))
-        {
-            // Check if the mouse was clicked over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                MouseUp();
-            }
-            else
-            {
-                Debug.Log("Clicked on the UI");
-            }
-        }
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        List<RaycastResult> raycastResult = new List<RaycastResult>();
         // Track a single touch as a direction control.
         if (Input.touchCount > 0)
         {
@@ -238,27 +177,147 @@ public class ProductionBuildingUI : MonoBehaviour
             {
                 //When a touch has first been detected, change the message and record the starting position
                 case TouchPhase.Began:
-                    // Record initial touch position.
-                    //startPos = touch.position;
-                    MouseDown();
-                    Debug.Log("Began");
+                    // Check if finger is over a UI element
+
+                        Debug.Log("TouchPhase.Began:");
+                        Debug.Log("!!");
+                        pointer.position = touch.position;
+                        EventSystem.current.RaycastAll(pointer, raycastResult);
+
+                        foreach (RaycastResult result in raycastResult)
+                        {
+                            Debug.Log("!!!");
+                            Debug.Log(result.gameObject.name);
+                            Debug.Log(result.gameObject.tag);
+                        if (result.gameObject.tag == "ui_interface")
+                            {
+                            
+                            Debug.Log("ui_interface");
+                                return;
+                            }
+                            if (result.gameObject.name == "ProductionBuilding")
+                            {
+                                //result.gameObject.GetComponent<ButtonController>().ButtonDown();
+                                Debug.Log("ProductionBuilding Click");
+                                MouseDown();
+                            }
+                        }
+                        raycastResult.Clear();
+                        
                     break;
 
                 //Determine if the touch is a moving touch
                 case TouchPhase.Moved:
-                    // Determine direction by comparing the current touch position with the initial one
-                    //direction = touch.position - startPos;
-                    //message = "Moving ";
+                    // Check if finger is over a UI element
+
+                        Debug.Log("TouchPhase.Moved");
+                        Debug.Log("!!");
+                        pointer.position = touch.position;
+                        EventSystem.current.RaycastAll(pointer, raycastResult);
+
+                        foreach (RaycastResult result in raycastResult)
+                        {
+                            Debug.Log("!!!");
+                            Debug.Log(result.gameObject.name);
+                            Debug.Log(result.gameObject.tag);
+                            if (result.gameObject.tag == "ui_interface")
+                            {
+
+                                Debug.Log("ui_interface");
+                                return;
+                            }
+                            if ((result.gameObject.name == "ProductionBuilding")||(result.gameObject.tag == "map_collider_green"))
+                            {
+                                //result.gameObject.GetComponent<ButtonController>().ButtonDown();
+                                Debug.Log("Mooved");
+                                OnMouseDrag();
+                            }
+                        }
+                        raycastResult.Clear();
                     break;
 
                 case TouchPhase.Ended:
-                    // Report that the touch has ended when it ends
-                    MouseUp();
-                    Debug.Log("Ending ");
-                    //message = "Ending ";
+                    Debug.Log("TouchPhase.Ended:");
+                    Debug.Log("!!");
+                    pointer.position = touch.position;
+                    EventSystem.current.RaycastAll(pointer, raycastResult);
+
+                    foreach (RaycastResult result in raycastResult)
+                    {
+                        Debug.Log("!!!");
+                        Debug.Log(result.gameObject.name);
+                        Debug.Log(result.gameObject.tag);
+                        if (result.gameObject.tag == "ui_interface")
+                        {
+
+                            Debug.Log("ui_interface");
+                            return;
+                        }
+                        if (result.gameObject.name == "ProductionBuilding")
+                        {
+                            //result.gameObject.GetComponent<ButtonController>().ButtonDown();
+                            Debug.Log("ProductionBuilding Click");
+                            MouseUp();
+                        }
+                    }
+                    raycastResult.Clear();
                     break;
             }
         }
+
+        // Check if there is a touch
+        /*
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+
+        }
+        // Check if there is a touch
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+
+        }
+        // Check if there is a touch
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+
+        }
+        */
+        /*
+        // Check if the left mouse button was clicked
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Check if the mouse was clicked over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Input.GetMouseButtonDown(0)");
+                MouseDown();
+            }
+            else
+            {
+                Debug.Log("Clicked on the UI");
+                return;
+            }
+        }
+        
+        //Update the Text on the screen depending on current TouchPhase, and the current direction vector
+        // Check if the left mouse button was clicked
+        if (Input.GetMouseButtonUp(0))
+        {
+            // Check if the mouse was clicked over a UI element
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Input.GetMouseButtonUp(0)");
+                MouseUp();
+            }
+            else
+            {
+                Debug.Log("Clicked on the UI");
+                return;
+            }
+        }
+        */
+
+        // Track a single touch as a direction control.
     }
     // Update is called once per frame
     void OnMouseDrag()
@@ -277,7 +336,7 @@ public class ProductionBuildingUI : MonoBehaviour
         CheckInput();
         SlotPredmetSetActiveCheck();
         SlotPanelSetActiveCheck();
-        
+
         MoveModeCheck();
         CountModeCheck();
 
@@ -313,75 +372,65 @@ public class ProductionBuildingUI : MonoBehaviour
 
     public void MouseUp()//Когда отпускаешь кнопку
     {
-        //Debug.Log("777");
-        if (!EventSystem.current.IsPointerOverGameObject())
-        //if (!EventSystem.current.currentSelectedGameObject)
+        Count = 0;
+        IsCountOn = false;
+        Arrow.GetComponent<Arrow>().ClearBrushColorAll();
+        Arrow.SetActive(false);
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
+        if (IsMoveModeOn)
         {
-            Count = 0;
-            IsCountOn = false;
-            Arrow.GetComponent<Arrow>().ClearBrushColorAll();
-            Arrow.SetActive(false);
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
-            if (IsMoveModeOn)
+            Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
+            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
             {
-                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
-                if (gameObject.GetComponent<Renderer>().material.color == Color.red)
-                {
-                    gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
-                    gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
-                }
-                if (gameObject.GetComponent<Renderer>().material.color == Color.white)
-                {
-                    gameObject.transform.position = PrimaryPosition;
-                    Collider.transform.position = PrimaryPosition;
-                }
-
+                gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
+                gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
             }
-            else//Если IsMoveModeOn==false
+            if (gameObject.GetComponent<Renderer>().material.color == Color.white)
             {
-                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
-                if (SlotsPredmets.activeSelf)
-                {
-                    SlotsLoading.SetActive(false);
-                    SlotsPredmets.SetActive(false);
-                }
-                else
-                {
-                    SlotsLoading.SetActive(true);
-                    SlotsPredmets.SetActive(true);
-                }
+                gameObject.transform.position = PrimaryPosition;
+                Collider.transform.position = PrimaryPosition;
             }
-            //Метод открузки предметов
-            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Local");
-            gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Server");
 
         }
+        else//Если IsMoveModeOn==false
+        {
+            Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
+            if (SlotsPredmets.activeSelf)
+            {
+                SlotsLoading.SetActive(false);
+                SlotsPredmets.SetActive(false);
+            }
+            else
+            {
+                SlotsLoading.SetActive(true);
+                SlotsPredmets.SetActive(true);
+            }
+        }
+        //Метод открузки предметов
+        gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Local");
+        gameObject.GetComponent<ProductionBuilding>().Shipment(NameSystem, "Server");
 
     }
     public void MouseDown()//Когда нажимаешь кнопку
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (IsMoveModeOn)//Если режим перемещения активирован
         {
-            if (IsMoveModeOn)//Если режим перемещения активирован
+            Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
+            if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
             {
-                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
-                if (gameObject.GetComponent<Renderer>().material.color == Color.white)//Если цвет пекарни обычный
-                {
-                    PrimaryPosition = gameObject.transform.position;//Запоминаем позицию пекарни
-                }
-            }
-            if (IsMoveModeOn == false)//Если режим перемещения не активирован
-            {
-                //Двигаем камеру к объекту
-                MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
-                PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
-                Arrow.SetActive(true);//Активируем стрелку
-                Count = 0;//Обнуляем счетчик
-                IsCountOn = true;//Запускаем счетчик 
-                Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
+                PrimaryPosition = gameObject.transform.position;//Запоминаем позицию пекарни
             }
         }
-
+        if (IsMoveModeOn == false)//Если режим перемещения не активирован
+        {
+            //Двигаем камеру к объекту
+            MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
+            PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
+            Arrow.SetActive(true);//Активируем стрелку
+            Count = 0;//Обнуляем счетчик
+            IsCountOn = true;//Запускаем счетчик 
+            Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
+        }
     }
 
 }
