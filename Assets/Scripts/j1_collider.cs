@@ -9,6 +9,7 @@ public class j1_collider : MonoBehaviour
     public GameObject SubjectParent;
     public bool MoveMode; //Активация режима перемещения 
     public Vector3 PrimaryPosition; //Первичные координаты объекта
+    public Vector3 LastGreenPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class j1_collider : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)//При столкновении
     {
-        
+        Debug.Log("OnCollisionEnter2D");
         if (MoveMode)//Если режим перемещения включен
         {
             Debug.Log("MoveMode "+MoveMode);
@@ -48,17 +49,30 @@ public class j1_collider : MonoBehaviour
                 (other.gameObject.tag == "map_collider_red"))) //красным коллайдером
                 {
                 //GameObject.Find.GetComponent<ProductionBuilding>
-                SubjectParent.transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае
-                        if (other.gameObject.tag == "map_collider_green") //Если столкнулись с зеленым коллайдером и (не) столкнулись с другим объектом
-                        {
-                            MoveMode = false;
-                            PrimaryPosition = other.transform.position;//Запоминаем место, где можно расположить пекарню
-                        }
-                
-                        if ((other.gameObject.tag == "map_collider_red"))//Если столкнулись с красным колайдером
-                        {
-                            MoveMode = true;
-                        }
+                Debug.Log("SubjectParent.transform.position=" + SubjectParent.transform.position);
+                Debug.Log("other.gameObject.transform.position=" + other.gameObject.transform.position);
+                SubjectParent.transform.position = other.gameObject.transform.position;//Пекарню перемещаем на место колайдера с которым столкнулись в любом случае    
+                //Если столкнулись с зеленым коллайдером и (не) столкнулись с другим объектом
+                if (other.gameObject.tag == "map_collider_green") 
+                {
+                            
+                            LastGreenPosition = other.gameObject.transform.position;
+                            Debug.Log("other.gameObject.tag == map_collider_green");
+                            Debug.Log(SubjectParent.name);
+                            SubjectParent.GetComponent<SpriteRenderer>().color = Color.white;
+                            SubjectParent.GetComponent<ProductionBuildingUI>().SetLastMapColliderColor("green");
+                    //MoveMode = false;
+                    //PrimaryPosition = other.transform.position;//Запоминаем место, где можно расположить пекарню
+                }
+                //Если столкнулись с красным колайдером
+                if ((other.gameObject.tag == "map_collider_red"))
+                {
+                            Debug.Log("other.gameObject.tag == map_collider_red");
+                            Debug.Log(SubjectParent.name);
+                            SubjectParent.GetComponent<SpriteRenderer>().color = Color.red;
+                            SubjectParent.GetComponent<ProductionBuildingUI>().SetLastMapColliderColor("red");
+                            //MoveMode = true;
+                }
                 }
         }
 

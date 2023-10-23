@@ -39,6 +39,8 @@ public class ProductionBuildingUI : MonoBehaviour
     public GameObject MainCamera;
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
+    //Цвет последнего колайдера со столкновением
+    public string LastMapColliderColor;
 
     //=======Дочерние и другие объекты================//
 
@@ -60,7 +62,14 @@ public class ProductionBuildingUI : MonoBehaviour
     //Слоты с отгруженными предметами
     [SerializeField]
     GameObject SlotsShipment;
-
+    public void SetLastMapColliderColor(string color)
+    {
+        LastMapColliderColor = color;
+    }
+    public string GetLastMapColliderColor()
+    {
+       return LastMapColliderColor;
+    }
     public void FlipObject()
     {
         Debug.Log("FlipObject()");
@@ -226,11 +235,11 @@ public class ProductionBuildingUI : MonoBehaviour
                                 Debug.Log("ui_interface");
                                 return;
                             }
-                            if ((result.gameObject.name == "ProductionBuilding")||(result.gameObject.tag == "map_collider_green"))
+                            else
                             {
                                 //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                                Debug.Log("Mooved");
-                                OnMouseDrag();
+                                Debug.Log("Moved");
+                                MouseDrag();
                             }
                         }
                         raycastResult.Clear();
@@ -320,11 +329,12 @@ public class ProductionBuildingUI : MonoBehaviour
         // Track a single touch as a direction control.
     }
     // Update is called once per frame
-    void OnMouseDrag()
+    void MouseDrag()
     {
         if (IsMoveModeOn)
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Debug.Log("curScreenPoint="+ curScreenPoint);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
             Collider.transform.position = curPosition;
             MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
@@ -379,16 +389,21 @@ public class ProductionBuildingUI : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = true;//Включаем коллайдер обратно
         if (IsMoveModeOn)
         {
+            string lastColor = GetLastMapColliderColor();
+            Debug.Log("gameObject.GetComponent<SpriteRenderer>().material.color=" + gameObject.GetComponent<SpriteRenderer>().material.color);
             Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
-            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
+            if (lastColor == "green")
             {
-                gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку
-                gameObject.GetComponent<Renderer>().material.color = Color.white;//Делаем нормального цвета
+                //Перемещаем объект на место последнего удачного коллайдера 
+                //gameObject.transform.position = PrimaryPosition;//Возвращаем пекарню на начальную точку зачем?
+                gameObject.transform.position = Collider.GetComponent<j1_collider>().LastGreenPosition;
+                gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;//Делаем нормального цвета
             }
-            if (gameObject.GetComponent<Renderer>().material.color == Color.white)
+            if (lastColor == "red")
             {
-                gameObject.transform.position = PrimaryPosition;
-                Collider.transform.position = PrimaryPosition;
+                gameObject.transform.position = Collider.GetComponent<j1_collider>().LastGreenPosition;
+                //Collider.transform.position = PrimaryPosition;
+                Collider.transform.position = Collider.GetComponent<j1_collider>().LastGreenPosition;
             }
 
         }
