@@ -69,6 +69,7 @@ public class Slot : MonoBehaviour
     {
         //Проверяем, чтобы родитель был один и тот же
         //string productionBuilding = other.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+
         string parentOther = other.gameObject.GetComponent<SlotLoadingFrame>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
         string parent = gameObject.GetComponent<Slot>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
         int ignoreQuestion = 0;
@@ -89,6 +90,10 @@ public class Slot : MonoBehaviour
 
             //bakery.add_in_slot_predmet("bread");
        
+    }
+    private void Awake()
+    {
+        Debug.Log("Slot.cs" + gameObject.name);
     }
 
 }

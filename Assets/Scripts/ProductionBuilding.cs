@@ -421,8 +421,8 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log("countOpenSlotsUser=" + countOpenSlotsUser);
             //Требуется имя производственного здания, количество занятых слотов отгрузки
             Content content = Data.GetComponent<Content>();
-
-			int countOfOccupiedShipmentSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
+            //Проверяем,сколько слотов занято отгрузкой
+            int countOfOccupiedShipmentSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
             Debug.Log("countOfOccupiedShipmentSlots=" + countOfOccupiedShipmentSlots);
             //Проверяем,сколько слотов занято производством
 			int countOfOccupiedLoadingSlots = content.GetCountOfOccupiedLoadingSlotsByParentName(productionBuildingName, timeLoading);
@@ -433,13 +433,18 @@ public class ProductionBuilding : MonoBehaviour
             }
             //Если количество отгруженных товаров, больше чем открытых слотов у пользователя
             if (countOfOccupiedShipmentSlots > countOpenSlotsUser) 
-            {   
+            {
+                gameObject.GetComponent<ProductionBuildingUI>().MessageUIBox.GetComponent<MessageUI>().ShowMessage("Собери готовую продукцию, чтобы продолжить изготовление(слоты отгрузки полностью заняты)");
                 Debug.Log("code 0x0000001 message Собери готовую продукцию, чтобы продолжить изготовление(слоты отгрузки полностью заняты)");
+                return;
             }
             //Если количество загруженных в производство объектов>=открытых у пользователя
             if (countOfOccupiedLoadingSlots >= countOpenSlotsUser) 
             {
+                gameObject.GetComponent<ProductionBuildingUI>().MessageUIBox.GetComponent<MessageUI>().ShowMessage("Все слоты(загрузки) заняты! Подожди, ускорь или докупи ячейки!");
                 Debug.Log("message Все слоты(загрузки) заняты! Подожди, ускорь или докупи ячейки!");
+                return;
+                
             }
             //Если количество загруженных слотов(занятых) в производство объектов<открытых слотов у пользователя
             if (countOfOccupiedLoadingSlots < countOpenSlotsUser) 

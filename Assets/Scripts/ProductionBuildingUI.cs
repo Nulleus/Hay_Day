@@ -39,6 +39,8 @@ public class ProductionBuildingUI : MonoBehaviour
     public GameObject MainCamera;
     public Vector3 offset; //Смещение
     public Vector3 screenPoint;
+    //Сообщения UI для пользователя
+    public GameObject MessageUIBox;
     //Цвет последнего колайдера со столкновением
     public string LastMapColliderColor;
 
