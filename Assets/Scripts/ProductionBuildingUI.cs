@@ -118,7 +118,8 @@ public class ProductionBuildingUI : MonoBehaviour
     {
         if (IsMoveModeOn)//Если режим перемещения включен
         {
-
+            //MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
+            MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
             SlotsPredmets.SetActive(false);
             SlotsLoading.SetActive(false);
             SlotsPanel.SetActive(true);
@@ -138,6 +139,8 @@ public class ProductionBuildingUI : MonoBehaviour
         }
         else
         {
+            //MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+            //MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
             SlotsPanel.SetActive(false);
             Collider.SetActive(false);
             gameObject.GetComponent<Renderer>().material.color = Color.white;
@@ -339,8 +342,6 @@ public class ProductionBuildingUI : MonoBehaviour
             Debug.Log("curScreenPoint="+ curScreenPoint);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
             Collider.transform.position = curPosition;
-            MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
-            MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
         }
     }
     void Update()
