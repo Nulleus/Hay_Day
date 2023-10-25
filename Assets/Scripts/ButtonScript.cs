@@ -15,6 +15,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
     public GameObject ButtonText; //Текст на кнопке с количеством
     public GameObject ButtonImage; //Картинка на кнопке
     public GameObject ButtonTextInfo; //Текст на кнопке с ее назначением
+    //Объект с количеством алмазов
+    public GameObject DiamondQuantity;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -75,6 +77,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding,productionBuildingName,1,"Local");               
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AddInSlotSubject(subjectNameForBuilding, productionBuildingName, 1, "Server");
                 Debug.Log("Выбор пользователя: " + AppointmentButton);
+                //Обновляем количество алмазов в UI
+                DiamondQuantity.GetComponent<ShowValue>().ShowText();
                 GameObjectOperand.GetComponent<PanelFewResources>().PanelFewResourceBox.SetActive(false);
                 break;
             case "close":
