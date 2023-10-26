@@ -40,16 +40,19 @@ public class ShowValue : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void ShowText()
     {
+        string value;
         switch (NameTarget)
-        {
-            case "levelNumber":
-                string experiencePoint = GetValue("experiencePoint");
-                string levelNumber = GetTarget.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(int.Parse(experiencePoint), "Local").ToString();
-                SetValueText(levelNumber);
+        {           
+            case "coin":
+                value = GetValue(NameTarget);
+                SetValueText(value);
+                break;
+             case "diamond":
+                value = GetValue(NameTarget);
+                SetValueText(value);
                 break;
             default:
-                string value = GetValue(NameTarget);
-                SetValueText(value);
+                Debug.Log("default");
                 break;
         }
         
@@ -60,18 +63,19 @@ public class ShowValue : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void ShowTextPro()
     {
-        
+        string experiencePoint;
+        string levelNumber;
+        string value;
         switch (NameTarget)
         {
             case "levelNumber":
-                string experiencePoint = GetValue("experiencePoint");
-                string levelNumber = GetTarget.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(int.Parse(experiencePoint), "Local").ToString();
+                experiencePoint = GetValue("experiencePoint");
+                levelNumber = GetTarget.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(int.Parse(experiencePoint), "Local").ToString();
                 SetValueTextPro(levelNumber);
                 Debug.Log("Do nothing");
                 break;
             default:
-                string value = GetValue(NameTarget);
-                SetValueTextPro(value);
+                Debug.Log("default");
                 break;
         }
         //var component = GetTarget.Get

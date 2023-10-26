@@ -56,7 +56,6 @@ public class ExperienceLevel : MonoBehaviour
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
             string sqlExpression = "SELECT level_number FROM experience_level WHERE experience_points >= "+experiencePoints;
-            int countOfOccupiedShipment;
             using (var connection = new SqliteConnection(dbUri))
             {
                 connection.Open();
@@ -67,9 +66,8 @@ public class ExperienceLevel : MonoBehaviour
                     {
                         while (reader.Read())   // построчно считываем данные
                         {
-                            countOfOccupiedShipment = Convert.ToInt32(reader.GetValue(0));
-                            return countOfOccupiedShipment;
-                        }
+                            return Convert.ToInt32(reader.GetValue(0));                           
+                       }
                     }
                 }
             }
@@ -95,7 +93,32 @@ public class ExperienceLevel : MonoBehaviour
         }
         return -1;
     }
-
+    public int GetExperiencePointsByLevel(int numberLevel, string locationDataProcessing)
+    {
+        if (locationDataProcessing == "Local")
+        {
+            string dbName = "MyDatabase.sqlite";
+            string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+            string sqlExpression = "SELECT experience_points FROM experience_level WHERE level_number = " + numberLevel;
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())   // построчно считываем данные
+                        {
+                            return Convert.ToInt32(reader.GetValue(0));     
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
+        return -1;
+    }
     private void OnEnable()
     {
         
