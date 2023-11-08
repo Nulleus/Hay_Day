@@ -792,6 +792,7 @@ public class ProductionBuilding : MonoBehaviour
             //Получаем ID первого стоящего на отгрузку объекта
             var ct = Data.GetComponent<Content>();
             var ss = Data.GetComponent<SubjectSum>();
+            var ep = Data.GetComponent<ExperiencePoint>();
             int idContent = ct.GetShipmentID(subjectParentName, dateTimeNow);
             //Получение количества объектов на выходе по id_content
 			int countOutputQuantity = ct.GetCountOutputQuantity(idContent);
@@ -815,6 +816,12 @@ public class ProductionBuilding : MonoBehaviour
                         //Прибавляем удаленный контент в хранилище(subject_sum)
 				        string queryTwo = ss.QueryIncreasingSubjectSumCount(subjectChildName, countOutputQuantity);
                         allQuery.Add(queryTwo);
+                        //Количество очков за предмет
+                        int experiencePointsCount = ep.GetExperiencePoints(subjectChildName, "ingathering", "Local");
+                        //Прибавляем контент в хранилище(experiencePoint)
+                        string queryThree = ss.QueryIncreasingSubjectSumCount(subjectChildName, experiencePointsCount);
+                        allQuery.Add(queryThree);
+                        //Тут нужна анимация добавления очков опыта
                         foreach (var item in allQuery)
                         {
                             Debug.Log(item);

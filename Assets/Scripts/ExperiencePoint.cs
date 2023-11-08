@@ -18,14 +18,15 @@ public class ExperiencePoint : MonoBehaviour
     {
         
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetExperiencePoints(string subjectName, string actionName, string locationDataProcessing)
     {
         if (locationDataProcessing == "Local")
         {
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-            string sqlExpression = "SELECT experience_points FROM experience_points WHERE subject_name = "+subjectName+ "AND action = "+actionName;
-            
+            string sqlExpression = "SELECT experience_point_building FROM experience_points WHERE subject_name = '"+subjectName+"' AND action = '"+actionName+"'";
+            Debug.Log(sqlExpression);
             using (var connection = new SqliteConnection(dbUri))
             {
                 connection.Open();
