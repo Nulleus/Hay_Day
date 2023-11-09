@@ -13297,6 +13297,8 @@ MonoBehaviour:
   TimeBeforeStartRequest: 0
   CheckInBuilding: 0
   TimerEnable: 0
+  ExperiencePoint: {fileID: 1781880277}
+  ExperiencePointUILevelText: {fileID: 73061887}
 --- !u!114 &364160160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61020,6 +61022,8 @@ MonoBehaviour:
   TimeBeforeStartRequest: 0
   CheckInBuilding: 0
   TimerEnable: 0
+  ExperiencePoint: {fileID: 0}
+  ExperiencePointUILevelText: {fileID: 0}
 --- !u!114 &1866044583
 MonoBehaviour:
   m_ObjectHideFlags: 0

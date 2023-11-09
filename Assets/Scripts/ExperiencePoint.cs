@@ -25,7 +25,7 @@ public class ExperiencePoint : MonoBehaviour
         {
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-            string sqlExpression = "SELECT experience_point_building FROM experience_points WHERE subject_name = '"+subjectName+"' AND action = '"+actionName+"'";
+            string sqlExpression = "SELECT experience_points FROM experience_points WHERE subject_name = '"+subjectName+"' AND action = '"+actionName+"'";
             Debug.Log(sqlExpression);
             using (var connection = new SqliteConnection(dbUri))
             {
@@ -42,8 +42,8 @@ public class ExperiencePoint : MonoBehaviour
                     }
                 }
             }
-            return -1;
+            return 0;
         }
-        return -1;
+        return 0;
     }
 }

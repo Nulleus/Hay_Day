@@ -57,8 +57,9 @@ public class ProductionBuilding : MonoBehaviour
     public float TimeBeforeStartRequest;
     public bool CheckInBuilding;
     public bool TimerEnable;
-    
-    
+
+    public GameObject ExperiencePoint;
+    public GameObject ExperiencePointUILevelText;
 
     [Serializable]
     public class POSTGetDifferenceDateInSeconds
@@ -521,9 +522,6 @@ public class ProductionBuilding : MonoBehaviour
                             panelQuestion.GetComponent<PanelQuestion>().CleanerPanel();
                             panelQuestion.GetComponent<PanelQuestion>().AddSubjectAndCount(item.Key, item.Value);
                             panelQuestion.GetComponent<PanelQuestion>().SubjectNameForBuilding = subjectName;
-
-
-
                             return;
                         }
                     }
@@ -601,6 +599,7 @@ public class ProductionBuilding : MonoBehaviour
                         tra.Commit();
                         Debug.Log("Запросы выполнены успешно");
                         connection.Close();
+                        GetAllInfoSlots();
                     }
                     catch (Exception ex)
                     {
@@ -793,6 +792,7 @@ public class ProductionBuilding : MonoBehaviour
             var ct = Data.GetComponent<Content>();
             var ss = Data.GetComponent<SubjectSum>();
             var ep = Data.GetComponent<ExperiencePoint>();
+            
             int idContent = ct.GetShipmentID(subjectParentName, dateTimeNow);
             //Получение количества объектов на выходе по id_content
 			int countOutputQuantity = ct.GetCountOutputQuantity(idContent);
@@ -818,8 +818,9 @@ public class ProductionBuilding : MonoBehaviour
                         allQuery.Add(queryTwo);
                         //Количество очков за предмет
                         int experiencePointsCount = ep.GetExperiencePoints(subjectChildName, "ingathering", "Local");
+                        Debug.Log("experiencePointsCount="+experiencePointsCount);
                         //Прибавляем контент в хранилище(experiencePoint)
-                        string queryThree = ss.QueryIncreasingSubjectSumCount(subjectChildName, experiencePointsCount);
+                        string queryThree = ss.QueryIncreasingSubjectSumCount("experiencePoint", experiencePointsCount);
                         allQuery.Add(queryThree);
                         //Тут нужна анимация добавления очков опыта
                         foreach (var item in allQuery)
@@ -831,6 +832,10 @@ public class ProductionBuilding : MonoBehaviour
                         tra.Commit();
                         Debug.Log("code 0x0000009 Предметы успешно перемещены на склад!");
                         connection.Close();
+                        GetAllInfoSlots();
+                        //Обновляем количество очков
+                        ExperiencePoint.GetComponent<ExperiencePointUI>().ShowFillExperiencePointUI();
+                        ExperiencePointUILevelText.GetComponent<ShowValue>().ShowTextPro();
                         // Remember to always close the connection at the end.
                     }
                     catch (Exception ex)
