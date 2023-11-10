@@ -38,9 +38,8 @@ public class ShowValue : MonoBehaviour
         return temp.ToString();
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void ShowText()
+    public void ShowText(string value = "default string")
     {
-        string value;
         switch (NameTarget)
         {           
             case "coin":
@@ -50,6 +49,10 @@ public class ShowValue : MonoBehaviour
              case "diamond":
                 value = GetValue(NameTarget);
                 SetValueText(value);
+                break;
+            case "output_quantity":
+                SetValueText("+" + value);
+                Debug.Log("Do nothing");
                 break;
             default:
                 Debug.Log("default");
@@ -61,17 +64,20 @@ public class ShowValue : MonoBehaviour
                 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void ShowTextPro()
+    public void ShowTextPro(string value = "default string")
     {
         string experiencePoint;
         string levelNumber;
-        string value;
         switch (NameTarget)
         {
             case "levelNumber":
                 experiencePoint = GetValue("experiencePoint");
                 levelNumber = GetTarget.GetComponent<ExperienceLevel>().GetLevelByExperiencePoints(int.Parse(experiencePoint), "Local").ToString();
                 SetValueTextPro(levelNumber);
+                Debug.Log("Do nothing");
+                break;
+            case "output_quantity":
+                SetValueTextPro("+"+value);
                 Debug.Log("Do nothing");
                 break;
             default:

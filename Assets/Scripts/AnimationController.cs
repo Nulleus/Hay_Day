@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class AnimationController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AnimationController : MonoBehaviour
     void Start()
     {
         Anim = GetComponent<Animator>();
+        SetAnimation("empty");
     }
     void ClearAnimation()
     {
@@ -20,8 +22,9 @@ public class AnimationController : MonoBehaviour
     {
 
     }
-    void SetAnimation(string stateName)
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    void SetAnimation(string subjectName)
     {
-        Anim.CrossFade(stateName, 0);
+        Anim.CrossFade(subjectName, 0);
     }
 }

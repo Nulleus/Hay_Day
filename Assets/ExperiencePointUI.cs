@@ -55,12 +55,15 @@ public class ExperiencePointUI : MonoBehaviour
         float maxExperiencePointForPhoneticLevelNumber = GetAmountExperiencePointPhonetic();
         //AmountExperiencePoint = maxExperiencePointForLevelNumber / 100f;
         int experiencePointUser = Data.GetComponent<SubjectSum>().GetSubjectSumCount("experiencePoint", "Local");
-        float difference = maxExperiencePointForLevelNumber - experiencePointUser;
+        float difference =  experiencePointUser - maxExperiencePointForPhoneticLevelNumber;
         Debug.Log("maxExperiencePointForLevelNumber=" + maxExperiencePointForLevelNumber);
         Debug.Log("experiencePointUser=" + experiencePointUser);
         Debug.Log("difference=" + difference);
-        float endDifference = maxExperiencePointForLevelNumber - difference;
-        Debug.Log("endDifference=" + endDifference);
-        gameObject.GetComponent<Image>().fillAmount = ((endDifference*100f)/maxExperiencePointForLevelNumber)/100f;
+        gameObject.GetComponent<Image>().fillAmount = ((difference*100f)/ (maxExperiencePointForLevelNumber - maxExperiencePointForPhoneticLevelNumber)) /100f;
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void CollectionAnimation()
+    {
+
     }
 }
