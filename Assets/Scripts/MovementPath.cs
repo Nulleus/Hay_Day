@@ -18,6 +18,8 @@ public class MovementPath : MonoBehaviour
     public int MoveIngTo = 0;
     //ћассив из точек движени€
     public Transform[] PathElements;
+    //ќстановить, если достигли последней точки (false по умолчанию)
+    public bool FinishIfTheEnd=false;
 
     //ќтображает линии между точками пути
     public void OnDrawGizmos()
