@@ -13331,7 +13331,7 @@ MonoBehaviour:
   - 
   - 
   AllCost: 0
-  CheckGetSubjectChildInTheProcessOfAssembly: 1
+  CheckGetSubjectChildInTheProcessOfAssembly: 0
   TimeBeforeStartRequest: 0
   CheckInBuilding: 0
   TimerEnable: 0
@@ -13389,6 +13389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {x: 0, y: 0, z: 0}
   cameraRelative: {x: 0, y: 0, z: 0}
+  Target: {fileID: 0}
 --- !u!224 &364160166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39217,6 +39218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146091474}
+  - component: {fileID: 1146091475}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -39244,6 +39246,21 @@ RectTransform:
   m_AnchoredPosition: {x: -69, y: 97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1146091475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146091473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823b7a449b700054ba3b8392cc0de009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {x: 0, y: 0, z: 0}
+  cameraRelative: {x: 0, y: 0, z: 0}
+  Target: {fileID: 291895516}
 --- !u!1 &1149744083
 GameObject:
   m_ObjectHideFlags: 0
@@ -45728,7 +45745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1366354148
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63755,7 +63772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1912567505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68518,7 +68535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2058502276
 RectTransform:
   m_ObjectHideFlags: 0

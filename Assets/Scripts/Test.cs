@@ -10,6 +10,7 @@ public class Test : MonoBehaviour
 {
     public Vector3 cam;
     public Vector3 cameraRelative;
+    public GameObject Target;
     private void Start()
     {
 
@@ -24,7 +25,7 @@ public class Test : MonoBehaviour
 
     private void OnEnable()
     {
-
+        gameObject.transform.position = Target.transform.position;
     }
 
     // Start is called before the first frame update

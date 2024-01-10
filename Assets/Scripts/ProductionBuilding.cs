@@ -693,14 +693,7 @@ public class ProductionBuilding : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (SubjectsChildInTheProcessOfAssembly[0]!="Error")
-            {
-                GetAllInfoSlots();
-            }
-            
-        }
+
     }
     static bool CheckDate(string date)
     {
