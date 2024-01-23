@@ -39243,7 +39243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69, y: 97}
+  m_AnchoredPosition: {x: 143, y: 339}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146091475
@@ -39253,7 +39253,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146091473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 823b7a449b700054ba3b8392cc0de009, type: 3}
   m_Name: 
@@ -50215,9 +50215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8678cc49c323247a4d2dc4deffcd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 2
   MyPath: {fileID: 1722684211}
-  Speed: 1
+  Speed: 200
   MaxDistance: 0.1
 --- !u!222 &1516861775
 CanvasRenderer:

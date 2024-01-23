@@ -43,6 +43,10 @@ public class MovementPath : MonoBehaviour
         }
     }
     //ѕолучаем положение следующей точки
+    public Transform GetStartPathPoint()
+    {
+        return PathElements[0];
+    }
     public IEnumerator<Transform> GetNextPathPoint()
     {
         //ѕровер€ет, есть ли точки, которым нужно провер€ть положение

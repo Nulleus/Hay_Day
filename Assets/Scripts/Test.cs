@@ -25,7 +25,7 @@ public class Test : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.transform.position = Target.transform.position;
+        //gameObject.transform.position = Target.transform.position;
     }
 
     // Start is called before the first frame update
