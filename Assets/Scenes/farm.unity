@@ -13387,9 +13387,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b7a449b700054ba3b8392cc0de009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {x: 0, y: 0, z: 0}
-  cameraRelative: {x: 0, y: 0, z: 0}
+  Camera: {fileID: 0}
+  StartPoint: {fileID: 0}
   Target: {fileID: 0}
+  Cam: {x: 0, y: 0, z: 0}
+  CamRelative: {x: 0, y: 0, z: 0}
+  CamStartPoint: {x: 0, y: 0, z: 0}
+  CamRelativeStartPoint: {x: 0, y: 0, z: 0}
+  CamTarget: {x: 0, y: 0, z: 0}
+  CamRelativeTarget: {x: 0, y: 0, z: 0}
+  screenPosStartPoint: {x: 0, y: 0, z: 0}
+  screenPosTarget: {x: 0, y: 0, z: 0}
+  ViewportPos: {x: 0, y: 0}
 --- !u!224 &364160166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29559,7 +29568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 278.7, y: 144.7}
+  m_AnchoredPosition: {x: 124, y: -143}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &839609444
@@ -39243,7 +39252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 143, y: 339}
+  m_AnchoredPosition: {x: -59, y: -46}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146091475
@@ -39258,9 +39267,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b7a449b700054ba3b8392cc0de009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {x: 0, y: 0, z: 0}
-  cameraRelative: {x: 0, y: 0, z: 0}
+  Camera: {fileID: 882889948}
+  StartPoint: {fileID: 364160149}
   Target: {fileID: 291895516}
+  Cam: {x: 0, y: 0, z: 0}
+  CamRelative: {x: 0, y: 0, z: 0}
+  CamStartPoint: {x: 0, y: 0, z: 0}
+  CamRelativeStartPoint: {x: 0, y: 0, z: 0}
+  CamTarget: {x: 0, y: 0, z: 0}
+  CamRelativeTarget: {x: 0, y: 0, z: 0}
+  screenPosStartPoint: {x: 0, y: 0, z: 0}
+  screenPosTarget: {x: 0, y: 0, z: 0}
+  ViewportPos: {x: 0, y: 0}
 --- !u!1 &1149744083
 GameObject:
   m_ObjectHideFlags: 0
@@ -40965,7 +40983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 517, y: -178}
+  m_AnchoredPosition: {x: 290, y: -18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1211204308
@@ -49429,7 +49447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -324, y: -15}
+  m_AnchoredPosition: {x: 89, y: 257}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1500563799
@@ -50176,6 +50194,7 @@ GameObject:
   - component: {fileID: 1516861775}
   - component: {fileID: 1516861773}
   - component: {fileID: 1516861776}
+  - component: {fileID: 1516861777}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -50217,8 +50236,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   MyPath: {fileID: 1722684211}
-  Speed: 200
+  Speed: 300
   MaxDistance: 0.1
+  SubjectName: apple
 --- !u!222 &1516861775
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50279,6 +50299,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1516861777
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516861771}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 600544ad8b8f43548bcb93c5f3126c13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1518171247
 GameObject:
   m_ObjectHideFlags: 0
@@ -64989,7 +65029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -116, y: -153}
+  m_AnchoredPosition: {x: 292, y: 124}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1948206321

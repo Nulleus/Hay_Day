@@ -21,6 +21,8 @@ public class FollowPath : MonoBehaviour
     public float MaxDistance = .1f;
     //Проверка точек
     private IEnumerator<Transform> PointInPath;
+    //Имя анимации для объекта
+    public string SubjectName;
 
     void Start()
     {
@@ -28,11 +30,11 @@ public class FollowPath : MonoBehaviour
     }
     //Запуск анимации движения
 
-    public void AnimationStart()
+    public void StartAnimationMove(string subjectName)
     {
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
-        gameObject.GetComponent<Renderer>().enabled = true;
+        gameObject.GetComponent<Animator>().CrossFade(subjectName, 0);
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
         if (MyPath == null)
@@ -55,7 +57,7 @@ public class FollowPath : MonoBehaviour
     }
     private void OnEnable()
     {
-        AnimationStart();
+        StartAnimationMove(SubjectName);
     }
     void Update()
     {
@@ -75,7 +77,7 @@ public class FollowPath : MonoBehaviour
                 var startedPoint = MyPath.GetStartPathPoint();
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
-                gameObject.GetComponent<Renderer>().enabled = false;
+                gameObject.GetComponent<Animator>().CrossFade("empty", 0);
                 //PointInPath.MoveNext();
             }
             //PointInPath.MoveNext();
