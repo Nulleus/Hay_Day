@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class FollowPath : MonoBehaviour
 {
@@ -23,6 +25,7 @@ public class FollowPath : MonoBehaviour
     private IEnumerator<Transform> PointInPath;
     //Имя анимации для объекта
     public string SubjectName;
+    public Sprite temp;
 
     void Start()
     {
@@ -35,6 +38,8 @@ public class FollowPath : MonoBehaviour
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
         gameObject.GetComponent<Animator>().CrossFade(subjectName, 0);
+        
+
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
         if (MyPath == null)
@@ -59,6 +64,12 @@ public class FollowPath : MonoBehaviour
     {
         StartAnimationMove(SubjectName);
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void ChangeSprite()
+    {
+        //temp = gameObject.GetComponent<SpriteRenderer>().sprite;
+        gameObject.GetComponent<Image>().sprite = temp;
+    }
     void Update()
     {
         //Если путь не найден
@@ -78,6 +89,8 @@ public class FollowPath : MonoBehaviour
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
                 gameObject.GetComponent<Animator>().CrossFade("empty", 0);
+
+                
                 //PointInPath.MoveNext();
             }
             //PointInPath.MoveNext();
