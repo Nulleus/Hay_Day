@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Slot : MonoBehaviour
     public Vector3 ScreenPoint;
 
     public bool MousedragBlockOn = false;
-    public Animator Anim;
+    //public Animator Anim;
     public string Predmet;
     public int NumberSlotPredmet; //Номер слота предмета для интеграцией с таблицей 
     public string SubjectParentName; //Родитель данного объекта(например: bakery)
@@ -22,11 +23,16 @@ public class Slot : MonoBehaviour
         Predmet = ProductionBuildingParent.GetComponent<ParentAndChild>().Childs[NumberSlotPredmet];
         Debug.Log(Predmet);
     }
-    void DisplaySubjects()
+    void SetSprite()
     {
-        Animator anim;
-        anim = GetComponent<Animator>();
-        anim.CrossFade(Predmet, 0);
+        if (gameObject.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Data.GetComponent<ImageStorage>().GetSprite(Predmet);
+        }
+        if (gameObject.GetComponent<Image>() != null && Data.GetComponent<ImageStorage>() != null)
+        {
+            gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(Predmet);
+        }
     }
     private void Start()
     {
@@ -35,7 +41,7 @@ public class Slot : MonoBehaviour
     private void OnEnable()
     {
         GetOpenSubjectsBySlotNumber();
-        DisplaySubjects();
+        SetSprite();
     }
 
     void OnMouseUp()//Когда отпускаешь кнопку

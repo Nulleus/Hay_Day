@@ -9,7 +9,7 @@ public class ImageStorage : MonoBehaviour
     public Dictionary<string, Sprite> SpritesDict = new Dictionary<string, Sprite>();
     public Sprite[] Sprites;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void LoadDict()
+    public void LoadSpriteDict()
     {
             foreach (var s in Sprites)
             {
@@ -24,12 +24,25 @@ public class ImageStorage : MonoBehaviour
                 
             }    
     }
+
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public Sprite GetSprite(string key)
+    {
+        if (SpritesDict.ContainsKey(key))
+        {
+            return SpritesDict[key];
+        }
+        return null;
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    private void Awake()
+    {
+        LoadSpriteDict();
+    }
     // Update is called once per frame
     void Update()
     {

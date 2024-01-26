@@ -12,7 +12,7 @@ public class FollowPath : MonoBehaviour
         Lerping,
         End
     }
-
+    public GameObject Data;
     //Вид движения
     public MovementType Type = MovementType.Movement;
     //используемый путь
@@ -25,21 +25,19 @@ public class FollowPath : MonoBehaviour
     private IEnumerator<Transform> PointInPath;
     //Имя анимации для объекта
     public string SubjectName;
-    public Sprite temp;
 
     void Start()
     {
-
+        StartAnimationMove(SubjectName);
     }
     //Запуск анимации движения
-
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void StartAnimationMove(string subjectName)
     {
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
-        gameObject.GetComponent<Animator>().CrossFade(subjectName, 0);
-        
-
+        SetSprite(subjectName);
+        //gameObject.GetComponent<Animator>().CrossFade(subjectName, 0);
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
         if (MyPath == null)
@@ -65,11 +63,12 @@ public class FollowPath : MonoBehaviour
         StartAnimationMove(SubjectName);
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void ChangeSprite()
+    public void SetSprite(string spriteName)
     {
         //temp = gameObject.GetComponent<SpriteRenderer>().sprite;
-        gameObject.GetComponent<Image>().sprite = temp;
+        gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(spriteName);
     }
+
     void Update()
     {
         //Если путь не найден
@@ -88,7 +87,8 @@ public class FollowPath : MonoBehaviour
                 var startedPoint = MyPath.GetStartPathPoint();
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
-                gameObject.GetComponent<Animator>().CrossFade("empty", 0);
+                SetSprite("empty");
+                //gameObject.GetComponent<Animator>().CrossFade("empty", 0);
 
                 
                 //PointInPath.MoveNext();

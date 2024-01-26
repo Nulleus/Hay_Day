@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SlotInfoSubject : MonoBehaviour
 {
+    public GameObject Data;
     [SerializeField]
     private string SubjectName;//Предмет
     [SerializeField]
@@ -35,22 +36,29 @@ public class SlotInfoSubject : MonoBehaviour
     public void ResetValues()//Очистка значений 
     {
         ResetText(SlotInfoSubjectQuantity0);
-        ResetAnimation(SlotInfoSubjectImage0);
+        ClearSprite(SlotInfoSubjectImage0);
         ResetText(SlotInfoSubjectQuantity1);
-        ResetAnimation(SlotInfoSubjectImage1);
+        ClearSprite(SlotInfoSubjectImage1);
         ResetText(SlotInfoSubjectQuantity2);
-        ResetAnimation(SlotInfoSubjectImage2);
+        ClearSprite(SlotInfoSubjectImage2);
         ResetText(SlotInfoSubjectQuantity3);
-        ResetAnimation(SlotInfoSubjectImage3);
+        ClearSprite(SlotInfoSubjectImage3);
     }
 
     public void ResetText(GameObject go)//Очистка текста
     {
         go.GetComponent<Text>().text = "";
     }
-    public void ResetAnimation(GameObject go)//Очистка анимации
+    public void ClearSprite(GameObject go)//Очистка спрайта
     {
-        go.GetComponent<Animator>().CrossFade("Empty", 0);
+        if (go.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
+        {
+            go.GetComponent<SpriteRenderer>().sprite = Data.GetComponent<ImageStorage>().GetSprite("empty");
+        }
+        if (go.GetComponent<Image>() != null && Data.GetComponent<ImageStorage>() != null)
+        {
+            go.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite("empty");
+        }
     }
 
     public int GetStorageSubjectCount()//Получение количества предмета на складе

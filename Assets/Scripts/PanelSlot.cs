@@ -6,8 +6,9 @@ using System;
 
 public class PanelSlot : MonoBehaviour
 {
+    public GameObject Data;
     public GameObject InfoPanel;
-    public Animator Anim;
+    //public Animator Anim;
     public string SubjectName;
     public GameObject Quantity;
     //Ожидаем ответа на запрос информации о предмете
@@ -25,8 +26,8 @@ public class PanelSlot : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Anim = GetComponent<Animator>();
-        Debug.Log("Anim = GetComponent<Animator>();");
+        //Anim = GetComponent<Animator>();
+        //Debug.Log("Anim = GetComponent<Animator>();");
         InfoPanel = gameObject.transform.Find("InfoPanel").gameObject;
         Quantity = gameObject.transform.Find("Quantity").gameObject;
     }
@@ -59,11 +60,18 @@ public class PanelSlot : MonoBehaviour
         }
     }
 
-    public void SetAnimaion(string subjectName) 
+    public void SetSprite(string subjectName) 
     {
         if (subjectName != "")
         {
-            Anim.CrossFade(subjectName, 0);
+            if (gameObject.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = Data.GetComponent<ImageStorage>().GetSprite(subjectName);
+            }
+            if (gameObject.GetComponent<Image>() != null && Data.GetComponent<ImageStorage>() != null)
+            {
+                gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(subjectName);
+            }
         }
         else
         {
