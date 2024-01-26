@@ -11,10 +11,18 @@ public class ImageStorage : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void LoadDict()
     {
-        foreach (var s in Sprites)
-        {
-            SpritesDict.Add(s.name, s);
-        }         
+            foreach (var s in Sprites)
+            {
+                if (!SpritesDict.ContainsKey(s.name))
+                {
+                    SpritesDict.Add(s.name, s);
+                }
+                else
+                {
+                    Debug.Log(s.name+" Ёлемент уже находитс€ в списке");
+                }
+                
+            }    
     }
     // Start is called before the first frame update
     void Start()
