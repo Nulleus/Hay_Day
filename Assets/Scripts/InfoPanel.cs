@@ -47,5 +47,4 @@ public class InfoPanel : MonoBehaviour
         Info = gameObject.transform.Find("Info").gameObject;
         BuildingTime = gameObject.transform.Find("BuildingTime").gameObject;
     }
-
 }

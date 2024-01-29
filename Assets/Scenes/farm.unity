@@ -12553,9 +12553,9 @@ GameObject:
   - component: {fileID: 360852768}
   - component: {fileID: 360852770}
   - component: {fileID: 360852769}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonImage
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24651,9 +24651,9 @@ GameObject:
   - component: {fileID: 744491839}
   - component: {fileID: 744491838}
   - component: {fileID: 744491840}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InfoPanel
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24968,9 +24968,9 @@ GameObject:
   - component: {fileID: 754866960}
   - component: {fileID: 754866959}
   - component: {fileID: 754866958}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonBuy
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26109,9 +26109,9 @@ GameObject:
   - component: {fileID: 775015350}
   - component: {fileID: 775015349}
   - component: {fileID: 775015352}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelFewResources
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26125,7 +26125,7 @@ RectTransform:
   m_GameObject: {fileID: 775015347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 548}
-  m_LocalScale: {x: 1.1769786, y: 1.12144, z: 0.5308341}
+  m_LocalScale: {x: 0.93971944, y: 0.8953765, z: 0.4238268}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1325348935}
@@ -26138,7 +26138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: 1.9204102}
+  m_AnchoredPosition: {x: 8.0001, y: 7.2331}
   m_SizeDelta: {x: 1448, y: 880}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &775015349
@@ -26678,9 +26678,9 @@ GameObject:
   - component: {fileID: 782392698}
   - component: {fileID: 782392700}
   - component: {fileID: 782392699}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextInfo
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27067,9 +27067,9 @@ GameObject:
   - component: {fileID: 788940119}
   - component: {fileID: 788940120}
   - component: {fileID: 788940121}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelFewResourceBox
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28185,9 +28185,9 @@ GameObject:
   - component: {fileID: 827200383}
   - component: {fileID: 827200382}
   - component: {fileID: 827200384}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31640,9 +31640,9 @@ GameObject:
   - component: {fileID: 886965422}
   - component: {fileID: 886965421}
   - component: {fileID: 886965420}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Quantity
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32261,9 +32261,9 @@ GameObject:
   - component: {fileID: 905928201}
   - component: {fileID: 905928202}
   - component: {fileID: 905928203}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelSlots
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41873,9 +41873,9 @@ GameObject:
   - component: {fileID: 1283257545}
   - component: {fileID: 1283257544}
   - component: {fileID: 1283257543}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonClose
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41954,9 +41954,9 @@ MonoBehaviour:
   MainCamera: {fileID: 882889948}
   AppointmentButton: close
   GameObjectOperand: {fileID: 788940115}
-  ButtonText: {fileID: 0}
-  ButtonImage: {fileID: 0}
-  ButtonTextInfo: {fileID: 0}
+  ButtonText: {fileID: 1890771605}
+  ButtonImage: {fileID: 360852767}
+  ButtonTextInfo: {fileID: 1284615880}
   DiamondQuantity: {fileID: 0}
 --- !u!50 &1283257544
 Rigidbody2D:
@@ -42016,9 +42016,9 @@ GameObject:
   - component: {fileID: 1284615881}
   - component: {fileID: 1284615883}
   - component: {fileID: 1284615882}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonTextInfo
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43611,9 +43611,9 @@ GameObject:
   - component: {fileID: 1325348935}
   - component: {fileID: 1325348937}
   - component: {fileID: 1325348936}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainText
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43780,7 +43780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef2d9a22d39ea045a887d8be78d6728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 1866044566}
 --- !u!1 &1335786941
 GameObject:
   m_ObjectHideFlags: 0
@@ -50643,9 +50642,9 @@ GameObject:
   - component: {fileID: 1545260477}
   - component: {fileID: 1545260479}
   - component: {fileID: 1545260480}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PanelSlot
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60713,9 +60712,9 @@ GameObject:
   - component: {fileID: 1861453863}
   - component: {fileID: 1861453865}
   - component: {fileID: 1861453864}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Info
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62100,9 +62099,9 @@ GameObject:
   - component: {fileID: 1890771606}
   - component: {fileID: 1890771609}
   - component: {fileID: 1890771608}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonText
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64886,9 +64885,9 @@ GameObject:
   - component: {fileID: 1955839318}
   - component: {fileID: 1955839322}
   - component: {fileID: 1955839321}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackgroundPanel
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70122,9 +70121,9 @@ GameObject:
   - component: {fileID: 2136789766}
   - component: {fileID: 2136789768}
   - component: {fileID: 2136789767}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BuildingTime
-  m_TagString: Untagged
+  m_TagString: ui_interface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
