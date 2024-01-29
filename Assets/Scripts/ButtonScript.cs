@@ -28,9 +28,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
     }
     private void Awake()
     {
-        ButtonText = gameObject.transform.Find("ButtonText").gameObject;
-        ButtonImage = gameObject.transform.Find("ButtonImage").gameObject;
-        ButtonTextInfo = gameObject.transform.Find("ButtonTextInfo").gameObject;
+
     }
     void Start()
     {

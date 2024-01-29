@@ -8,7 +8,6 @@ public class PanelSlot : MonoBehaviour
 {
     public GameObject Data;
     public GameObject InfoPanel;
-    //public Animator Anim;
     public string SubjectName;
     public GameObject Quantity;
     //Ожидаем ответа на запрос информации о предмете
@@ -26,8 +25,6 @@ public class PanelSlot : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        //Anim = GetComponent<Animator>();
-        //Debug.Log("Anim = GetComponent<Animator>();");
         InfoPanel = gameObject.transform.Find("InfoPanel").gameObject;
         Quantity = gameObject.transform.Find("Quantity").gameObject;
     }

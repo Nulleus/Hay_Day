@@ -23,13 +23,19 @@ public class ShowValue : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     void SetValueText(string value)
     {
-        ShowTarget.GetComponent<Text>().text = value;
+        if (ShowTarget.GetComponent<Text>() != null)
+        {
+            ShowTarget.GetComponent<Text>().text = value;
+        } 
     }
 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     void SetValueTextPro(string value)
     {
-        ShowTarget.GetComponent<TMPro.TextMeshProUGUI>().text = value;
+        if (ShowTarget.GetComponent<TMPro.TextMeshProUGUI>() != null)
+        {
+            ShowTarget.GetComponent<TMPro.TextMeshProUGUI>().text = value;
+        }   
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetValue(string subjectName)

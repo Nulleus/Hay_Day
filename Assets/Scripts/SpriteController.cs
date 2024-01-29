@@ -7,16 +7,12 @@ using Sirenix.OdinInspector;
 public class SpriteController : MonoBehaviour
 {
     public GameObject Data;
-    //public Animator Anim;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(gameObject.name);
-        //Anim = GetComponent<Animator>();
-        //SetAnimation("empty");
+        Debug.Log("SpriteController" + gameObject.name);
     }
-    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    void ClearAnimation()
+    void ClearSprite()
     {
         if (gameObject.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
         {
@@ -34,17 +30,25 @@ public class SpriteController : MonoBehaviour
 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    void SetAnimation(string subjectName)
+    public void SetSprite(string subjectName)
     {
-        if (gameObject.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
+        //Если компонент присутствует
+        if (gameObject.GetComponent<SpriteRenderer>() != null)
         {
-            gameObject.GetComponent<SpriteRenderer>().sprite = Data.GetComponent<ImageStorage>().GetSprite(subjectName);
+            gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(subjectName);
         }
-        if (gameObject.GetComponent<Image>() != null && Data.GetComponent<ImageStorage>() != null)
+        if (gameObject.GetComponent<Image>() != null)
         {
-            gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(subjectName);
+            gameObject.GetComponent<Image>().sprite = GetSprite(subjectName);
         }
         //Anim.CrossFade(subjectName, 0);
-
+    }
+    public Sprite GetSprite(string spriteName)
+    {
+        if (Data.GetComponent<ImageStorage>() != null)
+        {
+            return Data.GetComponent<ImageStorage>().GetSprite(spriteName);
+        }
+        return null;
     }
 }

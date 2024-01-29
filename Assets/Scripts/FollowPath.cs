@@ -12,7 +12,6 @@ public class FollowPath : MonoBehaviour
         Lerping,
         End
     }
-    public GameObject Data;
     //Вид движения
     public MovementType Type = MovementType.Movement;
     //используемый путь
@@ -37,7 +36,6 @@ public class FollowPath : MonoBehaviour
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
         SetSprite(subjectName);
-        //gameObject.GetComponent<Animator>().CrossFade(subjectName, 0);
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
         if (MyPath == null)
@@ -65,8 +63,7 @@ public class FollowPath : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetSprite(string spriteName)
     {
-        //temp = gameObject.GetComponent<SpriteRenderer>().sprite;
-        gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(spriteName);
+        gameObject.GetComponent<SpriteController>().SetSprite(spriteName);
     }
 
     void Update()
@@ -88,12 +85,7 @@ public class FollowPath : MonoBehaviour
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
                 SetSprite("empty");
-                //gameObject.GetComponent<Animator>().CrossFade("empty", 0);
-
-                
-                //PointInPath.MoveNext();
             }
-            //PointInPath.MoveNext();
         }
         if (Type == MovementType.Movement)
         {

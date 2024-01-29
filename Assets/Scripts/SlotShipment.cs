@@ -6,7 +6,6 @@ public class SlotShipment : MonoBehaviour
 {
     //ќткуда ожидать ответа(объект, выполн€ющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
-    public Animator Anim;//јнимаци€ пол€
     public int NumberSlot;
     public GameObject Data;
     public bool CheckDisplayContents;
@@ -22,16 +21,14 @@ public class SlotShipment : MonoBehaviour
     //ќтобразить содержимое загруженного содержимого в слотах
     public void DisplayContents()
     {
-        Animator anim;
-        anim = GetComponent<Animator>();
         string subjectsChildInTheShipment = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectsChildInTheShipment[NumberSlot];
         if (subjectsChildInTheShipment != "" && subjectsChildInTheShipment != "Not Found")
         {
-            anim.CrossFade(subjectsChildInTheShipment, 0);
+            gameObject.GetComponent<SpriteController>().SetSprite(subjectsChildInTheShipment);
         }
         else
         {
-            anim.CrossFade("empty", 0);
+            gameObject.GetComponent<SpriteController>().SetSprite("empty");
         }
 
     }

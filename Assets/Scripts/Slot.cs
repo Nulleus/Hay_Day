@@ -12,7 +12,6 @@ public class Slot : MonoBehaviour
     public Vector3 ScreenPoint;
 
     public bool MousedragBlockOn = false;
-    //public Animator Anim;
     public string Predmet;
     public int NumberSlotPredmet; //Номер слота предмета для интеграцией с таблицей 
     public string SubjectParentName; //Родитель данного объекта(например: bakery)
@@ -25,14 +24,7 @@ public class Slot : MonoBehaviour
     }
     void SetSprite()
     {
-        if (gameObject.GetComponent<SpriteRenderer>() != null && Data.GetComponent<ImageStorage>() != null)
-        {
-            gameObject.GetComponent<SpriteRenderer>().sprite = Data.GetComponent<ImageStorage>().GetSprite(Predmet);
-        }
-        if (gameObject.GetComponent<Image>() != null && Data.GetComponent<ImageStorage>() != null)
-        {
-            gameObject.GetComponent<Image>().sprite = Data.GetComponent<ImageStorage>().GetSprite(Predmet);
-        }
+        gameObject.GetComponent<SpriteController>().SetSprite(Predmet);
     }
     private void Start()
     {
@@ -54,8 +46,6 @@ public class Slot : MonoBehaviour
         MousedragBlockOn = false;
         Offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScreenPoint.z));
         PrimaryPosition = gameObject.transform.position;
-        //GameObject_Enable_Controller.slot_info.SetActive(true);
-        //GameObject.Find("SlotInfo").GetComponent<SlotInfo>().AddIngredientsByNameSubject(gameObject.name);
     }
     void OnMouseDrag()//Когда перемещение мыши
     {
@@ -75,27 +65,36 @@ public class Slot : MonoBehaviour
     {
         //Проверяем, чтобы родитель был один и тот же
         //string productionBuilding = other.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
-
-        string parentOther = other.gameObject.GetComponent<SlotLoadingFrame>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
-        string parent = gameObject.GetComponent<Slot>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
-        int ignoreQuestion = 0;
-        Debug.Log("parentOther:" + parentOther);//Другой
-        Debug.Log("parent:" + parent);//С кем столкнулся
-        //Тут написать проверку на существование объекта
-        //(тут надо переписать))
-        if (parentOther == parent) 
+        if (other != null)
         {
-            Debug.Log("if (parentOther == parent)");
-            MousedragBlockOn = true;
-            gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
             
-            //Запускаем производство
-            ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, parent, ignoreQuestion);
+            if (other.gameObject.GetComponent<SlotLoadingFrame>() != null)
+            {
+                Debug.Log("Test " + other.gameObject.GetComponent<SlotLoadingFrame>());
+                string parentOther = other.gameObject.GetComponent<SlotLoadingFrame>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+                string parent = gameObject.GetComponent<Slot>().ProductionBuildingParent.gameObject.GetComponent<ProductionBuildingUI>().NameSystem;
+                int ignoreQuestion = 0;
+                Debug.Log("parentOther:" + parentOther);//Другой
+                Debug.Log("parent:" + parent);//С кем столкнулся
+                                              //Тут написать проверку на существование объекта
+                                              //(тут надо переписать))
+                if (parentOther == parent)
+                {
+                    Debug.Log("if (parentOther == parent)");
+                    MousedragBlockOn = true;
+                    gameObject.transform.position = PrimaryPosition; //Тут предмет должен возвратится обратно на начальную позицию
+
+                    //Запускаем производство
+                    ProductionBuildingParent.GetComponent<ProductionBuildingUI>().AddInSlotSubject(Predmet, parent, ignoreQuestion);
+
+                }
+
+                //bakery.add_in_slot_predmet("bread");
+            }
 
         }
 
-            //bakery.add_in_slot_predmet("bread");
-       
+
     }
     private void Awake()
     {

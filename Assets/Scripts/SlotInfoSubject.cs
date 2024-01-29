@@ -83,7 +83,7 @@ public class SlotInfoSubject : MonoBehaviour
         SetSubjectCount(subjectCount);
         if (GO.name == "SlotInfoSubject0")
         {
-            SlotInfoSubjectImage0.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectImage0.GetComponent<SpriteController>().SetSprite(SubjectName);
             SlotInfoSubjectQuantity0.GetComponent<Text>().text =
                 StorageSubjectCount.ToString() + 
                 "/"+
@@ -91,7 +91,7 @@ public class SlotInfoSubject : MonoBehaviour
         }
         if (GO.name == "SlotInfoSubject1")
         {
-            SlotInfoSubjectImage1.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectImage1.GetComponent<SpriteController>().SetSprite(SubjectName);
             SlotInfoSubjectQuantity1.GetComponent<Text>().text =
                 StorageSubjectCount.ToString() +
                 "/" +
@@ -99,7 +99,7 @@ public class SlotInfoSubject : MonoBehaviour
         }
         if (GO.name == "SlotInfoSubject2")
         {
-            SlotInfoSubjectImage2.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectImage2.GetComponent<SpriteController>().SetSprite(SubjectName);
             SlotInfoSubjectQuantity2.GetComponent<Text>().text =
                 StorageSubjectCount.ToString() +
                 "/" +
@@ -107,7 +107,7 @@ public class SlotInfoSubject : MonoBehaviour
         }
         if (GO.name == "SlotInfoSubject3")
         {
-            SlotInfoSubjectImage3.GetComponent<Animator>().CrossFade(SubjectName, 0);
+            SlotInfoSubjectImage3.GetComponent<SpriteController>().SetSprite(SubjectName);
             SlotInfoSubjectQuantity3.GetComponent<Text>().text =
                 StorageSubjectCount.ToString() +
                 "/" +
