@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
 
 public class PanelFewResources : MonoBehaviour
 {

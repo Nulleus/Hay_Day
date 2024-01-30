@@ -11,12 +11,12 @@ public class CameraScript : MonoBehaviour
 
     // Then add whatever code to the class you need as you normally would.
     //=========================================ограничение камеры=====================//
-    private float XMargin = 1f; // Distance in the x axis the player can move before the camera follows.
-    private float YMargin = 1f; // Distance in the y axis the player can move before the camera follows.
-    private float XSmooth = 8f; // How smoothly the camera catches up with it's target movement in the x axis.
-    private float YSmooth = 8f; // How smoothly the camera catches up with it's target movement in the y axis.
-    private Vector2 MaxXAndY; // The maximum x and y coordinates the camera can have.
-    private Vector2 MinXAndY; // The minimum x and y coordinates the camera can have.
+    //private float XMargin = 1f; // Distance in the x axis the player can move before the camera follows.
+    //private float YMargin = 1f; // Distance in the y axis the player can move before the camera follows.
+    //private float XSmooth = 8f; // How smoothly the camera catches up with it's target movement in the x axis.
+    //private float YSmooth = 8f; // How smoothly the camera catches up with it's target movement in the y axis.
+    //private Vector2 MaxXAndY; // The maximum x and y coordinates the camera can have.
+    //private Vector2 MinXAndY; // The minimum x and y coordinates the camera can have.
     public bool IsZoomBlocked //Blocked Zooming
     { get; set; }
     public bool IsDragBlocked //Blocked Drag

@@ -13,7 +13,7 @@ public class Point : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var dropDown = State.On;
+        //var dropDown = State.On;
     }
 
     // Update is called once per frame

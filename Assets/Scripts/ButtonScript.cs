@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // Required when using Event data.
 
-public class ButtonScript : MonoBehaviour, IPointerDownHandler
+public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
@@ -17,10 +17,13 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
     public GameObject ButtonTextInfo; //Текст на кнопке с ее назначением
     //Объект с количеством алмазов
     public GameObject DiamondQuantity;
-
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        MouseUp();
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log(this.gameObject.name + " Was Clicked.");
+        MouseDown();
     }
     public void SetAllPriceSubjectsText(int count)
     {
@@ -34,6 +37,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
     {
         
     }
+
     //Передаем кнопке значения
     void SetButtonInfo(string buttonText, string buttonTextInfo)
     {
@@ -43,13 +47,30 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler
         ButtonTextInfo.GetComponent<Text>().text = buttonTextInfo;
 
     }
+    void MouseDrag()
+    {
 
-    // Update is called once per frame
+    }
+    void MouseDown() {
+    }
+        // Update is called once per frame
     void Update()
     {
-        
+        //CheckInput();
     }
-    public void OnMouseUp()//Когда отпускаеть мышь
+    private void OnMouseUp()
+    {
+        MouseUp();
+    }
+    private void OnMouseDown()
+    {
+        MouseDown();
+    }
+    private void OnMouseDrag()
+    {
+        MouseDrag();
+    }
+    public void MouseUp()//Когда отпускаеть мышь
     {
         Debug.Log("OnMouseUp()");
         switch (AppointmentButton)

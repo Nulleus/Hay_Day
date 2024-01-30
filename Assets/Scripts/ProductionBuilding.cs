@@ -329,7 +329,7 @@ public class ProductionBuilding : MonoBehaviour
                         {
                             //Откатываем изменения
                             tra.Rollback();
-                            Debug.Log("Catch!");
+                            Debug.Log("Catch: "+ex);
                             throw;
                         }
                     }
@@ -605,7 +605,7 @@ public class ProductionBuilding : MonoBehaviour
                     {
                         //Откатываем изменения
                         tra.Rollback();
-                        Debug.Log("Catch!");
+                        Debug.Log("Catch: "+ex);
                         throw;
                     }
                 }
@@ -835,7 +835,7 @@ public class ProductionBuilding : MonoBehaviour
                     {
                         //Откатываем изменения
                         tra.Rollback();
-                        Debug.Log("Запросы завершились неудачно!");
+                        Debug.Log("Запросы завершились неудачно! Ошибка: "+ex);
                         throw;
                     }
                 }

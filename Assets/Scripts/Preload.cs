@@ -149,7 +149,7 @@ public class Preload : MonoBehaviour
         //Send the request then wait here until it returns
         yield return uwr.SendWebRequest();
 
-        if (uwr.isNetworkError)
+        if (uwr.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log("Error While Sending: " + uwr.error);
         }

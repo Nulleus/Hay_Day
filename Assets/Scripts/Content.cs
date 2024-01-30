@@ -394,7 +394,6 @@ public class Content : MonoBehaviour
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
         string dateShipmentAsc;
-        DateTime temp;
         Debug.Log(sqlExpression);
         using (var connection = new SqliteConnection(dbUri))
         {

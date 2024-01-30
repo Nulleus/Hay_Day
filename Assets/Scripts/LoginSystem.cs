@@ -151,7 +151,7 @@ public class LoginSystem : MonoBehaviour
         {
             yield return www.SendWebRequest();
 
-            if (www.isNetworkError)
+            if (www.result == UnityWebRequest.Result.ConnectionError)
             {
                 errorMessage = www.error;
             }
@@ -189,7 +189,7 @@ public class LoginSystem : MonoBehaviour
         {
             yield return www.SendWebRequest();
 
-            if (www.isNetworkError)
+            if (www.result == UnityWebRequest.Result.ConnectionError)
             {
                 errorMessage = www.error;
             }
