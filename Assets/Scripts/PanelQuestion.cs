@@ -80,7 +80,7 @@ public class PanelQuestion : MonoBehaviour
                 for (int i = 0; i <= countLastSubjects; i++)
                 {
                     Debug.Log("for last_name" + i);
-                    //Отправляем запрос на сервер чтобы получить информацию о последних предметах
+                    //Отправляем запрос чтобы получить информацию о последних предметах
                     ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().GetTranslateInfo(lastIngredient[i].lastIngredients, "Local");
                 }
             }
