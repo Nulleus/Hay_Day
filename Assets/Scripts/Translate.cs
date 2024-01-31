@@ -53,7 +53,7 @@ public class Translate : MonoBehaviour
     //Получить описание объекта на русском языке
     //$query = "SELECT description FROM " . $this->table_name . " WHERE subject_name =? AND system_language =? LIMIT 0,1"; 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetDescriptionRU(string subjectName, string systemLanguage, string locationDataProcessing)
+    public string GetDescription(string subjectName, string systemLanguage, string locationDataProcessing)
     {
         if (locationDataProcessing == "Local")
         {

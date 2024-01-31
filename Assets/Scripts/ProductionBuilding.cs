@@ -47,11 +47,6 @@ public class ProductionBuilding : MonoBehaviour
     [ShowInInspector]
     public Dictionary<string, string> ResponseFromRequests = new Dictionary<string, string>();
     public bool CheckGetSubjectChildInTheProcessOfAssembly;
-
-    //public ExtendedDictonary<string, string> ResponseFromRequests = new ExtendedDictonary<string, string>();
-    //GetTranslateInfoRUS
-    [ShowInInspector]
-    public Dictionary<string, Translate> ResponsesTranslateInfoRUS = new Dictionary<string, Translate>();
     [ShowInInspector]
     //Дата следующего запуска обновления слотов производства
     public float TimeBeforeStartRequest;
@@ -68,43 +63,6 @@ public class ProductionBuilding : MonoBehaviour
         public string methodName;
         public string subjectParentName;
         public int numberSlot;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    public class Translate
-    {
-        public string SubjectName;
-        public string Name;
-        public string Discription;
-        public string TimeBuilding;
-        public Translate(string subjectName, string name, string discription, string timeBuilding)
-        {
-            SubjectName = subjectName;
-            Name = name;
-            Discription = discription;
-            TimeBuilding = timeBuilding;
-        }
-    }
-    [Serializable]
-    public class POSTGetTranslateInfoRU
-    {
-        public string jwt;
-        public string methodName;
-        public string subjectName;
-        public string languageName;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class ResponseGetTranslateInfoRU
-    {
-        public string nameRU;
-        public string discriptionRU;
-        public string timeBuildingRU;
         public override string ToString()
         {
             return UnityEngine.JsonUtility.ToJson(this, true);
@@ -742,22 +700,6 @@ public class ProductionBuilding : MonoBehaviour
 
         }
 
-    }
-
-    public void GetTranslateInfoRUS(string subjectName)
-    {
-        RestClient.Post<ResponseGetTranslateInfoRU>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetTranslateInfoRU
-        {
-            jwt = Data.GetComponent<User>().GetJWTToken(),
-            methodName = "GetTranslateInfo",
-            languageName = "RU",
-            subjectName = subjectName
-        }).Then(response => {
-            ResponsesTranslateInfoRUS.Add(subjectName, new Translate(subjectName, response.nameRU, response.discriptionRU, response.timeBuildingRU));
-            //TranslateName = response.nameRU;
-            //TranslateDiscription = response.discriptionRU;
-            //TranslateTimeBuilding = response.timeBuildingRU;
-        });
     }
     //Выгрузка объектов
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]

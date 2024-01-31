@@ -81,7 +81,7 @@ public class PanelQuestion : MonoBehaviour
                 {
                     Debug.Log("for last_name" + i);
                     //Отправляем запрос на сервер чтобы получить информацию о последних предметах
-                    ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().GetTranslateInfoRUS(lastIngredient[i].lastIngredients);
+                    ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().GetTranslateInfo(lastIngredient[i].lastIngredients, "Local");
                 }
             }
             else

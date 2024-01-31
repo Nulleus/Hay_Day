@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems; // Required when using Event data.
 
-public class PanelSlot : MonoBehaviour
+public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject Data;
     public GameObject InfoPanel;
@@ -16,6 +17,22 @@ public class PanelSlot : MonoBehaviour
     //int Quantity;
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        MouseUp();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        MouseDown();
+    }
+    private void OnMouseUp()
+    {
+        MouseUp();
+    }
+    private void OnMouseDown()
+    {
+        MouseDown();
+    }
     public int GetQuantity()
     {
         return Convert.ToInt32(Quantity.GetComponent<Text>().text);
@@ -75,11 +92,11 @@ public class PanelSlot : MonoBehaviour
             Debug.Log("Пусто");
         }
     }
-    private void OnMouseDown()//Когда нажимаешь кнопку мыши
+    private void MouseDown()//Когда нажимаешь кнопку мыши
     {
         InfoPanel.SetActive(true);
     }
-    private void OnMouseUp()//Когда отпускашь кнопку мыши
+    private void MouseUp()//Когда отпускашь кнопку мыши
     {
         InfoPanel.SetActive(false);
     }
