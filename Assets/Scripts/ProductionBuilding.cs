@@ -31,7 +31,6 @@ public class ProductionBuilding : MonoBehaviour
     }
 
     [ShowInInspector]
-    public List<LastIngredient> LastIngredients;
     public GameObject Data;
     [ShowInInspector]
     public string SubjectName;
@@ -315,7 +314,7 @@ public class ProductionBuilding : MonoBehaviour
                 ResponseFromRequests.Remove("0x0000004");
             }
             
-            //если предметы культур, которые остались последние на складе, которые нет в производстве
+            //если предметы культур, которые остались последние на складе, которых нет в производстве
             if (spisokResponseFromRequests.Key == "0x0000008")
             {
                 GetCheckIsLastSubject(subjectNameForBuilding, SubjectName, "Server");
@@ -570,24 +569,6 @@ public class ProductionBuilding : MonoBehaviour
             }
         }
     }
-    [Serializable]
-    public class LastIngredient
-    {
-        public string lastIngredients;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
-    [Serializable]
-    public class RootLastIngredient
-    {
-        public List<LastIngredient> lastIngredients;
-        public override string ToString()
-        {
-            return UnityEngine.JsonUtility.ToJson(this, true);
-        }
-    }
 
     private void OnEnable()
     {
@@ -796,23 +777,10 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("GetSubjectChildInTheProcessOfAssembly|" + "dateTimeNow=" + dateTimeNow + ",subjectChildInTheProcessOfAssembly=" + subjectChildInTheProcessOfAssembly);
         SubjectsChildInTheProcessOfAssembly[numberSlot] = subjectChildInTheProcessOfAssembly;
     }
-    //Проверяем, последний ли ингредиент, для field собираемся использовавть 
+    //Проверяем, последний ли ингредиент, для field собираемся использовать 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public bool GetCheckIsLastSubject(string subjectName, string productionBuildingName, string locationDataProcessing)
     {
-        if (locationDataProcessing == "Server")
-        {
-            RestClient.Post<RootLastIngredient>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTGetLastIngredients
-            {
-                jwt = Data.GetComponent<User>().GetJWTToken(),
-                methodName = "CheckIsLastSubject",
-                subjectName = subjectName,
-                productionBuildingName = productionBuildingName
-            }).Then(response => {
-                LastIngredients = response.lastIngredients;
-                Debug.Log("response.lastIngredients" + response.lastIngredients);
-            });
-        }
         if (locationDataProcessing == "Local")
         {
             //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)

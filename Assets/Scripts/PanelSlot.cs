@@ -11,10 +11,6 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject InfoPanel;
     public string SubjectName;
     public GameObject Quantity;
-    //Ожидаем ответа на запрос информации о предмете
-    public bool CheckResponseTranslateRUS;
-    [SerializeField]
-    //int Quantity;
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
     public void OnPointerUp(PointerEventData eventData)
@@ -55,25 +51,19 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void OnEnable()
     {
-        CheckResponseTranslateRUS = true;
+        SetTranslateInfoAll(SubjectName);
     }
     void Update()
     {
-        if (CheckResponseTranslateRUS)
-        {
-            //Проверяем наличие ключа
-            if (ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS.ContainsKey(SubjectName))
-            {
-                var name = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].Name;
-                var discription = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].Discription;
-                var timeBuilding = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().ResponsesTranslateInfoRUS[SubjectName].TimeBuilding;
-                //Присваиваем значение
-                InfoPanel.GetComponent<InfoPanel>().SetProperties(name, discription, timeBuilding);
-                CheckResponseTranslateRUS = false;
-            }
-        }
-    }
 
+    }
+    public void SetTranslateInfoAll(string subjectName)
+    {
+        var displayName = Data.GetComponent<Translate>().GetDisplayName(subjectName, "RU", "Local");
+        var description = Data.GetComponent<Translate>().GetDescription(subjectName, "RU", "Local");
+        var timeBuilding = Data.GetComponent<Translate>().GetTimeBuildingDisplay(subjectName, "RU", "Local");
+        InfoPanel.GetComponent<InfoPanel>().SetProperties(displayName, description, timeBuilding);
+    }
     public void SetSprite(string subjectName) 
     {
         if (subjectName != "")
@@ -107,7 +97,6 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     void OnDisable()
     {
-        CheckResponseTranslateRUS = false;
         OnClear();
     }
 

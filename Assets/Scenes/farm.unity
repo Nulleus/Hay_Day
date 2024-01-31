@@ -815,7 +815,6 @@ MonoBehaviour:
   InfoPanel: {fileID: 476305306}
   SubjectName: wheat
   Quantity: {fileID: 188344651}
-  CheckResponseTranslateRUS: 1
   ProductionBuildingSendRequest: {fileID: 364160149}
 --- !u!50 &29721271
 Rigidbody2D:
@@ -10742,7 +10741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: bakery
   MaxCountSlots: 9
@@ -11810,9 +11808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2d1d540dfe46844bca7dab239afd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
   PanelQuestionBox: {fileID: 2074097713}
   ProductionBuildingSendRequest: {fileID: 364160149}
   PanelSlots: {fileID: 1300759110}
+  PanelSlot: {fileID: 0}
   UserActionSelection: 
   SubjectNameForBuilding: 
   CheckResponseLastIngredients: 0
@@ -40999,7 +40999,6 @@ MonoBehaviour:
   InfoPanel: {fileID: 744491836}
   SubjectName: wheat
   Quantity: {fileID: 886965418}
-  CheckResponseTranslateRUS: 1
   ProductionBuildingSendRequest: {fileID: 364160149}
 --- !u!114 &1545260480
 MonoBehaviour:
@@ -49087,7 +49086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527cc2aac2d6570478b29e283fb26518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastIngredients: []
   Data: {fileID: 1866044566}
   SubjectName: cowFeed
   MaxCountSlots: 0
