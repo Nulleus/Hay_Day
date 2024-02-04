@@ -60,7 +60,7 @@ public class Content : MonoBehaviour
     }
     private void OnEnable()
     {
-        Test();
+        //Test();
     }
 
     // Update is called once per frame
@@ -75,7 +75,7 @@ public class Content : MonoBehaviour
     {
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <= " + "'"+dateTimeNow+"'" + "AND subject_parent_name=" + "'" + subjectParentName+"'" + "ORDER BY id_content ASC LIMIT "+numberSlot+",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <= date(" + "'"+dateTimeNow+"'" + ") AND subject_parent_name=" + "'" + subjectParentName+"'" + "ORDER BY id_content ASC LIMIT "+numberSlot+",1";
         string subjectChildInTheShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -102,7 +102,7 @@ public class Content : MonoBehaviour
     {
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >= " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >= date(" + "'" + dateTimeNow + "'" + ") AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         string subjectChildInTheShipment;
         using (var connection = new SqliteConnection(dbUri))
         {

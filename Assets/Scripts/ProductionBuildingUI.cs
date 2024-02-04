@@ -60,7 +60,7 @@ public class ProductionBuildingUI : MonoBehaviour
     GameObject SlotsPredmets;
     //Слоты с загруженными предметами
     [SerializeField]
-    GameObject SlotsLoading;
+    public GameObject SlotsLoading;
     //Слоты с отгруженными предметами
     [SerializeField]
     GameObject SlotsShipment;

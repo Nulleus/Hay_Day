@@ -588,51 +588,55 @@ public class ProductionBuilding : MonoBehaviour
             Debug.Log(i);
             //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
             GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+        }
+        for (int i = 0; i <= MaxCountSlots; i++)
+        {
+            Debug.Log(i);
+            //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
+
             GetSubjectChildInTheShipment(SubjectName, i);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        //Если таймер включен
-        if (TimerEnable)
-        {
-            //Если таймер не истек
-            if (TimeBeforeStartRequest >= 0)
+            //Если таймер включен
+            if (TimerEnable)
             {
-                TimeBeforeStartRequest -= Time.deltaTime;
-            }
-            //Если таймер истек 
-            else
-            {
-                TimerEnable = false;
-                Debug.Log("TimerEnable = false;");
-                GetAllInfoSlots();
-                //Если проверка включена
-                if (CheckGetSubjectChildInTheProcessOfAssembly)
+                //Если таймер не истек
+                if (TimeBeforeStartRequest >= 0)
                 {
-                    if (CheckInBuilding)
+                    TimeBeforeStartRequest -= Time.deltaTime;
+                }
+                //Если таймер истек 
+                else
+                {
+                    TimerEnable = false;
+                    GetAllInfoSlots();
+                    Debug.Log("TimerEnable = false;");
+                    //Если проверка включена
+                    if (CheckGetSubjectChildInTheProcessOfAssembly)
                     {
-                        //Если в производстве есть предметы
-                    }
-                    //Если в производстве нет предметов, проверять не обязательно
-                    else
-                    {
-                        //Получаем секунды до выгрузки первого объекта из производства
-                        //GetDifferenceDateInSeconds(SubjectName, 0);
-                        CheckGetSubjectChildInTheProcessOfAssembly = false;
-                        //for (int i = 0; i <= MaxCountSlots; i++)
-                        //{
-                        //Debug.Log(i);
-                        //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
-                        //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
-                        //}
-                        GetAllInfoSlots();
+                        if (CheckInBuilding)
+                        {
+                            //Если в производстве есть предметы
+                        }
+                        //Если в производстве нет предметов, проверять не обязательно
+                        else
+                        {
+                            //Получаем секунды до выгрузки первого объекта из производства
+                            //GetDifferenceDateInSeconds(SubjectName, 0);
+                            CheckGetSubjectChildInTheProcessOfAssembly = false;
+                            //for (int i = 0; i <= MaxCountSlots; i++)
+                            //{
+                            //Debug.Log(i);
+                            //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
+                            //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
+                            //}
+                        }
                     }
                 }
             }
-        }
-
     }
     static bool CheckDate(string date)
     {
@@ -658,7 +662,7 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log(diff);
 
         //Просрочена ли дата, если дата просрочена, тогда секунды будут увеличиваться
-        if ((parsedDateShipment > dateTimeNow)&&(parsedDateShipment != null)){
+        if ((parsedDateShipment >= dateTimeNow)&&(parsedDateShipment != null)){
             Debug.Log("Дата не просрочена");
             //Дата не просрочена
             TimerEnable = true;

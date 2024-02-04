@@ -113,6 +113,7 @@ public class PanelFewResources : MonoBehaviour
                 CheckResponseAllCost = false;
             }
             //AllCost = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().AllCost;
+            //Общая стоимость всех объектов, например в алмазах
             ButtonBuy.GetComponent<ButtonScript>().ButtonText.GetComponent<Text>().text = AllCost.ToString();
 
         }

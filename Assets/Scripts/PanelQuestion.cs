@@ -64,7 +64,8 @@ public class PanelQuestion : MonoBehaviour
         MainCamera.GetComponent<Camera>().orthographicSize = 357;
         MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
         MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
-        Data.GetComponent<Ingredient>().GetAllIngredients(string subjectName)
+        //Data.GetComponent<Ingredient>().GetMissingIngredients(
+        //Data.GetComponent<Ingredient>().GetAllIngredients(string subjectName)
     }
     void Update()
     {
