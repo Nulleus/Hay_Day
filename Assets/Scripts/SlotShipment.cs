@@ -30,6 +30,7 @@ public class SlotShipment : MonoBehaviour
         {
             gameObject.GetComponent<SpriteController>().SetSprite("empty");
         }
+        CheckDisplayContents = false;
 
     }
 

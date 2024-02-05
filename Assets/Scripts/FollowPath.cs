@@ -85,6 +85,7 @@ public class FollowPath : MonoBehaviour
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
                 SetSprite("empty");
+                gameObject.SetActive(false);
             }
         }
         if (Type == MovementType.Movement)

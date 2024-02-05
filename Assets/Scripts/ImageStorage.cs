@@ -28,6 +28,7 @@ public class ImageStorage : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public Sprite GetSprite(string key)
     {
+        if (key == null) { return null; }
         if (SpritesDict.ContainsKey(key))
         {
             return SpritesDict[key];
