@@ -144,7 +144,7 @@ public class Content : MonoBehaviour
         //"SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment < " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment < CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int countOfOccupiedShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -173,7 +173,7 @@ public class Content : MonoBehaviour
         //string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment>NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int countOfOccupiedLoading;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -260,7 +260,7 @@ public class Content : MonoBehaviour
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //string sqlExpression = "SELECT COUNT(*) FROM contents WHERE subject_parent_name=" + "'" + subjectChildName + "'" + "ORDER BY id_content";
-        string sqlExpression = "SELECT id_content FROM contents WHERE time_shipment<"+"'"+dateTimeNow+"'"+ "AND subject_parent_name =" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        string sqlExpression = "SELECT id_content FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) <" + "'"+dateTimeNow+"'"+ "AND subject_parent_name =" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
         int shipmentID;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -353,7 +353,7 @@ public class Content : MonoBehaviour
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =?ORDER BY id_content ASC LIMIT ?,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         string dateShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -379,10 +379,10 @@ public class Content : MonoBehaviour
     public string GetTimeShipmentDesc(string subjectParentName, string dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM ". $this->table_name. "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content DESC LIMIT 0,1";
-        string dateTimeNowConvert = dateTimeNow.ToString(); 
+   
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNowConvert + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content DESC LIMIT 0,1";
+        string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content DESC LIMIT 0,1";
         Debug.Log(sqlExpression);
         string dateShipmentDesc;
         using (var connection = new SqliteConnection(dbUri))
@@ -411,7 +411,8 @@ public class Content : MonoBehaviour
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        //string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
         string dateShipmentAsc;
         Debug.Log(sqlExpression);
         using (var connection = new SqliteConnection(dbUri))
@@ -446,7 +447,7 @@ public class Content : MonoBehaviour
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //$query = "SELECT output_quantity FROM " . $this->table_name . "WHERE id_content =? ";
-        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + "AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int count;
         using (var connection = new SqliteConnection(dbUri))
         {
