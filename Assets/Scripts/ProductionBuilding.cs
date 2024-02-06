@@ -365,7 +365,7 @@ public class ProductionBuilding : MonoBehaviour
         {
             IDictionary<string, int> allIngredients = new Dictionary<string, int>();
             //Получаем текущую дату клиента(дата загрузки объекта)
-            DateTime timeLoading = DateTime.Now;
+            string timeLoading = GetDateTimeNow();
             Debug.Log("timeLoading="+timeLoading);
             //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
             AssociationSubject associationSubject = Data.GetComponent<AssociationSubject>();
@@ -521,7 +521,8 @@ public class ProductionBuilding : MonoBehaviour
                             //Время отгрузки равно: время отгрузки последнего в очереди предмета + время создания предмета
                             //Если мы находится в этом if, это значит что время отгрузки последнего предмета равна текущей дате
                             //Конвертируем строку в дату и добавляем количество секунд
-                            DateTime timeShipment = timeLoading.AddSeconds(timeBuildingSubject);
+                            var parsedDateTimeLoading = DateTime.Parse(timeLoading);
+                            string timeShipment = parsedDateTimeLoading.AddSeconds(timeBuildingSubject).ToString();
                             Debug.Log("timeShipment=" + timeShipment);
                             int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
                             Debug.Log("outputQuantityCount=" + outputQuantityCount);
@@ -535,8 +536,9 @@ public class ProductionBuilding : MonoBehaviour
                         {
                             //Время отгрузки равно: время создания объекта + время загрузки
                             var parsedDateShipmentEndBuildingSubject = DateTime.Parse(dateShipmentEndBuildingSubject);
-                            timeLoading = parsedDateShipmentEndBuildingSubject;
-                            DateTime timeShipment = timeLoading.AddSeconds(timeBuildingSubject);
+                            timeLoading = parsedDateShipmentEndBuildingSubject.ToString("yyyy-MM-dd HH:mm:ss");
+                            var parsedDateTimeLoading = DateTime.Parse(timeLoading);
+                            string timeShipment = parsedDateTimeLoading.AddSeconds(timeBuildingSubject).ToString("yyyy-MM-dd HH:mm:ss");
                             Debug.Log("TimeShipment=" + timeShipment);
                             //Количество объектов на выходе
 					        int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
@@ -585,13 +587,13 @@ public class ProductionBuilding : MonoBehaviour
         GetDifferenceDateInSeconds(SubjectName, 0);
         for (int i = 0; i <= MaxCountSlots; i++)
         {
-            Debug.Log(i);
+            Debug.Log("for (int i = 0; i <= MaxCountSlots; i++)" + i);
             //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
             GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
         }
         for (int i = 0; i <= MaxCountSlots; i++)
         {
-            Debug.Log(i);
+            Debug.Log("for (int i = 0; i <= MaxCountSlots; i++)" +i);
             //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
 
             GetSubjectChildInTheShipment(SubjectName, i);
@@ -611,9 +613,9 @@ public class ProductionBuilding : MonoBehaviour
                 //Если таймер истек 
                 else
                 {
-                    TimerEnable = false;
+                    //TimerEnable = false;
                     GetAllInfoSlots();
-                    Debug.Log("TimerEnable = false;");
+                    //Debug.Log("TimerEnable = false;");
                     //Если проверка включена
                     if (CheckGetSubjectChildInTheProcessOfAssembly)
                     {
@@ -647,7 +649,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
-        DateTime dateTimeNow = DateTime.Now;
+        string dateTimeNow = GetDateTimeNow();
         Debug.Log("dateTimeNow=" + dateTimeNow);
         string dateShipment = Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
         Debug.Log("dateShipment=" + dateShipment);
@@ -658,11 +660,12 @@ public class ProductionBuilding : MonoBehaviour
         }
 
         DateTime parsedDateShipment = DateTime.Parse(dateShipment);
-		var diff = ((parsedDateShipment - dateTimeNow).TotalSeconds);
+        DateTime parsedDateTimeNow = DateTime.Parse(dateTimeNow);
+        var diff = ((parsedDateShipment - parsedDateTimeNow).TotalSeconds);
         Debug.Log(diff);
 
         //Просрочена ли дата, если дата просрочена, тогда секунды будут увеличиваться
-        if ((parsedDateShipment >= dateTimeNow)&&(parsedDateShipment != null)){
+        if ((parsedDateShipment >= parsedDateTimeNow)&&(parsedDateShipment != null)){
             Debug.Log("Дата не просрочена");
             //Дата не просрочена
             TimerEnable = true;
@@ -707,7 +710,7 @@ public class ProductionBuilding : MonoBehaviour
         }
         if (locationDataProcessing == "Local")
         {
-            DateTime dateTimeNow = DateTime.Now;
+            string dateTimeNow = GetDateTimeNow();
             //Получаем ID первого стоящего на отгрузку объекта
             var ct = Data.GetComponent<Content>();
             var ss = Data.GetComponent<SubjectSum>();
@@ -775,7 +778,8 @@ public class ProductionBuilding : MonoBehaviour
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
         Debug.Log("GetSubjectChildInTheProcessOfAssembly(" + subjectParentName + "," + numberSlot+");");
-        DateTime dateTimeNow = DateTime.Now;
+        //Date format: 2015-01-01 22:12:00 for SQLite
+        string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         
         string subjectChildInTheProcessOfAssembly = Data.GetComponent<Content>().GetSubjectChildInTheProcessOfAssembly(subjectParentName, numberSlot, dateTimeNow);
         Debug.Log("GetSubjectChildInTheProcessOfAssembly|" + "dateTimeNow=" + dateTimeNow + ",subjectChildInTheProcessOfAssembly=" + subjectChildInTheProcessOfAssembly);
@@ -832,9 +836,17 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheShipment(string subjectParentName, int numberSlot)
     {
-        DateTime dateTimeNow = DateTime.Now;
-        string subjectChildInTheShipment = Data.GetComponent<Content>().GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
+        
+        string dateTimeNow = GetDateTimeNow();
+        Debug.Log("GetGetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
+        var c = Data.GetComponent<Content>();
+        string subjectChildInTheShipment = c.GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
         Debug.Log("subjectChildInTheShipment="+ subjectChildInTheShipment);
         SubjectsChildInTheShipment[numberSlot] = subjectChildInTheShipment;
+    }
+    public string GetDateTimeNow()
+    {
+        string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        return dateTimeNow;
     }
 }

@@ -32,7 +32,7 @@ public class SpriteController : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetSprite(string subjectName)
     {
-        Debug.Log("SetSprite(" + subjectName + ")");
+        //Debug.Log("SetSprite(" + subjectName + ")");
         //Если компонент присутствует
         if (gameObject.GetComponent<SpriteRenderer>() != null)
         {

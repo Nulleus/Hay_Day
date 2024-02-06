@@ -25,9 +25,14 @@ public class Content : MonoBehaviour
     {
 
     }
+    public string GetDateTimeNow()
+    {
+        string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        return dateTimeNow;
+    }
     private void Test()
     {
-        var dateTimeNow = DateTime.Now;
+        string dateTimeNow = GetDateTimeNow();
         string test = GetSubjectChildInTheProcessOfAssembly("bakery", 0, dateTimeNow);
         Debug.Log("Test=" + test + ";time=" + dateTimeNow);
         string test2 = GetSubjectChildInTheShipment("bakery", 0, dateTimeNow);
@@ -71,38 +76,45 @@ public class Content : MonoBehaviour
     //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру
     //SELECT subject_child_name FROM contents WHERE time_shipment < NOW() AND user_id=11 AND subject_parent_name="bakery" ORDER BY id_content ASC LIMIT 1,1
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetSubjectChildInTheShipment(string subjectParentName, int numberSlot, DateTime dateTimeNow)
+    public string GetSubjectChildInTheShipment(string subjectParentName, int numberSlot, string dateTimeNow)
     {
+        Debug.Log("GetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >=" + "'"+dateTimeNow+"'" + " AND subject_parent_name=" + "'" + subjectParentName+"'" + "ORDER BY id_content ASC LIMIT "+numberSlot+",1";
-        string subjectChildInTheShipment;
+        //string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >=" + "'"+dateTimeNow+"'" + " AND subject_parent_name=" + "'" + subjectParentName+"'" + "ORDER BY id_content ASC LIMIT "+numberSlot+",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) <=CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         using (var connection = new SqliteConnection(dbUri))
         {
             connection.Open();
+            Debug.Log("connection.Open()");
             SqliteCommand command = new SqliteCommand(sqlExpression, connection);
             using (SqliteDataReader reader = command.ExecuteReader())
             {
                 if (reader.HasRows) // если есть данные
                 {
+                    string subjectChildInTheShipment;
                     while (reader.Read())   // построчно считываем данные
                     {
                         subjectChildInTheShipment = reader.GetValue(0).ToString();
+                        Debug.Log(subjectChildInTheShipment);
                         return subjectChildInTheShipment;
                     }
                 }
             }
+            connection.Close();
         }
         return "Not Found";
     }
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     //SELECT subject_child_name FROM contents WHERE time_shipment > NOW() AND user_id=11 AND subject_parent_name="bakery" ORDER BY id_content ASC LIMIT 1,1
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, DateTime dateTimeNow)
+    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, string dateTimeNow)
     {
+        Debug.Log("GetSubjectChildInTheProcessOfAssembly(subjectParentName=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot="+numberSlot+ ")");
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <=" + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        //string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <=" + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) >=CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         string subjectChildInTheShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -121,12 +133,13 @@ public class Content : MonoBehaviour
 
                 }
             }
+            connection.Close();
         }
         return "Error";
     }
     //Получить количество готовых продуктово, находящиеся в зоне отгрузки
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName, DateTime dateTimeNow)
+    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName, string dateTimeNow)
     {
         //"SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
@@ -148,13 +161,15 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return 0;
     }
     //Получаем количество занятых слотов(которые производят в данный момент) загрузки по имени родителя
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, DateTime dateTimeNow)
+    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, string dateTimeNow)
     {
+        Debug.Log("GetCountOfOccupiedLoadingSlotsByParentName(subjectParentName=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + ")");
         //string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment>NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
@@ -175,6 +190,7 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return 0;
     }
@@ -202,12 +218,13 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return 0;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Подготовка запроса
-    public string QueryAddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
+    public string QueryAddContents(string subjectParentName, string subjectChildName, string timeLoading, string timeShipment, int outputQuantity)
     {
         // SQLQuery = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
         string query = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity) VALUES("+"'"+subjectParentName+"','"+subjectChildName+"','"+ timeLoading + "','" + timeShipment + "'," +outputQuantity+")";
@@ -218,7 +235,7 @@ public class Content : MonoBehaviour
     //Метод только добавляет в БД полученные значения
     // SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void AddContents(string subjectParentName, string subjectChildName, DateTime timeLoading, DateTime timeShipment, int outputQuantity)
+    public void AddContents(string subjectParentName, string subjectChildName, string timeLoading, string timeShipment, int outputQuantity)
     {     
         // Open a connection to the database.
         string dbName = "MyDatabase.sqlite";
@@ -238,7 +255,7 @@ public class Content : MonoBehaviour
     //Получаем ID первого стоящего на отгрузку объекта
     //query = "SELECT id_content FROM content WHERE time_shipment<? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetShipmentID(string subjectParentName, DateTime dateTimeNow)
+    public int GetShipmentID(string subjectParentName, string dateTimeNow)
     {
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
@@ -260,6 +277,7 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return -1;
     }
@@ -287,6 +305,7 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return -1;
     }
@@ -314,6 +333,7 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return "Error";
     }
@@ -328,7 +348,7 @@ public class Content : MonoBehaviour
 
     //Получаем дату выгрузки предмета(который еще находится в производстве) по номеру слота и имени главного объекта
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetDateShipment(string subjectParentName, int numberSlot, DateTime dateTimeNow)
+    public string GetDateShipment(string subjectParentName, int numberSlot, string dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =?ORDER BY id_content ASC LIMIT ?,1"; 
         string dbName = "MyDatabase.sqlite";
@@ -350,12 +370,13 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return "Error";
     }
     //Получаем дату последнего стоящего в очереди объекта
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetTimeShipmentDesc(string subjectParentName, DateTime dateTimeNow)
+    public string GetTimeShipmentDesc(string subjectParentName, string dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM ". $this->table_name. "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content DESC LIMIT 0,1";
         string dateTimeNowConvert = dateTimeNow.ToString(); 
@@ -379,16 +400,14 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return "Not Found";
     }
     //Получаем Дату отгрузки первого объекта, находящегося в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetTimeShipmentFirst(string subjectParentName, DateTime dateTimeNow)
+    public string GetTimeShipmentFirst(string subjectParentName, string dateTimeNow)
     {
-        //Для тестов
-        dateTimeNow = DateTime.Now;
-        Debug.Log(dateTimeNow);
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
@@ -413,12 +432,13 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return "Not found";
     }
     //Получить количество продуктов, находящихся в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedBuildingSlots(string subjectParentName,DateTime dateTimeNow)
+    public int GetCountOfOccupiedBuildingSlots(string subjectParentName,string dateTimeNow)
     {
         //echo 'GetCountOfOccupiedShipmentSlotsByParentName($subjectParentName, $userID, $dateTimeNow)';
         //"SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
@@ -443,6 +463,7 @@ public class Content : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return -1;
     }
