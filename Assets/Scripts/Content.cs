@@ -25,14 +25,17 @@ public class Content : MonoBehaviour
     {
 
     }
-    public string GetDateTimeNow()
+    public long GetDateTimeNow()
     {
-        string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //var dateTimeNow = DateTime.Now.ToFileTime();
+        var dateTimeNow = ((int) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
+        Debug.Log("dateTimeNow:" + dateTimeNow);
+        //string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         return dateTimeNow;
     }
     private void Test()
     {
-        string dateTimeNow = GetDateTimeNow();
+        long dateTimeNow = GetDateTimeNow();
         string test = GetSubjectChildInTheProcessOfAssembly("bakery", 0, dateTimeNow);
         Debug.Log("Test=" + test + ";time=" + dateTimeNow);
         string test2 = GetSubjectChildInTheShipment("bakery", 0, dateTimeNow);
@@ -56,9 +59,9 @@ public class Content : MonoBehaviour
         Debug.Log("Test10=" + test10);
         string test11=GetDateShipment("bakery", 0, dateTimeNow);
         Debug.Log("Test11=" + test11);
-        string test12=GetTimeShipmentDesc("bakery", dateTimeNow);
+        long test12=GetTimeShipmentDesc("bakery", dateTimeNow);
         Debug.Log("Test12=" + test12);
-        string test13 = GetTimeShipmentFirst("bakery", dateTimeNow);
+        long test13 = GetTimeShipmentFirst("bakery", dateTimeNow);
         Debug.Log("Test13=" + test13);
         int test14 = GetCountOfOccupiedBuildingSlots("bakery", dateTimeNow);
         Debug.Log("Test14=" + test14);
@@ -76,13 +79,13 @@ public class Content : MonoBehaviour
     //Получаем продукт, находящийся в зоне отгрузки для каждого слота по номеру
     //SELECT subject_child_name FROM contents WHERE time_shipment < NOW() AND user_id=11 AND subject_parent_name="bakery" ORDER BY id_content ASC LIMIT 1,1
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetSubjectChildInTheShipment(string subjectParentName, int numberSlot, string dateTimeNow)
+    public string GetSubjectChildInTheShipment(string subjectParentName, int numberSlot, long dateTimeNow)
     {
         Debug.Log("GetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >=" + "'"+dateTimeNow+"'" + " AND subject_parent_name=" + "'" + subjectParentName+"'" + "ORDER BY id_content ASC LIMIT "+numberSlot+",1";
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) <=CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <="  + dateTimeNow  + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         using (var connection = new SqliteConnection(dbUri))
         {
             connection.Open();
@@ -108,13 +111,13 @@ public class Content : MonoBehaviour
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     //SELECT subject_child_name FROM contents WHERE time_shipment > NOW() AND user_id=11 AND subject_parent_name="bakery" ORDER BY id_content ASC LIMIT 1,1
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, string dateTimeNow)
+    public string GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot, long dateTimeNow)
     {
         Debug.Log("GetSubjectChildInTheProcessOfAssembly(subjectParentName=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot="+numberSlot+ ")");
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment <=" + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
-        string sqlExpression = "SELECT subject_child_name FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) >=CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT subject_child_name FROM contents WHERE time_shipment >=" + dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         string subjectChildInTheShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -139,12 +142,12 @@ public class Content : MonoBehaviour
     }
     //Получить количество готовых продуктово, находящиеся в зоне отгрузки
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName, string dateTimeNow)
+    public int GetCountOfOccupiedShipmentSlotsByParentName(string subjectParentName, long dateTimeNow)
     {
         //"SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment < CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment < " + dateTimeNow +  " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int countOfOccupiedShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -167,13 +170,13 @@ public class Content : MonoBehaviour
     }
     //Получаем количество занятых слотов(которые производят в данный момент) загрузки по имени родителя
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, string dateTimeNow)
+    public int GetCountOfOccupiedLoadingSlotsByParentName(string subjectParentName, long dateTimeNow)
     {
         Debug.Log("GetCountOfOccupiedLoadingSlotsByParentName(subjectParentName=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + ")");
         //string sql = "SELECT COUNT(*) FROM contents WHERE time_shipment>NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT COUNT(*) FROM contents WHERE time_shipment > " + dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int countOfOccupiedLoading;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -224,7 +227,7 @@ public class Content : MonoBehaviour
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Подготовка запроса
-    public string QueryAddContents(string subjectParentName, string subjectChildName, string timeLoading, string timeShipment, int outputQuantity)
+    public string QueryAddContents(string subjectParentName, string subjectChildName, long timeLoading, long timeShipment, int outputQuantity)
     {
         // SQLQuery = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
         string query = "INSERT INTO contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity) VALUES("+"'"+subjectParentName+"','"+subjectChildName+"','"+ timeLoading + "','" + timeShipment + "'," +outputQuantity+")";
@@ -235,7 +238,7 @@ public class Content : MonoBehaviour
     //Метод только добавляет в БД полученные значения
     // SQLQuery = "INSERT contents (subject_parent_name, subject_child_name, time_loading, time_shipment, output_quantity, user_id) VALUES ('"+subjectParentName+ "','" + subjectChildName + "','" + timeLoading + "','" + timeShipment + "'," + outputQuantity + "," + userId + ")";;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void AddContents(string subjectParentName, string subjectChildName, string timeLoading, string timeShipment, int outputQuantity)
+    public void AddContents(string subjectParentName, string subjectChildName, long timeLoading, long timeShipment, int outputQuantity)
     {     
         // Open a connection to the database.
         string dbName = "MyDatabase.sqlite";
@@ -255,12 +258,12 @@ public class Content : MonoBehaviour
     //Получаем ID первого стоящего на отгрузку объекта
     //query = "SELECT id_content FROM content WHERE time_shipment<? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetShipmentID(string subjectParentName, string dateTimeNow)
+    public int GetShipmentID(string subjectParentName, long dateTimeNow)
     {
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //string sqlExpression = "SELECT COUNT(*) FROM contents WHERE subject_parent_name=" + "'" + subjectChildName + "'" + "ORDER BY id_content";
-        string sqlExpression = "SELECT id_content FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) <" + "'"+dateTimeNow+"'"+ "AND subject_parent_name =" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        string sqlExpression = "SELECT id_content FROM contents WHERE time_shipment <" +dateTimeNow+ " AND subject_parent_name =" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
         int shipmentID;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -348,12 +351,12 @@ public class Content : MonoBehaviour
 
     //Получаем дату выгрузки предмета(который еще находится в производстве) по номеру слота и имени главного объекта
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetDateShipment(string subjectParentName, int numberSlot, string dateTimeNow)
+    public string GetDateShipment(string subjectParentName, int numberSlot, long dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =?ORDER BY id_content ASC LIMIT ?,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > "  + dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content ASC LIMIT " + numberSlot + ",1";
         string dateShipment;
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -376,15 +379,15 @@ public class Content : MonoBehaviour
     }
     //Получаем дату последнего стоящего в очереди объекта
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetTimeShipmentDesc(string subjectParentName, string dateTimeNow)
+    public long GetTimeShipmentDesc(string subjectParentName, long dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM ". $this->table_name. "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content DESC LIMIT 0,1";
    
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content DESC LIMIT 0,1";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " +  dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content DESC LIMIT 0,1";
         Debug.Log(sqlExpression);
-        string dateShipmentDesc;
+        long dateShipmentDesc;
         using (var connection = new SqliteConnection(dbUri))
         {
             connection.Open();
@@ -395,25 +398,25 @@ public class Content : MonoBehaviour
                 {
                     while (reader.Read())   // построчно считываем данные
                     {
-                        dateShipmentDesc = reader.GetValue(0).ToString();
+                        dateShipmentDesc = Convert.ToInt64(reader.GetValue(0));
                         return dateShipmentDesc;
                     }
                 }
             }
             connection.Close();
         }
-        return "Not Found";
+        return 0;
     }
     //Получаем Дату отгрузки первого объекта, находящегося в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public string GetTimeShipmentFirst(string subjectParentName, string dateTimeNow)
+    public long GetTimeShipmentFirst(string subjectParentName, long dateTimeNow)
     {
         //$query = "SELECT time_shipment FROM " . $this->table_name . "WHERE time_shipment>? AND user_id =? AND subject_parent_name =? ORDER BY id_content ASC LIMIT 0,1"; 
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //string sqlExpression = "SELECT CAST(time_shipment as nvarchar(20)) FROM contents WHERE time_shipment > " + "'" + dateTimeNow + "'" + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
-        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
-        string dateShipmentAsc;
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " + dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + " ORDER BY id_content ASC LIMIT 0,1";
+        long dateShipmentAsc;
         Debug.Log(sqlExpression);
         using (var connection = new SqliteConnection(dbUri))
         {
@@ -427,7 +430,7 @@ public class Content : MonoBehaviour
                     {
                         //reader.GetDateTime(0).ToString("dd.MM.yyyy HH:mm:ss");
                         //temp = reader.GetValue(0).T;
-                        dateShipmentAsc = reader.GetValue(0).ToString();
+                        dateShipmentAsc = Convert.ToInt64(reader.GetValue(0));
                         Debug.Log(dateShipmentAsc);
                         return dateShipmentAsc;
                     }
@@ -435,11 +438,11 @@ public class Content : MonoBehaviour
             }
             connection.Close();
         }
-        return "Not found";
+        return 0;
     }
     //Получить количество продуктов, находящихся в производстве
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCountOfOccupiedBuildingSlots(string subjectParentName,string dateTimeNow)
+    public int GetCountOfOccupiedBuildingSlots(string subjectParentName,long dateTimeNow)
     {
         //echo 'GetCountOfOccupiedShipmentSlotsByParentName($subjectParentName, $userID, $dateTimeNow)';
         //"SELECT COUNT(*) FROM contents WHERE time_shipment<NOW() AND user_id='" + userID + "' AND subject_parent_name = '" + subjectParentName + "' ORDER BY id_content";
@@ -447,7 +450,7 @@ public class Content : MonoBehaviour
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
         //$query = "SELECT output_quantity FROM " . $this->table_name . "WHERE id_content =? ";
-        string sqlExpression = "SELECT time_shipment FROM contents WHERE CAST(strftime('%s', time_shipment)  AS  integer) > CAST(strftime('%s', " + "'" + dateTimeNow + "'" + ")  AS  integer) AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
+        string sqlExpression = "SELECT time_shipment FROM contents WHERE time_shipment > " + dateTimeNow + " AND subject_parent_name=" + "'" + subjectParentName + "'" + "ORDER BY id_content";
         int count;
         using (var connection = new SqliteConnection(dbUri))
         {
