@@ -49,9 +49,9 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     void MouseDrag()
     {
-
     }
-    void MouseDown() {
+    void MouseDown() 
+    {
     }
         // Update is called once per frame
     void Update()
@@ -60,15 +60,15 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     private void OnMouseUp()
     {
-        MouseUp();
+        //MouseUp();
     }
     private void OnMouseDown()
     {
-        MouseDown();
+        //MouseDown();
     }
     private void OnMouseDrag()
     {
-        MouseDrag();
+        //MouseDrag();
     }
     public void MouseUp()//Когда отпускаеть мышь
     {

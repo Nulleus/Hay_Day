@@ -608,9 +608,7 @@ public class ProductionBuilding : MonoBehaviour
                 //Если таймер истек 
                 else
                 {
-                    //TimerEnable = false;
                     GetAllInfoSlots();
-                    //Debug.Log("TimerEnable = false;");
                     //Если проверка включена
                     if (CheckGetSubjectChildInTheProcessOfAssembly)
                     {
@@ -621,15 +619,7 @@ public class ProductionBuilding : MonoBehaviour
                         //Если в производстве нет предметов, проверять не обязательно
                         else
                         {
-                            //Получаем секунды до выгрузки первого объекта из производства
-                            //GetDifferenceDateInSeconds(SubjectName, 0);
                             CheckGetSubjectChildInTheProcessOfAssembly = false;
-                            //for (int i = 0; i <= MaxCountSlots; i++)
-                            //{
-                            //Debug.Log(i);
-                            //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
-                            //GetSubjectChildInTheProcessOfAssembly(SubjectName, i);
-                            //}
                         }
                     }
                 }
@@ -641,15 +631,15 @@ public class ProductionBuilding : MonoBehaviour
     public void GetDifferenceDateInSeconds(string subjectParentName, int numberSlot)
     {
         long dateTimeNow = GetDateTimeNow();
-        Debug.Log("dateTimeNow=" + dateTimeNow);
-        long dateShipment = Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
-        Debug.Log("dateShipment=" + dateShipment);
+        //Debug.Log("dateTimeNow=" + dateTimeNow);
+        //1+ нужно для синхронизации, чтобы выгрузка прошла позже того как выйдет таймер, иначе объект из выгрузки еще не будет находится в своем слоте
+        long dateShipment = 1+Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
+        //Debug.Log("dateShipment=" + dateShipment);
         var diff = dateShipment - dateTimeNow;
-        Debug.Log(diff);
-
+        //Debug.Log(diff);
         //Просрочена ли дата, если дата просрочена, тогда секунды будут увеличиваться
         if ((dateShipment >= dateTimeNow)&&(dateShipment != 0)){
-            Debug.Log("Дата не просрочена");
+            //Debug.Log("Дата не просрочена");
             //Дата не просрочена
             TimerEnable = true;
             CheckInBuilding = true;
@@ -657,14 +647,12 @@ public class ProductionBuilding : MonoBehaviour
             CheckGetSubjectChildInTheProcessOfAssembly = false;
             //Секунд до обновления слотов
             TimeBeforeStartRequest = Convert.ToSingle(diff);
-            Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
+            //Debug.Log("TimeBeforeStartRequest" + TimeBeforeStartRequest);
         }
             //В производстве пусто
         else
         {
-            Debug.Log("Дата просрочена");
-            //дата просрочена
-            //TimerEnable = false; 03.05.2023 стал false
+            //Debug.Log("Дата просрочена");
             TimerEnable = false;
             CheckGetSubjectChildInTheProcessOfAssembly = false;
             CheckInBuilding = false;
@@ -695,16 +683,12 @@ public class ProductionBuilding : MonoBehaviour
         {
             long dateTimeNow = GetDateTimeNow();
             //Получаем ID первого стоящего на отгрузку объекта
-            var ct = Data.GetComponent<Content>();
-            var ss = Data.GetComponent<SubjectSum>();
-            var ep = Data.GetComponent<ExperiencePoint>();
-            
-            int idContent = ct.GetShipmentID(subjectParentName, dateTimeNow);
+            int idContent = Data.GetComponent<Content>().GetShipmentID(subjectParentName, dateTimeNow);
             //Получение количества объектов на выходе по id_content
-			int countOutputQuantity = ct.GetCountOutputQuantity(idContent);
+			int countOutputQuantity = Data.GetComponent<Content>().GetCountOutputQuantity(idContent);
             //Получаем имя выгружаемого объекта
             List<string> allQuery = new List<string>();
-            string subjectChildName = ct.GetSubjectName(idContent);
+            string subjectChildName = Data.GetComponent<Content>().GetSubjectName(idContent);
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
             using (var connection = new SqliteConnection(dbUri))
@@ -715,18 +699,17 @@ public class ProductionBuilding : MonoBehaviour
                     try
                     {
                         //удаление строки с указанным id контента
-                        
-				        string queryOne = ct.QueryDeleteContent(idContent);
-                        allQuery.Add(queryOne);
-                        Debug.Log("Try");
+                        //Debug.Log("Try");
+                        string queryOne = Data.GetComponent<Content>().QueryDeleteContent(idContent);
+                        allQuery.Add(queryOne);                 
                         //Прибавляем удаленный контент в хранилище(subject_sum)
-				        string queryTwo = ss.QueryIncreasingSubjectSumCount(subjectChildName, countOutputQuantity);
+				        string queryTwo = Data.GetComponent<SubjectSum>().QueryIncreasingSubjectSumCount(subjectChildName, countOutputQuantity);
                         allQuery.Add(queryTwo);
                         //Количество очков за предмет
-                        int experiencePointsCount = ep.GetExperiencePoints(subjectChildName, "ingathering", "Local");
-                        Debug.Log("experiencePointsCount="+experiencePointsCount);
+                        int experiencePointsCount = Data.GetComponent<ExperiencePoint>().GetExperiencePoints(subjectChildName, "ingathering", "Local");
+                        //Debug.Log("experiencePointsCount="+experiencePointsCount);
                         //Прибавляем контент в хранилище(experiencePoint)
-                        string queryThree = ss.QueryIncreasingSubjectSumCount("experiencePoint", experiencePointsCount);
+                        string queryThree = Data.GetComponent<SubjectSum>().QueryIncreasingSubjectSumCount("experiencePoint", experiencePointsCount);
                         allQuery.Add(queryThree);
                         //Тут нужна анимация добавления очков опыта
                         foreach (var item in allQuery)
@@ -755,16 +738,14 @@ public class ProductionBuilding : MonoBehaviour
             }
         }
     }
-    //SubjectChildInTheProcessOfAssembly
     //Получаем продукт, находящийся в производстве для каждого слота по номеру, идентификатору пользователя
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
-        Debug.Log("GetSubjectChildInTheProcessOfAssembly(" + subjectParentName + "," + numberSlot+");");
-        //Date format: 2015-01-01 22:12:00 for SQLite
+        //Debug.Log("GetSubjectChildInTheProcessOfAssembly(" + subjectParentName + "," + numberSlot+");");
         long dateTimeNow = GetDateTimeNow();       
         string subjectChildInTheProcessOfAssembly = Data.GetComponent<Content>().GetSubjectChildInTheProcessOfAssembly(subjectParentName, numberSlot, dateTimeNow);
-        Debug.Log("GetSubjectChildInTheProcessOfAssembly|" + "dateTimeNow=" + dateTimeNow + ",subjectChildInTheProcessOfAssembly=" + subjectChildInTheProcessOfAssembly);
+        //Debug.Log("GetSubjectChildInTheProcessOfAssembly|" + "dateTimeNow=" + dateTimeNow + ",subjectChildInTheProcessOfAssembly=" + subjectChildInTheProcessOfAssembly);
         SubjectsChildInTheProcessOfAssembly[numberSlot] = subjectChildInTheProcessOfAssembly;
     }
     //Проверяем, последний ли ингредиент, для field собираемся использовать 
@@ -774,36 +755,32 @@ public class ProductionBuilding : MonoBehaviour
         if (locationDataProcessing == "Local")
         {
             //Ассоциация объекта(Отправляем имя производственного здания, получаем ассоциацию field1->field)
-            var aSubject = Data.GetComponent<AssociationSubject>();
-            string subjectAssociation = aSubject.GetAssociation(productionBuildingName);
+            string subjectAssociation = Data.GetComponent<AssociationSubject>().GetAssociation(productionBuildingName);
             //Получаем список ингредиентов (ингредиент, количество)
-            var ingredient = Data.GetComponent<Ingredient>();
-            var ss = Data.GetComponent<SubjectSum>();
-            var content = Data.GetComponent<Content>();
             IDictionary<string, int> allIngredients = new Dictionary<string, int>();
-            allIngredients = ingredient.GetAllIngredients(subjectName);
-            Debug.Log(allIngredients);
+            allIngredients = Data.GetComponent<Ingredient>().GetAllIngredients(subjectName);
+            //Debug.Log(allIngredients);
             //Если производственное здание не является полем
             if (subjectAssociation != "field") {
                 foreach (var item in allIngredients) {
                     //Проверяем количество ингредиентов, является ли данный ингредиент последним на складе, если является, тогда предупреждаем пользователя, только если это культура для посева
-				    string queryCountCheck = ss.QueryReducingSubjectSumCount(item.Key,item.Value);
-                    Debug.Log("queryCountCheck=" + queryCountCheck);
+				    string queryCountCheck = Data.GetComponent<SubjectSum>().QueryReducingSubjectSumCount(item.Key,item.Value);
+                    //Debug.Log("queryCountCheck=" + queryCountCheck);
                     //Получаем количество ингредиентов на складе
-				    int countCheck = ss.GetSubjectSumCount(item.Key, "Local");
-                    Debug.Log("countCheck=" + countCheck);
+				    int countCheck = Data.GetComponent<SubjectSum>().GetSubjectSumCount(item.Key, "Local");
+                    //Debug.Log("countCheck=" + countCheck);
                     //Получаем количество объектов, находящихся в производстве/отгрузке
-                    int countCheckInContent = content.GetCountAllSlotsBySubjectName(subjectName);
-                    Debug.Log("countCheckInContent=" + countCheckInContent);
+                    int countCheckInContent = Data.GetComponent<Content>().GetCountAllSlotsBySubjectName(subjectName);
+                    //Debug.Log("countCheckInContent=" + countCheckInContent);
                     //Нужен массив с несколькими предметами для отображения пользователю
                     if ((countCheck - item.Value <= 0) && (countCheckInContent <= 0)) {
-                        Debug.Log("if ((countCheck - item.Value == 0) && (countCheckInContent == 0))=");
+                        //Debug.Log("if ((countCheck - item.Value == 0) && (countCheckInContent == 0))=");
                         //Здесь должен быть массив с ингредиентами которых почти не осталось
                         List<string> lastIngredients = new List<string>();
 				        lastIngredients.Add(item.Key);
                         if (lastIngredients.Count > 0)
                         {
-                            Debug.Log(lastIngredients);
+                            //Debug.Log(lastIngredients);
                             return true;
                         }                       
                     }
@@ -820,18 +797,17 @@ public class ProductionBuilding : MonoBehaviour
     {
         
         long dateTimeNow = GetDateTimeNow();
-        Debug.Log("GetGetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
+        //Debug.Log("GetGetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
         var c = Data.GetComponent<Content>();
         string subjectChildInTheShipment = c.GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
-        Debug.Log("subjectChildInTheShipment="+ subjectChildInTheShipment);
+        //Debug.Log("subjectChildInTheShipment="+ subjectChildInTheShipment);
         SubjectsChildInTheShipment[numberSlot] = subjectChildInTheShipment;
     }
     public long GetDateTimeNow()
     {
-        //var dateTimeNow = DateTime.Now.ToFileTime();
+        //Время в формате timestamp
         var dateTimeNow = ((int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds);
-        Debug.Log("dateTimeNow:" + dateTimeNow);
-        //string dateTimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //Debug.Log("dateTimeNow:" + dateTimeNow);
         return dateTimeNow;
     }
 }
