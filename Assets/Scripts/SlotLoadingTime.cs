@@ -22,8 +22,19 @@ public class SlotLoadingTime : MonoBehaviour
     void Update()
     {
         var seconds = ProductionBuildingParent.GetComponent<ProductionBuilding>().TimeBeforeStartRequest;
-        SecondsToText = Format(seconds);
-        gameObject.GetComponent<Text>().text = SecondsToText;
+        //Debug.Log("seconds="+seconds);
+        if (seconds-2 <= 0)
+        {
+            //Debug.Log("seconds<" + seconds);
+            gameObject.GetComponent<Text>().text = "";
+        }
+        if (seconds-2 > 0)
+        {
+            //Debug.Log("seconds>" + seconds);
+            SecondsToText = Format(seconds - 2);
+            gameObject.GetComponent<Text>().text = SecondsToText;
+        }
+
         //Получаем количество секунд
 
         //Разделяем на минуты и секунды

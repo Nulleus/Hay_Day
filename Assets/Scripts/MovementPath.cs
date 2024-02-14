@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class MovementPath : MonoBehaviour
 {
@@ -20,7 +21,24 @@ public class MovementPath : MonoBehaviour
     public Transform[] PathElements;
     //Остановить, если достигли последней точки (false по умолчанию)
     public bool FinishIfTheEnd=false;
+    public string SubjectName;
+    public GameObject StartObject;
+    //Отображение текста для количества объектов
+    public GameObject Quantity;
 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetValueTextPro(string value)
+    {
+        if (Quantity.GetComponent<TMPro.TextMeshProUGUI>() != null)
+        {
+            Quantity.GetComponent<TMPro.TextMeshProUGUI>().text = value;
+        }
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void StartAnimation()
+    {
+        StartObject.SetActive(true);
+    }
     //Отображает линии между точками пути
     public void OnDrawGizmos()
     {
@@ -105,7 +123,6 @@ public class MovementPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

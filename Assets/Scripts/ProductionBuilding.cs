@@ -34,7 +34,7 @@ public class ProductionBuilding : MonoBehaviour
     public GameObject Data;
     [ShowInInspector]
     public string SubjectName;
-    
+    public GameObject Lines;
     public int MaxCountSlots;
     //Имя находящегося в производстве предмета
     public string[] SubjectsChildInTheProcessOfAssembly = new string[10];
@@ -632,8 +632,8 @@ public class ProductionBuilding : MonoBehaviour
     {
         long dateTimeNow = GetDateTimeNow();
         //Debug.Log("dateTimeNow=" + dateTimeNow);
-        //1+ нужно для синхронизации, чтобы выгрузка прошла позже того как выйдет таймер, иначе объект из выгрузки еще не будет находится в своем слоте
-        long dateShipment = 1+Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
+        //2+ нужно для синхронизации, чтобы выгрузка прошла позже того как выйдет таймер, иначе объект из выгрузки еще не будет находится в своем слоте
+        long dateShipment = 2+Data.GetComponent<Content>().GetTimeShipmentFirst(subjectParentName, dateTimeNow);
         //Debug.Log("dateShipment=" + dateShipment);
         var diff = dateShipment - dateTimeNow;
         //Debug.Log(diff);
@@ -711,6 +711,12 @@ public class ProductionBuilding : MonoBehaviour
                         //Прибавляем контент в хранилище(experiencePoint)
                         string queryThree = Data.GetComponent<SubjectSum>().QueryIncreasingSubjectSumCount("experiencePoint", experiencePointsCount);
                         allQuery.Add(queryThree);
+                        if (subjectChildName != "Error")
+                        {
+                            Lines.GetComponent<CloneObjectLines>().Clone(subjectChildName, countOutputQuantity);
+                            //Анимация очков опыта
+                            Lines.GetComponent<CloneObjectLines>().Clone("experience", experiencePointsCount);
+                        }                      
                         //Тут нужна анимация добавления очков опыта
                         foreach (var item in allQuery)
                         {
@@ -731,6 +737,7 @@ public class ProductionBuilding : MonoBehaviour
                     {
                         //Откатываем изменения
                         tra.Rollback();
+                        connection.Close();
                         Debug.Log("Запросы завершились неудачно! Ошибка: "+ex);
                         throw;
                     }

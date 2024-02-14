@@ -24,15 +24,20 @@ public class FollowPath : MonoBehaviour
     private IEnumerator<Transform> PointInPath;
     //Имя анимации для объекта
     public string SubjectName;
+    public GameObject Lines;
+    
 
     void Start()
     {
         StartAnimationMove(SubjectName);
+        
     }
+
     //Запуск анимации движения
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void StartAnimationMove(string subjectName)
     {
+        Speed = Random.Range(300, 500);
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
         SetSprite(subjectName);
@@ -58,6 +63,7 @@ public class FollowPath : MonoBehaviour
     }
     private void OnEnable()
     {
+        SubjectName = Lines.GetComponent<MovementPath>().SubjectName;
         StartAnimationMove(SubjectName);
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -86,6 +92,13 @@ public class FollowPath : MonoBehaviour
                 transform.position = (Vector2)startedPoint.position;
                 SetSprite("empty");
                 gameObject.SetActive(false);
+                //Удаляем только если это клон, из основного объекта копируются клоны
+                if (Lines.name == "Lines(Clone)")
+                {
+                    DestroyImmediate(Lines);
+                }
+                
+
             }
         }
         if (Type == MovementType.Movement)
