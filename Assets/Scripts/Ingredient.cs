@@ -90,6 +90,7 @@ public class Ingredient : MonoBehaviour
 
                 }
             }
+            connection.Close();
         }
         return 0;
     }
@@ -120,6 +121,7 @@ public class Ingredient : MonoBehaviour
 
                 }
             }
+            connection.Close();
         }
         return "Error";
     }
@@ -146,6 +148,7 @@ public class Ingredient : MonoBehaviour
                     }
                 }
             }
+            connection.Close();
         }
         return 0;
     }
@@ -175,6 +178,7 @@ public class Ingredient : MonoBehaviour
                     return allIngredients;
                 }
             }
+            connection.Close();
         }
         return allIngredients;
     }

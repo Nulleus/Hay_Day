@@ -93,6 +93,7 @@ public class SubjectSum : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")

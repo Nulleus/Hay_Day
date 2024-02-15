@@ -51,7 +51,8 @@ public class PriceSubject : MonoBehaviour
                         }
                     }
                 }
-            }
+                connection.Close();
+            }          
         }
         //diamonds_for_one_ingredients
         if (currency == "diamond")
@@ -75,6 +76,7 @@ public class PriceSubject : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         return 0;

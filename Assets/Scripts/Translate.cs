@@ -41,6 +41,7 @@ public class Translate : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")
@@ -76,7 +77,9 @@ public class Translate : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
+
         }
         if (locationDataProcessing == "Server")
         {
@@ -110,6 +113,7 @@ public class Translate : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")

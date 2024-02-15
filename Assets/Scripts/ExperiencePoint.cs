@@ -41,6 +41,7 @@ public class ExperiencePoint : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
             return 0;
         }

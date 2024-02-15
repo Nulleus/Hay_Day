@@ -43,6 +43,7 @@ public class AssociationSubject : MonoBehaviour
 
                 }
             }
+            connection.Close();
         }
         return "null";
     }

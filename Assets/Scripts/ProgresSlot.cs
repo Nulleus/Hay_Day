@@ -78,7 +78,9 @@ public class ProgresSlot : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
+
         }
         if (locationDataProcessing == "Server")
         {

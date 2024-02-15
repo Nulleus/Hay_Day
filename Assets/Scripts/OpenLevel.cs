@@ -122,6 +122,7 @@ public class OpenLevel : MonoBehaviour
 
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")
@@ -175,6 +176,7 @@ public class OpenLevel : MonoBehaviour
                         return allSubjectName;
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")
@@ -224,6 +226,7 @@ public class OpenLevel : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PanelSlots : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PanelSlots : MonoBehaviour
     //
     public GameObject[] PanelSlot;
     // Start is called before the first frame update
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void Clone(string subjectName, int subjectCount)
     {
         gameObject.GetComponent<CloneObject>().Clone(subjectName, subjectCount);
@@ -35,6 +37,7 @@ public class PanelSlots : MonoBehaviour
     {
         DeleteClones();
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void DeleteClones()
     {
         gameObject.GetComponent<CloneObject>().DeleteClones();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems; // Required when using Event data.
+using Sirenix.OdinInspector;
 
 public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -29,6 +30,7 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         MouseDown();
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetQuantity()
     {
         return Convert.ToInt32(Quantity.GetComponent<Text>().text);
@@ -51,12 +53,13 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void OnEnable()
     {
-        SetTranslateInfoAll(SubjectName);
+        
     }
     void Update()
     {
 
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetTranslateInfoAll(string subjectName)
     {
         var displayName = Data.GetComponent<Translate>().GetDisplayName(subjectName, "RU", "Local");
@@ -64,6 +67,7 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         var timeBuilding = Data.GetComponent<Translate>().GetTimeBuildingDisplay(subjectName, "RU", "Local");
         InfoPanel.GetComponent<InfoPanel>().SetProperties(displayName, description, timeBuilding);
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetSprite(string subjectName) 
     {
         if (subjectName != "")
@@ -84,12 +88,14 @@ public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void MouseDown()//Когда нажимаешь кнопку мыши
     {
+        SetTranslateInfoAll(SubjectName);
         InfoPanel.SetActive(true);
     }
     private void MouseUp()//Когда отпускашь кнопку мыши
     {
         InfoPanel.SetActive(false);
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     void OnClear() //Очистка переменных
     {
         //Тут должен быть массив с объектами, которые необходимо очистить

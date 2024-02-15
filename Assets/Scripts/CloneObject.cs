@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class CloneObject : MonoBehaviour
 {
@@ -9,14 +10,14 @@ public class CloneObject : MonoBehaviour
     public Vector3 PositionCloneEnd; //Расположение последнего клонированного объекта
 
     public GameObject ParentObject; //Родительский объект
-    public int offsetX; //Смещение по Х
+    
 
     // Start is called before the first frame update
     private void Awake()
     {
-        PositionBeginner = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
-        PositionCloneEnd = PositionBeginner;
-        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
+        //PositionBeginner = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
+        //PositionCloneEnd = PositionBeginner;
+        //Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
         //Clone("Test", 890);
     }
     void Start()
@@ -26,27 +27,32 @@ public class CloneObject : MonoBehaviour
     }
     private void OnEnable()
     {
-        
+        PositionBeginner = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
+        PositionCloneEnd = PositionBeginner;
     }
 
     // Update is called once per frame
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void Clone(string subjectName, int subjectCount)
     {
         //PositionCloneEnd = ObjectFromGetWidth.transform.position; //Присваиваем первоначальное значение переменной 
         Debug.Log(PositionCloneEnd);
         Debug.Log("ObjectFromGetWidth.GetComponent<Rect>().width=" + ObjectFromGetWidth.GetComponent<RectTransform>().rect.width);
-        GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width + offsetX))
+        float offsetX = ObjectFromGetWidth.GetComponent<RectTransform>().rect.width;
+        GameObject clone = Instantiate(ObjectFromGetWidth, new Vector3((PositionCloneEnd.x + (ObjectFromGetWidth.GetComponent<RectTransform>().rect.width))
         , ObjectFromGetWidth.transform.position.y, ObjectFromGetWidth.transform.position.z), Quaternion.identity, ParentObject.transform);
         //Добавим клону свойства 
         clone.SetActive(true);
         clone.GetComponent<PanelSlot>().SubjectName = subjectName;
         Debug.Log("subjectName="+subjectName);
         clone.GetComponent<PanelSlot>().SetSprite(subjectName);
+        clone.GetComponent<PanelSlot>().InfoPanel.SetActive(false);
         clone.GetComponent<PanelSlot>().InfoPanel.GetComponent<InfoPanel>().SubjectName = subjectName;
         clone.GetComponent<PanelSlot>().SetQuantity(subjectCount);
         PositionCloneEnd = clone.transform.position;//Расположение созданного клона
 
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void DeleteClones() //Удаление клонов
     {
         PositionCloneEnd = PositionBeginner;

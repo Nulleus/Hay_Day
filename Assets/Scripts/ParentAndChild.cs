@@ -217,7 +217,8 @@ public class ParentAndChild : MonoBehaviour
                         }
                     }
                 }
-            }
+                connection.Close();
+            }         
         }
         if (locationDataProcessing == "Server")
         {
@@ -253,6 +254,7 @@ public class ParentAndChild : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")
@@ -287,6 +289,7 @@ public class ParentAndChild : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")
@@ -321,6 +324,7 @@ public class ParentAndChild : MonoBehaviour
                         return childAllName;
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")

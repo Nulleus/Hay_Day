@@ -72,6 +72,7 @@ public class OutputQuantity : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
         }
         if (locationDataProcessing == "Server")

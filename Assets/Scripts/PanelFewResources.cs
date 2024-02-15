@@ -41,11 +41,14 @@ public class PanelFewResources : MonoBehaviour
     {
         UserActionSelection = actionSelectionName;
     }
-    //Очистка панели
+    
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetButtonBuyTextCount()
     {
         ButtonBuy.GetComponent<ButtonScript>().SetAllPriceSubjectsText(AllCost);
     }
+    //Очистка панели
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void CleanerPanel()
     {
         PanelSlots.GetComponent<PanelSlots>().DeleteClones();
@@ -60,6 +63,7 @@ public class PanelFewResources : MonoBehaviour
     {      
         gameObject.SetActive(false);
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AddSubjectAndCount(string subjectName, int subjectCount)
     {
         //SubjectAndCount.Add(subjecName, subjectCount);

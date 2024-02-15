@@ -209,10 +209,10 @@ public class ProductionBuildingUI : MonoBehaviour
                             Debug.Log("ui_interface");
                                 return;
                             }
-                            if (result.gameObject.name == "ProductionBuilding")
+                        if ((result.gameObject.name == "ProductionBuildingBakery") | (result.gameObject.name == "ProductionBuildingDairy"))
                             {
                                 //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                                Debug.Log("ProductionBuilding Click");
+                                Debug.Log("ProductionBuilding Click="+ result.gameObject.name);
                                 MouseDown();
                             }
                         }
@@ -267,10 +267,10 @@ public class ProductionBuildingUI : MonoBehaviour
                             Debug.Log("ui_interface");
                             return;
                         }
-                        if (result.gameObject.name == "ProductionBuilding")
+                        if ((result.gameObject.name == "ProductionBuildingBakery")| (result.gameObject.name == "ProductionBuildingDairy"))
                         {
                             //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                            Debug.Log("ProductionBuilding Click");
+                            Debug.Log("ProductionBuilding Click="+ result.gameObject.name);
                             MouseUp();
                         }
                     }
@@ -412,6 +412,7 @@ public class ProductionBuildingUI : MonoBehaviour
         }
         else//Если IsMoveModeOn==false
         {
+            Debug.Log("Click=" + gameObject.name);
             Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
             if (SlotsPredmets.activeSelf)
             {

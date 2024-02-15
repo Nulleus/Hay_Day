@@ -68,6 +68,7 @@ public class BuildingTime : MonoBehaviour
 
                     }
                 }
+                connection.Close();
             }
             return -1;
         }

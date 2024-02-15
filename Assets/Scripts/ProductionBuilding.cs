@@ -248,8 +248,7 @@ public class ProductionBuilding : MonoBehaviour
             List<string> allQuery = new List<string>();
             Debug.Log("allQuery=" + allQuery);
             //Получаем, сколько у пользователя алмазов
-            var ss = Data.GetComponent<SubjectSum>();
-            int countsSubject = ss.GetSubjectSumCount("diamond", "Local");
+            int countsSubject = Data.GetComponent<SubjectSum>().GetSubjectSumCount("diamond", "Local");
             Debug.Log("countsSubject="+countsSubject);
             //Если предметов(алмазы) достаточно
             if (countsSubject >= allCost)
@@ -266,11 +265,11 @@ public class ProductionBuilding : MonoBehaviour
                             Debug.Log("Try");
                             foreach (var item in missingIngredients)
                             {
-                                string query = ss.QueryIncreasingSubjectSumCount(item.ingredient_name, item.count_ingredients);
+                                string query = Data.GetComponent<SubjectSum>().QueryIncreasingSubjectSumCount(item.ingredient_name, item.count_ingredients);
                                 Debug.Log(query);
                                 allQuery.Add(query);
                             }
-                            string queryTwo = ss.QueryReducingSubjectSumCount("diamond", allCost);
+                            string queryTwo = Data.GetComponent<SubjectSum>().QueryReducingSubjectSumCount("diamond", allCost);
                             allQuery.Add(queryTwo);
                             foreach (var item in allQuery)
                             {
@@ -286,6 +285,8 @@ public class ProductionBuilding : MonoBehaviour
                         {
                             //Откатываем изменения
                             tra.Rollback();
+                            //Закрываем соединение
+                            connection.Close();
                             Debug.Log("Catch: "+ex);
                             throw;
                         }
@@ -489,10 +490,6 @@ public class ProductionBuilding : MonoBehaviour
             string dbName = "MyDatabase.sqlite";
             string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
             List<string> allQuery = new List<string>();
-            var ss = Data.GetComponent<SubjectSum>();
-            var bt = Data.GetComponent<BuildingTime>();
-            var ct = Data.GetComponent<Content>();
-            var oq = Data.GetComponent<OutputQuantity>();
             using (var connection = new SqliteConnection(dbUri))
             {
                 connection.Open();
@@ -503,7 +500,7 @@ public class ProductionBuilding : MonoBehaviour
                         Debug.Log("Try");
                         foreach (var item in allIngredients)
                         {
-                            string query = ss.QueryReducingSubjectSumCount(item.Key, item.Value);
+                            string query = Data.GetComponent<SubjectSum>().QueryReducingSubjectSumCount(item.Key, item.Value);
                             Debug.Log(query);
                             allQuery.Add(query);
                         }
@@ -512,9 +509,9 @@ public class ProductionBuilding : MonoBehaviour
 					    string subjectChildName = subjectName;
                         //Получаем время производства объекта из таблицы building_time
 
-					    int timeBuildingSubject = bt.GetTimeBuilding(subjectChildName, "Local");
+					    int timeBuildingSubject = Data.GetComponent<BuildingTime>().GetTimeBuilding(subjectChildName, "Local");
                         //Получаем дату выгрузки, последнего предмета, находящегося в процессе изготовления
-					    long dateShipmentEndBuildingSubject = ct.GetTimeShipmentDesc(productionBuildingName, timeLoading);
+					    long dateShipmentEndBuildingSubject = Data.GetComponent<Content>().GetTimeShipmentDesc(productionBuildingName, timeLoading);
                         Debug.Log("dateShipmentEndBuildingSubject=" + dateShipmentEndBuildingSubject);
                         if (dateShipmentEndBuildingSubject==0) 
                         {
@@ -522,11 +519,11 @@ public class ProductionBuilding : MonoBehaviour
                             //Если мы находится в этом if, это значит что время отгрузки последнего предмета равна текущей дате
                             long timeShipment = timeLoading+timeBuildingSubject;
                             Debug.Log("timeShipment=" + timeShipment);
-                            int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+                            int outputQuantityCount = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName, "Local");
                             Debug.Log("outputQuantityCount=" + outputQuantityCount);
                             //DateTime convertTimeShipment = DateTime.ParseExact(timeShipment, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
                             //DateTime convertTimeShipment = DateTime.ParseExact(dateShipmentEndBuildingSubject, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture.DateTimeFormat);
-                            string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                            string query = Data.GetComponent<Content>().QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
                             allQuery.Add(query);
                             Debug.Log(query);
                         } 
@@ -536,9 +533,9 @@ public class ProductionBuilding : MonoBehaviour
                             long timeShipment = dateShipmentEndBuildingSubject+timeBuildingSubject;
                             Debug.Log("TimeShipment=" + timeShipment);
                             //Количество объектов на выходе
-					        int outputQuantityCount = oq.GetOutputQuantityBySubjectName(subjectChildName, "Local");
+					        int outputQuantityCount = Data.GetComponent<OutputQuantity>().GetOutputQuantityBySubjectName(subjectChildName, "Local");
                             Debug.Log("outputQuantityCount=" + outputQuantityCount);
-                            string query = ct.QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
+                            string query = Data.GetComponent<Content>().QueryAddContents(subjectParentName, subjectChildName, timeLoading, timeShipment, outputQuantityCount);
                             Debug.Log(query);
                             allQuery.Add(query);
                         }
@@ -559,6 +556,8 @@ public class ProductionBuilding : MonoBehaviour
                     {
                         //Откатываем изменения
                         tra.Rollback();
+                        //Закрываем соединение 
+                        connection.Close();
                         Debug.Log("Catch: "+ex);
                         throw;
                     }
@@ -737,6 +736,7 @@ public class ProductionBuilding : MonoBehaviour
                     {
                         //Откатываем изменения
                         tra.Rollback();
+                        //Закрываем соединение
                         connection.Close();
                         Debug.Log("Запросы завершились неудачно! Ошибка: "+ex);
                         throw;
@@ -805,8 +805,7 @@ public class ProductionBuilding : MonoBehaviour
         
         long dateTimeNow = GetDateTimeNow();
         //Debug.Log("GetGetSubjectChildInTheShipment=" + subjectParentName + ",dateTimeNow=" + dateTimeNow + "numberSlot=" + numberSlot + ")");
-        var c = Data.GetComponent<Content>();
-        string subjectChildInTheShipment = c.GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
+        string subjectChildInTheShipment = Data.GetComponent<Content>().GetSubjectChildInTheShipment(subjectParentName, numberSlot, dateTimeNow);
         //Debug.Log("subjectChildInTheShipment="+ subjectChildInTheShipment);
         SubjectsChildInTheShipment[numberSlot] = subjectChildInTheShipment;
     }

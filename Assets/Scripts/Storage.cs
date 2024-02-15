@@ -41,6 +41,7 @@ public class Storage : MonoBehaviour
                         }
                     }
                 }
+                connection.Close();
             }
             return "Not Found";
         }
