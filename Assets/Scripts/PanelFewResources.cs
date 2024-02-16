@@ -23,6 +23,7 @@ public class PanelFewResources : MonoBehaviour
     public bool CheckResponseAllCost;
     public GameObject MainCamera;
     public bool MainCameraBlock;
+    public GameObject BlockObject;
 
     //[ShowInInspector]
 
@@ -60,7 +61,8 @@ public class PanelFewResources : MonoBehaviour
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void CloseObject()
-    {      
+    {
+        BlockObject.GetComponent<BlockObject>().SetBlockObjectStatus(false);
         gameObject.SetActive(false);
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -93,6 +95,8 @@ public class PanelFewResources : MonoBehaviour
     public void Show()
     {
         Debug.Log("Show");
+        //Блокируем весь нижний слой
+        BlockObject.GetComponent<BlockObject>().SetBlockObjectStatus(true);
         PanelFewResourceBox.SetActive(true);
 
 

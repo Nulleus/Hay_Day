@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
 
 
-public class ProductionBuildingUI : MonoBehaviour
+public class ProductionBuildingUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
 {
     //==============Свойства здания=======================//
     [SerializeField]
@@ -26,6 +26,7 @@ public class ProductionBuildingUI : MonoBehaviour
     int PriceDiamondsForMaxTimes;//Стоимость ускорения постройки здания в алмазах
     int OpenSlotsDefault;//Открытых слотов по умолчанию(думаю это не пригодится)
     int OpenSlots; //Открытых слотов
+    [SerializeField]
     Vector3 PrimaryPosition;
     string Temp;
     public Coroutine UserWaitingCoroutine; //Ожидание пользователя
@@ -64,6 +65,35 @@ public class ProductionBuildingUI : MonoBehaviour
     //Слоты с отгруженными предметами
     [SerializeField]
     GameObject SlotsShipment;
+    [SerializeField]
+    GameObject BlockObject;
+    [SerializeField]
+    GameObject ProductionBuildingSendRequest;
+    public bool CheckBlockObject()
+    {
+        return BlockObject.GetComponent<BlockObject>().GetBlockObjectStatus();
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!CheckBlockObject())
+        {
+            MouseUp();
+        }      
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (!CheckBlockObject())
+        {
+            MouseDown();
+        }
+    }
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        if (!CheckBlockObject())
+        {
+            MouseDrag();
+        }
+    }
     public void SetLastMapColliderColor(string color)
     {
         LastMapColliderColor = color;
@@ -177,162 +207,6 @@ public class ProductionBuildingUI : MonoBehaviour
     /// <returns>true if mouse or first touch is over any event system object ( usually gui elements )</returns>
 
 
-    void CheckInput()
-    {
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
-        List<RaycastResult> raycastResult = new List<RaycastResult>();
-        // Track a single touch as a direction control.
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            // Handle finger movements based on TouchPhase
-            switch (touch.phase)
-            {
-                //When a touch has first been detected, change the message and record the starting position
-                case TouchPhase.Began:
-                    // Check if finger is over a UI element
-
-                        Debug.Log("TouchPhase.Began:");
-                        Debug.Log("!!");
-                        pointer.position = touch.position;
-                        EventSystem.current.RaycastAll(pointer, raycastResult);
-
-                        foreach (RaycastResult result in raycastResult)
-                        {
-                            Debug.Log("!!!");
-                            Debug.Log(result.gameObject.name);
-                            Debug.Log(result.gameObject.tag);
-                        if (result.gameObject.tag == "ui_interface")
-                            {
-                            
-                            Debug.Log("ui_interface");
-                                return;
-                            }
-                        if ((result.gameObject.name == "ProductionBuildingBakery") | (result.gameObject.name == "ProductionBuildingDairy"))
-                            {
-                                //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                                Debug.Log("ProductionBuilding Click="+ result.gameObject.name);
-                                MouseDown();
-                            }
-                        }
-                        raycastResult.Clear();
-                        
-                    break;
-
-                //Determine if the touch is a moving touch
-                case TouchPhase.Moved:
-                    // Check if finger is over a UI element
-
-                        Debug.Log("TouchPhase.Moved");
-                        Debug.Log("!!");
-                        pointer.position = touch.position;
-                        EventSystem.current.RaycastAll(pointer, raycastResult);
-
-                        foreach (RaycastResult result in raycastResult)
-                        {
-                            Debug.Log("!!!");
-                            Debug.Log(result.gameObject.name);
-                            Debug.Log(result.gameObject.tag);
-                            if (result.gameObject.tag == "ui_interface")
-                            {
-
-                                Debug.Log("ui_interface");
-                                return;
-                            }
-                            else
-                            {
-                                //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                                Debug.Log("Moved");
-                                MouseDrag();
-                            }
-                        }
-                        raycastResult.Clear();
-                    break;
-
-                case TouchPhase.Ended:
-                    Debug.Log("TouchPhase.Ended:");
-                    Debug.Log("!!");
-                    pointer.position = touch.position;
-                    EventSystem.current.RaycastAll(pointer, raycastResult);
-
-                    foreach (RaycastResult result in raycastResult)
-                    {
-                        Debug.Log("!!!");
-                        Debug.Log(result.gameObject.name);
-                        Debug.Log(result.gameObject.tag);
-                        if (result.gameObject.tag == "ui_interface")
-                        {
-
-                            Debug.Log("ui_interface");
-                            return;
-                        }
-                        if ((result.gameObject.name == "ProductionBuildingBakery")| (result.gameObject.name == "ProductionBuildingDairy"))
-                        {
-                            //result.gameObject.GetComponent<ButtonController>().ButtonDown();
-                            Debug.Log("ProductionBuilding Click="+ result.gameObject.name);
-                            MouseUp();
-                        }
-                    }
-                    raycastResult.Clear();
-                    break;
-            }
-        }
-
-        // Check if there is a touch
-        /*
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-
-        }
-        // Check if there is a touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-
-        }
-        // Check if there is a touch
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-
-        }
-        */
-        /*
-        // Check if the left mouse button was clicked
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Check if the mouse was clicked over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                Debug.Log("Input.GetMouseButtonDown(0)");
-                MouseDown();
-            }
-            else
-            {
-                Debug.Log("Clicked on the UI");
-                return;
-            }
-        }
-        
-        //Update the Text on the screen depending on current TouchPhase, and the current direction vector
-        // Check if the left mouse button was clicked
-        if (Input.GetMouseButtonUp(0))
-        {
-            // Check if the mouse was clicked over a UI element
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                Debug.Log("Input.GetMouseButtonUp(0)");
-                MouseUp();
-            }
-            else
-            {
-                Debug.Log("Clicked on the UI");
-                return;
-            }
-        }
-        */
-
-        // Track a single touch as a direction control.
-    }
     // Update is called once per frame
     void MouseDrag()
     {
@@ -346,10 +220,8 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     void Update()
     {
-        CheckInput();
         SlotPredmetSetActiveCheck();
         SlotPanelSetActiveCheck();
-
         MoveModeCheck();
         CountModeCheck();
 
@@ -385,6 +257,7 @@ public class ProductionBuildingUI : MonoBehaviour
 
     public void MouseUp()//Когда отпускаешь кнопку
     {
+        
         Count = 0;
         IsCountOn = false;
         Arrow.GetComponent<Arrow>().ClearBrushColorAll();
@@ -432,6 +305,7 @@ public class ProductionBuildingUI : MonoBehaviour
     }
     public void MouseDown()//Когда нажимаешь кнопку
     {
+        ProductionBuildingSendRequest.GetComponent<ButtonScript>().ProductionBuildingSendRequest = gameObject;
         if (IsMoveModeOn)//Если режим перемещения активирован
         {
             Collider.GetComponent<j1_collider>().MoveMode = IsMoveModeOn;
@@ -442,9 +316,11 @@ public class ProductionBuildingUI : MonoBehaviour
         }
         if (IsMoveModeOn == false)//Если режим перемещения не активирован
         {
+            //Передеаем камере, к какому объекту нужно двигаться
+            MainCamera.GetComponent<ApproachingCamera>().Target = gameObject;
             //Двигаем камеру к объекту
             MainCamera.GetComponent<ApproachingCamera>().ApproachingStatus = true;
-            PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение пекарни
+            PrimaryPosition = gameObject.transform.position;//Сохраняем первоначальное положение производственного здания
             Arrow.SetActive(true);//Активируем стрелку
             Count = 0;//Обнуляем счетчик
             IsCountOn = true;//Запускаем счетчик 

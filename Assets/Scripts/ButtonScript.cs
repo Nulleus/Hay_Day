@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // Required when using Event data.
 
-public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
 {
     //Откуда ожидать ответа(объект, выполняющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
@@ -17,6 +17,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public GameObject ButtonTextInfo; //Текст на кнопке с ее назначением
     //Объект с количеством алмазов
     public GameObject DiamondQuantity;
+    public GameObject BlockObjectScene;
     public void OnPointerUp(PointerEventData eventData)
     {
         MouseUp();
@@ -24,6 +25,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         MouseDown();
+    }
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        //MouseDrag();
     }
     public void SetAllPriceSubjectsText(int count)
     {
@@ -86,6 +91,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 break;
             case "buyForDaemonds":
                 Debug.Log("pressed buyForDaemonds");
+                BlockObjectScene.GetComponent<BlockObject>().SetBlockObjectStatus(false);
                 GameObjectOperand.GetComponent<PanelFewResources>().SetUserActionSelection(AppointmentButton);
                 //Выбор пользователя был сделан
                 string subjectNameForBuilding = GameObjectOperand.GetComponent<PanelFewResources>().SubjectNameForBuilding;
@@ -101,6 +107,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 GameObjectOperand.GetComponent<PanelFewResources>().PanelFewResourceBox.SetActive(false);
                 break;
             case "close":
+                BlockObjectScene.GetComponent<BlockObject>().SetBlockObjectStatus(false);
                 MainCamera.GetComponent<CameraScript>().IsZoomBlocked = false;
                 MainCamera.GetComponent<CameraScript>().IsDragBlocked = false;
                 //MainCamera.GetComponent<Camera>().orthographicSize = MainCamera.GetComponent<CameraScript>().SaveOrthographicSize;
@@ -118,6 +125,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 break;
             case "PanelQuestionButtonOK":
                 //Выбор пользователя был сделан
+                BlockObjectScene.GetComponent<BlockObject>().SetBlockObjectStatus(false);
                 subjectNameForBuilding = GameObjectOperand.GetComponent<PanelQuestion>().SubjectNameForBuilding;
                 Debug.Log("PanelQuestionButtonOK:subjectNameForBuilding=" + subjectNameForBuilding);
                 productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;

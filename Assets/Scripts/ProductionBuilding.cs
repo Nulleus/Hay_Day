@@ -749,6 +749,7 @@ public class ProductionBuilding : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetSubjectChildInTheProcessOfAssembly(string subjectParentName, int numberSlot)
     {
+        Debug.Log("GetSubjectChildInTheProcessOfAssembly=subjectParentName="+ subjectParentName+"numberSlot="+numberSlot);
         //Debug.Log("GetSubjectChildInTheProcessOfAssembly(" + subjectParentName + "," + numberSlot+");");
         long dateTimeNow = GetDateTimeNow();       
         string subjectChildInTheProcessOfAssembly = Data.GetComponent<Content>().GetSubjectChildInTheProcessOfAssembly(subjectParentName, numberSlot, dateTimeNow);
