@@ -18,6 +18,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     //Объект с количеством алмазов
     public GameObject DiamondQuantity;
     public GameObject BlockObjectScene;
+    public GameObject Data;
     public void OnPointerUp(PointerEventData eventData)
     {
         MouseUp();
@@ -135,6 +136,15 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 Debug.Log("Выбор пользователя: " + AppointmentButton);
                 GameObjectOperand.GetComponent<PanelQuestion>().PanelQuestionBox.SetActive(false);
                 Debug.Log("PanelQuestionButtonOK");
+                break;
+            case "SelectedSubject":
+                Debug.Log("pressed SelectedSubject");
+                //
+                //Получаем имя предмета над которым выполняется операция
+                string subjectName = GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<PanelSlot>().SubjectName;
+                //Анимируем объект
+                GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
+
                 break;
             default:
                 Debug.Log("default case");

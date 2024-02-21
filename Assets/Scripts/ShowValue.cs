@@ -60,6 +60,10 @@ public class ShowValue : MonoBehaviour
                 SetValueText("+" + value);
                 Debug.Log("Do nothing");
                 break;
+            case "quantity":
+                SetValueTextPro(value);
+                Debug.Log("Do nothing");
+                break;
             default:
                 Debug.Log("default");
                 break;
@@ -84,6 +88,10 @@ public class ShowValue : MonoBehaviour
                 break;
             case "output_quantity":
                 SetValueTextPro("+"+value);
+                Debug.Log("Do nothing");
+                break;
+            case "quantity":
+                SetValueTextPro(value);
                 Debug.Log("Do nothing");
                 break;
             default:

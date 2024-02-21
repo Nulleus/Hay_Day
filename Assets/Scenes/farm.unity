@@ -1004,6 +1004,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!114 &21118183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4538,6 +4539,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!1 &90275374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5333,6 +5335,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!50 &96392920
 Rigidbody2D:
   serializedVersion: 4
@@ -22115,6 +22118,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 696549679}
+  Data: {fileID: 0}
 --- !u!50 &450481237
 Rigidbody2D:
   serializedVersion: 4
@@ -27225,7 +27229,6 @@ GameObject:
   - component: {fileID: 575665939}
   - component: {fileID: 575665938}
   - component: {fileID: 575665937}
-  - component: {fileID: 575665936}
   m_Layer: 5
   m_Name: ButtonPlusQuantity
   m_TagString: panel_silo
@@ -27253,32 +27256,6 @@ RectTransform:
   m_AnchoredPosition: {x: 135.00015, y: 198.99998}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &575665936
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575665934}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &575665937
 Rigidbody2D:
   serializedVersion: 4
@@ -28550,7 +28527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2839, y: 1344}
+  m_AnchoredPosition: {x: 3177, y: 657}
   m_SizeDelta: {x: 0.9, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &597021192
@@ -29030,6 +29007,8 @@ GameObject:
   - component: {fileID: 608030362}
   - component: {fileID: 608030364}
   - component: {fileID: 608030363}
+  - component: {fileID: 608030366}
+  - component: {fileID: 608030365}
   m_Layer: 5
   m_Name: SelectedPredmet
   m_TagString: panel_silo
@@ -29152,6 +29131,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &608030365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608030358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdf84c454c863541b62068d381c3a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTarget: {fileID: 763080870}
+--- !u!114 &608030366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608030358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56da088472952b46a62b07996677a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
 --- !u!1 &609472589
 GameObject:
   m_ObjectHideFlags: 0
@@ -34263,6 +34268,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!50 &717748018
 Rigidbody2D:
   serializedVersion: 4
@@ -36323,6 +36329,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 1284615880}
   DiamondQuantity: {fileID: 196279394}
   BlockObjectScene: {fileID: 696549679}
+  Data: {fileID: 0}
 --- !u!50 &754866959
 Rigidbody2D:
   serializedVersion: 4
@@ -39465,6 +39472,8 @@ GameObject:
   - component: {fileID: 806618925}
   - component: {fileID: 806618928}
   - component: {fileID: 806618927}
+  - component: {fileID: 806618929}
+  - component: {fileID: 806618930}
   m_Layer: 5
   m_Name: PanelKiosk
   m_TagString: Untagged
@@ -39527,6 +39536,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806618924}
   m_CullTransparentMesh: 0
+--- !u!114 &806618929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806618924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac3b2ff4dcded448b38101b1c6c59cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  SelectedStorage: silo
+  AllSubjects: []
+  SelectedPredmet: {fileID: 608030358}
+  ObjectFromGetWidthClone: {fileID: 1126402875}
+  ParentObjectClone: {fileID: 1270158303}
+--- !u!114 &806618930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806618924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c9e5d237c15074ebee25df7b4a4cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectFromGetWidth: {fileID: 1126402875}
+  ParentObject: {fileID: 1270158302}
 --- !u!1 &808985614
 GameObject:
   m_ObjectHideFlags: 0
@@ -42604,141 +42645,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &861773460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 861773461}
-  - component: {fileID: 861773463}
-  - component: {fileID: 861773462}
-  m_Layer: 5
-  m_Name: Quantity
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &861773461
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861773460}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1092164664}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &861773462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861773460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 10
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 15.26
-  m_fontSizeBase: 15.26
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 1024
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &861773463
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861773460}
-  m_CullTransparentMesh: 1
 --- !u!1 &861855866
 GameObject:
   m_ObjectHideFlags: 0
@@ -46490,6 +46396,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 696549679}
+  Data: {fileID: 0}
 --- !u!50 &923413751
 Rigidbody2D:
   serializedVersion: 4
@@ -52812,132 +52719,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.63, y: 1.86}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1092164663
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1092164664}
-  - component: {fileID: 1092164668}
-  - component: {fileID: 1092164667}
-  - component: {fileID: 1092164666}
-  - component: {fileID: 1092164665}
-  m_Layer: 5
-  m_Name: Subject (1)
-  m_TagString: panel_silo
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1092164664
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092164663}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -46.2}
-  m_LocalScale: {x: 0.1394631, y: 0.3189654, z: 1.6154}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 861773461}
-  m_Father: {fileID: 1270158303}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!61 &1092164665
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092164663}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.73, y: 2.73}
-    newSize: {x: 2.1, y: 2.1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 48.66, y: 49.75}
-  m_EdgeRadius: 0
---- !u!50 &1092164666
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092164663}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!114 &1092164667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092164663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: db018f3bf7d46664dbf26462af04e106, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1092164668
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092164663}
-  m_CullTransparentMesh: 0
 --- !u!1 &1094887304
 GameObject:
   m_ObjectHideFlags: 0
@@ -53242,6 +53023,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!50 &1104340386
 Rigidbody2D:
   serializedVersion: 4
@@ -54558,6 +54340,10 @@ GameObject:
   - component: {fileID: 1126402879}
   - component: {fileID: 1126402878}
   - component: {fileID: 1126402877}
+  - component: {fileID: 1126402882}
+  - component: {fileID: 1126402884}
+  - component: {fileID: 1126402885}
+  - component: {fileID: 1126402886}
   m_Layer: 5
   m_Name: Subject
   m_TagString: panel_silo
@@ -54671,6 +54457,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126402875}
   m_CullTransparentMesh: 0
+--- !u!114 &1126402882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126402875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: SelectedSubject
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 696549679}
+  Data: {fileID: 1866044566}
+--- !u!114 &1126402884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126402875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56da088472952b46a62b07996677a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+--- !u!114 &1126402885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126402875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdf84c454c863541b62068d381c3a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTarget: {fileID: 135128513}
+--- !u!114 &1126402886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126402875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31bbf20fc520f32419d1fc6ba55c8b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Storage: 
+  Count: 0
+  PriceMaxForCoins: 0
+  PriceForDiamonds: 0
+  BuildingTimeSec: 0
+  ExperiencePoint: 0
 --- !u!1 &1133546278
 GameObject:
   m_ObjectHideFlags: 0
@@ -56635,7 +56487,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &1199683637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56658,7 +56510,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1199683638
 Canvas:
   m_ObjectHideFlags: 0
@@ -58780,15 +58632,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1126402876}
-  - {fileID: 1092164664}
   m_Father: {fileID: 462123920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.411335, y: -10.151859}
+  m_AnchoredPosition: {x: -5.411335, y: 76.139435}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.98}
+  m_Pivot: {x: 0.5, y: 1.15}
 --- !u!222 &1270158304
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -58832,7 +58683,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 40, y: 40}
-  m_Spacing: {x: -29.7, y: -22.52}
+  m_Spacing: {x: -30.4, y: -23.4}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!114 &1270158308
@@ -59572,6 +59423,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 1284615880}
   DiamondQuantity: {fileID: 1890771605}
   BlockObjectScene: {fileID: 696549679}
+  Data: {fileID: 0}
 --- !u!50 &1283257544
 Rigidbody2D:
   serializedVersion: 4
@@ -61648,6 +61500,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!50 &1320730920
 Rigidbody2D:
   serializedVersion: 4
@@ -78386,6 +78239,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!1 &1686072009
 GameObject:
   m_ObjectHideFlags: 0
@@ -79310,6 +79164,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!61 &1698573241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82010,7 +81865,7 @@ GameObject:
   - component: {fileID: 1760681572}
   - component: {fileID: 1760681571}
   m_Layer: 5
-  m_Name: kiosk_panel
+  m_Name: PanelKioskSale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91415,6 +91270,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!1 &1943816190
 GameObject:
   m_ObjectHideFlags: 0
@@ -100261,6 +100117,7 @@ MonoBehaviour:
   ButtonTextInfo: {fileID: 0}
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!1 &2113815192
 GameObject:
   m_ObjectHideFlags: 0
