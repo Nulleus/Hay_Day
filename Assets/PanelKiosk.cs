@@ -19,6 +19,8 @@ public class PanelKiosk : MonoBehaviour
     private int CoinQuantity;
     public GameObject ButtonPlusQuantity;
     public GameObject ButtonMinusQuantity;
+    public GameObject ButtonPlusCoin;
+    public GameObject ButtonMinusCoin;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetSelectedPredmetQuantity()
     {
@@ -49,11 +51,13 @@ public class PanelKiosk : MonoBehaviour
             if (selectedPredmetSubjectSum <= SelectedPredmetQuantity)
             {
                 ButtonPlusQuantity.GetComponent<Image>().color = Color.grey;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(true);
                 Debug.Log("grey");
             }
             if (selectedPredmetSubjectSum >= SelectedPredmetQuantity)
             {
                 ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
                 Debug.Log("white");
             }
         }
@@ -70,19 +74,28 @@ public class PanelKiosk : MonoBehaviour
         SelectedPredmetQuantity = quantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void SetPlusQuantity(int quantity)
+    public void SetCoinPlusQuantity(int quantity)
     {
-        ChangeSelectedPredmetQuantity();
+        CoinQuantity += quantity;
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetCoinMinusQuantity(int quantity)
+    {
+        CoinQuantity -= quantity;
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetPlusQuantity(int quantity)
+    {       
         //Получим общее количество предметов на складе
-
-        SelectedPredmetQuantity = SelectedPredmetQuantity + quantity;
+        SelectedPredmetQuantity += quantity;
+        ChangeSelectedPredmetQuantity();
 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetMinusQuantity(int quantity)
-    {
+    {       
+        SelectedPredmetQuantity -= quantity;
         ChangeSelectedPredmetQuantity();
-        SelectedPredmetQuantity = SelectedPredmetQuantity - quantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public string GetSelectedPredmet()

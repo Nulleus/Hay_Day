@@ -102,4 +102,31 @@ public class PriceSubject : MonoBehaviour
             }
             return allPriceSubjects;
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public int GetCoinsForOneRound(string subjectName)
+    {
+        int coinsForOneRound;
+        string dbName = "MyDatabase.sqlite";
+        string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
+        string sqlQuery = "SELECT coins_for_one_round FROM price_subjects WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT 0,1";
+        Debug.Log("sqlQuery=" + sqlQuery);
+            using (var connection = new SqliteConnection(dbUri))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand(sqlQuery, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())   // построчно считываем данные
+                        {
+                            coinsForOneRound = Convert.ToInt32(reader.GetValue(0));
+                            return coinsForOneRound;
+                        }
+                    }
+                }
+                connection.Close();
+        }
+        return 0;
+    }
 }
