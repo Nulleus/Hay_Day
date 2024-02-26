@@ -30,7 +30,7 @@ public class CloneObject : MonoBehaviour
         GameObject clone = Instantiate(ObjectFromGetWidth, ParentObject.transform);
         //Добавим клону свойства 
         clone.SetActive(true);
-        clone.GetComponent<PanelSlot>().SubjectName = subjectName;
+        clone.GetComponent<PanelSlot>().SetSubjectName(subjectName);
         Debug.Log("subjectName="+subjectName);
         clone.GetComponent<PanelSlot>().SetSprite(subjectName);
         clone.GetComponent<PanelSlot>().InfoPanel.SetActive(false);

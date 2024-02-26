@@ -8,12 +8,23 @@ using Sirenix.OdinInspector;
 
 public class PanelSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    [SerializeField]
     public GameObject Data;
+    [SerializeField]
     public GameObject InfoPanel;
-    public string SubjectName;
+    [SerializeField]
+    private string SubjectName;
     public GameObject Quantity;
     //ќткуда ожидать ответа(объект, выполн€ющий запрос на сервер)
     public GameObject ProductionBuildingSendRequest;
+    public string GetSubjectName()
+    {
+        return SubjectName;
+    }
+    public void SetSubjectName(string subjectName)
+    {
+        SubjectName = subjectName;
+    }
     public void OnPointerUp(PointerEventData eventData)
     {
         MouseUp();

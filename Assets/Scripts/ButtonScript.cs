@@ -19,6 +19,11 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public GameObject DiamondQuantity;
     public GameObject BlockObjectScene;
     public GameObject Data;
+    public bool Lock;
+    public void SetLock(bool lockObject)
+    {
+        Lock = lockObject;
+    }
     public void OnPointerUp(PointerEventData eventData)
     {
         MouseUp();
@@ -78,6 +83,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     public void MouseUp()//Когда отпускаеть мышь
     {
+        //Если блокировка включена, ничего не делать
+        if (Lock) return;
         Debug.Log("OnMouseUp()");
         switch (AppointmentButton)
         {
@@ -139,11 +146,22 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 break;
             case "SelectedSubject":
                 Debug.Log("pressed SelectedSubject");
-                //
                 //Получаем имя предмета над которым выполняется операция
-                string subjectName = GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<PanelSlot>().SubjectName;
-                //Анимируем объект
+                string subjectName = gameObject.GetComponent<Subject>().GetName();
+                //Присваиваем новое значение для выбранного предмета
+                GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<PanelSlot>().SetSubjectName(subjectName);                
+                //Анимируем объект согласно выбранному предмету
                 GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
+
+                break;
+            case "PlusQuantity":
+                Debug.Log("pressed PlusQuantity");
+                GameObjectOperand.GetComponent<PanelKiosk>().SetPlusQuantity(1);
+
+                break;
+            case "MinusQuantity":
+                Debug.Log("pressed MinusQuantity");
+                GameObjectOperand.GetComponent<PanelKiosk>().SetMinusQuantity(1);
 
                 break;
             default:

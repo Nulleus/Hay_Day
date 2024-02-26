@@ -26,7 +26,7 @@ public class ShowText : MonoBehaviour
         }
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    void Show(string value)
+   public void Show(string value)
     {
         SetValueTextPro(value);
         SetValueText(value);

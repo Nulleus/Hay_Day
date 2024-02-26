@@ -1005,6 +1005,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!114 &21118183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4540,6 +4541,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &90275374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5336,6 +5338,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &96392920
 Rigidbody2D:
   serializedVersion: 4
@@ -22119,6 +22122,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 696549679}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &450481237
 Rigidbody2D:
   serializedVersion: 4
@@ -25750,7 +25754,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1287048124}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27229,6 +27233,9 @@ GameObject:
   - component: {fileID: 575665939}
   - component: {fileID: 575665938}
   - component: {fileID: 575665937}
+  - component: {fileID: 575665941}
+  - component: {fileID: 575665943}
+  - component: {fileID: 575665942}
   m_Layer: 5
   m_Name: ButtonPlusQuantity
   m_TagString: panel_silo
@@ -27341,6 +27348,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575665934}
   m_CullTransparentMesh: 0
+--- !u!114 &575665941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575665934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: PlusQuantity
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
+--- !u!114 &575665942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575665934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &575665943
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575665934}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &579252124
 GameObject:
   m_ObjectHideFlags: 0
@@ -28610,7 +28678,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1287048124}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29031,7 +29099,7 @@ RectTransform:
   - {fileID: 763080871}
   - {fileID: 2020067182}
   m_Father: {fileID: 1287048124}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -34269,6 +34337,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &717748018
 Rigidbody2D:
   serializedVersion: 4
@@ -36330,6 +36399,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 196279394}
   BlockObjectScene: {fileID: 696549679}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &754866959
 Rigidbody2D:
   serializedVersion: 4
@@ -39473,7 +39543,6 @@ GameObject:
   - component: {fileID: 806618928}
   - component: {fileID: 806618927}
   - component: {fileID: 806618929}
-  - component: {fileID: 806618930}
   m_Layer: 5
   m_Name: PanelKiosk
   m_TagString: Untagged
@@ -39550,24 +39619,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 1866044566}
   SelectedStorage: silo
-  AllSubjects: []
+  AllSubjects:
+  - 
   SelectedPredmet: {fileID: 608030358}
   ObjectFromGetWidthClone: {fileID: 1126402875}
   ParentObjectClone: {fileID: 1270158303}
---- !u!114 &806618930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806618924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c9e5d237c15074ebee25df7b4a4cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectFromGetWidth: {fileID: 1126402875}
-  ParentObject: {fileID: 1270158302}
+  SelectedPredmetQuantity: 0
+  CoinQuantity: 0
+  ButtonPlusQuantity: {fileID: 575665934}
+  ButtonMinusQuantity: {fileID: 1629510190}
 --- !u!1 &808985614
 GameObject:
   m_ObjectHideFlags: 0
@@ -46397,6 +46457,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 696549679}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &923413751
 Rigidbody2D:
   serializedVersion: 4
@@ -53024,6 +53085,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &1104340386
 Rigidbody2D:
   serializedVersion: 4
@@ -54350,7 +54412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1126402876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54367,10 +54429,10 @@ RectTransform:
   m_Father: {fileID: 1270158303}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -20}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1126402877
 BoxCollider2D:
@@ -54479,6 +54541,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 696549679}
   Data: {fileID: 1866044566}
+  Lock: 0
 --- !u!114 &1126402884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54517,6 +54580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bbf20fc520f32419d1fc6ba55c8b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 1866044566}
+  Name: 
   Storage: 
   Count: 0
   PriceMaxForCoins: 0
@@ -59424,6 +59489,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 1890771605}
   BlockObjectScene: {fileID: 696549679}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &1283257544
 Rigidbody2D:
   serializedVersion: 4
@@ -59939,13 +60005,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 575665935}
-  - {fileID: 536998195}
+  - {fileID: 1629510191}
   - {fileID: 1786960779}
-  - {fileID: 598325204}
+  - {fileID: 536998195}
   - {fileID: 2092949107}
+  - {fileID: 598325204}
   - {fileID: 608030359}
   - {fileID: 1425110794}
-  - {fileID: 1629510191}
   - {fileID: 142325384}
   m_Father: {fileID: 806618925}
   m_RootOrder: 0
@@ -61501,6 +61567,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!50 &1320730920
 Rigidbody2D:
   serializedVersion: 4
@@ -65209,7 +65276,7 @@ RectTransform:
   m_Children:
   - {fileID: 23799342}
   m_Father: {fileID: 1287048124}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -76156,6 +76223,9 @@ GameObject:
   - component: {fileID: 1629510194}
   - component: {fileID: 1629510193}
   - component: {fileID: 1629510192}
+  - component: {fileID: 1629510196}
+  - component: {fileID: 1629510198}
+  - component: {fileID: 1629510197}
   m_Layer: 5
   m_Name: ButtonMinusQuantity
   m_TagString: panel_silo
@@ -76176,7 +76246,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1287048124}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -76268,6 +76338,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629510190}
   m_CullTransparentMesh: 0
+--- !u!114 &1629510196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629510190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: MinusQuantity
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
+--- !u!114 &1629510197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629510190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &1629510198
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629510190}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1632176682
 GameObject:
   m_ObjectHideFlags: 0
@@ -78240,6 +78371,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &1686072009
 GameObject:
   m_ObjectHideFlags: 0
@@ -79165,6 +79297,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!61 &1698573241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91271,6 +91404,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &1943816190
 GameObject:
   m_ObjectHideFlags: 0
@@ -100118,6 +100252,7 @@ MonoBehaviour:
   DiamondQuantity: {fileID: 0}
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &2113815192
 GameObject:
   m_ObjectHideFlags: 0
