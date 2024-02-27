@@ -103,12 +103,12 @@ public class PriceSubject : MonoBehaviour
             return allPriceSubjects;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCoinsForOneRound(string subjectName)
+    public decimal GetCoinsForOne(string subjectName)
     {
-        int coinsForOneRound;
+        decimal coinsForOne;
         string dbName = "MyDatabase.sqlite";
         string dbUri = "URI=file:" + Application.persistentDataPath + "/" + dbName + ".db";  // 4
-        string sqlQuery = "SELECT coins_for_one_round FROM price_subjects WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT 0,1";
+        string sqlQuery = "SELECT coins_for_one FROM price_subjects WHERE subject_name =" + "'" + subjectName + "'" + "LIMIT 0,1";
         Debug.Log("sqlQuery=" + sqlQuery);
             using (var connection = new SqliteConnection(dbUri))
             {
@@ -120,8 +120,8 @@ public class PriceSubject : MonoBehaviour
                     {
                         while (reader.Read())   // построчно считываем данные
                         {
-                            coinsForOneRound = Convert.ToInt32(reader.GetValue(0));
-                            return coinsForOneRound;
+                            coinsForOne = reader.GetDecimal(0);
+                            return coinsForOne;
                         }
                     }
                 }

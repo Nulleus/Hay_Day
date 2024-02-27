@@ -25734,6 +25734,9 @@ GameObject:
   - component: {fileID: 536998198}
   - component: {fileID: 536998197}
   - component: {fileID: 536998196}
+  - component: {fileID: 536998202}
+  - component: {fileID: 536998201}
+  - component: {fileID: 536998200}
   m_Layer: 5
   m_Name: ButtonMinusCoin
   m_TagString: panel_silo
@@ -25846,6 +25849,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536998194}
   m_CullTransparentMesh: 0
+--- !u!114 &536998200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536998194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: MinusCoin
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
+--- !u!114 &536998201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536998194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &536998202
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536998194}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &548162854
 GameObject:
   m_ObjectHideFlags: 0
@@ -28658,6 +28722,7 @@ GameObject:
   - component: {fileID: 598325207}
   - component: {fileID: 598325206}
   - component: {fileID: 598325205}
+  - component: {fileID: 598325209}
   m_Layer: 5
   m_Name: ButtonMinCoin
   m_TagString: panel_silo
@@ -28770,6 +28835,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598325203}
   m_CullTransparentMesh: 0
+--- !u!114 &598325209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598325203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: 
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &598520054
 GameObject:
   m_ObjectHideFlags: 0
@@ -39625,9 +39713,12 @@ MonoBehaviour:
   ObjectFromGetWidthClone: {fileID: 1126402875}
   ParentObjectClone: {fileID: 1270158303}
   SelectedPredmetQuantity: 0
-  CoinQuantity: 0
+  CoinSelectedQuantity: 0
   ButtonPlusQuantity: {fileID: 575665934}
   ButtonMinusQuantity: {fileID: 1629510190}
+  ButtonPlusCoin: {fileID: 1786960778}
+  ButtonMinusCoin: {fileID: 536998194}
+  Coin: {fileID: 1425110793}
 --- !u!1 &808985614
 GameObject:
   m_ObjectHideFlags: 0
@@ -65255,6 +65346,7 @@ GameObject:
   - component: {fileID: 1425110797}
   - component: {fileID: 1425110796}
   - component: {fileID: 1425110795}
+  - component: {fileID: 1425110799}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -65368,6 +65460,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425110793}
   m_CullTransparentMesh: 0
+--- !u!114 &1425110799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425110793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdf84c454c863541b62068d381c3a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTarget: {fileID: 23799341}
 --- !u!1 &1425241620
 GameObject:
   m_ObjectHideFlags: 0
@@ -83293,6 +83398,9 @@ GameObject:
   - component: {fileID: 1786960782}
   - component: {fileID: 1786960781}
   - component: {fileID: 1786960780}
+  - component: {fileID: 1786960785}
+  - component: {fileID: 1786960784}
+  - component: {fileID: 1786960783}
   m_Layer: 5
   m_Name: ButtonPlusCoin
   m_TagString: panel_silo
@@ -83384,6 +83492,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786960778}
   m_CullTransparentMesh: 0
+--- !u!114 &1786960783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786960778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: PlusCoin
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
+--- !u!114 &1786960784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786960778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &1786960785
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786960778}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1798739998
 GameObject:
   m_ObjectHideFlags: 0
@@ -99133,6 +99302,7 @@ GameObject:
   - component: {fileID: 2092949110}
   - component: {fileID: 2092949109}
   - component: {fileID: 2092949108}
+  - component: {fileID: 2092949112}
   m_Layer: 5
   m_Name: ButtonMaxCoin
   m_TagString: panel_silo
@@ -99245,6 +99415,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092949106}
   m_CullTransparentMesh: 0
+--- !u!114 &2092949112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092949106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f248c55f1b6f71468590358de5a6a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductionBuildingSendRequest: {fileID: 0}
+  MainCamera: {fileID: 0}
+  AppointmentButton: 
+  GameObjectOperand: {fileID: 806618924}
+  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 0}
+  ButtonTextInfo: {fileID: 0}
+  DiamondQuantity: {fileID: 0}
+  BlockObjectScene: {fileID: 0}
+  Data: {fileID: 0}
+  Lock: 0
 --- !u!1 &2092998101
 GameObject:
   m_ObjectHideFlags: 0
