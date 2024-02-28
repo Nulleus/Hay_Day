@@ -169,6 +169,14 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 Debug.Log("pressed MinusCoin");
                 GameObjectOperand.GetComponent<PanelKiosk>().SetCoinMinusQuantity(1);
                 break;
+            case "MaxCoin":
+                Debug.Log("pressed MaxCoin");
+                GameObjectOperand.GetComponent<PanelKiosk>().SetMaxCoin();
+                break;
+            case "MinCoin":
+                Debug.Log("pressed MinCoin");
+                GameObjectOperand.GetComponent<PanelKiosk>().SetMinCoin();
+                break;
             default:
                 Debug.Log("default case");
                 break;

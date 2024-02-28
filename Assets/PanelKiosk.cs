@@ -22,6 +22,8 @@ public class PanelKiosk : MonoBehaviour
     public GameObject ButtonPlusCoin;
     public GameObject ButtonMinusCoin;
     public GameObject Coin;
+    public GameObject ButtonMaxCoin;
+    public GameObject ButtonMinCoin;
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetSelectedPredmetQuantity()
     {
@@ -37,30 +39,93 @@ public class PanelKiosk : MonoBehaviour
     {
         //Получаем количество выбранных предметов на складе
         int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(GetSelectedPredmet(), "Local");
+        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        Debug.Log("SelectedPredmetQuantity=" + SelectedPredmetQuantity);
         Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
         //Выведем количество выбранных предметов 
-        SelectedPredmet.GetComponent<ShowText>().Show("x"+SelectedPredmetQuantity.ToString());
-        if (SelectedPredmetQuantity < 2)
+        SelectedPredmet.GetComponent<ShowText>().Show("x"+ selectedPredmetQuantity.ToString());
+
+        switch (selectedPredmetQuantity)
         {
-            ButtonMinusQuantity.GetComponent<Image>().color = Color.grey;
-            ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(true);
-        }
-        else
-        {
-            ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
-            ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
-            if (selectedPredmetSubjectSum <= SelectedPredmetQuantity)
-            {
-                ButtonPlusQuantity.GetComponent<Image>().color = Color.grey;
-                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(true);
-                Debug.Log("grey");
-            }
-            if (selectedPredmetSubjectSum >= SelectedPredmetQuantity)
-            {
+            case 2:
                 ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
                 ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
-                Debug.Log("white");
-            }
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 2");
+                break;
+            case 3:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 3");
+                break;
+            case 4:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 4");
+                break;
+            case 5:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 5");
+                break;
+            case 6:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("6");
+                break;
+            case 7:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 7");
+                break;
+            case 8:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 8");
+                break;
+            case 9:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 9");
+                break;
+            case 1:
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.grey;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(true);
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 1");
+                break;
+            case 10:
+                ButtonPlusQuantity.GetComponent<Image>().color = Color.grey;
+                ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(true);
+                ButtonMinusQuantity.GetComponent<Image>().color = Color.white;
+                ButtonMinusQuantity.GetComponent<ButtonScript>().SetLock(false);
+                Debug.Log("case 10");
+                break;
+            default:
+                
+                break;
+        }
+        if (selectedPredmetSubjectSum <= SelectedPredmetQuantity)
+        {
+            ButtonPlusQuantity.GetComponent<Image>().color = Color.grey;
+            ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(true);
+            Debug.Log("grey");
         }
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -90,7 +155,7 @@ public class PanelKiosk : MonoBehaviour
         Debug.Log("selectedPredmetQuantity=" + selectedPredmetQuantity);
         //Выведем количество выбранных предметов 
         Coin.GetComponent<ShowText>().Show(coinSelectedQuantity.ToString());
-        if (coinSelectedQuantity < 2)
+        if ((coinSelectedQuantity < 2))
         {
             ButtonMinusCoin.GetComponent<Image>().color = Color.grey;
             ButtonMinusCoin.GetComponent<ButtonScript>().SetLock(true);
@@ -101,7 +166,7 @@ public class PanelKiosk : MonoBehaviour
             ButtonMinusCoin.GetComponent<ButtonScript>().SetLock(false);
         }
         //if (coinSelectedQuantity >= maxCoinByQuantity & coinSelectedQuantity >= maxCoin)
-        if(coinSelectedQuantity > maxCoinByQuantity)
+        if((coinSelectedQuantity > maxCoinByQuantity)|(coinSelectedQuantity > 9))
         {
             Debug.Log("coinSelectedQuantity="+ coinSelectedQuantity);
             Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
@@ -110,7 +175,7 @@ public class PanelKiosk : MonoBehaviour
             ButtonPlusCoin.GetComponent<ButtonScript>().SetLock(true);
             Debug.Log("grey");
         }
-        if (coinSelectedQuantity < maxCoinByQuantity)
+        if ((coinSelectedQuantity < maxCoinByQuantity) | (coinSelectedQuantity < 10))
         {
             Debug.Log("coinSelectedQuantity=" + coinSelectedQuantity);
             Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
@@ -209,6 +274,30 @@ public class PanelKiosk : MonoBehaviour
         
     }
 
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetMaxCoin()
+    {
+        //Количество выбранной стоимости
+        int coinSelectedQuantity = CoinSelectedQuantity;
+        //Получаем количество выбранных предметов на складе
+        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(GetSelectedPredmet());
+        Debug.Log("priceForOneCoin=" + priceForOneCoin);
+        //Максимальня стоимость предметов
+        decimal maxCoin = priceForOneCoin * 10;
+        Debug.Log("maxCoin=" + maxCoin);
+        //Максимальня стоимость предметов по количеству
+        decimal maxCoinByQuantity = decimal.Round(priceForOneCoin * selectedPredmetQuantity);
+        Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
+        CoinSelectedQuantity = decimal.ToInt32(maxCoinByQuantity);
+        ChangeSelected();
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void SetMinCoin()
+    {
+        CoinSelectedQuantity = 1;
+        ChangeSelected();
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -28723,6 +28723,8 @@ GameObject:
   - component: {fileID: 598325206}
   - component: {fileID: 598325205}
   - component: {fileID: 598325209}
+  - component: {fileID: 598325211}
+  - component: {fileID: 598325210}
   m_Layer: 5
   m_Name: ButtonMinCoin
   m_TagString: panel_silo
@@ -28849,7 +28851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
   MainCamera: {fileID: 0}
-  AppointmentButton: 
+  AppointmentButton: MinCoin
   GameObjectOperand: {fileID: 806618924}
   ButtonText: {fileID: 0}
   ButtonImage: {fileID: 0}
@@ -28858,6 +28860,44 @@ MonoBehaviour:
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
   Lock: 0
+--- !u!114 &598325210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598325203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &598325211
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598325203}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &598520054
 GameObject:
   m_ObjectHideFlags: 0
@@ -39719,6 +39759,8 @@ MonoBehaviour:
   ButtonPlusCoin: {fileID: 1786960778}
   ButtonMinusCoin: {fileID: 536998194}
   Coin: {fileID: 1425110793}
+  ButtonMaxCoin: {fileID: 2092949106}
+  ButtonMinCoin: {fileID: 598325203}
 --- !u!1 &808985614
 GameObject:
   m_ObjectHideFlags: 0
@@ -99303,6 +99345,8 @@ GameObject:
   - component: {fileID: 2092949109}
   - component: {fileID: 2092949108}
   - component: {fileID: 2092949112}
+  - component: {fileID: 2092949114}
+  - component: {fileID: 2092949113}
   m_Layer: 5
   m_Name: ButtonMaxCoin
   m_TagString: panel_silo
@@ -99429,7 +99473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProductionBuildingSendRequest: {fileID: 0}
   MainCamera: {fileID: 0}
-  AppointmentButton: 
+  AppointmentButton: MaxCoin
   GameObjectOperand: {fileID: 806618924}
   ButtonText: {fileID: 0}
   ButtonImage: {fileID: 0}
@@ -99438,6 +99482,44 @@ MonoBehaviour:
   BlockObjectScene: {fileID: 0}
   Data: {fileID: 0}
   Lock: 0
+--- !u!114 &2092949113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092949106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!223 &2092949114
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092949106}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2092998101
 GameObject:
   m_ObjectHideFlags: 0
