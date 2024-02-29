@@ -146,7 +146,7 @@ public class PanelKiosk : MonoBehaviour
         decimal maxCoin = priceForOneCoin * 10;
         Debug.Log("maxCoin=" + maxCoin);       
         //Максимальня стоимость предметов по количеству
-        decimal maxCoinByQuantity = decimal.Round(priceForOneCoin * selectedPredmetQuantity);
+        decimal maxCoinByQuantity = decimal.Truncate(priceForOneCoin * selectedPredmetQuantity);
         Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
 
 
@@ -166,16 +166,18 @@ public class PanelKiosk : MonoBehaviour
             ButtonMinusCoin.GetComponent<ButtonScript>().SetLock(false);
         }
         //if (coinSelectedQuantity >= maxCoinByQuantity & coinSelectedQuantity >= maxCoin)
-        if((coinSelectedQuantity > maxCoinByQuantity)|(coinSelectedQuantity > 9))
+        if ((coinSelectedQuantity >= maxCoinByQuantity))
         {
             Debug.Log("coinSelectedQuantity="+ coinSelectedQuantity);
             Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
             Debug.Log("maxCoin=" + maxCoin);
             ButtonPlusCoin.GetComponent<Image>().color = Color.grey;
             ButtonPlusCoin.GetComponent<ButtonScript>().SetLock(true);
+            ButtonMaxCoin.GetComponent<Image>().color = Color.grey;
+            ButtonMaxCoin.GetComponent<ButtonScript>().SetLock(true);
             Debug.Log("grey");
         }
-        if ((coinSelectedQuantity < maxCoinByQuantity) | (coinSelectedQuantity < 10))
+        if ((coinSelectedQuantity < maxCoinByQuantity))
         {
             Debug.Log("coinSelectedQuantity=" + coinSelectedQuantity);
             Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
@@ -279,15 +281,16 @@ public class PanelKiosk : MonoBehaviour
     {
         //Количество выбранной стоимости
         int coinSelectedQuantity = CoinSelectedQuantity;
-        //Получаем количество выбранных предметов на складе
+        //Получаем количество выбранных предметов
         int selectedPredmetQuantity = SelectedPredmetQuantity;
+        //Цена предмета за единицу
         decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(GetSelectedPredmet());
         Debug.Log("priceForOneCoin=" + priceForOneCoin);
         //Максимальня стоимость предметов
         decimal maxCoin = priceForOneCoin * 10;
         Debug.Log("maxCoin=" + maxCoin);
         //Максимальня стоимость предметов по количеству
-        decimal maxCoinByQuantity = decimal.Round(priceForOneCoin * selectedPredmetQuantity);
+        decimal maxCoinByQuantity = decimal.Truncate(priceForOneCoin * selectedPredmetQuantity);
         Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
         CoinSelectedQuantity = decimal.ToInt32(maxCoinByQuantity);
         ChangeSelected();
@@ -298,11 +301,46 @@ public class PanelKiosk : MonoBehaviour
         CoinSelectedQuantity = 1;
         ChangeSelected();
     }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void AverageValueQuantity()
+    {
+        //Среднее количество предметов
+        int averageQuantityPredmet;
+        //Выбранный предмет
+        string selectedPredmet = GetSelectedPredmet();
+        //Получаем количество выбранных предметов на складе
+        int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(selectedPredmet, "Local");
+        Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
+
+        //Количество выбранных предметов
+        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        //Цена предмета за единицу
+        decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(selectedPredmet);
+        Debug.Log("priceForOneCoin=" + priceForOneCoin);
+        if (selectedPredmetSubjectSum >= 10)
+        {
+            averageQuantityPredmet = 10;
+        }
+        else
+        {
+            averageQuantityPredmet = selectedPredmetSubjectSum / 2;
+        }
+        SetSelectedPredmetQuantity(averageQuantityPredmet);
+        Debug.Log("averageQuantity=" + averageQuantityPredmet);
+        
+    }
+    private void OnEnable()
+    {
+        CoinSelectedQuantity = 1;
+        SelectedPredmetQuantity = 1;
+        ChangeSelected();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetAllSubjects();
+        CloneSubject();
     }
 
     // Update is called once per frame
@@ -310,4 +348,5 @@ public class PanelKiosk : MonoBehaviour
     {
         
     }
+
 }

@@ -39752,8 +39752,8 @@ MonoBehaviour:
   SelectedPredmet: {fileID: 608030358}
   ObjectFromGetWidthClone: {fileID: 1126402875}
   ParentObjectClone: {fileID: 1270158303}
-  SelectedPredmetQuantity: 0
-  CoinSelectedQuantity: 0
+  SelectedPredmetQuantity: 1
+  CoinSelectedQuantity: 1
   ButtonPlusQuantity: {fileID: 575665934}
   ButtonMinusQuantity: {fileID: 1629510190}
   ButtonPlusCoin: {fileID: 1786960778}

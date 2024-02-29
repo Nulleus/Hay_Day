@@ -152,6 +152,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<PanelSlot>().SetSubjectName(subjectName);                
                 //Анимируем объект согласно выбранному предмету
                 GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
+                GameObjectOperand.GetComponent<PanelKiosk>().ChangeSelected();
                 break;
             case "PlusQuantity":
                 Debug.Log("pressed PlusQuantity");

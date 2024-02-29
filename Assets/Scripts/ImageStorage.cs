@@ -42,11 +42,15 @@ public class ImageStorage : MonoBehaviour
     }
     private void Awake()
     {
-        LoadSpriteDict();
+        
     }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnEnable()
+    {
+        LoadSpriteDict();
     }
 }
