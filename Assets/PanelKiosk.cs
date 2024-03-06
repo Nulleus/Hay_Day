@@ -159,11 +159,15 @@ public class PanelKiosk : MonoBehaviour
         {
             ButtonMinusCoin.GetComponent<Image>().color = Color.grey;
             ButtonMinusCoin.GetComponent<ButtonScript>().SetLock(true);
+            ButtonMinCoin.GetComponent<Image>().color = Color.grey;
+            ButtonMinCoin.GetComponent<ButtonScript>().SetLock(true);
         }
         else
         {
             ButtonMinusCoin.GetComponent<Image>().color = Color.white;
             ButtonMinusCoin.GetComponent<ButtonScript>().SetLock(false);
+            ButtonMinCoin.GetComponent<Image>().color = Color.white;
+            ButtonMinCoin.GetComponent<ButtonScript>().SetLock(false);
         }
         //if (coinSelectedQuantity >= maxCoinByQuantity & coinSelectedQuantity >= maxCoin)
         if ((coinSelectedQuantity >= maxCoinByQuantity))
@@ -184,18 +188,21 @@ public class PanelKiosk : MonoBehaviour
             Debug.Log("maxCoin=" + maxCoin);
             ButtonPlusCoin.GetComponent<Image>().color = Color.white;
             ButtonPlusCoin.GetComponent<ButtonScript>().SetLock(false);
+            ButtonMaxCoin.GetComponent<Image>().color = Color.white;
+            ButtonMaxCoin.GetComponent<ButtonScript>().SetLock(false);
             Debug.Log("white");
         }
     }
+
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public int GetCoinQuantity()
+    public int GetCoinSelectedQuantity()
     {
         return CoinSelectedQuantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void SetCoinQuantity(int quantity)
+    public void SetCoinSelectedQuantity(int quantity)
     {
-        SelectedPredmetQuantity = quantity;
+        CoinSelectedQuantity = quantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetCoinPlusQuantity(int quantity)
@@ -301,6 +308,7 @@ public class PanelKiosk : MonoBehaviour
         CoinSelectedQuantity = 1;
         ChangeSelected();
     }
+    //Среднее количество предметов+среднее количество монет(нужно разделить, иначе он всегда будет выставлять среднее количество объектов)
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AverageValueQuantity()
     {
@@ -311,7 +319,6 @@ public class PanelKiosk : MonoBehaviour
         //Получаем количество выбранных предметов на складе
         int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(selectedPredmet, "Local");
         Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
-
         //Количество выбранных предметов
         int selectedPredmetQuantity = SelectedPredmetQuantity;
         //Цена предмета за единицу
@@ -325,9 +332,22 @@ public class PanelKiosk : MonoBehaviour
         {
             averageQuantityPredmet = selectedPredmetSubjectSum / 2;
         }
+        //Получаем среднее значение стоимости предмета
+        //Количество выбранной стоимости
+        int coinSelectedQuantity = CoinSelectedQuantity;
+        Debug.Log("priceForOneCoin=" + priceForOneCoin);
+        //Максимальня стоимость предметов
+        decimal maxCoin = priceForOneCoin * 10;
+        Debug.Log("maxCoin=" + maxCoin);
+        //Максимальня стоимость предметов по количеству
+        decimal maxCoinByQuantity = decimal.Truncate(priceForOneCoin * selectedPredmetQuantity);
+        Debug.Log("maxCoinByQuantity=" + maxCoinByQuantity);
+        decimal averageCoinQuantity = decimal.Truncate(maxCoinByQuantity / 3);
+        SetCoinSelectedQuantity(decimal.ToInt32(averageCoinQuantity));
+        Debug.Log("averageCoinQuantity=" + averageCoinQuantity);
         SetSelectedPredmetQuantity(averageQuantityPredmet);
-        Debug.Log("averageQuantity=" + averageQuantityPredmet);
-        
+        Debug.Log("averageQuantityPredmet=" + averageQuantityPredmet);
+        ChangeSelected();
     }
     private void OnEnable()
     {
