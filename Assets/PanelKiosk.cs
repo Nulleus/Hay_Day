@@ -132,7 +132,7 @@ public class PanelKiosk : MonoBehaviour
     public void ChangeSelected()
     {
         ChangeSelectedPredmetQuantity();
-        ChangeSelectedCoinQuantity();     
+        ChangeSelectedCoinQuantity();
     }
     public void ChangeSelectedCoinQuantity()
     {
@@ -312,6 +312,8 @@ public class PanelKiosk : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void AverageValueQuantity()
     {
+        ChangeSelected();
+        Debug.Log("AverageValueQuantity()");
         //Среднее количество предметов
         int averageQuantityPredmet;
         //Выбранный предмет
