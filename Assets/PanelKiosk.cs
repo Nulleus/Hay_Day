@@ -14,7 +14,7 @@ public class PanelKiosk : MonoBehaviour
     public GameObject ObjectFromGetWidthClone; //Объект, с которого нужно сделать клон
     public Transform ParentObjectClone; //Родительский объект клона
     [SerializeField]
-    private int SelectedPredmetQuantity;
+    private int PredmetSelectedQuantity;
     [SerializeField]
     private int CoinSelectedQuantity;
     public GameObject ButtonPlusQuantity;
@@ -27,20 +27,20 @@ public class PanelKiosk : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public int GetSelectedPredmetQuantity()
     {
-        return SelectedPredmetQuantity;
+        return PredmetSelectedQuantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetSelectedPredmetQuantity(int quantity)
     {
-        SelectedPredmetQuantity = quantity;
+        PredmetSelectedQuantity = quantity;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void ChangeSelectedPredmetQuantity()
     {
         //Получаем количество выбранных предметов на складе
         int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(GetSelectedPredmet(), "Local");
-        int selectedPredmetQuantity = SelectedPredmetQuantity;
-        Debug.Log("SelectedPredmetQuantity=" + SelectedPredmetQuantity);
+        int selectedPredmetQuantity = PredmetSelectedQuantity;
+        Debug.Log("SelectedPredmetQuantity=" + PredmetSelectedQuantity);
         Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
         //Выведем количество выбранных предметов 
         SelectedPredmet.GetComponent<ShowText>().Show("x"+ selectedPredmetQuantity.ToString());
@@ -121,7 +121,7 @@ public class PanelKiosk : MonoBehaviour
                 
                 break;
         }
-        if (selectedPredmetSubjectSum <= SelectedPredmetQuantity)
+        if (selectedPredmetSubjectSum <= PredmetSelectedQuantity)
         {
             ButtonPlusQuantity.GetComponent<Image>().color = Color.grey;
             ButtonPlusQuantity.GetComponent<ButtonScript>().SetLock(true);
@@ -139,7 +139,7 @@ public class PanelKiosk : MonoBehaviour
         //Количество выбранной стоимости
         int coinSelectedQuantity = CoinSelectedQuantity;
         //Получаем количество выбранных предметов на складе
-        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        int selectedPredmetQuantity = PredmetSelectedQuantity;
         decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(GetSelectedPredmet());
         Debug.Log("priceForOneCoin=" + priceForOneCoin);
         //Максимальня стоимость предметов
@@ -218,16 +218,18 @@ public class PanelKiosk : MonoBehaviour
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetPlusQuantity(int quantity)
-    {       
+    {
         //Получим общее количество предметов на складе
-        SelectedPredmetQuantity += quantity;
+        PredmetSelectedQuantity += quantity;
+        AverageCoinSelectedValueQuantity();
         ChangeSelected();
 
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetMinusQuantity(int quantity)
-    {       
-        SelectedPredmetQuantity -= quantity;
+    {
+        PredmetSelectedQuantity -= quantity;
+        AverageCoinSelectedValueQuantity();
         ChangeSelected();
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -236,8 +238,14 @@ public class PanelKiosk : MonoBehaviour
         return SelectedPredmet.GetComponent<PanelSlot>().GetSubjectName();
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void ClearAllSubjects()
+    {
+        AllSubjects.Clear();
+    }
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetAllSubjects()
     {
+        ClearAllSubjects();
         //Количество очков у пользователя
         int experiencePointUser = Data.GetComponent<SubjectSum>().GetSubjectSumCount("experiencePoint", "Local");
         //Текущий уровень пользователя
@@ -278,6 +286,10 @@ public class PanelKiosk : MonoBehaviour
             //-Получим количество объектов на складе
             int countSubjectSum = clone.GetComponent<Subject>().GetCount();
             clone.GetComponent<ShowText>().Show(countSubjectSum.ToString());
+            if (countSubjectSum <= 0)
+            {
+                clone.SetActive(false);
+            }
             //clone.
         }
         
@@ -289,7 +301,7 @@ public class PanelKiosk : MonoBehaviour
         //Количество выбранной стоимости
         int coinSelectedQuantity = CoinSelectedQuantity;
         //Получаем количество выбранных предметов
-        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        int selectedPredmetQuantity = PredmetSelectedQuantity;
         //Цена предмета за единицу
         decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(GetSelectedPredmet());
         Debug.Log("priceForOneCoin=" + priceForOneCoin);
@@ -308,32 +320,22 @@ public class PanelKiosk : MonoBehaviour
         CoinSelectedQuantity = 1;
         ChangeSelected();
     }
-    //Среднее количество предметов+среднее количество монет(нужно разделить, иначе он всегда будет выставлять среднее количество объектов)
+    //среднее количество монет
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
-    public void AverageValueQuantity()
+    public void AverageCoinSelectedValueQuantity()
     {
-        ChangeSelected();
-        Debug.Log("AverageValueQuantity()");
-        //Среднее количество предметов
-        int averageQuantityPredmet;
+        Debug.Log("AverageCoinSelectedValueQuantity()");
         //Выбранный предмет
         string selectedPredmet = GetSelectedPredmet();
         //Получаем количество выбранных предметов на складе
         int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(selectedPredmet, "Local");
         Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
         //Количество выбранных предметов
-        int selectedPredmetQuantity = SelectedPredmetQuantity;
+        int selectedPredmetQuantity = PredmetSelectedQuantity;
         //Цена предмета за единицу
         decimal priceForOneCoin = Data.GetComponent<PriceSubject>().GetCoinsForOne(selectedPredmet);
         Debug.Log("priceForOneCoin=" + priceForOneCoin);
-        if (selectedPredmetSubjectSum >= 10)
-        {
-            averageQuantityPredmet = 10;
-        }
-        else
-        {
-            averageQuantityPredmet = selectedPredmetSubjectSum / 2;
-        }
+
         //Получаем среднее значение стоимости предмета
         //Количество выбранной стоимости
         int coinSelectedQuantity = CoinSelectedQuantity;
@@ -347,6 +349,30 @@ public class PanelKiosk : MonoBehaviour
         decimal averageCoinQuantity = decimal.Truncate(maxCoinByQuantity / 3);
         SetCoinSelectedQuantity(decimal.ToInt32(averageCoinQuantity));
         Debug.Log("averageCoinQuantity=" + averageCoinQuantity);
+        ChangeSelected();
+    }
+    //среднее количество предметов
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public void AveragePredmetSelectedValueQuantity()
+    {
+        Debug.Log("AveragePredmetSelectedValueQuantity()");
+        //Среднее количество предметов
+        int averageQuantityPredmet;
+        //Выбранный предмет
+        string selectedPredmet = GetSelectedPredmet();
+        //Получаем количество выбранных предметов на складе
+        int selectedPredmetSubjectSum = Data.GetComponent<SubjectSum>().GetSubjectSumCount(selectedPredmet, "Local");
+        Debug.Log("selectedPredmetSubjectSum=" + selectedPredmetSubjectSum);
+        //Количество выбранных предметов
+        int selectedPredmetQuantity = PredmetSelectedQuantity;
+        if (selectedPredmetSubjectSum >= 10)
+        {
+            averageQuantityPredmet = 10;
+        }
+        else
+        {
+            averageQuantityPredmet = selectedPredmetSubjectSum / 2;
+        }
         SetSelectedPredmetQuantity(averageQuantityPredmet);
         Debug.Log("averageQuantityPredmet=" + averageQuantityPredmet);
         ChangeSelected();
@@ -354,7 +380,7 @@ public class PanelKiosk : MonoBehaviour
     private void OnEnable()
     {
         CoinSelectedQuantity = 1;
-        SelectedPredmetQuantity = 1;
+        PredmetSelectedQuantity = 1;
         ChangeSelected();
     }
 

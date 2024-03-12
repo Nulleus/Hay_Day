@@ -153,7 +153,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 //Анимируем объект согласно выбранному предмету
                 GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
 
-                GameObjectOperand.GetComponent<PanelKiosk>().AverageValueQuantity();
+                GameObjectOperand.GetComponent<PanelKiosk>().AverageCoinSelectedValueQuantity();
+                GameObjectOperand.GetComponent<PanelKiosk>().AveragePredmetSelectedValueQuantity();
 
                 break;
             case "PlusQuantity":
