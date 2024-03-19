@@ -122,7 +122,14 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 GameObjectOperand.SetActive(false);
                 Debug.Log("pressed close ");
                 break;
-                
+            case "Open":
+                BlockObjectScene.GetComponent<BlockObject>().SetBlockObjectStatus(true);
+                MainCamera.GetComponent<CameraScript>().IsZoomBlocked = true;
+                MainCamera.GetComponent<CameraScript>().IsDragBlocked = true;
+                //MainCamera.GetComponent<Camera>().orthographicSize = MainCamera.GetComponent<CameraScript>().SaveOrthographicSize;
+                GameObjectOperand.SetActive(true);
+                Debug.Log("pressed Open ");
+                break;
             case "AcivateDisplay1":
                 Display.displays[1].Activate();
                 Debug.Log("pressed close ");
