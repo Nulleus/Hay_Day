@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 15
+  controlID: 99
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 16
+  controlID: 100
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 17
+  controlID: 101
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -242,14 +242,14 @@ MonoBehaviour:
     y: 636
     width: 1276
     height: 303
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 15}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -403,9 +403,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0473ffff
-      m_LastClickedID: -36092
-      m_ExpandedIDs: 805effff9872ffff9c72ffff9e72ffffc480fffff8c0fffff0d4ffff04d5ffff3ed5ffff72d7ffff62d8ffff9ce5ffffa6e5fffff8e5ffff82e6ffffb6e6ffffece6ffff22e7ffff58e7ffffc2e7ffff0aeeffff40eeffff78eeffffaceeffff72f4ffffa6f4ffffe6f4ffff18f5ffff44f6ffff86f7ffff2afbffff64a20000a4a20000eca2000002a30000aabc000062e40000e26701000c680100106d0100747101009275010078790100047c0100
+      m_SelectedIDs: 1e820000
+      m_LastClickedID: 33310
+      m_ExpandedIDs: 7cf9ffffc8720000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -710,9 +710,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 998.36255, y: 713.2691, z: -89.848625}
+    m_Target: {x: 2547.346, y: 582.93225, z: -592.71387}
     speed: 2
-    m_Value: {x: 998.36255, y: 713.2691, z: -89.848625}
+    m_Value: {x: 2547.346, y: 582.93225, z: -592.71387}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -763,9 +763,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 608.7431
+    m_Target: 408.4375
     speed: 2
-    m_Value: 608.7431
+    m_Value: 408.4375
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -832,22 +832,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/levels/farm1/kiosk
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Sprites/levels/farm1/kiosk
+  - Assets
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\rabee\Documents\GitHub\Hay_Day
+  m_LastProjectPath: E:\Projects\Hay_Day
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 714}
-    m_SelectedIDs: c6820000
-    m_LastClickedID: 33478
-    m_ExpandedIDs: 0000000056820000588200005a8200005c8200005e820000608200006282000064820000668200008a820000368500003e8500006485000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 8c8c0000
+    m_LastClickedID: 35980
+    m_ExpandedIDs: 000000008c8c00008e8c0000908c0000928c0000948c0000968c0000988c00009a8c00009c8c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -875,7 +875,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056820000588200005a8200005c8200005e82000060820000628200006482000066820000
+    m_ExpandedIDs: 000000008c8c00008e8c0000908c0000928c0000948c0000968c0000988c00009a8c00009c8c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -900,8 +900,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 1e820000
+    m_LastClickedInstanceID: 33310
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000026a10000f27600009075000058930000507500009275000042750000fa920000209300000a750000be8000002a850000
     m_RenameOverlay:
