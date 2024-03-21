@@ -25,6 +25,7 @@ public class FollowPath : MonoBehaviour
     //Имя анимации для объекта
     public string SubjectName;
     public GameObject Lines;
+    public bool CheckStop;
     
 
     void Start()
@@ -37,7 +38,15 @@ public class FollowPath : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void StartAnimationMove(string subjectName)
     {
-        Speed = Random.Range(300, 500);
+        if (SubjectName == "steamship")
+        {
+            Speed = 50;
+        }
+        else
+        {
+            Speed = Random.Range(300, 500);
+        }
+        
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
         SetSprite(subjectName);
@@ -74,6 +83,10 @@ public class FollowPath : MonoBehaviour
 
     void Update()
     {
+        if (CheckStop)
+        {
+            return;
+        }
         //Если путь не найден
         if (PointInPath == null || PointInPath.Current == null)
         {
