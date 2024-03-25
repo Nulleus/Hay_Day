@@ -32192,7 +32192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531884158}
   m_Layer: 0
-  m_Name: PanelKioskFullnessBar
+  m_Name: PanelRoadsideShopFullnessBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36200,7 +36200,7 @@ GameObject:
   - component: {fileID: 594071796}
   - component: {fileID: 594071801}
   m_Layer: 5
-  m_Name: PanelKioskSale
+  m_Name: PanelRoadsideShopSale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42209,7 +42209,7 @@ GameObject:
   - component: {fileID: 687008881}
   - component: {fileID: 687008880}
   m_Layer: 5
-  m_Name: KioskCase (1)
+  m_Name: RoadsideShopCase (1)
   m_TagString: panel_silo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43158,7 +43158,7 @@ GameObject:
   - component: {fileID: 704381589}
   - component: {fileID: 704381593}
   m_Layer: 0
-  m_Name: Kiosk
+  m_Name: RoadsideShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50309,7 +50309,7 @@ GameObject:
   - component: {fileID: 806618927}
   - component: {fileID: 806618929}
   m_Layer: 5
-  m_Name: PanelKiosk
+  m_Name: PanelRoadsideShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60288,7 +60288,7 @@ GameObject:
   - component: {fileID: 948464620}
   - component: {fileID: 948464619}
   m_Layer: 0
-  m_Name: PanelKioskBox
+  m_Name: PanelRoadsideShopBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67250,7 +67250,7 @@ GameObject:
   - component: {fileID: 1094887308}
   - component: {fileID: 1094887307}
   m_Layer: 5
-  m_Name: KioskCase
+  m_Name: RoadsideShopCase
   m_TagString: panel_silo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68549,7 +68549,7 @@ GameObject:
   - component: {fileID: 1113224149}
   - component: {fileID: 1113224148}
   m_Layer: 5
-  m_Name: KioskExpansionForDiamond
+  m_Name: RoadsideShopExpansionForDiamond
   m_TagString: panel_silo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69422,7 +69422,7 @@ GameObject:
   - component: {fileID: 1124726713}
   - component: {fileID: 1124726712}
   m_Layer: 5
-  m_Name: PanelKioskSale
+  m_Name: PanelRoadsideShopSale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72506,7 +72506,7 @@ GameObject:
   - component: {fileID: 1182153723}
   - component: {fileID: 1182153722}
   m_Layer: 5
-  m_Name: KioskCase (3)
+  m_Name: RoadsideShopCase (3)
   m_TagString: panel_silo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105236,7 +105236,7 @@ GameObject:
   - component: {fileID: 1760681569}
   - component: {fileID: 1760681570}
   m_Layer: 5
-  m_Name: PanelKioskSaleBox
+  m_Name: PanelRoadsideShopSaleBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123979,7 +123979,7 @@ GameObject:
   - component: {fileID: 2045715879}
   - component: {fileID: 2045715880}
   m_Layer: 5
-  m_Name: PanelKioskFullnessBarText
+  m_Name: PanelRoadsideShopFullnessBarText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

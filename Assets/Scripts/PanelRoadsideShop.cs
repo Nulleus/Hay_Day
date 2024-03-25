@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using Mono.Data.Sqlite;
 using UnityEngine.UI;
 
-public class PanelKiosk : MonoBehaviour
+public class PanelRoadsideShop: MonoBehaviour
 {
     public GameObject Data;
     public string SelectedStorage;

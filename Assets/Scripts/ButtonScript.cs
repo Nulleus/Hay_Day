@@ -156,37 +156,37 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 //Получаем имя предмета над которым выполняется операция
                 string subjectName = gameObject.GetComponent<Subject>().GetName();
                 //Присваиваем новое значение для выбранного предмета
-                GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<PanelSlot>().SetSubjectName(subjectName);                
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SelectedPredmet.GetComponent<PanelSlot>().SetSubjectName(subjectName);                
                 //Анимируем объект согласно выбранному предмету
-                GameObjectOperand.GetComponent<PanelKiosk>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SelectedPredmet.GetComponent<SpriteController>().SetSprite(subjectName);
 
-                GameObjectOperand.GetComponent<PanelKiosk>().AverageCoinSelectedValueQuantity();
-                GameObjectOperand.GetComponent<PanelKiosk>().AveragePredmetSelectedValueQuantity();
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().AverageCoinSelectedValueQuantity();
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().AveragePredmetSelectedValueQuantity();
 
                 break;
             case "PlusQuantity":
                 Debug.Log("pressed PlusQuantity");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetPlusQuantity(1);
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetPlusQuantity(1);
                 break;
             case "MinusQuantity":
                 Debug.Log("pressed MinusQuantity");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetMinusQuantity(1);
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetMinusQuantity(1);
                 break;
             case "PlusCoin":
                 Debug.Log("pressed PlusCoin");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetCoinPlusQuantity(1);
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetCoinPlusQuantity(1);
                 break;
             case "MinusCoin":
                 Debug.Log("pressed MinusCoin");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetCoinMinusQuantity(1);
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetCoinMinusQuantity(1);
                 break;
             case "MaxCoin":
                 Debug.Log("pressed MaxCoin");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetMaxCoin();
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetMaxCoin();
                 break;
             case "MinCoin":
                 Debug.Log("pressed MinCoin");
-                GameObjectOperand.GetComponent<PanelKiosk>().SetMinCoin();
+                GameObjectOperand.GetComponent<PanelRoadsideShop>().SetMinCoin();
                 break;
             default:
                 Debug.Log("default case");
