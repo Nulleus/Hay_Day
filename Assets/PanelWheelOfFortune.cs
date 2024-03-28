@@ -27,6 +27,11 @@ public class PanelWheelOfFortune : MonoBehaviour
             Arrow.gameObject.transform.Rotate(0, 0, -1);
             //ArrowRotation = ArrowRotation - 1;           
         }
+        if ((Arrow.gameObject.transform.rotation.z >= -90) && (Arrow.gameObject.transform.rotation.z <= 0))
+        {
+            Arrow.gameObject.transform.Rotate(0, 0, 1);
+            //ArrowRotation = ArrowRotation - 1;           
+        }
 
 
         if (SpeedRotation > 0)
@@ -41,6 +46,7 @@ public class PanelWheelOfFortune : MonoBehaviour
             }
             
             SpeedRotation = SpeedRotation - 1;
-        } 
+        }
+
     }
 }

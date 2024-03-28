@@ -6,18 +6,58 @@ public class ArrowWheelOfFortune : MonoBehaviour
 {
     public GameObject Arrow;
     public GameObject PanelWheelOfFortune;
+    public bool StopSpin;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation == 0)
+        if (!StopSpin)
         {
-            PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation + 10;
+            //if ((PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation == 0)&&(Arrow.gameObject.transform.rotation.z>50))
+            //Не откидывать стрелку, если скорость маленькая
+            //Тут происходит добавление скорости для подкрутки колеса
+            if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 50)
+            {
+                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)
+                {
+                    PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation - 30;
+                }
+                PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation + 30;
+            }
+            //градус стрелки в зависимости от скорости колеса
+            if ((collision.gameObject.name == "Carnations") && (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation != 0))
+            {
+                Debug.Log("Carnations=" + collision.gameObject.name);
+                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 100)
+                {
+                    if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)
+                    {
+                        Arrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
+                    else
+                    {
+                        Arrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
+                }
+                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 100)
+                {
+                    if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 50)
+                    {
+                        StopSpin = true;
+                        return;
+                    }
+                    if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)
+                    {
+                        Arrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, -53);
+                    }
+                    else
+                    {
+                        Arrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 53);
+                    }
+                }
+
+
+            }
         }
-        if ((collision.gameObject.name == "Carnations")&&(PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation!=0))
-        {
-            Debug.Log("Carnations=" + collision.gameObject.name);
-            Arrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
+
     }
     // Start is called before the first frame update
     void Start()

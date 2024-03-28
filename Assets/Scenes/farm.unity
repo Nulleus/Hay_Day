@@ -16729,14 +16729,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269397909}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.4458073, w: 0.89512897}
   m_LocalPosition: {x: 0, y: 0, z: 0.00014400965}
   m_LocalScale: {x: 0.75424236, y: 1.6028985, z: 1.2571753}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1352994993}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -52.95}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.19157428, y: 282.67572}
@@ -16750,7 +16750,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269397909}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -16841,6 +16841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arrow: {fileID: 269397909}
   PanelWheelOfFortune: {fileID: 1023010960}
+  StopSpin: 0
 --- !u!1 &271688987
 GameObject:
   m_ObjectHideFlags: 0
@@ -65287,7 +65288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectOfRotation: {fileID: 1747422783}
-  SpeedRotation: 1000
+  SpeedRotation: 500
   ClockwiseRotation: 0
   Arrow: {fileID: 269397909}
   ArrowRotation: 90
@@ -115100,7 +115101,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870862116}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
