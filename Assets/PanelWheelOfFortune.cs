@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+
 public class PanelWheelOfFortune : MonoBehaviour
 {
     public GameObject ObjectOfRotation;
@@ -11,7 +12,7 @@ public class PanelWheelOfFortune : MonoBehaviour
     public bool ClockwiseRotation;
     //Стрелка барабана
     public GameObject Arrow;
-    public int ArrowRotation; 
+    public int ArrowRotation;
 
     // Start is called before the first frame update
     void Start()

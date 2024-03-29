@@ -39,9 +39,8 @@ public class ArrowWheelOfFortune : MonoBehaviour
                 }
                 if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 100)
                 {
-                    if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 50)
+                    if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 67)
                     {
-                        StopSpin = true;
                         return;
                     }
                     if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)
