@@ -37,18 +37,19 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseUp()
     {
-        
+
     }
     public void MouseDown()
-    {
-        
-    }
-    public void MouseDrag()
     {
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Debug.Log("curScreenPoint=" + curScreenPoint);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         //тут нужно определить 
+    }
+    public void MouseDrag()
+    {
+
+
     }
     public void OnMouseUp()
     {
@@ -71,6 +72,6 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     // Update is called once per frame
     void Update()
     {
-        
+        //считаем смещение по y
     }
 }
