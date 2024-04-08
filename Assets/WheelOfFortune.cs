@@ -8,8 +8,13 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     [SerializeField]
     GameObject BlockObject;
     public GameObject PanelWheelOfFortune;
-    public Vector3 offset; //Смещение
-    public Vector3 screenPoint;
+    //Смещение по Y
+    public float OffsetY; 
+    //Стартовая точка при касании 
+    public Vector3 StartScreenPoint;
+    //Текущая точка касания
+    public Vector3 CurrentScreenPoint;
+    public GameObject SpinWhellImage;
     public bool CheckBlockObject()
     {
         return BlockObject.GetComponent<BlockObject>().GetBlockObjectStatus();
@@ -41,15 +46,23 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseDown()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Debug.Log("curScreenPoint=" + curScreenPoint);
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        //тут нужно определить 
+        StartScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+        Debug.Log("StartScreenPoint=" + StartScreenPoint);
     }
     public void MouseDrag()
     {
-
-
+        CurrentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+        Debug.Log("CurrentScreenPoint=" + CurrentScreenPoint);
+        //OffsetY = StartScreenPoint.y - CurrentScreenPoint.y;
+        //Debug.Log("OffsetY=" + OffsetY);
+        if (StartScreenPoint.y < CurrentScreenPoint.y)
+        {
+            SpinWhellImage.transform.Rotate(0, 0, -2);
+        }
+        if (StartScreenPoint.y > CurrentScreenPoint.y)
+        {
+            SpinWhellImage.transform.Rotate(0, 0, +2);
+        }
     }
     public void OnMouseUp()
     {
@@ -73,5 +86,6 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     void Update()
     {
         //считаем смещение по y
+
     }
 }

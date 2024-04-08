@@ -101022,8 +101022,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockObject: {fileID: 696549679}
   PanelWheelOfFortune: {fileID: 1023010960}
-  offset: {x: 0, y: 0, z: 0}
-  screenPoint: {x: 0, y: 0, z: 0}
+  OffsetY: 0
+  StartScreenPoint: {x: 0, y: 0, z: 0}
+  CurrentScreenPoint: {x: 0, y: 0, z: 0}
+  SpinWhellImage: {fileID: 1747422783}
 --- !u!222 &1626148496
 CanvasRenderer:
   m_ObjectHideFlags: 0
