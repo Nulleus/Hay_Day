@@ -16,6 +16,11 @@ public class ArrowWheelOfFortune : MonoBehaviour
             //Тут происходит добавление скорости для подкрутки колеса
             if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 50)
             {
+                if ((collision.gameObject.name == "SubjectSpin") && (PanelWheelOfFortune.GetComponent<SubjectSpin>().SubjectName == PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WinningPositionSubjectName))
+                {
+                    Debug.Log("You Win!");
+                    PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = 0;
+                }
                 if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)
                 {
                     PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation - 30;
@@ -23,9 +28,9 @@ public class ArrowWheelOfFortune : MonoBehaviour
                 PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation + 30;
             }
             //градус стрелки в зависимости от скорости колеса
-            if ((collision.gameObject.name == "Carnations") && (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation != 0))
+            if ((collision.gameObject.name == "NailSpin") && (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation != 0))
             {
-                Debug.Log("Carnations=" + collision.gameObject.name);
+                Debug.Log("NailSpin=" + collision.gameObject.name);
                 if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 100)
                 {
                     if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation)

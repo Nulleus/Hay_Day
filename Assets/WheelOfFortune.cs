@@ -15,6 +15,8 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     //Текущая точка касания
     public Vector3 CurrentScreenPoint;
     public GameObject SpinWhellImage;
+    //Клавиша нажата?
+    public bool Pressed=false;
     public bool CheckBlockObject()
     {
         return BlockObject.GetComponent<BlockObject>().GetBlockObjectStatus();
@@ -42,27 +44,61 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseUp()
     {
-
+        Pressed = false;
+        //Если колесо уже вращается, вращать нельзя
+        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 0)
+        {
+            return;
+        }
+        //Крутим колесо, если пользователь отпускает кнопку, +нужно определить направление вращения
+        if (StartScreenPoint.y > CurrentScreenPoint.y)
+        {
+            PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation = false;
+        }
+        if (StartScreenPoint.y < CurrentScreenPoint.y)
+        {
+            PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().ClockwiseRotation = true;
+        }
+        PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = (int)Random.Range(500.0f, 600.0f);
+        
     }
     public void MouseDown()
     {
+        Pressed = true;
+        //Если колесо уже вращается, вращать нельзя
+        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 0)
+        {
+            return;
+        }
+        
         StartScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
         Debug.Log("StartScreenPoint=" + StartScreenPoint);
     }
     public void MouseDrag()
     {
-        CurrentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-        Debug.Log("CurrentScreenPoint=" + CurrentScreenPoint);
-        //OffsetY = StartScreenPoint.y - CurrentScreenPoint.y;
-        //Debug.Log("OffsetY=" + OffsetY);
-        if (StartScreenPoint.y < CurrentScreenPoint.y)
+        //Если колесо уже вращается, вращать нельзя
+        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 0)
         {
-            SpinWhellImage.transform.Rotate(0, 0, -2);
+            return;
         }
-        if (StartScreenPoint.y > CurrentScreenPoint.y)
+        if (Pressed)
         {
-            SpinWhellImage.transform.Rotate(0, 0, +2);
+            CurrentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            Debug.Log("CurrentScreenPoint=" + CurrentScreenPoint);
+            Debug.Log("StartScreenPoint=" + StartScreenPoint);
+            //OffsetY = StartScreenPoint.y - CurrentScreenPoint.y;
+            //Debug.Log("OffsetY=" + OffsetY);
+            if (StartScreenPoint.y > CurrentScreenPoint.y)
+            {
+                SpinWhellImage.transform.Rotate(0, 0, -10);
+            }
+            if (StartScreenPoint.y < CurrentScreenPoint.y)
+            {
+                SpinWhellImage.transform.Rotate(0, 0, 10);
+            }
         }
+
+
     }
     public void OnMouseUp()
     {

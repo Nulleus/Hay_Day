@@ -13,6 +13,8 @@ public class PanelWheelOfFortune : MonoBehaviour
     //Стрелка барабана
     public GameObject Arrow;
     public int ArrowRotation;
+    //Выиграшная позиция
+    public string WinningPositionSubjectName;
 
     // Start is called before the first frame update
     void Start()
