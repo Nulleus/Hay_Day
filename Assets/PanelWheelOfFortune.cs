@@ -15,6 +15,7 @@ public class PanelWheelOfFortune : MonoBehaviour
     public int ArrowRotation;
     //Выиграшная позиция
     public string WinningPositionSubjectName;
+    public bool StopSpin;
 
     // Start is called before the first frame update
     void Start()
@@ -25,31 +26,35 @@ public class PanelWheelOfFortune : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Arrow.gameObject.transform.rotation.z <= 90) && (Arrow.gameObject.transform.rotation.z >= 0))
+        if (!StopSpin)
         {
-            Arrow.gameObject.transform.Rotate(0, 0, -1);
-            //ArrowRotation = ArrowRotation - 1;           
-        }
-        if ((Arrow.gameObject.transform.rotation.z >= -90) && (Arrow.gameObject.transform.rotation.z <= 0))
-        {
-            Arrow.gameObject.transform.Rotate(0, 0, 1);
-            //ArrowRotation = ArrowRotation - 1;           
-        }
+            if ((Arrow.gameObject.transform.rotation.z <= 90) && (Arrow.gameObject.transform.rotation.z >= 0))
+            {
+                Arrow.gameObject.transform.Rotate(0, 0, -1);
+                //ArrowRotation = ArrowRotation - 1;           
+            }
+            if ((Arrow.gameObject.transform.rotation.z >= -90) && (Arrow.gameObject.transform.rotation.z <= 0))
+            {
+                Arrow.gameObject.transform.Rotate(0, 0, 1);
+                //ArrowRotation = ArrowRotation - 1;           
+            }
 
 
-        if (SpeedRotation > 0)
-        {
-            if (ClockwiseRotation)
+            if (SpeedRotation > 0)
             {
-                ObjectOfRotation.gameObject.transform.Rotate(0, 0, SpeedRotation * Time.deltaTime);
+                if (ClockwiseRotation)
+                {
+                    ObjectOfRotation.gameObject.transform.Rotate(0, 0, SpeedRotation * Time.deltaTime);
+                }
+                else
+                {
+                    ObjectOfRotation.gameObject.transform.Rotate(0, 0, -SpeedRotation * Time.deltaTime);
+                }
+
+                SpeedRotation = SpeedRotation - 1;
             }
-            else
-            {
-                ObjectOfRotation.gameObject.transform.Rotate(0, 0, -SpeedRotation * Time.deltaTime);
-            }
-            
-            SpeedRotation = SpeedRotation - 1;
         }
+
 
     }
 }

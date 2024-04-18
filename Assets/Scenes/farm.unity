@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 2279862}
   - component: {fileID: 2279861}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 8646675}
   - component: {fileID: 8646674}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9093,6 +9093,7 @@ GameObject:
   - component: {fileID: 135364150}
   - component: {fileID: 135364153}
   - component: {fileID: 135364152}
+  - component: {fileID: 135364154}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -9173,7 +9174,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &135364153
 Rigidbody2D:
   serializedVersion: 4
@@ -9183,7 +9184,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135364148}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -9195,6 +9196,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &135364154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135364148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &137231957
 GameObject:
   m_ObjectHideFlags: 0
@@ -9910,7 +9924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146577365}
   m_Layer: 5
-  m_Name: ' NailsSpin'
+  m_Name: NailsSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11248,7 +11262,7 @@ GameObject:
   - component: {fileID: 177207928}
   - component: {fileID: 177207927}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12146,6 +12160,7 @@ GameObject:
   - component: {fileID: 187621721}
   - component: {fileID: 187621724}
   - component: {fileID: 187621723}
+  - component: {fileID: 187621725}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -12226,7 +12241,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &187621724
 Rigidbody2D:
   serializedVersion: 4
@@ -12236,7 +12251,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187621719}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -12248,6 +12263,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &187621725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187621719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &188344651
 GameObject:
   m_ObjectHideFlags: 0
@@ -17071,7 +17099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arrow: {fileID: 269397909}
   PanelWheelOfFortune: {fileID: 1023010960}
-  StopSpin: 0
 --- !u!61 &269397916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17885,6 +17912,7 @@ GameObject:
   - component: {fileID: 286363937}
   - component: {fileID: 286363940}
   - component: {fileID: 286363939}
+  - component: {fileID: 286363941}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -17965,7 +17993,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &286363940
 Rigidbody2D:
   serializedVersion: 4
@@ -17975,7 +18003,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286363935}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -17987,6 +18015,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &286363941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286363935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &287053241
 GameObject:
   m_ObjectHideFlags: 0
@@ -24582,6 +24623,7 @@ GameObject:
   - component: {fileID: 380240886}
   - component: {fileID: 380240889}
   - component: {fileID: 380240888}
+  - component: {fileID: 380240890}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -24662,7 +24704,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &380240889
 Rigidbody2D:
   serializedVersion: 4
@@ -24672,7 +24714,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380240884}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -24684,6 +24726,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &380240890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380240884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &383851695
 GameObject:
   m_ObjectHideFlags: 0
@@ -27801,7 +27856,7 @@ GameObject:
   - component: {fileID: 421412928}
   - component: {fileID: 421412927}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39745,7 +39800,7 @@ GameObject:
   - component: {fileID: 617331168}
   - component: {fileID: 617331167}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47462,7 +47517,7 @@ GameObject:
   - component: {fileID: 736118268}
   - component: {fileID: 736118267}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54938,7 +54993,7 @@ GameObject:
   - component: {fileID: 840409340}
   - component: {fileID: 840409339}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55723,6 +55778,7 @@ GameObject:
   - component: {fileID: 851053989}
   - component: {fileID: 851053992}
   - component: {fileID: 851053991}
+  - component: {fileID: 851053993}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -55803,7 +55859,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &851053992
 Rigidbody2D:
   serializedVersion: 4
@@ -55813,7 +55869,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851053987}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -55825,6 +55881,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &851053993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851053987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &852478427
 GameObject:
   m_ObjectHideFlags: 0
@@ -57165,6 +57234,7 @@ GameObject:
   - component: {fileID: 870029112}
   - component: {fileID: 870029115}
   - component: {fileID: 870029114}
+  - component: {fileID: 870029116}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -57245,7 +57315,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &870029115
 Rigidbody2D:
   serializedVersion: 4
@@ -57255,7 +57325,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870029110}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -57267,6 +57337,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &870029116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870029110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &870471658
 GameObject:
   m_ObjectHideFlags: 0
@@ -57685,6 +57768,7 @@ GameObject:
   - component: {fileID: 874397367}
   - component: {fileID: 874397370}
   - component: {fileID: 874397369}
+  - component: {fileID: 874397371}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -57765,7 +57849,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &874397370
 Rigidbody2D:
   serializedVersion: 4
@@ -57775,7 +57859,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874397365}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -57787,6 +57871,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &874397371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874397365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &875013727
 GameObject:
   m_ObjectHideFlags: 0
@@ -62108,7 +62205,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &930940642
 Rigidbody2D:
   serializedVersion: 4
@@ -62118,7 +62215,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930940636}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -62742,6 +62839,7 @@ GameObject:
   - component: {fileID: 941866753}
   - component: {fileID: 941866756}
   - component: {fileID: 941866755}
+  - component: {fileID: 941866757}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -62822,7 +62920,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &941866756
 Rigidbody2D:
   serializedVersion: 4
@@ -62832,7 +62930,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941866751}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -62844,6 +62942,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &941866757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941866751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &944241603
 GameObject:
   m_ObjectHideFlags: 0
@@ -66368,6 +66479,7 @@ MonoBehaviour:
   Arrow: {fileID: 269397909}
   ArrowRotation: 90
   WinningPositionSubjectName: Apple
+  StopSpin: 0
 --- !u!223 &1023010963
 Canvas:
   m_ObjectHideFlags: 0
@@ -74523,7 +74635,7 @@ GameObject:
   - component: {fileID: 1159646952}
   - component: {fileID: 1159646951}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82851,6 +82963,7 @@ GameObject:
   - component: {fileID: 1315072355}
   - component: {fileID: 1315072358}
   - component: {fileID: 1315072357}
+  - component: {fileID: 1315072359}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -82931,7 +83044,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &1315072358
 Rigidbody2D:
   serializedVersion: 4
@@ -82941,7 +83054,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315072353}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -82953,6 +83066,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1315072359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315072353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &1317141054
 GameObject:
   m_ObjectHideFlags: 0
@@ -83743,7 +83869,7 @@ GameObject:
   - component: {fileID: 1324609000}
   - component: {fileID: 1324608999}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89845,7 +89971,7 @@ GameObject:
   - component: {fileID: 1434878182}
   - component: {fileID: 1434878181}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109196,6 +109322,7 @@ GameObject:
   - component: {fileID: 1738287064}
   - component: {fileID: 1738287067}
   - component: {fileID: 1738287066}
+  - component: {fileID: 1738287068}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -109276,7 +109403,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &1738287067
 Rigidbody2D:
   serializedVersion: 4
@@ -109286,7 +109413,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738287062}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -109298,6 +109425,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1738287068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738287062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &1741226532
 GameObject:
   m_ObjectHideFlags: 0
@@ -109414,6 +109554,7 @@ GameObject:
   - component: {fileID: 1741775343}
   - component: {fileID: 1741775346}
   - component: {fileID: 1741775345}
+  - component: {fileID: 1741775347}
   m_Layer: 5
   m_Name: SubjectSpin
   m_TagString: Untagged
@@ -109494,7 +109635,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 56.7
+  m_Radius: 69.83
 --- !u!50 &1741775346
 Rigidbody2D:
   serializedVersion: 4
@@ -109504,7 +109645,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741775341}
   m_BodyType: 1
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -109516,6 +109657,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1741775347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741775341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df4291d6c1086a4b82644d021186700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubjectName: 
 --- !u!1 &1747422783
 GameObject:
   m_ObjectHideFlags: 0
@@ -116594,7 +116748,7 @@ GameObject:
   - component: {fileID: 1870862118}
   - component: {fileID: 1870862119}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133963,7 +134117,7 @@ GameObject:
   - component: {fileID: 2130316009}
   - component: {fileID: 2130316008}
   m_Layer: 5
-  m_Name: ' NailSpin'
+  m_Name: NailSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
