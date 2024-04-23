@@ -41,6 +41,8 @@ public class PanelWheelOfFortune : MonoBehaviour
         LinesSpin.SetActive(true);
         LinesSpin.GetComponent<MovementPath>().SubjectName = WinningPositionSubjectName;
         LinesSpin.GetComponent<MovementPath>().StartAnimation();
+        ButtonPrize.SetActive(false);
+        
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Загрузка призовых объектов в колесо форотуны из списка
