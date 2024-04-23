@@ -188,6 +188,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 Debug.Log("pressed MinCoin");
                 GameObjectOperand.GetComponent<PanelRoadsideShop>().SetMinCoin();
                 break;
+            case "GetPrizeSpin":
+                Debug.Log("pressed GetPrizeSpin");
+                GameObjectOperand.GetComponent<PanelWheelOfFortune>().GetPrizeSpin();
+                break;
             default:
                 Debug.Log("default case");
                 break;
