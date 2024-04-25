@@ -44906,7 +44906,7 @@ GameObject:
   - component: {fileID: 696549680}
   - component: {fileID: 696549682}
   m_Layer: 0
-  m_Name: farm_map
+  m_Name: FarmMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

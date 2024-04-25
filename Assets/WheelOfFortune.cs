@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 
 public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
 {
-    [SerializeField]
-    GameObject BlockObject;
     public GameObject PanelWheelOfFortune;
     //Смещение по Y
     public float OffsetY; 
@@ -17,30 +15,17 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public GameObject SpinWhellImage;
     //Клавиша зажата?
     public bool Pressed=false;
-    public bool CheckBlockObject()
-    {
-        return BlockObject.GetComponent<BlockObject>().GetBlockObjectStatus();
-    }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!CheckBlockObject())
-        {
             MouseUp();
-        }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!CheckBlockObject())
-        {
             MouseDown();
-        }
     }
     public void OnPointerMove(PointerEventData eventData)
     {
-        if (!CheckBlockObject())
-        {
             MouseDrag();
-        }
     }
     public void MouseUp()
     {
@@ -73,7 +58,6 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseDrag()
     {
-        
         if (Pressed)
         {
             PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().StopSpin = false;
