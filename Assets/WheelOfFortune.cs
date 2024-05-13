@@ -15,6 +15,8 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public GameObject SpinWhellImage;
     //Клавиша зажата?
     public bool Pressed=false;
+    //Доступность вращения
+    public bool RotationEnable;
     public void OnPointerUp(PointerEventData eventData)
     {
             MouseUp();
@@ -29,6 +31,10 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseUp()
     {
+        if (RotationEnable == false)
+        {
+            return;
+        }
         PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().StopSpin = false;
         Pressed = false;
         //Если колесо уже вращается, вращать нельзя
@@ -46,6 +52,10 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseDown()
     {
+        if (RotationEnable == false)
+        {
+            return;
+        }
         Pressed = true;
         //Если колесо уже вращается, вращать нельзя
         if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 0)
