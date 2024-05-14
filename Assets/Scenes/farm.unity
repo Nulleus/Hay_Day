@@ -68646,13 +68646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectOfRotation: {fileID: 1747422783}
-  SpeedRotation: 1000
-  ClockwiseRotation: 0
   Arrow: {fileID: 269397909}
-  ArrowRotation: 90
-  WinningPositionSubjectName: cheese
-  StopSpin: 0
-  LastSubjectArrowEncountered: 
+  _winningPositionSubjectName: cheese
   SubjectsSpin:
   - {fileID: 930940636}
   - {fileID: 874397365}
@@ -68668,19 +68663,20 @@ MonoBehaviour:
   - {fileID: 941866751}
   SubjectsSpinName:
   - starSpin
+  - cream
   - bread
-  - bread
-  - bread
-  - cheese
-  - bread
-  - bread
-  - bread
-  - bread
-  - bread
-  - bread
+  - cowFeed
+  - corn
+  - cookie
+  - carrot
+  - chickenFeed
+  - milk
+  - egg
+  - apple
   - bread
   LinesSpin: {fileID: 1310620845}
   ButtonPrize: {fileID: 970461711}
+  LightsController: {fileID: 2131349229}
 --- !u!223 &1023010963
 Canvas:
   m_ObjectHideFlags: 0
@@ -105268,12 +105264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelWheelOfFortune: {fileID: 1023010960}
-  OffsetY: 0
   StartScreenPoint: {x: 0, y: 0, z: 0}
   CurrentScreenPoint: {x: 0, y: 0, z: 0}
-  SpinWhellImage: {fileID: 1747422783}
-  Pressed: 0
-  RotationEnable: 0
+  SpinWheelImage: {fileID: 1747422783}
 --- !u!222 &1626148496
 CanvasRenderer:
   m_ObjectHideFlags: 0

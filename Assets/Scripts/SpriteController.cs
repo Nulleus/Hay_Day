@@ -42,12 +42,17 @@ public class SpriteController : MonoBehaviour
         {
             gameObject.GetComponent<Image>().sprite = GetSprite(subjectName);
         }
+
         //Anim.CrossFade(subjectName, 0);
     }
     public Sprite GetSprite(string spriteName)
     {
         if (Data.GetComponent<ImageStorage>() != null)
         {
+            if (spriteName == "")
+            {
+                return Data.GetComponent<ImageStorage>().GetSprite("empty");
+            }
             return Data.GetComponent<ImageStorage>().GetSprite(spriteName);
         }
         return null;
