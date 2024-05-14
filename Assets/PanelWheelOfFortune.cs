@@ -124,11 +124,13 @@ public class PanelWheelOfFortune : MonoBehaviour
     {
         if (!IsStopSpin)
         {
-            if ((Arrow.transform.rotation.z <= 90) && (Arrow.transform.rotation.z >= 0))
+            if (Arrow.transform.rotation.z >0)
+            //if ((Arrow.transform.rotation.z <= 90) && (Arrow.transform.rotation.z >= 0))
             {
                 Arrow.transform.Rotate(0, 0, -1);         
             }
-            if ((Arrow.transform.rotation.z >= -90) && (Arrow.transform.rotation.z <= 0))
+            if (Arrow.transform.rotation.z <0)
+            //if ((Arrow.transform.rotation.z >= -90) && (Arrow.transform.rotation.z <= 0))
             {
                 Arrow.transform.Rotate(0, 0, 1);         
             }
