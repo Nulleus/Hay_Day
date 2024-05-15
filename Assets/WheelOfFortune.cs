@@ -15,8 +15,7 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public GameObject SpinWheelImage;
     //Клавиша зажата?
     private bool _isPressed;
-    //Доступность вращения колеса
-    private bool _isRotationEnabled;
+
     [ShowInInspector]
     public bool IsPressed
     {
@@ -29,18 +28,7 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             _isPressed = value; 
         }
     }
-    [ShowInInspector]
-    public bool IsRotationEnabled
-    {
-        get
-        {
-            return _isRotationEnabled;
-        }
-        set
-        {
-            _isRotationEnabled = value;
-        }
-    }
+
     public void OnPointerUp(PointerEventData eventData)
     {
             MouseUp();
@@ -55,7 +43,7 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void MouseUp()
     {
-        if (!IsRotationEnabled)
+        if (!PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsRotationEnabled)
         {
             return;
         }
@@ -73,18 +61,18 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsClockwiseRotation = true;
         }
-        PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation = (int)Random.Range(500.0f, 600.0f);
+        PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed = (int)Random.Range(500.0f, 600.0f);
         
     }
     public void MouseDown()
     {
-        if (!IsRotationEnabled)
+        if (!PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsRotationEnabled)
         {
             return;
         }
         IsPressed = true;
         //Если колесо уже вращается, вращать нельзя
-        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 0)
+        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed > 0)
         {
             return;
         }       

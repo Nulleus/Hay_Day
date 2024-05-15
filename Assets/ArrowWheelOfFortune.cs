@@ -12,10 +12,10 @@ public class ArrowWheelOfFortune : MonoBehaviour
         if (!PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsStopSpin)
         {
             //градус стрелки в зависимости от скорости колеса
-            if ((collision.name == "NailSpin") && (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation != 0))
+            if ((collision.name == "NailSpin") && (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed != 0))
             {
                 //Debug.Log("NailSpin=" + collision.gameObject.name);
-                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation > 100)
+                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed > 100)
                 {
                     if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsClockwiseRotation)
                     {
@@ -26,7 +26,7 @@ public class ArrowWheelOfFortune : MonoBehaviour
                         Arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
                     }
                 }
-                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 100)
+                if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed < 100)
                 {
                     if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsClockwiseRotation)
                     {
@@ -40,7 +40,7 @@ public class ArrowWheelOfFortune : MonoBehaviour
             }
             //Не откидывать стрелку, если скорость маленькая
             //Тут происходит добавление скорости для подкрутки колеса
-            if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().SpeedRotation < 200)
+            if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WheelRotationSpeed < 200)
             {
                 if(collision.name == "SubjectSpin")
                 {
