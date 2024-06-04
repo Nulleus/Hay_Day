@@ -37,6 +37,34 @@ public class PanelWheelOfFortune : MonoBehaviour
     public const int WHEEL_CELL_CHANGE_SPEED_MIN = 120;
     //Скорость добавляемая колесу, для подкрутки результата
     public const int HELP_ROTATION_SPEED = 50;
+    //Система частиц для салюта
+    public GameObject UIParticle;
+    //Количество вращений колеса
+    public int _countSpins;
+    //Приз получен
+    public bool _isGettingPrize;
+    public bool IsGettingPrize
+    {
+        get
+        {
+            return _isGettingPrize;
+        }
+        set => _isGettingPrize = value;
+    }
+    [ShowInInspector]
+    public int CountSpins
+    {
+        get
+        {
+            return _countSpins;
+        }
+        set => _countSpins = value;
+    }
+    //Увеличиваем счетчик вращений колеса
+    public void IncCountSpins()
+    {
+        CountSpins++;
+    }
     //Последний предмет, на который указала стрелка
     [ShowInInspector]
     public string LastSubjectArrowEncountered
@@ -113,25 +141,34 @@ public class PanelWheelOfFortune : MonoBehaviour
     void Start()
     {
         ButtonPrize.SetActive(false);
+        CountSpins = 0;
+        IsGettingPrize = true;
     }
     //Действие происходит, когда стрелка останавливается на выигрышной позиции
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void WinningPosition()
     {
+        IsGettingPrize = false;
         ButtonPrize.SetActive(true);
         ButtonPrize.GetComponent<SpriteController>().SetSprite(WinningPositionSubjectName);
         IsStopSpin = true;
         WheelRotationSpeed = 0;
         IsRotationEnabled = false;
+        if (_winningPositionSubjectName == "starSpin")
+        {
+            UIParticle.GetComponent<ParticleSystemController>().StartParticle();
+        }
     }
     //Получаем приз
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void GetPrizeSpin()
     {
+        if (IsGettingPrize) { return; }       
         LinesSpin.SetActive(true);
         LinesSpin.GetComponent<MovementPath>().SubjectName = WinningPositionSubjectName;
         LinesSpin.GetComponent<MovementPath>().StartAnimation();
-        ButtonPrize.SetActive(false);       
+        ButtonPrize.SetActive(false);
+        IsGettingPrize = true;
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     //Загрузка призовых объектов в колесо форотуны из списка

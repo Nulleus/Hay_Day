@@ -51,6 +51,7 @@ public class WheelOfFortune : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().GetPrizeSpin();
         PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsStopSpin = false;
         IsPressed = false;
+        PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IncCountSpins();
         //Если колесо уже вращается, вращать нельзя
         //Крутим колесо, если пользователь отпускает кнопку, +нужно определить направление вращения
         if (StartScreenPoint.y > CurrentScreenPoint.y)

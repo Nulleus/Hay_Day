@@ -9,6 +9,7 @@ public class ArrowWheelOfFortune : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("OnTriggerEnter2D");
         if (!PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().IsStopSpin)
         {
             //градус стрелки в зависимости от скорости колеса
@@ -46,8 +47,11 @@ public class ArrowWheelOfFortune : MonoBehaviour
                 {
                     //Последний объект столкнувшийся со стрелкой
                     PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().LastSubjectArrowEncountered = collision.GetComponent<SubjectSpin>().SubjectName;
+
                     if (collision.GetComponent<SubjectSpin>().SubjectName == PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WinningPositionSubjectName)
                     {
+                        //Количество вращений
+                        if (PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().CountSpins < 1) { return; }
                         //Выигрыш
                         Arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
                         PanelWheelOfFortune.GetComponent<PanelWheelOfFortune>().WinningPosition();
