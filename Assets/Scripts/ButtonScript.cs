@@ -103,6 +103,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 GameObjectOperand.GetComponent<PanelFewResources>().SetUserActionSelection(AppointmentButton);
                 //Выбор пользователя был сделан
                 string subjectNameForBuilding = GameObjectOperand.GetComponent<PanelFewResources>().SubjectNameForBuilding;
+                //
                 string productionBuildingName = ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().SubjectName;
                 //Покупаем недостающие объекты
                 ProductionBuildingSendRequest.GetComponent<ProductionBuilding>().BuySubjectForDiamond(subjectNameForBuilding, "Local");
