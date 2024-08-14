@@ -30,6 +30,7 @@ public class FollowPath : MonoBehaviour
 
     void Start()
     {
+        SubjectName = Lines.GetComponent<MovementPath>().GetSubjectName();
         StartAnimationMove(SubjectName);
         
     }
@@ -49,6 +50,7 @@ public class FollowPath : MonoBehaviour
         
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
+        Debug.LogError(subjectName);
         SetSprite(subjectName);
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
@@ -72,7 +74,9 @@ public class FollowPath : MonoBehaviour
     }
     private void OnEnable()
     {
-        SubjectName = Lines.GetComponent<MovementPath>().SubjectName;
+        Debug.LogError("76" + Lines.GetComponent<MovementPath>().SubjectName);
+        SubjectName = Lines.GetComponent<MovementPath>().GetSubjectName();
+        Debug.LogError("77"+SubjectName);
         StartAnimationMove(SubjectName);
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
@@ -90,6 +94,7 @@ public class FollowPath : MonoBehaviour
         //Если путь не найден
         if (PointInPath == null || PointInPath.Current == null)
         {
+            Debug.Log("Путь не найден");
             return;
         }
         if (Type == MovementType.End)
@@ -104,13 +109,13 @@ public class FollowPath : MonoBehaviour
                 //Перемещаем на начальную точку
                 transform.position = (Vector2)startedPoint.position;
                 SetSprite("empty");
-                gameObject.SetActive(false);
+               
                 //Удаляем только если это клон, из основного объекта копируются клоны
                 if (Lines.name == "Lines(Clone)")
                 {
                     DestroyImmediate(Lines);
                 }
-                
+                //gameObject.SetActive(false);
 
             }
         }
@@ -124,13 +129,21 @@ public class FollowPath : MonoBehaviour
             //Движение объекта к следующей точке
             transform.position = Vector2.Lerp((Vector2)transform.position, (Vector2)PointInPath.Current.position, Time.deltaTime * Speed);
         }
+        //Если путь не найден
+        if (PointInPath == null || PointInPath.Current == null)
+        {
+            Debug.Log("Путь не найден");
+            //return;
+        }
+        //Debug.Log("Vector2" + PointInPath.Current.position);
         //Проверка на близость к точке, для дальнейшего движения
         var distanceSqure = ((Vector2)transform.position - (Vector2)PointInPath.Current.position).sqrMagnitude;
-        if (distanceSqure < MaxDistance * MaxDistance)
-        {
-            //Двигаемся к следующей точке
-            PointInPath.MoveNext();
-        }
+            if (distanceSqure < MaxDistance * MaxDistance)
+            {
+                //Двигаемся к следующей точке
+                PointInPath.MoveNext();
+            }
+
     }
 
 }

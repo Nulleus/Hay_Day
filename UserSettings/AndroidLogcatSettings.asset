@@ -1,62 +1,13 @@
 {
     "m_SelectedDeviceId": "ALDEVB2218003119",
-    "m_SelectedPackage": {
-        "deviceId": "ALDEVB2218003119",
-        "name": "com.DefaultCompany.HayDay",
-        "processId": 11487,
+    "m_SelectedProcess": {
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "BV6800ProRU06916",
-            "name": "org.telegram.messenger",
-            "processId": 22921,
-            "exited": false
-        },
-        {
-            "deviceId": "BV6800ProRU06916",
-            "name": "com.transsion.XOSLauncher",
-            "processId": 3582,
-            "exited": false
-        },
-        {
-            "deviceId": "BV6800ProRU06916",
-            "name": "com.pupercell.MayDay",
-            "processId": 17798,
-            "exited": true
-        },
-        {
-            "deviceId": "ALDEVB2218003119",
-            "name": "com.DefaultCompany.HayDay",
-            "processId": 31654,
-            "exited": true
-        },
-        {
-            "deviceId": "ALDEVB2218003119",
-            "name": "com.hihonor.android.launcher",
-            "processId": 3575,
-            "exited": false
-        },
-        {
-            "deviceId": "ALDEVB2218003119",
-            "name": "com.DefaultCompany.HayDay",
-            "processId": 6316,
-            "exited": true
-        },
-        {
-            "deviceId": "ALDEVB2218003119",
-            "name": "com.DefaultCompany.Test",
-            "processId": 7515,
-            "exited": true
-        },
-        {
-            "deviceId": "ALDEVB2218003119",
-            "name": "com.DefaultCompany.HayDay",
-            "processId": 11487,
-            "exited": false
-        }
-    ],
+    "m_KnownProcessesForSerialization": [],
     "m_Tags": {
         "m_Entries": [
             {
@@ -89,8 +40,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -105,7 +59,7 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
     "m_FilterOptions": {
         "m_Filter": "",
@@ -123,5 +77,17 @@
         "BitRateK": 20000,
         "DisplayIdEnabled": false,
         "DisplayId": ""
-    }
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }

@@ -25,7 +25,11 @@ public class MovementPath : MonoBehaviour
     public GameObject StartObject;
     //Отображение текста для количества объектов
     public GameObject Quantity;
-
+    [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+    public string GetSubjectName()
+    {
+        return SubjectName;
+    }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetValueTextPro(string value)
     {

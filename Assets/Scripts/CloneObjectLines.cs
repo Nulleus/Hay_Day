@@ -34,6 +34,7 @@ public class CloneObjectLines : MonoBehaviour
         //Добавим клону свойства 
         clone.SetActive(true);
         clone.GetComponent<MovementPath>().SubjectName = subjectName;
+        Debug.LogError(subjectName);
         clone.GetComponent<MovementPath>().SetValueTextPro("+" + quantity);     
         clone.GetComponent<MovementPath>().StartAnimation();
         Debug.Log("subjectName=" + subjectName);
