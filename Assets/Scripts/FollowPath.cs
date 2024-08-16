@@ -31,8 +31,7 @@ public class FollowPath : MonoBehaviour
     void Start()
     {
         SubjectName = Lines.GetComponent<MovementPath>().GetSubjectName();
-        StartAnimationMove(SubjectName);
-        
+        StartAnimationMove(SubjectName);        
     }
 
     //Запуск анимации движения
@@ -50,7 +49,6 @@ public class FollowPath : MonoBehaviour
         
         //Работа проверялась в MovementType=End, PathTypes=linear
         MyPath.MovementDirection = 1;
-        Debug.LogError(subjectName);
         SetSprite(subjectName);
         MyPath.MoveIngTo = 0;
         //Проверка, прикреплен ли путь
@@ -74,10 +72,7 @@ public class FollowPath : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.LogError("76" + Lines.GetComponent<MovementPath>().SubjectName);
-        SubjectName = Lines.GetComponent<MovementPath>().GetSubjectName();
-        Debug.LogError("77"+SubjectName);
-        StartAnimationMove(SubjectName);
+
     }
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void SetSprite(string spriteName)
@@ -114,6 +109,7 @@ public class FollowPath : MonoBehaviour
                 if (Lines.name == "Lines(Clone)")
                 {
                     DestroyImmediate(Lines);
+                    return;
                 }
                 //gameObject.SetActive(false);
 

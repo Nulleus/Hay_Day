@@ -5,15 +5,17 @@ using Sirenix.OdinInspector;
 
 public class CloneObjectLines : MonoBehaviour
 {
-    public GameObject ObjectFromGetWidth; //Объект, с которого нужно сделать клон
-    public Vector3 PositionBeginner; //Первоначальное значние объекта
-    public GameObject ParentObject; //Родительский объект
+    //Объект, с которого нужно сделать клон
+    public GameObject ObjectFromGetWidth; 
+    //Первоначальное значние объекта
+    public Vector3 PositionBeginner; 
+    //Родительский объект, нужно чтобы узнать например в какой родительский объект копировать клон
+    public GameObject ParentObject; 
     // Start is called before the first frame update
     private void Awake()
     {
-        PositionBeginner = ObjectFromGetWidth.transform.position;//Присваиваем первоначальное значение переменной 
-        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!");
-        //Clone("Test", 890);
+        //Присваиваем первоначальное значение переменной 
+        PositionBeginner = ObjectFromGetWidth.transform.position;
     }
     void Start()
     {
@@ -34,7 +36,6 @@ public class CloneObjectLines : MonoBehaviour
         //Добавим клону свойства 
         clone.SetActive(true);
         clone.GetComponent<MovementPath>().SubjectName = subjectName;
-        Debug.LogError(subjectName);
         clone.GetComponent<MovementPath>().SetValueTextPro("+" + quantity);     
         clone.GetComponent<MovementPath>().StartAnimation();
         Debug.Log("subjectName=" + subjectName);
@@ -43,6 +44,7 @@ public class CloneObjectLines : MonoBehaviour
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void DeleteClones() //Удаление всех клонов
     {
+        //Получаем количество клонов
         int childCount = ParentObject.transform.childCount;
 
         Debug.Log(childCount);
@@ -51,11 +53,12 @@ public class CloneObjectLines : MonoBehaviour
         {
             try
             {
-                clone = gameObject.transform.Find("Lines(Clone)").gameObject;
+                clone = ParentObject.transform.Find(gameObject.name+"(Clone)").gameObject;
                 Debug.Log("cloneID: " + clone.GetInstanceID());
                 Debug.Log("clone: " + clone);
                 Debug.Log("Удаление");
                 DestroyImmediate(clone);
+                return;
             }
             catch
             {

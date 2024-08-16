@@ -15,7 +15,8 @@ public class ProductionBuildingUI : MonoBehaviour, IPointerDownHandler, IPointer
     public GameObject PanelFewResourcesBox;
     public GameObject PanelQuestion;
     public GameObject PanelQuestionBox;
-    public string NameSystem;//Системное имя объекта
+    //Системное имя объекта
+    public string NameSystem;
     public GameObject Data;
     public GameObject PanelSlots; //
     [SerializeField]
