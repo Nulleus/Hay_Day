@@ -427,7 +427,7 @@ public class ProductionBuilding : MonoBehaviour
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().Show();
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().CleanerPanel();
                     gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SubjectNameForBuilding = subjectName;
-                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SetUserActionSelection("buyForDaemonds");
+                    gameObject.GetComponent<ProductionBuildingUI>().PanelFewResources.GetComponent<PanelFewResources>().SetUserActionSelection("buyForDiamonds");
                     
 
                     Debug.Log("code0x0000003 message Ќехватает ингредиентов дл€ производства!");

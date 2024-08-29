@@ -245,7 +245,7 @@ public class ProductionBuildingUI : MonoBehaviour, IPointerDownHandler, IPointer
             //PanelFewResources.SetActive(false);
             yield return null;
         }
-        if (PanelFewResources.GetComponent<PanelFewResources>().UserActionSelection == "buyForDaemonds")
+        if (PanelFewResources.GetComponent<PanelFewResources>().UserActionSelection == "buyForDiamonds")
         {
             Debug.Log("StopCorutine");
             Debug.Log("PanelFewResourcesBox.SetActive(false);");

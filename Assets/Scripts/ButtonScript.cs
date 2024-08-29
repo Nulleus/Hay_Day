@@ -46,7 +46,7 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     void Start()
     {
-        
+
     }
 
     //Передаем кнопке значения
@@ -97,8 +97,8 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 Debug.Log("pressed MoveOff");
                 GameObjectOperand.gameObject.GetComponent<ProductionBuildingUI>().IsMoveModeOn = false;
                 break;
-            case "buyForDaemonds":
-                Debug.Log("pressed buyForDaemonds");
+            case "buyForDiamonds":
+                Debug.Log("pressed buyForDiamonds");
                 BlockObjectScene.GetComponent<BlockObject>().SetBlockObjectStatus(false);
                 GameObjectOperand.GetComponent<PanelFewResources>().SetUserActionSelection(AppointmentButton);
                 //Выбор пользователя был сделан
