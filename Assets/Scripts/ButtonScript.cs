@@ -193,6 +193,10 @@ public class ButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 Debug.Log("pressed GetPrizeSpin");
                 GameObjectOperand.GetComponent<PanelWheelOfFortune>().GetPrizeSpin();
                 break;
+            case "buyNewSpinForDiamonds":
+                Debug.Log("pressed buyNewSpinForDiamonds");
+                //GameObjectOperand.GetComponent<PanelWheelOfFortune>().GetPrizeSpin();
+                break;
             default:
                 Debug.Log("default case");
                 break;
