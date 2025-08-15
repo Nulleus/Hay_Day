@@ -36,7 +36,7 @@ public class PanelWheelOfFortune : MonoBehaviour
     //ћинимальное значение скорости, при котором может добавл€тьс€ скорость дл€ подкрутки колеса
     public const int WHEEL_CELL_CHANGE_SPEED_MIN = 120;
     //—корость добавл€ема€ колесу, дл€ подкрутки результата
-    public const int HELP_ROTATION_SPEED = 50;
+    public const int HELP_ROTATION_SPEED = 10;
     //—истема частиц дл€ салюта
     public GameObject UIParticle;
     // оличество вращений колеса
@@ -143,11 +143,17 @@ public class PanelWheelOfFortune : MonoBehaviour
         ButtonPrize.SetActive(false);
         CountSpins = 0;
         IsGettingPrize = true;
+        LoadSubjectsSpin();
+        if (CountSpins == 0)
+        {
+            IsRotationEnabled = true;
+        }
     }
     //ƒействие происходит, когда стрелка останавливаетс€ на выигрышной позиции
     [Button(ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
     public void WinningPosition()
     {
+        Debug.Log("Winning Position");
         IsGettingPrize = false;
         ButtonPrize.SetActive(true);
         ButtonPrize.GetComponent<SpriteController>().SetSprite(WinningPositionSubjectName);
@@ -226,4 +232,5 @@ public class PanelWheelOfFortune : MonoBehaviour
     {
         WheelRotationSpeed -= 1;
     }
+
 }
