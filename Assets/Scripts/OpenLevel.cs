@@ -128,7 +128,7 @@ public class OpenLevel : MonoBehaviour
         if (locationDataProcessing == "Server")
         {
             Debug.Log("GetAllSubjectNameByOpenLevel");
-            RestClient.Post<ResponseCountOpenLevel>("http://45.84.226.98/api/open_level_execute_methods.php", new POSTOpenLevel
+            RestClient.Post<ResponseCountOpenLevel>("http://89.110.90.192/api/open_level_execute_methods.php", new POSTOpenLevel
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetCountAllSubjectNameByOpenLevel",
@@ -182,7 +182,7 @@ public class OpenLevel : MonoBehaviour
         if (locationDataProcessing == "Server")
         {
             //Debug.Log("GetCountAllSubjectNameByOpenLevelWhereNumber");
-            RestClient.Post<ResponseAllSubjectNameByOpenLevelWhereNumber>("http://45.84.226.98/api/open_level_execute_methods.php", new POSTAllSubjectNameByOpenLevelWhereNumber
+            RestClient.Post<ResponseAllSubjectNameByOpenLevelWhereNumber>("http://89.110.90.192/api/open_level_execute_methods.php", new POSTAllSubjectNameByOpenLevelWhereNumber
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetAllSubjectNameByOpenLevelWhereNumber",
@@ -231,7 +231,7 @@ public class OpenLevel : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseOpenLevelNumberWhereSubjectName>("http://45.84.226.98/api/open_level_execute_methods.php", new POSTOpenLevelNumberWhereSubjectName
+            RestClient.Post<ResponseOpenLevelNumberWhereSubjectName>("http://89.110.90.192/api/open_level_execute_methods.php", new POSTOpenLevelNumberWhereSubjectName
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetOpenLevelNumberWhereSubjectName",

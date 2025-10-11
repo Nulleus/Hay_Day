@@ -217,7 +217,7 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("BuySubjectForDiamond(" + subjectName + "," + locationDataProcessing+");");
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseBuySubjectForDiamonds>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
+            RestClient.Post<ResponseBuySubjectForDiamonds>("http://89.110.90.192/api/production_building_execute_methods.php", new POSTBuySubjectForDiamonds
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "BuySubjectForDiamonds",
@@ -344,7 +344,7 @@ public class ProductionBuilding : MonoBehaviour
         Debug.Log("AddInSlotSubject=" + subjectName + productionBuildingName+ ignoreQuestion+locationDataProcessing);
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseAddInSlotSubject>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTAddInSlotSubject
+            RestClient.Post<ResponseAddInSlotSubject>("http://89.110.90.192/api/production_building_execute_methods.php", new POSTAddInSlotSubject
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "AddInSlotSubject",
@@ -665,7 +665,7 @@ public class ProductionBuilding : MonoBehaviour
     {
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseShipment>("http://45.84.226.98/api/production_building_execute_methods.php", new POSTShipment
+            RestClient.Post<ResponseShipment>("http://89.110.90.192/api/production_building_execute_methods.php", new POSTShipment
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "Shipment",

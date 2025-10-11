@@ -74,7 +74,7 @@ public class BuildingTime : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseGetTimeBuilding>("http://45.84.226.98/api/building_time_execute_methods.php", new POSTGetTimeBuilding
+            RestClient.Post<ResponseGetTimeBuilding>("http://89.110.90.192/api/building_time_execute_methods.php", new POSTGetTimeBuilding
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetTimeBuilding",

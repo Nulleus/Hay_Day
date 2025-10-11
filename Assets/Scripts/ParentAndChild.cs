@@ -167,7 +167,7 @@ public class ParentAndChild : MonoBehaviour
     //SELECT COUNT(*) 
     public void GetSubjectChildNameByNumber(string subjectParentName, int number)
     {
-        string basePath = "http://45.84.226.98/api/parent_and_child_execute_methods.php";
+        string basePath = "http://89.110.90.192/api/parent_and_child_execute_methods.php";
         RequestHelper currentRequest;
         currentRequest = new RequestHelper
         {

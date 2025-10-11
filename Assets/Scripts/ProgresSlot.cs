@@ -84,7 +84,7 @@ public class ProgresSlot : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseGetOpenSlotsCount>("http://45.84.226.98/api/progres_slot_execute_methods.php", new POSTGetOpenSlotsCount
+            RestClient.Post<ResponseGetOpenSlotsCount>("http://89.110.90.192/api/progres_slot_execute_methods.php", new POSTGetOpenSlotsCount
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetOpenSlotsCount",

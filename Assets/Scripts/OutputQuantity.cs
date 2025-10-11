@@ -77,7 +77,7 @@ public class OutputQuantity : MonoBehaviour
         }
         if (locationDataProcessing == "Server")
         {
-            RestClient.Post<ResponseGetOutputQuantityBySubjectName>("http://45.84.226.98/api/output_quantity_execute_methods.php", new POSTGetOutputQuantityBySubjectName
+            RestClient.Post<ResponseGetOutputQuantityBySubjectName>("http://89.110.90.192/api/output_quantity_execute_methods.php", new POSTGetOutputQuantityBySubjectName
             {
                 jwt = Data.GetComponent<User>().GetJWTToken(),
                 methodName = "GetOutputQuantityBySubjectName",
