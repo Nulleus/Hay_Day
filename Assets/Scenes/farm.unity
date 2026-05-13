@@ -141427,7 +141427,7 @@ MonoBehaviour:
   ProductionBuildingSendRequest: {fileID: 364160149}
   MainCamera: {fileID: 882889948}
   AppointmentButton: buyNewSpinForDiamonds
-  GameObjectOperand: {fileID: 775015347}
+  GameObjectOperand: {fileID: 1023010960}
   ButtonText: {fileID: 808682817}
   ButtonImage: {fileID: 104085770}
   ButtonTextInfo: {fileID: 2132004700}
